@@ -1,0 +1,21 @@
+name: qsar-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - rdkit=2023.09.4
+  - numpy<2
+  - numba=0.59.1
+  - pynndescent=0.5.11
+  - umap-learn=0.5.5
+  - hdbscan
+  - mordred
+  - scikit-learn
+  - xgboost
+  - lightgbm
+  - catboost
+  - matplotlib
+  - seaborn
+  - pandas
+  - pip
