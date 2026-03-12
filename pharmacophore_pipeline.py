@@ -2,9 +2,16 @@
 pharmacophore_pipeline.py
 =========================
 Ligand-based pharmacophore modeling pipeline using the Schrödinger Python API.
+Uses LOCAL compute only — all 24 cores, no license-token checkout from job server.
 
 Run with:
     $SCHRODINGER/run python pharmacophore_pipeline.py
+
+Parallelism (all local, no remote job server / token consumption):
+    - LigPrep:          -NJOBS 24 -HOST localhost -NOJOBID
+    - ConfGen:          -NJOBS 24 -HOST localhost -NOJOBID
+    - Phase find_common: -HOST localhost:24 -NOJOBID
+    - Phase screen:     -HOST localhost:24 -NJOBS 24 -NOJOBID
 
 Workflow:
     1. Balance dataset (actives from Series E + C, inactives from non_numeric)
@@ -41,6 +48,7 @@ from sklearn.metrics import (
 # Constants
 # ─────────────────────────────────────────────────────────────────────────────
 SCHRODINGER  = os.environ.get("SCHRODINGER", "/opt/schrodinger/schrodinger2026-1")
+NCPUS        = os.cpu_count() or 24   # use all available cores (24 on this workstation)
 RANDOM_SEED  = 42
 MAX_CONFS    = 100          # max conformers per ligand
 ENERGY_WIN   = 10.0         # kcal/mol window for ConfGen
@@ -221,9 +229,12 @@ def prepare_ligands(input_mae: str,
         "-ph",    str(ph),
         "-pht",   str(ph_tolerance),
         "-s",     "1",           # 1 ionization state per compound
+        "-NJOBS", str(NCPUS),    # split across all cores
+        "-HOST",  "localhost",   # run locally (no remote job server)
         "-WAIT",                 # block until complete
-        "-NOJOBID",              # no job server needed for single-machine use
+        "-NOJOBID",              # no job ID registration = no token checkout
     ]
+    log.info("LigPrep using %d local CPU cores", NCPUS)
     _run_schr(cmd, desc="LigPrep")
     log.info("LigPrep complete: %s", output_mae)
     return output_mae
@@ -254,22 +265,57 @@ def generate_conformers(input_mae: str,
     """
     log.info("Running ConfGen: %s → %s", input_mae, output_mae)
 
-    # Write ConfGen input file (.inp)
-    inp_file = output_mae.replace(".mae", ".inp").replace(".maegz", ".inp")
-    inp_content = f"""\
-INPUT_FILE   {os.path.abspath(input_mae)}
-OUTPUT_FILE  {os.path.abspath(output_mae)}
-MAX_CONFS    {max_confs}
-ENERGY_WINDOW {energy_window}
-RMSD_CUTOFF  {rmsd_cutoff}
-OPLS         OPLS_2005
-AMIDE_MODE   penal
-"""
-    with open(inp_file, "w") as fh:
-        fh.write(inp_content)
-
-    cmd = ["confgen", inp_file, "-WAIT", "-NOJOBID"]
+    # ConfGen takes a structure file as a positional argument with CLI flags
+    cmd = [
+        "confgenx",
+        os.path.abspath(input_mae),
+        "-m",         str(max_confs),
+        "-optimize",
+        "-force_field", "OPLS_2005",
+        "-NJOBS", str(NCPUS),    # split across all cores
+        "-HOST",  "localhost",   # run locally (no remote job server)
+        "-WAIT",
+        "-NOJOBID",              # no job ID = no token checkout
+    ]
+    log.info("ConfGen using %d local CPU cores", NCPUS)
     _run_schr(cmd, desc="ConfGen")
+
+    # ConfGen writes output with -out.maegz suffix, either next to input or in CWD
+    input_basename = os.path.splitext(os.path.basename(input_mae))[0]
+    input_base_abs = os.path.splitext(os.path.abspath(input_mae))[0]
+    candidates = [
+        input_base_abs + "-out.maegz",
+        input_base_abs + "-out.mae",
+        # ConfGen may also write to CWD based on filename only
+        os.path.join(os.getcwd(), input_basename + "-out.maegz"),
+        os.path.join(os.getcwd(), input_basename + "-out.mae"),
+    ]
+    confgen_output = None
+    for c in candidates:
+        if os.path.isfile(c):
+            confgen_output = c
+            break
+
+    if confgen_output is None:
+        # Search CWD and input dir for any *-out* files
+        search_dirs = set([os.getcwd(), os.path.dirname(os.path.abspath(input_mae))])
+        for d in search_dirs:
+            all_files = [os.path.join(d, f) for f in os.listdir(d)
+                         if f.endswith((".mae", ".maegz")) and "out" in f.lower()]
+            if all_files:
+                confgen_output = sorted(all_files, key=os.path.getmtime)[-1]
+                break
+
+    if confgen_output is None:
+        raise FileNotFoundError(
+            f"ConfGen produced no output. Expected {candidates[0]} or similar."
+        )
+
+    # Move/rename to our expected output path
+    if confgen_output != os.path.abspath(output_mae):
+        shutil.copy2(confgen_output, output_mae)
+        log.info("Copied ConfGen output: %s → %s", confgen_output, output_mae)
+
     log.info("ConfGen complete: %s", output_mae)
     return output_mae
 
@@ -287,9 +333,10 @@ def build_pharmacophore(actives_mae: str,
     Run Phase Common Pharmacophore Hypothesis (CPH) generation on ACTIVE compounds.
 
     Steps:
-      a) Identify Phase pharmacophore features for each conformer.
-      b) Find common feature patterns across actives.
-      c) Score and rank hypotheses by Phase survival score.
+      a) Create a Phase project from active conformers.
+      b) Archive the project to .phzip.
+      c) Run phase_find_common to identify common pharmacophore hypotheses.
+      d) Parse results and return the best hypothesis.
 
     Parameters
     ----------
@@ -310,110 +357,173 @@ def build_pharmacophore(actives_mae: str,
     log.info("Building pharmacophore hypotheses from: %s", actives_mae)
     log.info("Feature types: %s  |  Sites: %d–%d", ", ".join(features), min_sites, max_sites)
 
-    # ── Step A: Write Phase input file (.inp) ────────────────────────────────
-    inp_file  = os.path.join(output_dir, f"{jobname}.inp")
-    out_prefix = os.path.join(output_dir, jobname)
+    # ── Step A: Create Phase project ─────────────────────────────────────────
+    project_dir = os.path.join(output_dir, f"{jobname}.phprj")
+    if os.path.isdir(project_dir):
+        shutil.rmtree(project_dir)
 
-    inp_lines = [
-        f"JOBNAME  {jobname}",
-        f"INPUT_FILE_COLUMN  {os.path.abspath(actives_mae)}",
-        f"FEATURES  {' '.join(features)}",
-        f"MIN_SITES  {min_sites}",
-        f"MAX_SITES  {max_sites}",
-        "PFEAT_SCORE_CUTOFF  0.5",
-        "MAX_SKIPPED_MOLS  0",
-        "SCORE_CUTOFF  0.5",     # survival score threshold
-        "ACTIVITY_COLUMN  i_user_activity",
+    cmd_import = [
+        os.path.join(SCHRODINGER, "utilities", "phase_project"),
+        project_dir,
+        "import",
+        "-i", os.path.abspath(actives_mae),
+        "-new",
+        "-act", "i_user_activity",
+        "-fmt", "single",
     ]
-    with open(inp_file, "w") as fh:
-        fh.write("\n".join(inp_lines) + "\n")
+    log.info("Creating Phase project: %s", " ".join(cmd_import))
+    result = subprocess.run(cmd_import, capture_output=True, text=True,
+                            env={**os.environ, "SCHRODINGER": SCHRODINGER})
+    if result.returncode != 0:
+        log.error("phase_project import STDOUT:\n%s", result.stdout[-2000:])
+        log.error("phase_project import STDERR:\n%s", result.stderr[-2000:])
+        raise RuntimeError(f"Phase project import failed (exit {result.returncode})")
+    log.info("Phase project created: %s", project_dir)
 
-    # ── Step B: Run phase_find_common ────────────────────────────────────────
-    cmd = [
-        "phase_find_common",
-        inp_file,
+    # ── Step B: Create pharmacophore sites ───────────────────────────────────
+    cmd_sites = [
+        os.path.join(SCHRODINGER, "utilities", "phase_project"),
+        project_dir,
+        "revise",
+        "-sites",
+    ]
+    log.info("Creating pharmacophore sites: %s", " ".join(cmd_sites))
+    result = subprocess.run(cmd_sites, capture_output=True, text=True,
+                            env={**os.environ, "SCHRODINGER": SCHRODINGER})
+    if result.returncode != 0:
+        log.error("phase_project revise -sites STDOUT:\n%s", result.stdout[-2000:])
+        log.error("phase_project revise -sites STDERR:\n%s", result.stderr[-2000:])
+        raise RuntimeError(f"Phase site creation failed (exit {result.returncode})")
+    log.info("Pharmacophore sites created for project: %s", project_dir)
+
+    # ── Step C: Archive to .phzip ────────────────────────────────────────────
+    cmd_archive = [
+        os.path.join(SCHRODINGER, "utilities", "phase_project"),
+        project_dir,
+        "archive",
+    ]
+    log.info("Archiving Phase project: %s", " ".join(cmd_archive))
+    result = subprocess.run(cmd_archive, capture_output=True, text=True,
+                            env={**os.environ, "SCHRODINGER": SCHRODINGER})
+    if result.returncode != 0:
+        log.error("phase_project archive STDOUT:\n%s", result.stdout[-2000:])
+        log.error("phase_project archive STDERR:\n%s", result.stderr[-2000:])
+        raise RuntimeError(f"Phase project archive failed (exit {result.returncode})")
+
+    phzip = project_dir.replace(".phprj", ".phzip")
+    if not os.path.isfile(phzip):
+        # phase_project archive often writes .phzip to CWD, not next to .phprj
+        candidates = [
+            os.path.join(output_dir, f"{jobname}.phzip"),
+            os.path.join(os.getcwd(), f"{jobname}.phzip"),
+            f"{jobname}.phzip",
+        ]
+        found = False
+        for cand in candidates:
+            if os.path.isfile(cand):
+                shutil.move(cand, phzip)
+                log.info("Moved .phzip from %s → %s", cand, phzip)
+                found = True
+                break
+        if not found:
+            raise FileNotFoundError(
+                f"Expected .phzip not found at {phzip} or CWD. "
+                f"Checked: {candidates}"
+            )
+    log.info("Phase archive: %s", phzip)
+
+    # ── Step C: Run phase_find_common ────────────────────────────────────────
+    cmd_find = [
+        os.path.join(SCHRODINGER, "phase_find_common"),
+        phzip,
+        "-sites", f"{min_sites}:{max_sites}",
+        "-HOST",  f"localhost:{NCPUS}",  # use all cores locally
+        "-LOCAL",                # run locally, no remote job server
         "-WAIT",
-        "-NOJOBID",
     ]
-    _run_schr(cmd, desc="Phase CPH generation")
+    log.info("Phase find_common using %d local CPU cores", NCPUS)
+    log.info("Running phase_find_common: %s", " ".join(cmd_find))
+    result = subprocess.run(cmd_find, capture_output=True, text=True,
+                            env={**os.environ, "SCHRODINGER": SCHRODINGER})
+    if result.returncode != 0:
+        log.error("phase_find_common STDOUT:\n%s", result.stdout[-2000:])
+        log.error("phase_find_common STDERR:\n%s", result.stderr[-2000:])
+        raise RuntimeError(f"Phase find_common failed (exit {result.returncode})")
 
-    # ── Step C: Locate best hypothesis ───────────────────────────────────────
+    # ── Step D: Locate results ───────────────────────────────────────────────
+    # phase_find_common outputs: <jobName>_find_common.zip
+    fc_zip = os.path.join(output_dir, f"{jobname}_find_common.zip")
+    if not os.path.isfile(fc_zip):
+        # Try current directory
+        fc_zip_alt = f"{jobname}_find_common.zip"
+        if os.path.isfile(fc_zip_alt):
+            shutil.move(fc_zip_alt, fc_zip)
+        else:
+            # Search for any _find_common.zip
+            import glob
+            candidates = glob.glob(os.path.join(output_dir, "*_find_common.zip")) + \
+                         glob.glob("*_find_common.zip")
+            if candidates:
+                fc_zip = candidates[0]
+            else:
+                raise FileNotFoundError(f"No _find_common.zip found after phase_find_common.")
+
+    # Unzip results
+    fc_dir = os.path.join(output_dir, f"{jobname}_find_common")
+    import zipfile
+    with zipfile.ZipFile(fc_zip, "r") as zf:
+        zf.extractall(fc_dir)
+    log.info("Extracted find_common results to: %s", fc_dir)
+
+    # Some Phase archives contain a single top-level directory with the same
+    # name as the archive stem. Descend into it if present.
+    fc_root = fc_dir
+    nested_dir = os.path.join(fc_dir, os.path.basename(fc_dir))
+    if os.path.isdir(nested_dir):
+        fc_root = nested_dir
+        log.info("Using nested find_common results directory: %s", fc_root)
+
+    # Find .phypo files in hypotheses subdirectory
+    hypo_subdir = os.path.join(fc_root, "hypotheses")
+    if not os.path.isdir(hypo_subdir):
+        hypo_subdir = fc_root  # fallback: hypotheses at root level
+
     phypo_files = sorted(
-        [f for f in os.listdir(output_dir) if f.endswith(".phypo")],
-        key=lambda f: os.path.getmtime(os.path.join(output_dir, f)),
-        reverse=True,
+        [f for f in os.listdir(hypo_subdir) if f.endswith(".phypo")]
     )
+
     if not phypo_files:
         raise FileNotFoundError(
-            f"No .phypo files found in {output_dir}. Phase CPH may have failed."
+            f"No .phypo files found in {hypo_subdir}. Phase CPH may have failed."
         )
 
-    # ── Step D: Parse survival scores from Phase log ─────────────────────────
-    log_file = os.path.join(output_dir, f"{jobname}.log")
-    best_hypo, best_score, hypo_table = _parse_phase_hypotheses(log_file, output_dir)
+    # Parse scores.csv if it exists
+    scores_csv = os.path.join(fc_root, "scores.csv")
+    best_hypo = None
+    best_score = -1.0
+
+    if os.path.isfile(scores_csv):
+        scores_df = pd.read_csv(scores_csv)
+        log.info("Phase scores:\n%s", scores_df.to_string())
+        scores_df.to_csv(os.path.join(output_dir, "hypothesis_ranking.csv"), index=False)
+        # Pick hypothesis with highest Survival score
+        if "Survival" in scores_df.columns:
+            idx = scores_df["Survival"].idxmax()
+            best_hypo = scores_df.loc[idx, "ID"] if "ID" in scores_df.columns else phypo_files[0].replace(".phypo", "")
+            best_score = scores_df.loc[idx, "Survival"]
+    
+    if best_hypo is None:
+        # Use first hypothesis file
+        best_hypo = phypo_files[0].replace(".phypo", "")
+
+    best_phypo = os.path.join(hypo_subdir, best_hypo + ".phypo")
+    if not os.path.isfile(best_phypo):
+        best_phypo = os.path.join(hypo_subdir, phypo_files[0])
 
     log.info("Pharmacophore hypotheses generated: %d", len(phypo_files))
     log.info("Best hypothesis: %s  (survival score = %.4f)", best_hypo, best_score)
 
-    if hypo_table is not None:
-        hypo_csv = os.path.join(output_dir, "hypothesis_ranking.csv")
-        hypo_table.to_csv(hypo_csv, index=False)
-        log.info("Hypothesis ranking saved: %s", hypo_csv)
-
-    best_phypo = os.path.join(output_dir, best_hypo + ".phypo") if best_hypo else \
-                 os.path.join(output_dir, phypo_files[0])
     return best_phypo
-
-
-def _parse_phase_hypotheses(log_file: str, output_dir: str):
-    """
-    Parse the Phase log to extract hypotheses and their survival scores.
-    Returns (best_hypo_name, best_score, DataFrame_of_all_hypotheses).
-    """
-    hypo_records = []
-    best_hypo  = None
-    best_score = -1.0
-
-    if not os.path.isfile(log_file):
-        log.warning("Phase log not found: %s", log_file)
-        # Fall back: return first .phypo found
-        phypos = [f.replace(".phypo", "")
-                  for f in os.listdir(output_dir) if f.endswith(".phypo")]
-        return (phypos[0] if phypos else None, best_score, None)
-
-    with open(log_file) as fh:
-        for line in fh:
-            # Phase log lines typically look like:
-            # HYPO_NAME   SURVIVAL_SCORE   FEATURE_STRING
-            parts = line.strip().split()
-            if len(parts) >= 2 and parts[0].endswith(".phypo"):
-                name  = parts[0].replace(".phypo", "")
-                try:
-                    score = float(parts[1])
-                except ValueError:
-                    continue
-                features = parts[2] if len(parts) > 2 else ""
-                hypo_records.append({"hypothesis": name, "survival_score": score,
-                                      "features": features})
-                if score > best_score:
-                    best_score = score
-                    best_hypo  = name
-
-    hypo_df = pd.DataFrame(hypo_records) if hypo_records else None
-    if hypo_df is not None:
-        hypo_df = hypo_df.sort_values("survival_score", ascending=False)
-
-    # If log parsing found nothing, use the most recent .phypo
-    if best_hypo is None:
-        phypos = sorted(
-            [f for f in os.listdir(output_dir) if f.endswith(".phypo")],
-            key=lambda f: os.path.getmtime(os.path.join(output_dir, f)),
-            reverse=True,
-        )
-        if phypos:
-            best_hypo = phypos[0].replace(".phypo", "")
-
-    return best_hypo, best_score, hypo_df
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -447,67 +557,76 @@ def validate_pharmacophore(best_phypo: str,
     log.info("Screening dataset against: %s", best_phypo)
 
     # ── Run phase_screen ─────────────────────────────────────────────────────
+    # Syntax: phase_screen <source> <hypo> <jobname> [options]
+    screen_job = os.path.join(output_dir, jobname)
     cmd = [
-        "phase_screen",
-        best_phypo,
+        os.path.join(SCHRODINGER, "phase_screen"),
         os.path.abspath(screen_mae),
-        "-o",      os.path.join(output_dir, jobname),
-        "-report", "all",
-        "-WAIT",
-        "-NOJOBID",
+        os.path.abspath(best_phypo),
+        screen_job,
+        "-distinct",
+        "-HOST",  f"localhost:{NCPUS}",  # use all cores locally
+        "-NJOBS", str(NCPUS),              # split screening across cores
     ]
-    _run_schr(cmd, desc="Phase screening")
+    log.info("Phase screen using %d local CPU cores", NCPUS)
+    log.info("Running phase_screen: %s", " ".join(cmd))
+    result = subprocess.run(cmd, capture_output=True, text=True,
+                            env={**os.environ, "SCHRODINGER": SCHRODINGER})
+    if result.returncode != 0:
+        log.error("phase_screen STDOUT:\n%s", result.stdout[-2000:])
+        log.error("phase_screen STDERR:\n%s", result.stderr[-2000:])
+        raise RuntimeError(f"Phase screening failed (exit {result.returncode})")
 
     # ── Parse screen results ──────────────────────────────────────────────────
-    # Phase screen writes a CSV with hit/non-hit info + PhaseScore
-    results_file = _find_screen_results(output_dir, jobname)
-    if results_file is None:
-        raise FileNotFoundError(
-            f"No Phase screen results found in {output_dir}."
-        )
+    # phase_screen outputs <jobname>-hits.maegz with matched structures + PhaseScreenScore
+    hits_file = screen_job + "-hits.maegz"
+    if not os.path.isfile(hits_file):
+        hits_file = screen_job + "-hits.mae"
+    if not os.path.isfile(hits_file):
+        # Search for any hits file
+        import glob
+        hits_candidates = glob.glob(os.path.join(output_dir, f"{jobname}*hits*"))
+        if hits_candidates:
+            hits_file = hits_candidates[0]
+        else:
+            log.warning("No phase_screen hits file found. Assuming no matches.")
+            hits_file = None
 
-    results_df = pd.read_csv(results_file)
-    log.info("Screen results loaded: %d rows from %s", len(results_df), results_file)
+    # Load all screened compounds with their true activities
+    truth_df = _load_activities_from_mae(screen_mae)  # title, activity, series
+    log.info("Loaded truth labels for %d structures", len(truth_df))
 
-    # Identify activity truth from structure properties in the screen .mae
-    truth_df = _load_activities_from_mae(screen_mae)
+    # Parse hits to get matched titles + scores
+    hit_titles = set()
+    hit_scores = {}
+    if hits_file and os.path.isfile(hits_file):
+        for st in StructureReader(hits_file):
+            hit_titles.add(st.title)
+            score = st.property.get("r_phase_PhaseScreenScore",
+                    st.property.get("r_phase_Fitness", 0.0))
+            hit_scores[st.title] = score
+        log.info("phase_screen matched %d structures", len(hit_titles))
+    else:
+        log.warning("No hits found from phase_screen.")
 
-    # Merge on title / compound ID
-    title_col = _detect_title_col(results_df)
-    merged = results_df.merge(truth_df, on=title_col, how="left")
-    merged["activity"].fillna(0, inplace=True)
-    merged["activity"] = merged["activity"].astype(int)
+    # Build merged dataframe: all compounds with hit/no-hit prediction
+    truth_df["y_pred"] = truth_df["title"].apply(lambda t: 1 if t in hit_titles else 0)
+    truth_df["y_score"] = truth_df["title"].apply(lambda t: hit_scores.get(t, 0.0))
+    truth_df["activity"] = truth_df["activity"].fillna(0).astype(int)
 
-    # Phase screen assigns a score; treat matched compound as predicted positive
-    score_col = _detect_score_col(results_df)
-    y_true  = merged["activity"].values
-    y_score = merged[score_col].fillna(0.0).values
-
-    # Binary prediction: screen match = 1 (Phase marks hits vs non-hits)
-    hit_col   = _detect_hit_col(results_df)
-    y_pred    = merged[hit_col].fillna(0).astype(int).values if hit_col else (y_score > 0).astype(int)
+    y_true  = truth_df["activity"].values
+    y_score = truth_df["y_score"].values
+    y_pred  = truth_df["y_pred"].values
 
     metrics = _compute_metrics(y_true, y_score, y_pred)
 
     # Save merged results
-    merged.to_csv(screen_csv, index=False)
-    log.info("Screen results (with activity labels) saved: %s", screen_csv)
+    screen_csv = os.path.join(output_dir, f"{jobname}_results.csv")
+    truth_df.to_csv(screen_csv, index=False)
+    log.info("Screen results saved: %s", screen_csv)
 
     _print_metrics(metrics)
     return metrics
-
-
-def _find_screen_results(output_dir: str, jobname: str) -> str | None:
-    """Locate the Phase screen CSV output file."""
-    candidates = [
-        os.path.join(output_dir, f"{jobname}_hits.csv"),
-        os.path.join(output_dir, f"{jobname}.csv"),
-    ]
-    for c in candidates:
-        if os.path.isfile(c):
-            return c
-    csvs = sorted([f for f in os.listdir(output_dir) if f.endswith(".csv")])
-    return os.path.join(output_dir, csvs[0]) if csvs else None
 
 
 def _load_activities_from_mae(mae_path: str) -> pd.DataFrame:
@@ -519,31 +638,6 @@ def _load_activities_from_mae(mae_path: str) -> pd.DataFrame:
         ser   = st.property.get("s_user_series", "")
         records.append({"title": title, "activity": act, "series": ser})
     return pd.DataFrame(records)
-
-
-def _detect_title_col(df: pd.DataFrame) -> str:
-    for c in ["title", "Title", "Name", "name", "compound_id"]:
-        if c in df.columns:
-            return c
-    return df.columns[0]
-
-
-def _detect_score_col(df: pd.DataFrame) -> str:
-    for c in ["PhaseScore", "Score", "phase_score", "score", "Fitness"]:
-        if c in df.columns:
-            return c
-    # Fall back to first numeric column after title
-    for c in df.columns[1:]:
-        if pd.api.types.is_numeric_dtype(df[c]):
-            return c
-    return df.columns[1]
-
-
-def _detect_hit_col(df: pd.DataFrame):
-    for c in ["Hit", "hit", "matched", "Matched", "is_hit"]:
-        if c in df.columns:
-            return c
-    return None
 
 
 def _compute_metrics(y_true, y_score, y_pred) -> dict:
