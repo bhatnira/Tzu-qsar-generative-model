@@ -5,6 +5,7 @@ Main script to run the QSAR pipeline using modularized code.
 import os
 import pandas as pd
 import numpy as np
+from rdkit import Chem
 from data_loader import load_excel_sheets, apply_smiles_cleaning, combine_and_deduplicate, filter_numeric_ic50
 from descriptors import compute_descriptors
 from clustering import run_umap, run_hdbscan, get_scaffold_safe
@@ -13,18 +14,17 @@ from visualization import plot_ic50_distribution, plot_umap_clusters, plot_y_tru
 
 def main():
     # 1. Load data
-        print("[1/7] Loading data...")
-    file_name = "your_data_file.xlsx"  # <-- Set your file name here
+    print("[1/7] Loading data...")
+    file_name = "TB Project QSAR.xlsx"
     series_dfs = load_excel_sheets(file_name)
-        print("[2/7] Cleaning SMILES and deduplicating...")
+    print("[2/7] Cleaning SMILES and deduplicating...")
     series_dfs = apply_smiles_cleaning(series_dfs)
     df = combine_and_deduplicate(series_dfs)
     numeric_df = filter_numeric_ic50(df)
 
-    # 2. Univariate analysis
-        print("[3/7] Univariate analysis and plotting...")
+    # 2. Setup output directory
+    print("[3/7] Setting up output directory and univariate analysis...")
     output_dir = "outputs"
-    import os
     os.makedirs(output_dir, exist_ok=True)
     # Save IC50 distribution plot
     import matplotlib.pyplot as plt
@@ -35,17 +35,17 @@ def main():
     numeric_df['transformed_IC50'] = np.log10(numeric_df['IC50 uM'] + 1e-8)
 
     # 3. Descriptor calculation
-        print("[4/7] Calculating descriptors...")
+    print("[4/7] Calculating descriptors...")
     smiles_list = numeric_df['Canonical_SMILES'].tolist()
     desc_dict = compute_descriptors(smiles_list)
 
     # 4. UMAP + HDBSCAN clustering
-        print("[5/7] Running UMAP dimensionality reduction (this may take a while)...")
+    print("[5/7] Running UMAP dimensionality reduction...")
     descriptor_matrix = desc_dict['RDKit']
     umap_result = run_umap(descriptor_matrix)
     numeric_df['UMAP1'] = umap_result[:, 0]
     numeric_df['UMAP2'] = umap_result[:, 1]
-        print("[6/7] Running HDBSCAN clustering (this may take a while)...")
+    print("[6/7] Running HDBSCAN clustering...")
     clusters, min_size, score = run_hdbscan(umap_result)
     numeric_df['Cluster'] = clusters
     numeric_df['Scaffold'] = numeric_df['Canonical_SMILES'].apply(lambda s: get_scaffold_safe(Chem.MolFromSmiles(s)))
@@ -54,8 +54,7 @@ def main():
     plt.close()
 
     # 5. Model training and evaluation
-        print("[7/7] Model training, evaluation, and saving outputs...")
-    # Example split (adjust as needed)
+    print("[7/7] Model training, evaluation, and saving outputs...")
     train_df = numeric_df[numeric_df["Series_Code"].isin(["A","B","D"])].reset_index(drop=True)
     test_df = numeric_df[numeric_df["Series_Code"] == "C"].reset_index(drop=True)
     predict_df = numeric_df[numeric_df["Series_Code"] == "E"].reset_index(drop=True)
@@ -86,13 +85,6 @@ def main():
     # Save outputs to outputs/ directory
     pred_E_df.to_csv(os.path.join(output_dir, "SeriesE_with_predictions.csv"), index=False)
     pred_test_df.to_csv(os.path.join(output_dir, "SeriesC_test_with_predictions.csv"), index=False)
-    # If you have dropped_rows or non_numeric_rows, save them as well if they exist
-    if 'dropped_rows' in locals() and not dropped_rows.empty:
-        pred_dropped_df = predict_and_antilog(model_best, X_test_best, dropped_rows)
-        pred_dropped_df.to_csv(os.path.join(output_dir, "Dropped_rows_predictions.csv"), index=False)
-    if 'non_numeric_rows' in locals() and not non_numeric_rows.empty:
-        pred_non_numeric_df = predict_and_antilog(model_best, X_test_best, non_numeric_rows)
-        pred_non_numeric_df.to_csv(os.path.join(output_dir, "Non_numeric_rows_predictions.csv"), index=False)
     print(f"Pipeline complete. All outputs (CSVs and plots) saved in '{output_dir}/'.")
 
 if __name__ == "__main__":
