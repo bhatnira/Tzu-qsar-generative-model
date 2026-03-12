@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+pharm_outputs/
+*.mae
+*.maegz
+*.phypo
+pipeline_run.log
