@@ -1,0 +1,23 @@
+## Transfer Learning CORRECTLY from reinvent.prior (ChEMBL pre-trained)
+## Fine-tunes the main prior on Series C/E compounds → biased generation
+run_type = "transfer_learning"
+device = "cpu"
+tb_logdir = "reinvent_integration/results/tb_transfer_seriesce_correct"
+
+[parameters]
+num_epochs = 20
+save_every_n_epochs = 5
+batch_size = 32
+sample_batch_size = 128
+num_refs = 5
+
+input_model_file = "reinvent_integration/priors/reinvent.prior"
+output_model_file = "reinvent_integration/results/series_ce_finetune_correct.model"
+
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+validation_smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+
+standardize_smiles = true
+randomize_smiles = true
+randomize_all_smiles = true
+internal_diversity = true

@@ -1,0 +1,11 @@
+## Sampling: Similarity-guided generation from Series C/E fine-tuned model
+## Agent trained with high Tanimoto similarity reward to Series C/E references
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/results/reinvent_series_ce_similarity.chkpt"
+num_smiles = 2000
+output_file = "reinvent_integration/results/generated_similarity/samples_similarity.csv"
+unique_molecules = false
+randomize_smiles = true

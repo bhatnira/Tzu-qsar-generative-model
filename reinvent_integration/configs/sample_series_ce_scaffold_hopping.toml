@@ -1,0 +1,11 @@
+## Sampling: Scaffold Hopping from Series C/E fine-tuned model
+## Agent trained to avoid the azaspiro motif → novel scaffolds, similar activity
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/results/reinvent_series_ce_scaffold_hopping.chkpt"
+num_smiles = 2000
+output_file = "reinvent_integration/results/generated_scaffold_hopping/samples_scaffold_hopping.csv"
+unique_molecules = false
+randomize_smiles = true

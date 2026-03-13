@@ -1,0 +1,6 @@
+canonical_smiles,murcko_scaffold,novel_scaffold,pred_log10_ic50_uM,pred_ic50_uM,max_sim_to_seriesCE,has_spiro_motif,drug_like,mw,logp,hbd,hba,rot_bonds,tpsa
+CCCCCCC#Cc1cncc(N2CCC3(C2)CN(C(OC(C)(C)C)c2ccc(F)cc2F)C3)c1,c1ccc(CN2CC3(CCN(c4cccnc4)C3)C2)cc1,0,0.6976,4.9845,0.5059,1,0,495.66,6.71,0,4,8,28.6
+COc1ccc2cccc(C(=O)N3CC4(CCN(c5cncc(C#CC6CC6)c5)C4)C3)c2c1,O=C(c1cccc2ccccc12)N1CC2(CCN(c3cncc(C#CC4CC4)c3)C2)C1,1,0.7846,6.0894,0.4872,1,1,437.54,4.36,0,4,3,45.67
+CCCCOc1ccc(N2CCC3(C2)CN(c2ccc4ccccc4n2)C3)cn1,c1cncc(N2CCC3(C2)CN(c2ccc4ccccc4n2)C3)c1,1,0.9246,8.4057,0.3133,1,1,388.52,4.53,0,5,6,41.49
+CN(C)c1nc(N2CC3(CCN(c4cncc(-c5ccccc5)c4)C3)C2)cc(C(F)(F)F)n1,c1ccc(-c2cncc(N3CCC4(C3)CN(c3ccncn3)C4)c2)cc1,1,1.3957,24.8735,0.4384,1,1,454.5,4.34,0,6,4,48.39
+Cc1cnc2c(-n3cnc(-c4cnn(C)c4)c3)cccc2c1-c1cncc(N2CCC3(CNC3)C2)c1,c1cc(-n2cnc(-c3cn[nH]c3)c2)c2nccc(-c3cncc(N4CCC5(CNC5)C4)c3)c2c1,1,1.625,42.1688,0.3846,1,1,476.59,3.99,1,6,4,76.69

@@ -1,0 +1,3 @@
+canonical_smiles,murcko_scaffold,novel_scaffold,pred_log10_ic50_uM,pred_ic50_uM,max_sim_to_seriesCE,has_spiro_motif,drug_like,mw,logp,hbd,hba,rot_bonds,tpsa
+O=C(CSc1nc(=NCc2ccco2)c2cnn(C3CCCC3)c2[nH]1)NC1CCCC1,O=C(CSc1nc(=NCc2ccco2)c2cnn(C3CCCC3)c2[nH]1)NC1CCCC1,1,-0.0881,0.8163,0.1356,0,1,440.57,3.72,2,6,7,101.1
+O=C(CSc1nnc(C2CCCCC2)n1Cc1ccco1)N1CCCC1,O=C(CSc1nnc(C2CCCCC2)n1Cc1ccco1)N1CCCC1,1,-0.0237,0.9469,0.1566,0,1,374.51,3.68,0,5,6,64.16
