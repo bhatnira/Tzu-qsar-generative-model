@@ -34,9 +34,13 @@ def main():
     plt.close()
     numeric_df['transformed_IC50'] = np.log10(numeric_df['IC50 uM'] + 1e-8)
 
-    # 3. Descriptor calculation
-    print("[4/7] Calculating descriptors...")
-    smiles_list = numeric_df['Canonical_SMILES'].tolist()
+    # 3. Standardize SMILES and descriptor calculation
+    print("[4/7] Standardizing SMILES and calculating descriptors...")
+    from data_loader import standardize_smiles
+    numeric_df['cleanedMol'] = numeric_df['Canonical_SMILES'].apply(
+        lambda x: standardize_smiles(x, verbose=False)
+    )
+    smiles_list = numeric_df['cleanedMol'].tolist()
     desc_dict = compute_descriptors(smiles_list)
 
     # 4. UMAP + HDBSCAN clustering
@@ -48,7 +52,7 @@ def main():
     print("[6/7] Running HDBSCAN clustering...")
     clusters, min_size, score = run_hdbscan(umap_result)
     numeric_df['Cluster'] = clusters
-    numeric_df['Scaffold'] = numeric_df['Canonical_SMILES'].apply(lambda s: get_scaffold_safe(Chem.MolFromSmiles(s)))
+    numeric_df['Scaffold'] = numeric_df['cleanedMol'].apply(lambda s: get_scaffold_safe(Chem.MolFromSmiles(s)))
     plot_umap_clusters(numeric_df)
     plt.savefig(os.path.join(output_dir, "umap_clusters.png"))
     plt.close()
@@ -58,11 +62,11 @@ def main():
     train_df = numeric_df[numeric_df["Series_Code"].isin(["A","B","D"])].reset_index(drop=True)
     test_df = numeric_df[numeric_df["Series_Code"] == "C"].reset_index(drop=True)
     predict_df = numeric_df[numeric_df["Series_Code"] == "E"].reset_index(drop=True)
-    smiles_train = train_df["Canonical_SMILES"].values
+    smiles_train = train_df["cleanedMol"].values
     y_train = train_df["transformed_IC50"].values
-    smiles_test = test_df["Canonical_SMILES"].values
+    smiles_test = test_df["cleanedMol"].values
     y_test = test_df["transformed_IC50"].values
-    smiles_predict = predict_df["Canonical_SMILES"].values
+    smiles_predict = predict_df["cleanedMol"].values
     X_train_raw = compute_descriptors(smiles_train)
     X_test_raw = compute_descriptors(smiles_test)
     X_predict_raw = compute_descriptors(smiles_predict)

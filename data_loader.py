@@ -82,3 +82,43 @@ def filter_numeric_ic50(df):
     numeric_df = df[pd.to_numeric(df["IC50 uM"], errors="coerce").notna()].copy()
     numeric_df["IC50 uM"] = pd.to_numeric(numeric_df["IC50 uM"], errors="coerce")
     return numeric_df
+
+def standardize_smiles(smiles, verbose=False):
+    """Standardize molecule without fixing protonation or nitro groups."""
+    from rdkit.Chem.MolStandardize import rdMolStandardize
+    
+    if verbose: 
+        print("Original:", smiles)
+
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        if verbose:
+            print("Failed to parse SMILES:", smiles)
+        return None
+
+    # Cleanup
+    clean_mol = rdMolStandardize.Cleanup(mol)
+    if verbose:
+        print('Remove Hs, disconnect metal atoms, normalize the molecule, reionize the molecule:')
+
+    # Fragment parent
+    parent_clean_mol = rdMolStandardize.FragmentParent(clean_mol)
+    if verbose:
+        print('Select the "parent" fragment:')
+
+    # Uncharge
+    uncharger = rdMolStandardize.Uncharger()
+    uncharged_parent_clean_mol = uncharger.uncharge(parent_clean_mol)
+    if verbose:
+        print('Neutralize the molecule:')
+
+    # Tautomer
+    te = rdMolStandardize.TautomerEnumerator()
+    taut_uncharged_parent_clean_mol = te.Canonicalize(uncharged_parent_clean_mol)
+    if verbose:
+        print('Enumerate tautomers:')
+    
+    if taut_uncharged_parent_clean_mol is None:
+        return None
+
+    return Chem.MolToSmiles(taut_uncharged_parent_clean_mol)
