@@ -125,9 +125,7 @@ Example forward predictions (outputs/SeriesE_with_predictions.csv)
   - predicted pIC50 = 5.1320
   - predicted IC50 = 7.3784 uM
 
-Interpretation
---------------
-The current QSAR pipeline is the strongest-performing component in the repository. The RDKit + KNN model gives a strong held-out Series C fit and is also the model exported for downstream REINVENT4 scoring.
+
 
 
 2) PHARMACOPHORE MODELING PIPELINE
@@ -248,9 +246,7 @@ Example rows from the current output:
   - pharm_y_score = 0.0
   - combined_score = 0.2936
 
-Interpretation
---------------
-The current pharmacophore run produced a valid top hypothesis (AHHR_1), but the exported benchmark in pipeline_summary.csv shows ROC-AUC = 0.5, which means the present pharmacophore screen did not separate actives from inactives better than random in that evaluation set. In the example ranking file, combined ranking is therefore dominated by the QSAR component.
+
 
 
 3) REINVENT4 INTEGRATION FOR SMART-PRESERVING MOLECULE GENERATION
