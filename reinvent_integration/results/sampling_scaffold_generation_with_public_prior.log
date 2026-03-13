@@ -1,0 +1,71 @@
+22:12:57 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-12
+22:12:57 <INFO> Command line: ./.venv/bin/reinvent -l reinvent_integration/results/sampling_scaffold_generation_with_public_prior.log reinvent_integration/configs/reinvent_sampling_scaffold_generation.toml
+22:12:57 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/reinvent_sampling_scaffold_generation.toml using format toml
+22:12:57 <INFO> User nbhatta1 on host panacea
+22:12:57 <INFO> Python version 3.11.13
+22:12:57 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+22:12:57 <INFO> PyTorch compiled with CUDA version 12.8
+22:12:57 <INFO> RDKit version 2025.09.6
+22:12:57 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+22:12:57 <INFO> CUDA driver version 590.48.01
+22:12:57 <INFO> Number of PyTorch CUDA devices 1
+22:12:57 <WARN> 'use_cuda' is deprecated, use 'device' instead
+22:12:57 <INFO> Using CPU x86_64
+22:12:57 <INFO> Starting Sampling
+22:12:57 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_series_ce_scaffold_generation.chkpt has valid hash:
+{ 'comments': [ 'Seed prior created for initial generation preview',
+                'TL',
+                'RL',
+                'RL'],
+  'creation_date': 1773362251.738379,
+  'date_format': 'UNIX epoch',
+  'hash_id': '754817e0d1c64b3d6af6ffbb3f31824e',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': UUID('a741a011-321f-4c53-95c6-aeadc7aa23a4'),
+  'model_id_format': 'uuid.uuid4 3.11.13',
+  'origina_data_source': 'TB Project QSAR Series C/E',
+  'updates': [1773364863.6984305, 1773367974.805053, 1773367974.8336973]}
+22:12:57 <INFO> Number of network parameters: 5,796,374
+22:12:57 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(22, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=22, bias=True)
+)
+22:12:57 <INFO> Using generator Reinvent
+22:12:57 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/samples_scaffold_generation_v2.csv
+22:12:57 <INFO> Sampling 1000 SMILES from model reinvent_integration/results/reinvent_series_ce_scaffold_generation.chkpt
+22:13:00 <INFO> Sampled SMILES c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES c#Oc2[N+][nH]2 failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [N+]c[N+]N failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES F-N[O-]=[nH]FF failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]CnN[nH]BrCOcOcNcCCc failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [nH]F failed to sanitize.
+22:13:00 <INFO> Sampled SMILES On[O-]c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES cFF failed to sanitize.
+22:13:00 <INFO> Sampled SMILES N[nH] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES BrcC[N+]C[nH]c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [N+]cO failed to sanitize.
+22:13:00 <INFO> Sampled SMILES OcBr failed to sanitize.
+22:13:00 <INFO> Sampled SMILES Br[O-]-c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]F-n failed to sanitize.
+22:13:00 <INFO> Sampled SMILES c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [N+]n failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]FBrn failed to sanitize.
+22:13:00 <INFO> Sampled SMILES Br-N[nH]N failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]n failed to sanitize.
+22:13:00 <INFO> Sampled SMILES C-[O-]c failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]cCOcC failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES FF[O-] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES C-c[O-] failed to sanitize.
+22:13:00 <INFO> Sampled SMILES cC failed to sanitize.
+22:13:00 <INFO> Sampled SMILES nF failed to sanitize.
+22:13:00 <INFO> Sampled SMILES Cc failed to sanitize.
+22:13:00 <INFO> Sampled SMILES [O-]n failed to sanitize.
+22:13:00 <INFO> Sampled SMILES n failed to sanitize.
+22:13:00 <INFO> Sampled SMILES nC[nH] failed to sanitize.
+22:13:00 <INFO> Peak main memory usage: 971.379 MiB
+22:13:00 <INFO> Finished REINVENT on 2026-03-12

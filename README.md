@@ -24,3 +24,13 @@ Notes:
 - Outputs (CSVs and PNGs) are written to the `outputs/` folder when the pipeline completes.
 
 If you'd like, I can also create an `environment.yml` variant pinned to exact versions or add a small wrapper to run `main.py` with timing/logging.
+
+## REINVENT4 Guided Generation (QSAR + Pharmacophore)
+
+A REINVENT4 integration is available in `reinvent_integration/` for guided generation using:
+- exported QSAR model predictions
+- optional Schrödinger Phase pharmacophore scoring
+
+See:
+- `reinvent_integration/README.md` for setup and run instructions
+- `reinvent_integration/configs/` for staged-learning templates for REINVENT, LibInvent, LinkInvent, and Mol2Mol

@@ -6,3 +6,6 @@ pharm_outputs/
 *.maegz
 *.phypo
 pipeline_run.log
+*.prior
+15641297.zip
+reinvent_integration/priors/

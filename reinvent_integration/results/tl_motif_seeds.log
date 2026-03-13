@@ -1,0 +1,37 @@
+21:21:00 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-12
+21:21:00 <INFO> Command line: ./.venv/bin/reinvent -l reinvent_integration/results/tl_motif_seeds.log reinvent_integration/configs/reinvent_transfer_motif_seeds.toml
+21:21:00 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/reinvent_transfer_motif_seeds.toml using format toml
+21:21:00 <INFO> User nbhatta1 on host panacea
+21:21:00 <INFO> Python version 3.11.13
+21:21:00 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+21:21:00 <INFO> PyTorch compiled with CUDA version 12.8
+21:21:00 <INFO> RDKit version 2025.09.6
+21:21:00 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+21:21:00 <INFO> CUDA driver version 590.48.01
+21:21:00 <INFO> Number of PyTorch CUDA devices 1
+21:21:00 <WARN> 'use_cuda' is deprecated, use 'device' instead
+21:21:00 <INFO> Using CPU x86_64
+21:21:00 <INFO> Starting Transfer Learning
+21:21:00 <WARN> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/series_ce_seed_prior.model does not contain a hash ID
+21:21:00 <INFO> Number of network parameters: 5,796,374
+21:21:00 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(22, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=22, bias=True)
+)
+21:21:00 <INFO> Using generator Reinvent
+21:21:00 <INFO> Applying filter default to input SMILES
+21:21:00 <INFO> Read 18 input SMILES from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/data/motif_positive_seeds_filtered.smi
+21:21:01 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:01 <INFO> Sampled SMILES c failed to sanitize.
+21:21:01 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:02 <INFO> Sampled SMILES cC failed to sanitize.
+21:21:02 <INFO> Sampled SMILES c failed to sanitize.
+21:21:02 <INFO> Sampled SMILES n failed to sanitize.
+21:21:03 <INFO> Sampled SMILES n failed to sanitize.
+21:21:03 <INFO> Sampled SMILES n1[O-]c=Cc1 failed to sanitize.
+21:21:03 <INFO> Sampled SMILES cn failed to sanitize.
+21:21:03 <INFO> Sampled SMILES N[nH]C failed to sanitize.
+21:21:03 <INFO> Peak main memory usage: 1307.055 MiB
+21:21:03 <INFO> Finished REINVENT on 2026-03-12

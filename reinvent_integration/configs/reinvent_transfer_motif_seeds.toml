@@ -1,0 +1,10 @@
+run_type = "transfer_learning"
+device = "cpu"
+
+[parameters]
+input_model_file = "reinvent_integration/results/series_ce_seed_prior.model"
+output_model_file = "reinvent_integration/results/motif_tuned_reinvent.model"
+smiles_file = "reinvent_integration/data/motif_positive_seeds_filtered.smi"
+num_epochs = 15
+save_every_n_epochs = 5
+batch_size = 32

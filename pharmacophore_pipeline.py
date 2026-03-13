@@ -565,6 +565,7 @@ def validate_pharmacophore(best_phypo: str,
         os.path.abspath(best_phypo),
         screen_job,
         "-distinct",
+        "-match", "3",                    # allow partial 3-site matches (less strict than default all-sites)
         "-HOST",  f"localhost:{NCPUS}",  # use all cores locally
         "-NJOBS", str(NCPUS),              # split screening across cores
     ]

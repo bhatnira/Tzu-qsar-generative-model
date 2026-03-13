@@ -1,0 +1,676 @@
+22:39:51 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-12
+22:39:51 <INFO> Command line: ./.venv/bin/reinvent -l reinvent_integration/logs/hopping_staged.log reinvent_integration/configs/reinvent_staged_series_ce_scaffold_hopping.toml
+22:39:51 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/reinvent_staged_series_ce_scaffold_hopping.toml using format toml
+22:39:51 <INFO> User nbhatta1 on host panacea
+22:39:51 <INFO> Python version 3.11.13
+22:39:51 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+22:39:51 <INFO> PyTorch compiled with CUDA version 12.8
+22:39:51 <INFO> RDKit version 2025.09.6
+22:39:51 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+22:39:51 <INFO> CUDA driver version 590.48.01
+22:39:51 <INFO> Number of PyTorch CUDA devices 1
+22:39:51 <WARN> 'use_cuda' is deprecated, use 'device' instead
+22:39:51 <INFO> Using CPU x86_64
+22:39:51 <INFO> Starting 1 stage of Reinforcement Learning
+22:39:51 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/reinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+22:39:51 <INFO> Number of network parameters: 5,805,602
+22:39:51 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+22:39:51 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/motif_tuned_reinvent.model has valid hash:
+{ 'comments': ['Seed prior created for initial generation preview', 'TL'],
+  'creation_date': 1773362251.738379,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'd07a057c289fd6e0ec848a3312d068f5',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': UUID('a741a011-321f-4c53-95c6-aeadc7aa23a4'),
+  'model_id_format': 'uuid.uuid4 3.11.13',
+  'origina_data_source': 'TB Project QSAR Series C/E',
+  'updates': [1773364863.6984305]}
+22:39:51 <INFO> Number of network parameters: 5,796,374
+22:39:51 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(22, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=22, bias=True)
+)
+22:39:51 <INFO> Using generator Reinvent
+22:39:51 <INFO> Prior read from reinvent_integration/priors/reinvent.prior
+22:39:51 <INFO> Agent read from reinvent_integration/results/motif_tuned_reinvent.model
+22:39:51 <INFO> Using reward strategy dap
+22:39:51 <INFO> Purging diversity filter memories after each stage
+22:39:51 <INFO> Inception SMILES read from reinvent_integration/data/motif_positive_seeds_filtered.smi
+22:39:51 <INFO> Using inception memory
+22:39:51 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+22:39:51 <INFO> Registered scoring component GroupCount
+22:39:51 <INFO> Registered scoring component FragmentQed
+22:39:51 <INFO> Registered scoring component FragmentSlogP
+22:39:51 <INFO> Registered scoring component FragmentMolecularWeight
+22:39:51 <INFO> Registered scoring component FragmentTPSA
+22:39:51 <INFO> Registered scoring component FragmentDistanceMatrix
+22:39:51 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+22:39:51 <INFO> Registered scoring component FragmentHBondAcceptors
+22:39:51 <INFO> Registered scoring component FragmentHBondDonors
+22:39:51 <INFO> Registered scoring component FragmentNumRotBond
+22:39:51 <INFO> Registered scoring component FragmentCsp3
+22:39:51 <INFO> Registered scoring component Fragmentnumsp
+22:39:51 <INFO> Registered scoring component Fragmentnumsp2
+22:39:51 <INFO> Registered scoring component Fragmentnumsp3
+22:39:51 <INFO> Registered scoring component FragmentEffectiveLength
+22:39:51 <INFO> Registered scoring component FragmentGraphLength
+22:39:51 <INFO> Registered scoring component FragmentLengthRatio
+22:39:51 <INFO> Registered scoring component FragmentNumHeavyAtoms
+22:39:51 <INFO> Registered scoring component FragmentNumHeteroAtoms
+22:39:51 <INFO> Registered scoring component FragmentNumRings
+22:39:51 <INFO> Registered scoring component FragmentNumAromaticRings
+22:39:51 <INFO> Registered scoring component FragmentNumAliphaticRings
+22:39:51 <INFO> Registered scoring component FragmentSlogP
+22:39:51 <INFO> Registered scoring component MatchingSubstructure
+22:39:51 <INFO> Registered scoring component MolVolume
+22:39:51 <INFO> Registered scoring component Qed
+22:39:51 <INFO> Registered scoring component LargestRingSize
+22:39:51 <INFO> Registered scoring component MolecularWeight
+22:39:51 <INFO> Registered scoring component GraphLength
+22:39:51 <INFO> Registered scoring component NumAtomStereoCenters
+22:39:51 <INFO> Registered scoring component HBondAcceptors
+22:39:51 <INFO> Registered scoring component HBondDonors
+22:39:51 <INFO> Registered scoring component NumRotBond
+22:39:51 <INFO> Registered scoring component Csp3
+22:39:51 <INFO> Registered scoring component numsp
+22:39:51 <INFO> Registered scoring component numsp2
+22:39:51 <INFO> Registered scoring component numsp3
+22:39:51 <INFO> Registered scoring component NumHeavyAtoms
+22:39:51 <INFO> Registered scoring component NumHeteroAtoms
+22:39:51 <INFO> Registered scoring component NumRings
+22:39:51 <INFO> Registered scoring component NumAromaticRings
+22:39:51 <INFO> Registered scoring component NumAliphaticRings
+22:39:51 <INFO> Registered scoring component SlogP
+22:39:51 <INFO> Registered scoring component LargestRingSize
+22:39:51 <INFO> Registered scoring component PMI
+22:39:51 <INFO> Registered scoring component RDKitDescriptors
+22:39:51 <INFO> Registered scoring component TanimotoSimilarity
+22:39:51 <INFO> Registered scoring component TanimotoDistance
+22:39:51 <INFO> Registered scoring component TPSA
+22:39:51 <INFO> Registered scoring component SAScore
+22:39:51 <ERRO> Component reinvent_plugins.components.comp_chemprop could not be imported: No module named 'pkg_resources'
+22:39:51 <INFO> Registered scoring component CustomAlerts
+22:39:51 <INFO> Registered scoring component DockStream
+22:39:51 <INFO> Registered scoring component ExternalProcess
+22:39:51 <INFO> Registered scoring component REST
+22:39:51 <INFO> Registered scoring component Icolos
+22:39:51 <INFO> Registered scoring component MMP
+22:39:51 <INFO> Registered scoring component Qptuna
+22:39:51 <INFO> Registered scoring component ReactionFilter
+22:39:51 <INFO> Registered scoring component RingPrecedence
+22:39:51 <INFO> Registered scoring component Maize
+22:39:51 <INFO> Registered scoring component SynthSense
+22:39:51 <INFO> Registered scoring component CAZP
+22:39:51 <INFO> Creating scoring component ExternalProcess
+22:39:51 <INFO> Writing tabular data for stage to summary_1.csv
+22:39:51 <INFO> Starting stage 1 <<<
+22:39:54 <INFO> Sampled SMILES Fn failed to sanitize.
+22:39:54 <INFO> Sampled SMILES [N+]c-n failed to sanitize.
+22:39:54 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:39:54 <INFO> Sampled SMILES [nH]C[O-]FNc failed to sanitize.
+22:39:57 <INFO> Score: 0.01 Agent NLL: 119.08 Valid:   2% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 72.5710 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 112.2245 288.0725 -288.0725 0.0000000 #([N+](#F=[O-]=[O-]Ncn1-2- 0 0.0000000 0.0000 None None None None None None None None None
+ | 110.0781 239.0304 -239.0304 0.0000000 #3(N[O-][N+]cO4c[N+]3NBr=O 0 0.0000000 0.0000 None None None None None None None None None
+ | 266.3476 1163.1873 -1163.1873 0.0000000 #N-4[N+][N+]-C[nH]N[N+]cCCC(N#Br145[nH]ON))#5=4F[nH]4-3Fn2[N+])NBr#c4c(3F)5[N+]n(2[N+]=#[N+]FN(11(#n[N+])-3O5[nH])O#4F4[nH](n3 0 0.0000000 0.0000 None None None None None None None None None
+ | 142.5387 475.4733 -475.4733 0.0000000 #[N+]#O-Br[O-]#(4[O-]##31[nH]2C5-BrN245[O-]1Fc5 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.6298 125.2009 -125.2009 0.0000000 #[O-]OBr#13 0 0.0000000 0.0000 None None None None None None None None None
+ | 151.6238 539.9022 -539.9022 0.0000000 (#c4F[nH]CBr5n-nO=[nH]nF=N-CN2[nH](5c[O-]5nBrn- 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.0057 268.2036 -268.2036 0.0000000 ((([N+]N-=[O-])3F-nBrc[O-]Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 141.7875 538.3917 -538.3917 0.0000000 (5=#c(4[O-]O)n=(51##cO2nBr[N+])[nH]22[N+]5 0 0.0000000 0.0000 None None None None None None None None None
+ | 228.6043 886.2040 -886.2040 0.0000000 (n#[O-]1F21N())1N2((OO3=(2c[nH][O-]45((Br[nH]5OFCN==O#3c3(cC)[N+]Br1#3F#3C[nH]3nC)3[nH][N+] 0 0.0000000 0.0000 None None None None None None None None None
+22:39:59 <INFO> Sampled SMILES Brn[N+]nNFnBrF failed to sanitize.
+22:39:59 <INFO> Sampled SMILES ONON[N+][N+]n failed to sanitize.
+22:40:02 <INFO> Score: 0.01 Agent NLL: 106.31 Valid:   2% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 71.8194 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 86.8546 140.8884 -140.8884 0.0000000 #-BrF[nH]#4 0 0.0000000 0.0000 None None None None None None None None None
+ | 122.7458 393.3671 -393.3671 0.0000000 #2[O-]2(515(-1([nH]4[N+]53=44=F5 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.8582 311.1527 -311.1527 0.0000000 (#1-=5C=[O-]Brc4[N+]F(4=- 0 0.0000000 0.0000 None None None None None None None None None
+ | 105.5629 310.7488 -310.7488 0.0000000 ((F1c4[O-]1(2[O-]CcBrCn 0 0.0000000 0.0000 None None None None None None None None None
+ | 96.1254 237.9325 -237.9325 0.0000000 (-[O-]11FCc51nF 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.3813 107.2857 -107.2857 0.0000000 (Br)213 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.3842 128.6672 -128.6672 0.0000000 (F[nH]#[nH]C( 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.2772 64.9878 -64.9878 0.0000000 ([O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 96.2611 203.7081 -203.7081 0.0000000 )-Brn#Nc[N+]3(# 0 0.0000000 0.0000 None None None None None None None None None
+22:40:04 <INFO> Sampled SMILES Brc-n failed to sanitize.
+22:40:04 <INFO> Sampled SMILES c[nH] failed to sanitize.
+22:40:04 <INFO> Sampled SMILES n failed to sanitize.
+22:40:06 <INFO> Score: 0.01 Agent NLL: 106.74 Valid:   3% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 74.6619 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 104.8158 194.7258 -194.7258 0.0000000 #N4[O-]F)FF)FN2N(n 0 0.0000000 0.0000 None None None None None None None None None
+ | 94.9798 192.8611 -192.8611 0.0000000 (-5[O-](N[nH]5=2 0 0.0000000 0.0000 None None None None None None None None None
+ | 113.9607 337.7684 -337.7684 0.0000000 (5OBr[O-]2F453[nH]-[O-]F5)[N+][N+]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 93.4906 163.4010 -163.4010 0.0000000 ([nH][nH]nC4C)-c 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.6316 128.1170 -128.1170 0.0000000 )-O1n1[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 94.1285 193.8069 -193.8069 0.0000000 )NnCn-)C2# 0 0.0000000 0.0000 None None None None None None None None None
+ | 160.0222 538.9343 -538.9343 0.0000000 )[N+]NFc41NF2(5Br42#CCN))3CF1cF=n(35[N+]O)=)cc4n( 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.7567 111.9606 -111.9606 0.0000000 -1[O-]ccF 0 0.0000000 0.0000 None None None None None None None None None
+ | 123.0636 361.8942 -361.8942 0.0000000 -5-4NNCN[nH])[O-]COc(3F[O-]331#On 0 0.0000000 0.0000 None None None None None None None None None
+22:40:07 <INFO> Sampled SMILES CFNC failed to sanitize.
+22:40:09 <INFO> Score: 0.00 Agent NLL: 184.07 Valid:   0% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 152.9501 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 154.8525 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000
+ | 211.4384 449.5234 -449.5234 0.0000000 #NBrn1)[nH]=2[O-]nBr[N+]F[nH]-2223nCBrBr5OO-O1[N+] 0 0.0000000 0.0000
+ | 172.2757 189.6071 -189.6071 0.0000000 ()C2[nH]#[O-]c[nH]C2 0 0.0000000 0.0000
+ | 190.8468 357.9099 -357.9099 0.0000000 (1=1C=3F[O-]5[O-]3Br[O-]=-#O4= 0 0.0000000 0.0000
+ | 187.2728 302.3491 -302.3491 0.0000000 (nF2O#([nH][nH]OC52-[nH]2(= 0 0.0000000 0.0000
+ | 154.5745 52.9578 -52.9578 0.0000000 ) 0 0.0000000 0.0000
+ | 156.4432 74.3472 -74.3472 0.0000000 )- 0 0.0000000 0.0000
+ | 161.8403 120.6934 -120.6934 0.0000000 )23OBr 0 0.0000000 0.0000
+ | 161.8966 116.0183 -116.0183 0.0000000 -(5n) 0 0.0000000 0.0000
+22:40:10 <INFO> Sampled SMILES [N+]F[O-]=Br failed to sanitize.
+22:40:10 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:40:10 <INFO> Sampled SMILES [nH](cC=[nH])C failed to sanitize.
+22:40:12 <INFO> Score: 0.00 Agent NLL: 173.05 Valid:   0% Step: 5
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 140.3257 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 151.5261 118.2581 -118.2581 0.0000000 #2-4O)N 0 0.0000000 0.0000
+ | 184.8028 360.0900 -360.0900 0.0000000 #2[N+]O4((O1N45=N3[N+]1#3[N+]-#)[N+]NC 0 0.0000000 0.0000
+ | 162.2442 150.2032 -150.2032 0.0000000 #C2N35[N+]O1[N+]23Br 0 0.0000000 0.0000
+ | 164.0499 293.0190 -293.0190 0.0000000 #[nH]-[N+]N3=4[nH](333c 0 0.0000000 0.0000
+ | 180.8366 419.4424 -419.4424 0.0000000 ()(F1c-n#=F[nH]-ccF-52[O-]5NFF 0 0.0000000 0.0000
+ | 187.1882 422.4522 -422.4522 0.0000000 (Br2c(n-51nNBr5BrBr43)FO5n-2N5Br 0 0.0000000 0.0000
+ | 155.6163 163.5220 -163.5220 0.0000000 ([O-]2C-[nH]=[O-]3 0 0.0000000 0.0000
+ | 143.2870 78.1590 -78.1590 0.0000000 )) 0 0.0000000 0.0000
+ | 159.6558 204.5566 -204.5566 0.0000000 )C)3N--5CBrc2 0 0.0000000 0.0000
+22:40:13 <INFO> Sampled SMILES [N+]-n failed to sanitize.
+22:40:13 <INFO> Sampled SMILES [N+][nH] failed to sanitize.
+22:40:15 <INFO> Score: 0.01 Agent NLL: 156.95 Valid:   3% Step: 6
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 126.3520 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 128.1590 64.2867 -64.2867 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 149.3066 208.1366 -208.1366 0.0000000 ((O)2[O-]2[nH]nc)N3Br= 0 0.0000000 0.0000 None None None None None None None None None
+ | 129.4737 80.3010 -80.3010 0.0000000 (2 0 0.0000000 0.0000 None None None None None None None None None
+ | 202.8183 709.5609 -709.5609 0.0000000 )[nH]=4[nH]=)n(2[O-]#4nOn#FBrBrBrcc[O-][O-]n[nH]cOc1#[N+]Br3-=([N+]=3O-O1cF4[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 153.6473 248.0086 -248.0086 0.0000000 )n51c(#O[O-]NCNn4F[N+]nN 0 0.0000000 0.0000 None None None None None None None None None
+ | 159.7459 324.0620 -324.0620 0.0000000 -1n=[O-]C1#4[O-][nH]=n5[N+]=3(O=# 0 0.0000000 0.0000 None None None None None None None None None
+ | 138.2441 174.0737 -174.0737 0.0000000 -[O-]2[nH]F3n5 0 0.0000000 0.0000 None None None None None None None None None
+ | 144.2542 169.0526 -169.0526 0.0000000 -c2(N([N+]-#)c3 0 0.0000000 0.0000 None None None None None None None None None
+ | 174.2485 391.3661 -391.3661 0.0000000 -n[O-][N+]N(5)4(41c3O[N+]=2==([N+]Br))4cn3NN 0 0.0000000 0.0000 None None None None None None None None None
+22:40:16 <INFO> Sampled SMILES FFN failed to sanitize.
+22:40:16 <INFO> Sampled SMILES [nH]c failed to sanitize.
+22:40:16 <INFO> Sampled SMILES c[N+]nFFFc[O-][nH] failed to sanitize.
+22:40:18 <INFO> Score: 0.00 Agent NLL: 221.72 Valid:   0% Step: 7
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 195.9384 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 279.5359 745.5086 -745.5086 0.0000000 #5(Br5[nH]4O12[nH]BrcFn[nH]2C)-)(4c3Br1O#=cc1Br25CN=n=33C[nH]On[N+])3[N+]5c5(5O3= 0 0.0000000 0.0000
+ | 277.1790 760.8160 -760.8160 0.0000000 (CF[N+]21[N+]-3cF-(=On[N+]135[N+]-[nH]BrN(1c[O-](c#243#Fcc5O3=OF4[nH]CnF-[nH]c[O-][nH]--1 0 0.0000000 0.0000
+ | 244.3755 502.8440 -502.8440 0.0000000 ([nH]([nH]-21Br2ncCCc(cn=[nH]N-12O#31=3C=N)4Br 0 0.0000000 0.0000
+ | 225.1307 281.5067 -281.5067 0.0000000 )cF[nH]Br#N[N+])-=3[N+]=2O1[O-][N+]31 0 0.0000000 0.0000
+ | 203.9680 129.0449 -129.0449 0.0000000 -#23#F 0 0.0000000 0.0000
+ | 204.8444 93.3464 -93.3464 0.0000000 -5OCN)2 0 0.0000000 0.0000
+ | 202.4592 100.3835 -100.3835 0.0000000 -CBr[N+]) 0 0.0000000 0.0000
+ | 201.1412 72.5537 -72.5537 0.0000000 -[N+]2N 0 0.0000000 0.0000
+ | 196.8951 56.7676 -56.7676 0.0000000 1 0 0.0000000 0.0000
+22:40:20 <INFO> Sampled SMILES [nH]n failed to sanitize.
+22:40:20 <INFO> Sampled SMILES c#cBr failed to sanitize.
+22:40:24 <INFO> Score: 0.02 Agent NLL: 165.48 Valid:   5% Step: 8
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 139.5294 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 225.7956 942.3155 -942.3155 0.0000000 #=4O=[nH][nH]OBr[O-]([N+][nH][nH](3314n[N+]-54[N+]c)5N)4=O4[O-][N+]=2#[O-]#c1)FC[nH]2)O#O1-[O-]5cC[nH]cCNF[N+]=O)c[N+]F5N 0 0.0000000 0.0000 None None None None None None None None None
+ | 176.7435 350.0006 -350.0006 0.0000000 (##cFC3N[O-]5=-2)[nH][nH]2c(=F1=C[nH]n(1C1 0 0.0000000 0.0000 None None None None None None None None None
+ | 143.3024 101.3814 -101.3814 0.0000000 (32 0 0.0000000 0.0000 None None None None None None None None None
+ | 156.9886 223.0991 -223.0991 0.0000000 (3=3O)=)CBrnCBr( 0 0.0000000 0.0000 None None None None None None None None None
+ | 172.0604 407.2600 -407.2600 0.0000000 (Brc([N+][O-][N+])[nH]-)[O-]2([N+]2#n([O-]-3)2[nH]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 196.6425 595.1949 -595.1949 0.0000000 (c=[N+]=BrN115OO1-[O-][N+]=Br125-nBr-[O-]c-1[nH]5[N+][O-]-Cn[nH]=OCC1)O5 0 0.0000000 0.0000 None None None None None None None None None
+ | 150.3676 140.4474 -140.4474 0.0000000 )n(n#[N+]C[O-]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 152.6661 163.1228 -163.1228 0.0000000 )nO[N+]254N[nH]1C 0 0.0000000 0.0000 None None None None None None None None None
+ | 184.1061 551.3696 -551.3696 0.0000000 -#O[N+]n#)cCF1=OcBrN#[nH]43C([O-]-2BrCBrOCOn))[nH]c 0 0.0000000 0.0000 None None None None None None None None None
+22:40:25 <INFO> Sampled SMILES n failed to sanitize.
+22:40:27 <INFO> Score: 0.02 Agent NLL: 189.58 Valid:   5% Step: 9
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 168.8803 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 182.6228 252.7451 -252.7451 0.0000000 #2[N+]OcC[N+]c[O-]5-Brc 0 0.0000000 0.0000 None None None None None None None None None
+ | 223.3563 667.4412 -667.4412 0.0000000 #3[N+]2NBr(#444(14()O[nH]BrnBrF#2(FnN#C#[N+]n#Nn1-(O[N+][N+])#2(1 0 0.0000000 0.0000 None None None None None None None None None
+ | 186.0172 231.4893 -231.4893 0.0000000 #F4n1OO2[nH]N4-#O[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 210.0268 490.2740 -490.2740 0.0000000 #[nH]Br5(3)BrnF5)(N2[N+]c#41CF[nH]n13[O-]1BrFO)))O[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 171.3183 75.2736 -75.2736 0.0000000 (- 0 0.0000000 0.0000 None None None None None None None None None
+ | 185.3762 229.3189 -229.3189 0.0000000 (3c[N+]CN2F)2[nH]BrnNN 0 0.0000000 0.0000 None None None None None None None None None
+ | 198.9197 367.5975 -367.5975 0.0000000 (Br[O-]2F[O-]OF(1nON22C3[nH]=5O445O3 0 0.0000000 0.0000 None None None None None None None None None
+ | 178.7078 173.7101 -173.7101 0.0000000 )C[N+]NBrc[N+][nH][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 177.2953 102.6055 -102.6055 0.0000000 )[N+]BrC2#NC 0 0.0000000 0.0000 None None None None None None None None None
+22:40:29 <INFO> Sampled SMILES CBrONBr failed to sanitize.
+22:40:29 <INFO> Sampled SMILES cC failed to sanitize.
+22:40:29 <INFO> Sampled SMILES nBr failed to sanitize.
+22:40:31 <INFO> Score: 0.00 Agent NLL: 228.97 Valid:   0% Step: 10
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 207.3588 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 268.6866 753.5013 -753.5013 0.0000000 #O[N+]1#3C[nH]5-N(-C[N+]#1[O-]BrON1Br[O-][nH]2#cc3BrC23)Br[N+]3O[O-]52[O-]#F3[nH])22[N+]-))411#[N+] 0 0.0000000 0.0000
+ | 226.7332 240.2542 -240.2542 0.0000000 #[N+][O-][O-]NF=3[N+]C(-==C-)4N 0 0.0000000 0.0000
+ | 238.5969 443.8939 -443.8939 0.0000000 #c1F#N-O53F(#)F15-F[O-]#[nH]Br12N))3n 0 0.0000000 0.0000
+ | 219.5280 228.4258 -228.4258 0.0000000 (BrcC[nH]Br3[nH]=[O-])[O-] 0 0.0000000 0.0000
+ | 220.4790 224.8263 -224.8263 0.0000000 )5(C[O-]3N[nH]1[nH]4() 0 0.0000000 0.0000
+ | 225.7843 265.6523 -265.6523 0.0000000 )Br#5-N-3c1[O-]N-n4N2- 0 0.0000000 0.0000
+ | 229.1540 338.4467 -338.4467 0.0000000 )F[O-][O-])O[O-](cN=C)#3F[nH]34[N+]5 0 0.0000000 0.0000
+ | 252.3154 606.9945 -606.9945 0.0000000 )[N+]2c3123[nH]N(C[nH][N+]CN1CNc[nH]1Brc3[nH]#F35#Fn51[N+]FN[N+]C(1)2 0 0.0000000 0.0000
+ | 246.0797 486.1223 -486.1223 0.0000000 )cN41[O-]2[N+])=[N+]-2([O-][nH]NOC25#n2)(3O#[N+][N+]=OBr)F2 0 0.0000000 0.0000
+22:40:32 <INFO> Sampled SMILES C[nH]Cn failed to sanitize.
+22:40:32 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:40:34 <INFO> Score: 0.01 Agent NLL: 198.05 Valid:   2% Step: 11
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 181.8027 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 191.0098 213.4934 -213.4934 0.0000000 ##[nH]2F42-3[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 193.2520 185.4036 -185.4036 0.0000000 #(c-5Br#NC[O-]CF) 0 0.0000000 0.0000 None None None None None None None None None
+ | 188.2659 148.1263 -148.1263 0.0000000 #5nFBr-5 0 0.0000000 0.0000 None None None None None None None None None
+ | 200.0184 270.4122 -270.4122 0.0000000 #O[N+][nH][O-]NN)55Br=N1)5N[N+]= 0 0.0000000 0.0000 None None None None None None None None None
+ | 182.9161 64.2867 -64.2867 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 194.1156 237.0783 -237.0783 0.0000000 (4[N+]#(CN-3-(OBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 256.3662 1088.2679 -1088.2679 0.0000000 ([O-]#[O-]CCn[O-]24C#[nH]1C(5[nH]Br3c43#[O-]23FO-[O-]#F-F[N+]34nO1-F))22[N+]=42F1[nH]Fc4FO=5c[N+]41C4n-21)[O-][nH]15O--)c3 0 0.0000000 0.0000 None None None None None None None None None
+ | 187.8434 119.8581 -119.8581 0.0000000 ([O-]C[O-]OC[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 198.4971 319.7907 -319.7907 0.0000000 )#5)[N+])-cBrC[nH]c1335[nH][nH] 0 0.0000000 0.0000 None None None None None None None None None
+22:40:36 <INFO> Sampled SMILES Brc[nH][O-][O-] failed to sanitize.
+22:40:36 <INFO> Sampled SMILES NnOFn failed to sanitize.
+22:40:38 <INFO> Score: 0.00 Agent NLL: 150.85 Valid:   0% Step: 12
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 134.7941 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 181.6411 703.7549 -703.7549 0.0000000 #-[N+]21)5315)2[O-]422[nH]CBr[O-]=FcO3n3[nH]Br2(#=F-=34F=F[N+]1NBrF-(BrO=C= 0 0.0000000 0.0000
+ | 159.6295 428.2789 -428.2789 0.0000000 #4NcC#nFn[N+][N+]N[nH]n)#O4[N+]=[nH]F4n25-C 0 0.0000000 0.0000
+ | 171.0041 529.1582 -529.1582 0.0000000 #BrCO#cC#n1c[N+])[O-][O-]3O-Br-Br[O-]O-n-5F)[O-]c1C(nO2OCOc4 0 0.0000000 0.0000
+ | 169.8803 601.0521 -601.0521 0.0000000 #cn#Cn#2N=nBr2[nH]5)O1[O-]N)[N+]n=)-(O[nH][O-](=Br43C#O- 0 0.0000000 0.0000
+ | 137.3450 179.4520 -179.4520 0.0000000 ((1 0 0.0000000 0.0000
+ | 142.4884 167.1084 -167.1084 0.0000000 (([O-]O([O-]O[O-][nH] 0 0.0000000 0.0000
+ | 157.8240 368.1989 -368.1989 0.0000000 (Br(n([O-]4NO=On[N+]F(=35FFC))N[nH]3 0 0.0000000 0.0000
+ | 152.2451 314.1711 -314.1711 0.0000000 (O153[O-]Br2[N+]1F3[N+](#NF[nH]ON 0 0.0000000 0.0000
+ | 143.8124 208.5730 -208.5730 0.0000000 ([nH]O3#CN#cn[N+] 0 0.0000000 0.0000
+22:40:38 <INFO> Sampled SMILES cn failed to sanitize.
+22:40:38 <INFO> Sampled SMILES n failed to sanitize.
+22:40:42 <INFO> Score: 0.02 Agent NLL: 274.54 Valid:   5% Step: 13
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 258.6802 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 271.1404 207.8143 -207.8143 0.0000000 #=[N+]1([nH]1c3FC=Br42F 0 0.0000000 0.0000 None None None None None None None None None
+ | 273.0392 298.1119 -298.1119 0.0000000 #F[N+]Oc[O-]))F1[O-][nH]CN[N+][N+](4 0 0.0000000 0.0000 None None None None None None None None None
+ | 287.1006 526.4775 -526.4775 0.0000000 (#FN=[N+]N#[O-][N+]O-#[N+]ncCF=O(3C533c5n[O-]#)n35 0 0.0000000 0.0000 None None None None None None None None None
+ | 262.4654 137.5501 -137.5501 0.0000000 ()352 0 0.0000000 0.0000 None None None None None None None None None
+ | 265.0691 163.1636 -163.1636 0.0000000 (1(F(4n# 0 0.0000000 0.0000 None None None None None None None None None
+ | 264.6768 136.1891 -136.1891 0.0000000 (1C#-CO3 0 0.0000000 0.0000 None None None None None None None None None
+ | 267.4855 156.7756 -156.7756 0.0000000 ([N+]BrN5=-O)N# 0 0.0000000 0.0000 None None None None None None None None None
+ | 261.6108 91.9073 -91.9073 0.0000000 ([O-]4) 0 0.0000000 0.0000 None None None None None None None None None
+ | 261.3607 69.5971 -69.5971 0.0000000 )C[O-]N 0 0.0000000 0.0000 None None None None None None None None None
+22:40:44 <INFO> Sampled SMILES [N+]#n[N+]N failed to sanitize.
+22:40:44 <INFO> Sampled SMILES cN[nH]F failed to sanitize.
+22:40:45 <INFO> Score: 0.01 Agent NLL: 212.94 Valid:   2% Step: 14
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 198.0981 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 211.1777 270.8953 -270.8953 0.0000000 (C2F[N+]-1FF#[N+](22[O-]4( 0 0.0000000 0.0000 None None None None None None None None None
+ | 205.9228 186.7330 -186.7330 0.0000000 (ON32-[N+]C[nH]CN 0 0.0000000 0.0000 None None None None None None None None None
+ | 199.6512 66.3804 -66.3804 0.0000000 (n 0 0.0000000 0.0000 None None None None None None None None None
+ | 199.1867 53.9948 -53.9948 0.0000000 )1 0 0.0000000 0.0000 None None None None None None None None None
+ | 243.1880 744.7078 -744.7078 0.0000000 )1=-#BrFN-N4[N+]3nc[N+]14n[O-]cN)CCC#2[O-])c32[nH]cn#132n4c1OF[O-]N[O-]1C33O-c)1n- 0 0.0000000 0.0000 None None None None None None None None None
+ | 249.8548 808.0822 -808.0822 0.0000000 )1[N+]c5[nH]Br2C=n[N+]=C)(3N34nBr[nH]==[nH]-4nC=OOn1[O-][O-][O-])[N+])[O-](1FC#N[O-]c-1=[nH]C4NF2422[N+][N+]cN1 0 0.0000000 0.0000 None None None None None None None None None
+ | 215.4719 285.3363 -285.3363 0.0000000 )4N1N2O(=FnBrON#N[N+][O-][N+]O35 0 0.0000000 0.0000 None None None None None None None None None
+ | 218.3464 355.8070 -355.8070 0.0000000 -OO2[N+]==2c=1F=F#[nH]4[nH]3[N+]1C-1([N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 260.5539 1049.8611 -1049.8611 0.0000000 -c131cBr(---Brn3Br4cBrNC=33-n3[nH]F3=4-=OF[N+]nc[O-]-[nH]5)O)[nH]3(4[nH](F[N+]F5n1[nH])(O453c[nH]-n[N+]BrNcNNnN(-n#N12 0 0.0000000 0.0000 None None None None None None None None None
+22:40:46 <INFO> Sampled SMILES [nH]C failed to sanitize.
+22:40:46 <INFO> Sampled SMILES [nH][nH]Br failed to sanitize.
+22:40:49 <INFO> Score: 0.01 Agent NLL: 128.88 Valid:   2% Step: 15
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 116.3904 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 117.1030 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 148.0464 688.6121 -688.6121 0.0000000 #-21((5nO1Cn2[N+]=(F=C[nH]4-(Br[nH]CC4c#3-(3O-n[N+][N+][N+]ON4[nH]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 146.9445 550.6656 -550.6656 0.0000000 #-4-NC[N+]12-5Fc5c1O5CC[N+]-#--#O133N#nF132)[N+][nH]O)) 0 0.0000000 0.0000 None None None None None None None None None
+ | 125.4833 262.1210 -262.1210 0.0000000 #4#[O-]BrOcBr42c#O 0 0.0000000 0.0000 None None None None None None None None None
+ | 142.9894 462.6574 -462.6574 0.0000000 #Cc-nOBrn)=Br3[nH][nH]=33[N+]1Br3[O-]5#n21C([nH]n-=3) 0 0.0000000 0.0000 None None None None None None None None None
+ | 119.7918 92.2926 -92.2926 0.0000000 #[N+]135 0 0.0000000 0.0000 None None None None None None None None None
+ | 123.5941 149.7019 -149.7019 0.0000000 (4[N+]#N[nH]()23 0 0.0000000 0.0000 None None None None None None None None None
+ | 118.6579 89.4239 -89.4239 0.0000000 (F= 0 0.0000000 0.0000 None None None None None None None None None
+ | 120.2970 107.7828 -107.7828 0.0000000 )BrN)2F 0 0.0000000 0.0000 None None None None None None None None None
+22:40:50 <INFO> Sampled SMILES [N+]cBrNBr[O-] failed to sanitize.
+22:40:50 <INFO> Sampled SMILES c failed to sanitize.
+22:40:54 <INFO> Score: 0.02 Agent NLL: 228.43 Valid:   6% Step: 16
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 217.0043 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 232.9630 417.0654 -417.0654 0.0000000 #Br#)[N+]c#3)1n=N)1OcC[O-][nH]-[O-][nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 218.9072 79.9577 -79.9577 0.0000000 #[O-]n 0 0.0000000 0.0000 None None None None None None None None None
+ | 224.9210 166.0903 -166.0903 0.0000000 #nBrCC3c4F(N4 0 0.0000000 0.0000 None None None None None None None None None
+ | 220.3673 134.3103 -134.3103 0.0000000 (-[O-]cNc 0 0.0000000 0.0000 None None None None None None None None None
+ | 221.5792 133.5252 -133.5252 0.0000000 (5c1=Br2 0 0.0000000 0.0000 None None None None None None None None None
+ | 239.0696 400.6961 -400.6961 0.0000000 )5[nH]1-CCcFc5O2)n[nH]Br#BrnNNC=O[O-]BrBrN#1 0 0.0000000 0.0000 None None None None None None None None None
+ | 225.7988 220.3786 -220.3786 0.0000000 )C141F2[N+]Br[N+]c)( 0 0.0000000 0.0000 None None None None None None None None None
+ | 219.2887 105.4673 -105.4673 0.0000000 )N41 0 0.0000000 0.0000 None None None None None None None None None
+ | 247.7222 564.2572 -564.2572 0.0000000 )[N+][O-]1[N+]O53On[nH]=[O-])[N+]1=-4)[O-]4[N+]4533[O-]O4BrNFBr2[N+][nH]c5[nH](O 0 0.0000000 0.0000 None None None None None None None None None
+22:40:55 <INFO> Sampled SMILES C[O-][N+] failed to sanitize.
+22:40:55 <INFO> Sampled SMILES [O-]-c failed to sanitize.
+22:40:55 <INFO> Sampled SMILES [nH][O-][N+]BrC failed to sanitize.
+22:41:02 <INFO> Score: 0.01 Agent NLL: 313.58 Valid:   3% Step: 17
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 299.2208 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 301.2628 90.7976 -90.7976 0.0000000 #)( 0 0.0000000 0.0000 None None None None None None None None None
+ | 346.8750 910.2892 -910.2892 0.0000000 #BrF[O-](COF[nH][O-]54)2-Br#c#4CO=532))FBrN=BrcN4=[nH]C[O-]211C[N+]NO[N+]([nH][N+]3(4[nH]C1n[O-]cN53c55#4 0 0.0000000 0.0000 None None None None None None None None None
+ | 301.6437 93.9917 -93.9917 0.0000000 ((( 0 0.0000000 0.0000 None None None None None None None None None
+ | 304.5893 145.7269 -145.7269 0.0000000 ())1n(2( 0 0.0000000 0.0000 None None None None None None None None None
+ | 308.8803 222.0693 -222.0693 0.0000000 (5CC3[nH]3C32)O)53 0 0.0000000 0.0000 None None None None None None None None None
+ | 312.6685 312.6796 -312.6796 0.0000000 (n[N+]#Br3NBr44N1cO4-)nc[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 337.0820 825.3310 -825.3310 0.0000000 )BrFO=n[nH]nNc[O-][N+][N+][O-][nH]CF)-[N+]4(N[O-](4[nH][N+]F#(3#cF-)4[N+]2)[N+][N+][O-]([N+](nO==3F 0 0.0000000 0.0000 None None None None None None None None None
+ | 317.5346 434.8570 -434.8570 0.0000000 )N[nH]N-)[nH]4-c[O-]-O1-3)5[N+](nc2ONF1 0 0.0000000 0.0000 None None None None None None None None None
+ | 322.2658 479.8958 -479.8958 0.0000000 )c5N#[O-]15N[O-][O-]nON2=34-[N+]cC34)[O-]F44[nH][N+])Br 0 0.0000000 0.0000 None None None None None None None None None
+22:41:07 <INFO> Sampled SMILES On failed to sanitize.
+22:41:14 <INFO> Score: 0.01 Agent NLL: 302.58 Valid:   2% Step: 18
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 288.5845 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 291.4180 98.7610 -98.7610 0.0000000 #(4[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 291.2518 80.4609 -80.4609 0.0000000 #2O- 0 0.0000000 0.0000 None None None None None None None None None
+ | 295.9808 177.3144 -177.3144 0.0000000 #5nOF[N+])N[N+][O-]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 308.4818 441.6244 -441.6244 0.0000000 #[O-])OO2Nn#C-[N+][nH])(Br(12CNn3c)=)[N+]) 0 0.0000000 0.0000 None None None None None None None None None
+ | 294.3014 176.2571 -176.2571 0.0000000 #n[O-]Br3c-c# 0 0.0000000 0.0000 None None None None None None None None None
+ | 316.6855 621.0775 -621.0775 0.0000000 (35(-Brc41[nH]3F#F1N[nH]=cFO([N+]cF(=)54[N+]Br)2O#O[N+]N 0 0.0000000 0.0000 None None None None None None None None None
+ | 297.3519 240.4491 -240.4491 0.0000000 (c)NC1[N+][nH]-=CC4c 0 0.0000000 0.0000 None None None None None None None None None
+ | 315.8843 554.0574 -554.0574 0.0000000 )(1-(2[N+]=C(n[N+]cCN[N+][N+]124)4C1=#O[nH]O[N+]3(#[nH]1O)-O 0 0.0000000 0.0000 None None None None None None None None None
+ | 293.8038 147.4223 -147.4223 0.0000000 -1([O-]5=-c 0 0.0000000 0.0000 None None None None None None None None None
+22:41:17 <INFO> Sampled SMILES C[nH] failed to sanitize.
+22:41:17 <INFO> Sampled SMILES N[O-]C-N failed to sanitize.
+22:41:17 <INFO> Sampled SMILES n failed to sanitize.
+22:41:21 <INFO> Score: 0.00 Agent NLL: 148.12 Valid:   0% Step: 19
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 138.0211 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 146.8690 164.4372 -164.4372 0.0000000 #13C21c=[O-]N2[N+]O 0 0.0000000 0.0000
+ | 161.4023 472.3727 -472.3727 0.0000000 #[nH][N+]2C)[N+]-#F4C4[nH]N=O32)[N+][nH]-)2CNBrF5[nH]# 0 0.0000000 0.0000
+ | 138.8825 64.2867 -64.2867 0.0000000 ( 0 0.0000000 0.0000
+ | 147.6704 228.1767 -228.1767 0.0000000 ()4[N+][nH]#NO3N33( 0 0.0000000 0.0000
+ | 146.4575 214.2536 -214.2536 0.0000000 ()N-c=[nH]C33-[O-] 0 0.0000000 0.0000
+ | 157.4332 422.3244 -422.3244 0.0000000 ()[nH][N+]C)#14)=n[O-]3N24c[N+][O-]c#OF5-2 0 0.0000000 0.0000
+ | 140.2952 67.6601 -67.6601 0.0000000 (=4 0 0.0000000 0.0000
+ | 152.6815 332.0305 -332.0305 0.0000000 (n22)Br2nn3#N[N+]-CNC)[nH][O-]1 0 0.0000000 0.0000
+ | 147.4937 245.3126 -245.3126 0.0000000 )(cO4(3=N[N+]N4# 0 0.0000000 0.0000
+22:41:21 <INFO> Sampled SMILES C[nH] failed to sanitize.
+22:41:21 <INFO> Sampled SMILES c#F failed to sanitize.
+22:41:21 <INFO> Sampled SMILES c[nH] failed to sanitize.
+22:41:24 <INFO> Score: 0.01 Agent NLL: 262.90 Valid:   2% Step: 20
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 246.5721 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 267.2519 329.0135 -329.0135 0.0000000 #-N[N+]21c4n=[O-]F5[O-]=N53OC-4n(-[nH]Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 263.8929 336.9886 -336.9886 0.0000000 #[O-]cC32[nH]cn)c112#)(1O#1#3[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 257.6454 235.5388 -235.5388 0.0000000 (42[N+][N+]F5[N+][N+][N+]31)=[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 259.0957 305.1706 -305.1706 0.0000000 ([N+]ON))3-[O-]c[nH]4=34)[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 267.6285 446.1363 -446.1363 0.0000000 )#21[nH]cCBr[O-]4(324Cnn53c[O-][N+]1cCF3([N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 248.3394 95.0898 -95.0898 0.0000000 )1n 0 0.0000000 0.0000 None None None None None None None None None
+ | 261.9900 345.6065 -345.6065 0.0000000 )FF=3OF[nH]CN[O-]5[N+]1c[nH]22C5- 0 0.0000000 0.0000 None None None None None None None None None
+ | 256.6599 246.1673 -246.1673 0.0000000 )c#4(C[O-]C3=4#))c 0 0.0000000 0.0000 None None None None None None None None None
+ | 253.7296 131.8905 -131.8905 0.0000000 -3cn[O-]FN=[O-]N 0 0.0000000 0.0000 None None None None None None None None None
+22:41:25 <INFO> Sampled SMILES [N+][N+]n[N+][nH] failed to sanitize.
+22:41:25 <INFO> Sampled SMILES c[N+]O failed to sanitize.
+22:41:25 <INFO> Sampled SMILES cc[N+] failed to sanitize.
+22:41:27 <INFO> Score: 0.00 Agent NLL: 315.14 Valid:   0% Step: 21
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 299.5940 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 303.5573 128.7032 -128.7032 0.0000000 #-4[N+]Cc 0 0.0000000 0.0000
+ | 300.9789 73.0477 -73.0477 0.0000000 #2 0 0.0000000 0.0000
+ | 319.5473 347.6002 -347.6002 0.0000000 #3[N+])c2(OF-Br1[O-]F=)[N+](Br-nc-cBr# 0 0.0000000 0.0000
+ | 318.0861 609.0214 -609.0214 0.0000000 #[O-]((12F[nH]N[O-]3)5Br#1-)[O-](5[nH]N[O-] 0 0.0000000 0.0000
+ | 308.5509 242.8346 -242.8346 0.0000000 (=F3-n[N+]))()N 0 0.0000000 0.0000
+ | 311.1115 336.0412 -336.0412 0.0000000 ([nH]2c1#22#44[O-]NcFF 0 0.0000000 0.0000
+ | 301.7880 83.5650 -83.5650 0.0000000 )## 0 0.0000000 0.0000
+ | 331.6607 597.8263 -597.8263 0.0000000 ))5)#1-5)1O-#N4)1cO3[nH]c#C221[N+][O-])Br1C=(#C[O-]Br)[nH]5 0 0.0000000 0.0000
+ | 304.2813 127.8518 -127.8518 0.0000000 )FC2Br#c 0 0.0000000 0.0000
+22:41:28 <INFO> Sampled SMILES Cc failed to sanitize.
+22:41:28 <INFO> Sampled SMILES cnBr failed to sanitize.
+22:41:31 <INFO> Score: 0.01 Agent NLL: 249.52 Valid:   2% Step: 22
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 235.8880 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 236.6835 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 265.0935 566.5765 -566.5765 0.0000000 #nn))Fc1--n4c))C[O-]C(nN=Br(-[nH]O(41-=[O-]Br[O-]5 0 0.0000000 0.0000 None None None None None None None None None
+ | 271.1282 492.3712 -492.3712 0.0000000 (-)N()1[N+][O-]=[O-]NC2[O-]1c#1ccCFn#FBrCBrN3N33BrF1n2=-CnBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 252.1172 339.7812 -339.7812 0.0000000 (1F#--)()C(4=Br=(33-C 0 0.0000000 0.0000 None None None None None None None None None
+ | 239.8327 126.3803 -126.3803 0.0000000 (1[nH][nH]# 0 0.0000000 0.0000 None None None None None None None None None
+ | 237.8375 55.6389 -55.6389 0.0000000 -1C 0 0.0000000 0.0000 None None None None None None None None None
+ | 248.1395 242.5018 -242.5018 0.0000000 -4=nBr=Br-O25n-CN 0 0.0000000 0.0000 None None None None None None None None None
+ | 242.4796 170.3115 -170.3115 0.0000000 -F4F1cO1# 0 0.0000000 0.0000 None None None None None None None None None
+ | 248.9389 255.6441 -255.6441 0.0000000 -[N+]-2=[N+])F=31)O[O-]3= 0 0.0000000 0.0000 None None None None None None None None None
+22:41:33 <INFO> Sampled SMILES C[N+]FNF failed to sanitize.
+22:41:33 <INFO> Sampled SMILES [nH][nH][O-]cnc failed to sanitize.
+22:41:33 <INFO> Sampled SMILES nN failed to sanitize.
+22:41:35 <INFO> Score: 0.01 Agent NLL: 164.77 Valid:   3% Step: 23
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 149.3340 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 168.8218 389.4512 -389.4512 0.0000000 #[O-](=#N[O-]nBr25Brn[nH]=4)#=#34 0 0.0000000 0.0000 None None None None None None None None None
+ | 158.7296 160.2387 -160.2387 0.0000000 ((5[nH][nH][nH]n[nH]([O-]) 0 0.0000000 0.0000 None None None None None None None None None
+ | 153.2876 81.5514 -81.5514 0.0000000 (BrOC2 0 0.0000000 0.0000 None None None None None None None None None
+ | 172.1575 358.8463 -358.8463 0.0000000 )#=CCC(((=[O-]FnC[nH]1[O-]-NC=-4[N+]2-- 0 0.0000000 0.0000 None None None None None None None None None
+ | 163.3935 249.0133 -249.0133 0.0000000 )3=2F(C1n[O-]3C([O-]1[N+]- 0 0.0000000 0.0000 None None None None None None None None None
+ | 200.9661 957.4470 -957.4470 0.0000000 )N=c55[O-]=(1(2[O-]FO51[O-]4411-[O-]N2cF(3-[O-]2=N1=[O-]N#[N+]5Br3N3234[N+])1[nH]N)1FN=#cn( 0 0.0000000 0.0000 None None None None None None None None None
+ | 190.7598 641.1238 -641.1238 0.0000000 )c11O[N+]#Brnc#[O-]3=[O-]C=n)NC[nH](Br5[nH]c[O-]nc[O-][N+]#c3F2Brc4[nH]-C#[N+]=-# 0 0.0000000 0.0000 None None None None None None None None None
+ | 158.1653 197.4498 -197.4498 0.0000000 -1nBrc3[N+][N+]cBrF 0 0.0000000 0.0000 None None None None None None None None None
+ | 174.3046 445.6545 -445.6545 0.0000000 -3(n13=3[N+]O4)#n[N+]NBrN=[nH])C4n)Br5-C 0 0.0000000 0.0000 None None None None None None None None None
+22:41:40 <INFO> Score: 0.02 Agent NLL: 218.28 Valid:   5% Step: 24
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 201.2948 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 221.6717 380.4279 -380.4279 0.0000000 #141Br-1-=cC14c#14=n13Br- 0 0.0000000 0.0000 None None None None None None None None None
+ | 216.6138 273.9511 -273.9511 0.0000000 #2)[O-][nH][nH]c-[nH]F#c[nH]4=## 0 0.0000000 0.0000 None None None None None None None None None
+ | 233.0819 467.6905 -467.6905 0.0000000 #5C)2O=N=4C#n[nH][N+]52)ON[nH]-1=[N+]4)BrF[O-]CN2[N+]n 0 0.0000000 0.0000 None None None None None None None None None
+ | 213.7485 208.3414 -208.3414 0.0000000 #5O23OO[O-]N5C([O-][nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 278.4303 1131.0729 -1131.0729 0.0000000 #BrN[O-][N+]Fn#322)FC=-3(BrN[nH]1O=OFF5n41=[N+]2OF[N+]Br1Br=c([N+]#[N+][N+]#n[N+]c=NBr25n[nH]-4ccc-([O-]-=1F-cOc2cBrcN=[N+]C-#[O-]4n2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 236.5885 554.3586 -554.3586 0.0000000 (55c335[O-][O-][N+]4[O-]NF(2=(cC1=-)113Br[N+][O-]=F[O-]5Br3NnF 0 0.0000000 0.0000 None None None None None None None None None
+ | 202.8518 73.0185 -73.0185 0.0000000 (c 0 0.0000000 0.0000 None None None None None None None None None
+ | 218.6426 348.8186 -348.8186 0.0000000 )F)(151c#5Br1O(25[O-](= 0 0.0000000 0.0000 None None None None None None None None None
+ | 207.5069 146.6518 -146.6518 0.0000000 )[N+]FF[nH]N( 0 0.0000000 0.0000 None None None None None None None None None
+22:41:42 <INFO> Sampled SMILES c failed to sanitize.
+22:41:51 <INFO> Score: 0.01 Agent NLL: 197.65 Valid:   2% Step: 25
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 180.8107 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 181.7440 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 186.8812 145.1990 -145.1990 0.0000000 (N[nH]BrC31 0 0.0000000 0.0000 None None None None None None None None None
+ | 181.5941 52.9578 -52.9578 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 203.3496 401.8959 -401.8959 0.0000000 )#c5[N+]5N[O-]N[N+][N+])5cc=#n1OO[O-](4 0 0.0000000 0.0000 None None None None None None None None None
+ | 182.5841 62.1718 -62.1718 0.0000000 -4 0 0.0000000 0.0000 None None None None None None None None None
+ | 186.0339 124.1637 -124.1637 0.0000000 -[O-]-C)[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 191.6938 214.1116 -214.1116 0.0000000 -[O-]O[nH]Br[nH]C[O-]OC2( 0 0.0000000 0.0000 None None None None None None None None None
+ | 185.4813 92.9449 -92.9449 0.0000000 -[nH]=[nH]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 210.0633 396.7809 -396.7809 0.0000000 1)O=F4F#5NBrN()))n3cc14CF(23[N+](5( 0 0.0000000 0.0000 None None None None None None None None None
+22:41:55 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:41:55 <INFO> Sampled SMILES n failed to sanitize.
+22:41:58 <INFO> Score: 0.00 Agent NLL: 171.88 Valid:   0% Step: 26
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 154.7988 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 175.1021 294.0539 -294.0539 0.0000000 #(FOFCC52Occ(1#Fcc[nH]C=- 0 0.0000000 0.0000
+ | 157.6113 92.0046 -92.0046 0.0000000 #1( 0 0.0000000 0.0000
+ | 179.9300 373.7188 -373.7188 0.0000000 #1FFF#4F[nH]5BrF#NNCBrBr4=c)-FC) 0 0.0000000 0.0000
+ | 163.8687 163.0717 -163.0717 0.0000000 #BrN3)4c4=C 0 0.0000000 0.0000
+ | 165.6574 164.6320 -164.6320 0.0000000 #N121)[nH]52C)4 0 0.0000000 0.0000
+ | 186.5171 533.4456 -533.4456 0.0000000 ([O-]OO(2[N+](2nc)[O-]#=(2(c=Br12#)(5cc#O)[N+] 0 0.0000000 0.0000
+ | 155.6177 52.9578 -52.9578 0.0000000 ) 0 0.0000000 0.0000
+ | 179.6019 402.0594 -402.0594 0.0000000 )1)#15-nBr)[nH]4-54[N+]c5[nH][O-]([O-])Br[N+] 0 0.0000000 0.0000
+ | 172.9953 275.4132 -275.4132 0.0000000 )[N+]5FCC[nH]Nc1[O-]5[O-][N+]34)-Br 0 0.0000000 0.0000
+22:42:00 <INFO> Sampled SMILES c failed to sanitize.
+22:42:00 <INFO> Sampled SMILES n[N+]Br failed to sanitize.
+22:42:02 <INFO> Score: 0.01 Agent NLL: 217.16 Valid:   2% Step: 27
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 198.1395 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 221.1383 371.4199 -371.4199 0.0000000 #2(N2Cnn##)#214nN4C=nF[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 204.9517 157.7349 -157.7349 0.0000000 #Brc3N[nH][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 245.4794 643.9482 -643.9482 0.0000000 #F[N+]21-24F[nH]5Br2[N+]-3-5[O-]=[N+]O1[O-]5n()[O-][nH]43N2[N+]F#[nH][nH]-5=[nH]2nC 0 0.0000000 0.0000 None None None None None None None None None
+ | 265.3860 866.6211 -866.6211 0.0000000 ([O-]1[N+])3[nH]3n([nH]Br=3N(2(24n=CF=(F5(c5n2=1NF[N+]Nc[O-]C=c=23)c1O(#5=1CCFn[nH])5Br[O-][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 201.6803 89.2731 -89.2731 0.0000000 )#C) 0 0.0000000 0.0000 None None None None None None None None None
+ | 206.2441 134.1953 -134.1953 0.0000000 )-[N+]4(##N 0 0.0000000 0.0000 None None None None None None None None None
+ | 204.7885 142.1864 -142.1864 0.0000000 )3=12N[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 220.1971 282.0013 -282.0013 0.0000000 )4C22F22(Fc==)C[O-][nH]4[N+]5C( 0 0.0000000 0.0000 None None None None None None None None None
+ | 212.5859 186.6606 -186.6606 0.0000000 )F23Br1ON-15C31) 0 0.0000000 0.0000 None None None None None None None None None
+22:42:03 <INFO> Sampled SMILES N#nn[nH] failed to sanitize.
+22:42:03 <INFO> Sampled SMILES [nH]Ncn failed to sanitize.
+22:42:06 <INFO> Score: 0.02 Agent NLL: 181.84 Valid:   6% Step: 28
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 164.7417 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 178.5597 180.0178 -180.0178 0.0000000 #)3nBrcc23NN[N+])4 0 0.0000000 0.0000 None None None None None None None None None
+ | 178.0761 182.8655 -182.8655 0.0000000 #N12FF2#(ON[nH]F 0 0.0000000 0.0000 None None None None None None None None None
+ | 190.5004 306.5932 -306.5932 0.0000000 #NNCFn114n31-(Oc3-N)[nH]2[N+]5N 0 0.0000000 0.0000 None None None None None None None None None
+ | 176.1427 192.5976 -192.5976 0.0000000 #n5N[O-][O-]3#[N+]3F 0 0.0000000 0.0000 None None None None None None None None None
+ | 165.9760 64.2867 -64.2867 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 176.6506 176.7353 -176.7353 0.0000000 (([nH]4)(C12O2[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 200.2229 516.7529 -516.7529 0.0000000 (cNF2#445c5Br32)2[O-]3O3[O-]3NF(nF21C([O-]-n 0 0.0000000 0.0000 None None None None None None None None None
+ | 188.8560 318.6319 -318.6319 0.0000000 )#Brc12[nH])[N+]3[O-]NC1c#[N+]Br4)[nH]BrFc 0 0.0000000 0.0000 None None None None None None None None None
+ | 183.7891 324.4172 -324.4172 0.0000000 )Br[N+]Br4[nH]C1#3(-3#c()F1 0 0.0000000 0.0000 None None None None None None None None None
+22:42:08 <INFO> Sampled SMILES Br[O-]OON failed to sanitize.
+22:42:08 <INFO> Sampled SMILES [nH]cBrBr failed to sanitize.
+22:42:08 <INFO> Sampled SMILES c[N+][O-]Br[nH] failed to sanitize.
+22:42:11 <INFO> Score: 0.00 Agent NLL: 170.41 Valid:   0% Step: 29
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 148.4934 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 185.3788 488.0379 -488.0379 0.0000000 #-=nCC4C[nH]#c[O-]N1Br1[O-]-[O-]=5)[N+]-[N+]32C[N+][O-]1[N+]OnC 0 0.0000000 0.0000
+ | 211.9972 739.2914 -739.2914 0.0000000 #3C[nH][N+])ncnC(#1144)4[O-]F=3([N+]OCNc[N+][N+]3)nn5NCO(3n3[nH]1N21[O-]O55Br[nH]3143N# 0 0.0000000 0.0000
+ | 157.1047 161.8277 -161.8277 0.0000000 #522F[N+](3 0 0.0000000 0.0000
+ | 160.0696 225.0456 -225.0456 0.0000000 (11(1(F2[nH]2= 0 0.0000000 0.0000
+ | 210.1014 852.5879 -852.5879 0.0000000 (5[N+]N(=(=[N+]3n2-[N+]2[nH][N+]n3=[O-]2[nH]5(311BrF)C[O-][nH]#)5)1[O-]F13NN221(2OnOFC2# 0 0.0000000 0.0000
+ | 168.8756 304.5631 -304.5631 0.0000000 ([O-]c)C4C==F3=C(#N(Brn 0 0.0000000 0.0000
+ | 197.2387 718.0068 -718.0068 0.0000000 (nOCBr3c451NF1(4[nH](F-[N+]N3(-[N+])-F--[O-]5(#nFc3[N+]F5nN#) 0 0.0000000 0.0000
+ | 149.4023 52.9578 -52.9578 0.0000000 ) 0 0.0000000 0.0000
+ | 156.7361 156.0469 -156.0469 0.0000000 )Brc[nH])FBr# 0 0.0000000 0.0000
+22:42:12 <INFO> Sampled SMILES Brc[nH]#[O-]OBrF-[nH]C2F-[N+]23CnFn=O3BrFc#F[O-] failed to sanitize.
+22:42:12 <INFO> Sampled SMILES N-[O-]nO failed to sanitize.
+22:42:14 <INFO> Score: 0.00 Agent NLL: 214.79 Valid:   0% Step: 30
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 194.4738 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 206.6659 189.9518 -189.9518 0.0000000 ))C[O-]FFC#(#cC 0 0.0000000 0.0000
+ | 225.9272 407.3404 -407.3404 0.0000000 )1CN-ON3(Fn2#F-#-)#[N+](O=([O-]BrOBr 0 0.0000000 0.0000
+ | 209.4797 235.5256 -235.5256 0.0000000 )44[nH][N+][nH]-([O-]F#n[nH]c 0 0.0000000 0.0000
+ | 212.7809 275.8172 -275.8172 0.0000000 )C[N+]3[nH]-C4c3NO[N+]1Occ- 0 0.0000000 0.0000
+ | 216.5038 304.3524 -304.3524 0.0000000 )[O-]O=#5[nH]1)3)O[N+][N+]CC1F3Nc 0 0.0000000 0.0000
+ | 201.0662 119.7729 -119.7729 0.0000000 -2[nH]#Br[N+] 0 0.0000000 0.0000
+ | 203.7933 162.0756 -162.0756 0.0000000 -O[nH]N1[O-]Cn[N+] 0 0.0000000 0.0000
+ | 206.5519 186.6764 -186.6764 0.0000000 -c[N+])4Nn1C=c[O-] 0 0.0000000 0.0000
+ | 195.2121 56.7676 -56.7676 0.0000000 1 0 0.0000000 0.0000
+22:42:15 <INFO> Sampled SMILES Brc[O-] failed to sanitize.
+22:42:15 <INFO> Sampled SMILES [nH][O-][N+]=F[nH]nNN failed to sanitize.
+22:42:15 <INFO> Sampled SMILES c#n[O-]O1OCBrn3N[N+]N3Br1[N+] failed to sanitize.
+22:42:17 <INFO> Score: 0.00 Agent NLL: 138.27 Valid:   0% Step: 31
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 118.1597 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 119.2893 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000
+ | 130.3221 248.8552 -248.8552 0.0000000 #(-13(nOBrON 0 0.0000000 0.0000
+ | 166.0581 474.6125 -474.6125 0.0000000 #([N+]24[N+]Br14CF2c[O-]([N+][O-]OO)O53n[nH]n[nH]BrNBr11[nH]=Br=-[N+]C3FBr 0 0.0000000 0.0000
+ | 124.8758 97.5165 -97.5165 0.0000000 #O[N+][nH]ccC 0 0.0000000 0.0000
+ | 125.4496 153.9447 -153.9447 0.0000000 (4n[O-][O-]4C 0 0.0000000 0.0000
+ | 128.5330 154.2930 -154.2930 0.0000000 ([N+]F(3)Br== 0 0.0000000 0.0000
+ | 138.1930 266.0436 -266.0436 0.0000000 ([nH][O-])3#NF#3N3N=[N+]522 0 0.0000000 0.0000
+ | 123.4191 138.1407 -138.1407 0.0000000 )2N5# 0 0.0000000 0.0000
+ | 131.7545 204.3040 -204.3040 0.0000000 )[N+]N4OcC33FC2n 0 0.0000000 0.0000
+22:42:19 <INFO> Sampled SMILES [N+][O-]NnCBr failed to sanitize.
+22:42:22 <INFO> Score: 0.01 Agent NLL: 190.20 Valid:   3% Step: 32
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 169.9314 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 180.2829 148.2235 -148.2235 0.0000000 #==1[nH]4[N+]3[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 172.9907 65.6823 -65.6823 0.0000000 #F[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 191.2433 336.2358 -336.2358 0.0000000 ()C[nH]=(#Br[N+]2CF[O-]Br1=c-3 0 0.0000000 0.0000 None None None None None None None None None
+ | 177.5435 153.4369 -153.4369 0.0000000 (n1=))# 0 0.0000000 0.0000 None None None None None None None None None
+ | 231.7123 668.8719 -668.8719 0.0000000 )#[nH][nH])-241NFn5Br42N[N+]4OO2OC[O-]-(-=#4c2F(cCC(c=)#[O-]4#c2[O-][nH]c)(=N 0 0.0000000 0.0000 None None None None None None None None None
+ | 225.6651 643.9899 -643.9899 0.0000000 )3nNCOCC4C[N+]4#c-CBr44(Nc[nH]F52[O-]4CNc[O-]Fcc(3F2#[nH]4114[O-]4Oc-[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 173.9977 65.9471 -65.9471 0.0000000 -1[N+]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 182.3132 150.2451 -150.2451 0.0000000 -cBr#nn1OO(O 0 0.0000000 0.0000 None None None None None None None None None
+ | 178.6469 143.4360 -143.4360 0.0000000 1cBrn)(5O 0 0.0000000 0.0000 None None None None None None None None None
+22:42:23 <INFO> Sampled SMILES BrCn[N+]=[N+][O-] failed to sanitize.
+22:42:23 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:42:23 <INFO> Sampled SMILES c failed to sanitize.
+22:42:25 <INFO> Score: 0.00 Agent NLL: 165.91 Valid:   0% Step: 33
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 143.7799 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 162.6429 263.8437 -263.8437 0.0000000 #(O3#)c4[nH](=nN2=2c 0 0.0000000 0.0000
+ | 212.9597 788.9984 -788.9984 0.0000000 #-CBr=O)C52[O-][nH]5OBr[O-]-[nH](=1[N+]F32O3CN=N3=(3c(nBr#[N+]#)14=ONF[O-]1O#cC[O-]=541 0 0.0000000 0.0000
+ | 159.8999 225.7690 -225.7690 0.0000000 #45Cn[N+]O-F)(NN( 0 0.0000000 0.0000
+ | 193.4232 616.3996 -616.3996 0.0000000 #4Br[O-]N2OC=[nH]2(4FO[O-]([N+]5N[O-]3BrN4FN5OcC#[nH]F[N+]OBr5[O-]cC5Br 0 0.0000000 0.0000
+ | 148.1882 76.7056 -76.7056 0.0000000 #N2- 0 0.0000000 0.0000
+ | 150.1215 103.8617 -103.8617 0.0000000 #c1-[O-][N+] 0 0.0000000 0.0000
+ | 193.0933 537.9803 -537.9803 0.0000000 (#c)Br22C1F3N=n4FcO11On2(c-4n[nH](23NO#[nH]nCnn(2N 0 0.0000000 0.0000
+ | 162.1826 291.5208 -291.5208 0.0000000 (1([N+]5C=([N+]OFC[nH]BrO3 0 0.0000000 0.0000
+ | 149.4321 112.3201 -112.3201 0.0000000 (3F[nH]4 0 0.0000000 0.0000
+22:42:26 <INFO> Sampled SMILES [N+]O[O-]Br-c[N+] failed to sanitize.
+22:42:26 <INFO> Sampled SMILES n[nH] failed to sanitize.
+22:42:29 <INFO> Score: 0.00 Agent NLL: 191.36 Valid:   0% Step: 34
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw)
+ | 172.2047 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000
+ | 195.2238 333.4423 -333.4423 0.0000000 #4n[nH][N+](==(2)[O-]3c#[O-][O-]#4- 0 0.0000000 0.0000
+ | 199.8040 349.8516 -349.8516 0.0000000 #C(NF2-#5c5nN4N4O1((5nc( 0 0.0000000 0.0000
+ | 180.3069 112.3040 -112.3040 0.0000000 #N[N+]Fc5cN 0 0.0000000 0.0000
+ | 187.0731 198.3804 -198.3804 0.0000000 #n[N+]O=)=O5n#1[O-] 0 0.0000000 0.0000
+ | 173.5751 64.2867 -64.2867 0.0000000 ( 0 0.0000000 0.0000
+ | 180.0654 149.5501 -149.5501 0.0000000 (n2#F#F 0 0.0000000 0.0000
+ | 203.9628 387.5182 -387.5182 0.0000000 ))[O-][O-][nH]nnNN-O-1OFC[N+]ncOc53C4=12 0 0.0000000 0.0000
+ | 180.4071 147.5678 -147.5678 0.0000000 )1)BrcC2[N+] 0 0.0000000 0.0000
+ | 190.7849 210.6639 -210.6639 0.0000000 )c2O52[N+][O-]Fcc=2CC32 0 0.0000000 0.0000
+22:42:30 <INFO> Sampled SMILES NBrcc failed to sanitize.
+22:42:30 <INFO> Sampled SMILES OCNnC[N+][N+] failed to sanitize.
+22:42:30 <INFO> Sampled SMILES ncC failed to sanitize.
+22:42:32 <INFO> Score: 0.02 Agent NLL: 205.26 Valid:   5% Step: 35
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 185.3121 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 198.9306 174.4447 -174.4447 0.0000000 #335C4C5-[nH]3[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 194.3092 129.3060 -129.3060 0.0000000 #3c[nH]F=BrF 0 0.0000000 0.0000 None None None None None None None None None
+ | 245.8409 758.2866 -758.2866 0.0000000 #nN-[N+])12Br145[O-]C)#[nH]-Fc#[N+]-#NcC[O-]4=cO-C4OF2([N+][O-]14((O=n-[O-]-4 0 0.0000000 0.0000 None None None None None None None None None
+ | 199.9934 226.3372 -226.3372 0.0000000 (151--5n1C(4n 0 0.0000000 0.0000 None None None None None None None None None
+ | 189.5543 69.0601 -69.0601 0.0000000 (=c2 0 0.0000000 0.0000 None None None None None None None None None
+ | 194.2587 164.9748 -164.9748 0.0000000 (O322-4[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 193.2584 103.7951 -103.7951 0.0000000 )()F(NO 0 0.0000000 0.0000 None None None None None None None None None
+ | 193.1544 140.1487 -140.1487 0.0000000 ))c1(Nc) 0 0.0000000 0.0000 None None None None None None None None None
+ | 208.1366 304.1326 -304.1326 0.0000000 ))c=N[O-][nH]N1[nH]nCNc#ONnn3 0 0.0000000 0.0000 None None None None None None None None None
+22:42:32 <INFO> Sampled SMILES c=[N+] failed to sanitize.
+22:42:33 <INFO> Score: 0.01 Agent NLL: 211.44 Valid:   2% Step: 36
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 188.5253 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 222.5403 391.1666 -391.1666 0.0000000 #[N+][O-]#21Br=#)=1N14n-FF)4C(-2=O[O-]F 0 0.0000000 0.0000 None None None None None None None None None
+ | 211.1584 313.2308 -313.2308 0.0000000 #[N+]c5O##(1c#[nH]BrcCN1c#c5 0 0.0000000 0.0000 None None None None None None None None None
+ | 228.8780 445.1718 -445.1718 0.0000000 #n[N+]=N-1#C#FnBr[nH]1n12[nH]FO(#n1c2c1O[O-]5))N 0 0.0000000 0.0000 None None None None None None None None None
+ | 191.8342 89.9658 -89.9658 0.0000000 ()) 0 0.0000000 0.0000 None None None None None None None None None
+ | 206.1432 216.5234 -216.5234 0.0000000 (F=N1[nH]C[N+]5F(=O)[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 197.3684 104.6692 -104.6692 0.0000000 (N)Br[nH]cc11 0 0.0000000 0.0000 None None None None None None None None None
+ | 213.1270 348.0341 -348.0341 0.0000000 )2F4(-Cc[nH]Br)-)#3=n33NO 0 0.0000000 0.0000 None None None None None None None None None
+ | 225.1102 454.8780 -454.8780 0.0000000 --[O-]n=#On#N-#c5BrO4#O)#cF[nH]5[O-][N+]1(OC 0 0.0000000 0.0000 None None None None None None None None None
+ | 194.8594 122.6632 -122.6632 0.0000000 -2)nN) 0 0.0000000 0.0000 None None None None None None None None None
+22:42:33 <INFO> Sampled SMILES [nH] failed to sanitize.
+22:42:41 <INFO> Score: 0.01 Agent NLL: 234.11 Valid:   2% Step: 37
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 215.0532 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 216.2421 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 220.2293 72.1370 -72.1370 0.0000000 #1F1Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 230.2816 243.1862 -243.1862 0.0000000 #[nH]3c#CF[N+][O-]=55# 0 0.0000000 0.0000 None None None None None None None None None
+ | 224.5235 149.5789 -149.5789 0.0000000 (3=[N+]CN#= 0 0.0000000 0.0000 None None None None None None None None None
+ | 218.6243 76.2284 -76.2284 0.0000000 (O[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 224.0395 179.9487 -179.9487 0.0000000 )-c=Br)2# 0 0.0000000 0.0000 None None None None None None None None None
+ | 238.5828 317.3198 -317.3198 0.0000000 )52CC-5c[nH]5[N+])nO[O-]2=[nH]-n 0 0.0000000 0.0000 None None None None None None None None None
+ | 254.9118 450.8498 -450.8498 0.0000000 )O3F34O1CBr[nH]c)[O-]2c31-(-=-2#Br34(#[O-]O5Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 216.2480 53.1074 -53.1074 0.0000000 - 0 0.0000000 0.0000 None None None None None None None None None
+22:42:52 <INFO> Score: 0.01 Agent NLL: 218.54 Valid:   3% Step: 38
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 196.6145 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 197.8182 47.9245 -47.9245 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 210.9435 205.8689 -205.8689 0.0000000 #F1)c[nH]N-ON))C 0 0.0000000 0.0000 None None None None None None None None None
+ | 284.3924 995.9822 -995.9822 0.0000000 ((O1[N+]c-4F[nH][N+][O-][O-]cO=COFn-=5C1C42c5[nH]##[O-]O-242c4c)FF[N+]11[O-][O-]2CCBr(C3)nC3-[nH]31-(=Nc3-cO- 0 0.0000000 0.0000 None None None None None None None None None
+ | 197.6182 52.9578 -52.9578 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 206.8913 173.8016 -173.8016 0.0000000 ))Br5-N[nH])F 0 0.0000000 0.0000 None None None None None None None None None
+ | 208.1094 178.0569 -178.0569 0.0000000 )[N+]3CC5[O-]5n- 0 0.0000000 0.0000 None None None None None None None None None
+ | 222.4579 346.0534 -346.0534 0.0000000 -(F21=(3c2NF4c1Br3n-(F5 0 0.0000000 0.0000 None None None None None None None None None
+ | 214.9570 211.8002 -211.8002 0.0000000 -[N+]O#==14[O-]N(O[nH]C21 0 0.0000000 0.0000 None None None None None None None None None
+ | 210.8423 234.6052 -234.6052 0.0000000 -[O-][O-]n[nH]2=4nO[O-]= 0 0.0000000 0.0000 None None None None None None None None None
+22:43:03 <INFO> Score: 0.02 Agent NLL: 224.01 Valid:   6% Step: 39
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Scaffold_Hopping SeriesCE_Scaffold_Hopping (raw) sim_score (SeriesCE_Scaffold_Hopping) pharm_matched_features (SeriesCE_Scaffold_Hopping) pharm_fit_score (SeriesCE_Scaffold_Hopping) qsar_score (SeriesCE_Scaffold_Hopping) pharm_score (SeriesCE_Scaffold_Hopping) forbidden_absent (SeriesCE_Scaffold_Hopping) pharm_rmsd (SeriesCE_Scaffold_Hopping) required_match (SeriesCE_Scaffold_Hopping) pred_pic50 (SeriesCE_Scaffold_Hopping)
+ | 198.4886 22.7285 -22.7285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 205.2513 114.7670 -114.7670 0.0000000 #1-[O-]4O 0 0.0000000 0.0000 None None None None None None None None None
+ | 207.6174 113.4886 -113.4886 0.0000000 #NNCOcOCc 0 0.0000000 0.0000 None None None None None None None None None
+ | 243.2894 501.8468 -501.8468 0.0000000 #ON)3F(4-[N+]11O3(451[N+]4)(n4(=Br#1F2-Br(51) 0 0.0000000 0.0000 None None None None None None None None None
+ | 214.5444 218.8602 -218.8602 0.0000000 #[N+]O2#5NC=nN[N+]cF 0 0.0000000 0.0000 None None None None None None None None None
+ | 210.1470 156.9705 -156.9705 0.0000000 #c[O-]Br#-1n[nH]4 0 0.0000000 0.0000 None None None None None None None None None
+ | 207.3679 116.7886 -116.7886 0.0000000 (2C[N+]F[nH]1) 0 0.0000000 0.0000 None None None None None None None None None
+ | 225.2372 313.1498 -313.1498 0.0000000 (4C=5F-2Br)43Cn#Brn[nH]5NnO 0 0.0000000 0.0000 None None None None None None None None None
+ | 246.7983 558.8961 -558.8961 0.0000000 (54[N+]5((#Br5FFncc-53N#[O-]Fc[nH](#c)c2[nH]CnBr21[O-]1N[N+]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 211.6781 188.0762 -188.0762 0.0000000 ([O-]N12FcNBr2c5 0 0.0000000 0.0000 None None None None None None None None None
+22:43:05 <INFO> Sampled SMILES CN#Br failed to sanitize.
+22:43:05 <INFO> Sampled SMILES [N+]F[O-][nH] failed to sanitize.
+22:43:05 <INFO> Sampled SMILES c failed to sanitize.
+22:43:05 <INFO> Sampled SMILES c#Brn failed to sanitize.
+22:43:05 <INFO> Sampled SMILES n failed to sanitize.
+22:43:12 <CRIT> Received exception ('Signal 2'): saving checkpoint and then terminate

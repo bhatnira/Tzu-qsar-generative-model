@@ -1,0 +1,17 @@
+[io]
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+model_file = "reinvent_integration/results/series_ce_seed_prior.model"
+
+[network]
+num_layers = 3
+layer_size = 512
+dropout = 0.0
+max_sequence_length = 256
+cell_type = "lstm"
+embedding_layer_size = 256
+layer_normalization = false
+standardize = true
+
+[metadata]
+data_source = "TB Project QSAR Series C/E"
+comment = "Seed prior created for initial generation preview"

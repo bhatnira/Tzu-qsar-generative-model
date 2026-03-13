@@ -1,0 +1,1240 @@
+21:21:33 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-12
+21:21:33 <INFO> Command line: ./.venv/bin/reinvent -l reinvent_integration/results/staged_similarity_v2.log reinvent_integration/configs/reinvent_staged_series_ce_similarity.toml
+21:21:33 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/reinvent_staged_series_ce_similarity.toml using format toml
+21:21:33 <INFO> User nbhatta1 on host panacea
+21:21:33 <INFO> Python version 3.11.13
+21:21:33 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+21:21:33 <INFO> PyTorch compiled with CUDA version 12.8
+21:21:33 <INFO> RDKit version 2025.09.6
+21:21:33 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+21:21:34 <INFO> CUDA driver version 590.48.01
+21:21:34 <INFO> Number of PyTorch CUDA devices 1
+21:21:34 <WARN> 'use_cuda' is deprecated, use 'device' instead
+21:21:34 <INFO> Using CPU x86_64
+21:21:34 <INFO> Starting 1 stage of Reinforcement Learning
+21:21:34 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/motif_tuned_reinvent.model has valid hash:
+{ 'comments': ['Seed prior created for initial generation preview', 'TL'],
+  'creation_date': 1773362251.738379,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'd07a057c289fd6e0ec848a3312d068f5',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': UUID('a741a011-321f-4c53-95c6-aeadc7aa23a4'),
+  'model_id_format': 'uuid.uuid4 3.11.13',
+  'origina_data_source': 'TB Project QSAR Series C/E',
+  'updates': [1773364863.6984305]}
+21:21:34 <INFO> Number of network parameters: 5,796,374
+21:21:34 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(22, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=22, bias=True)
+)
+21:21:34 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/motif_tuned_reinvent.model has valid hash:
+{ 'comments': ['Seed prior created for initial generation preview', 'TL'],
+  'creation_date': 1773362251.738379,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'd07a057c289fd6e0ec848a3312d068f5',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': UUID('a741a011-321f-4c53-95c6-aeadc7aa23a4'),
+  'model_id_format': 'uuid.uuid4 3.11.13',
+  'origina_data_source': 'TB Project QSAR Series C/E',
+  'updates': [1773364863.6984305]}
+21:21:34 <INFO> Number of network parameters: 5,796,374
+21:21:34 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(22, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=22, bias=True)
+)
+21:21:34 <INFO> Using generator Reinvent
+21:21:34 <INFO> Prior read from reinvent_integration/results/motif_tuned_reinvent.model
+21:21:34 <INFO> Agent read from reinvent_integration/results/motif_tuned_reinvent.model
+21:21:34 <INFO> Using reward strategy dap
+21:21:34 <INFO> Purging diversity filter memories after each stage
+21:21:34 <INFO> Inception SMILES read from reinvent_integration/data/motif_positive_seeds_filtered.smi
+21:21:34 <INFO> Using inception memory
+21:21:34 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+21:21:34 <INFO> Registered scoring component GroupCount
+21:21:34 <INFO> Registered scoring component FragmentQed
+21:21:34 <INFO> Registered scoring component FragmentSlogP
+21:21:34 <INFO> Registered scoring component FragmentMolecularWeight
+21:21:34 <INFO> Registered scoring component FragmentTPSA
+21:21:34 <INFO> Registered scoring component FragmentDistanceMatrix
+21:21:34 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+21:21:34 <INFO> Registered scoring component FragmentHBondAcceptors
+21:21:34 <INFO> Registered scoring component FragmentHBondDonors
+21:21:34 <INFO> Registered scoring component FragmentNumRotBond
+21:21:34 <INFO> Registered scoring component FragmentCsp3
+21:21:34 <INFO> Registered scoring component Fragmentnumsp
+21:21:34 <INFO> Registered scoring component Fragmentnumsp2
+21:21:34 <INFO> Registered scoring component Fragmentnumsp3
+21:21:34 <INFO> Registered scoring component FragmentEffectiveLength
+21:21:34 <INFO> Registered scoring component FragmentGraphLength
+21:21:34 <INFO> Registered scoring component FragmentLengthRatio
+21:21:34 <INFO> Registered scoring component FragmentNumHeavyAtoms
+21:21:34 <INFO> Registered scoring component FragmentNumHeteroAtoms
+21:21:34 <INFO> Registered scoring component FragmentNumRings
+21:21:34 <INFO> Registered scoring component FragmentNumAromaticRings
+21:21:34 <INFO> Registered scoring component FragmentNumAliphaticRings
+21:21:34 <INFO> Registered scoring component FragmentSlogP
+21:21:34 <INFO> Registered scoring component MatchingSubstructure
+21:21:34 <INFO> Registered scoring component MolVolume
+21:21:34 <INFO> Registered scoring component Qed
+21:21:34 <INFO> Registered scoring component LargestRingSize
+21:21:34 <INFO> Registered scoring component MolecularWeight
+21:21:34 <INFO> Registered scoring component GraphLength
+21:21:34 <INFO> Registered scoring component NumAtomStereoCenters
+21:21:34 <INFO> Registered scoring component HBondAcceptors
+21:21:34 <INFO> Registered scoring component HBondDonors
+21:21:34 <INFO> Registered scoring component NumRotBond
+21:21:34 <INFO> Registered scoring component Csp3
+21:21:34 <INFO> Registered scoring component numsp
+21:21:34 <INFO> Registered scoring component numsp2
+21:21:34 <INFO> Registered scoring component numsp3
+21:21:34 <INFO> Registered scoring component NumHeavyAtoms
+21:21:34 <INFO> Registered scoring component NumHeteroAtoms
+21:21:34 <INFO> Registered scoring component NumRings
+21:21:34 <INFO> Registered scoring component NumAromaticRings
+21:21:34 <INFO> Registered scoring component NumAliphaticRings
+21:21:34 <INFO> Registered scoring component SlogP
+21:21:34 <INFO> Registered scoring component LargestRingSize
+21:21:34 <INFO> Registered scoring component PMI
+21:21:34 <INFO> Registered scoring component RDKitDescriptors
+21:21:34 <INFO> Registered scoring component TanimotoSimilarity
+21:21:34 <INFO> Registered scoring component TanimotoDistance
+21:21:34 <INFO> Registered scoring component TPSA
+21:21:34 <INFO> Registered scoring component SAScore
+21:21:34 <ERRO> Component reinvent_plugins.components.comp_chemprop could not be imported: No module named 'pkg_resources'
+21:21:34 <INFO> Registered scoring component CustomAlerts
+21:21:34 <INFO> Registered scoring component DockStream
+21:21:34 <INFO> Registered scoring component ExternalProcess
+21:21:34 <INFO> Registered scoring component REST
+21:21:34 <INFO> Registered scoring component Icolos
+21:21:34 <INFO> Registered scoring component MMP
+21:21:34 <INFO> Registered scoring component Qptuna
+21:21:34 <INFO> Registered scoring component ReactionFilter
+21:21:34 <INFO> Registered scoring component RingPrecedence
+21:21:34 <INFO> Registered scoring component Maize
+21:21:34 <INFO> Registered scoring component SynthSense
+21:21:34 <INFO> Registered scoring component CAZP
+21:21:34 <INFO> Creating scoring component ExternalProcess
+21:21:34 <INFO> Writing tabular data for stage to summary_1.csv
+21:21:34 <INFO> Starting stage 1 <<<
+21:21:35 <INFO> Sampled SMILES Br[O-]#n=C failed to sanitize.
+21:21:35 <INFO> Score: 0.00 Agent NLL: 101.03 Valid:   7% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 58.3577 58.3577 -58.3577 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 86.8454 86.8454 -86.8454 0.0000000 #)2[N+]Br[O-]--[O-]233 0 0.0000000 0.0000 None None None None None None None None None
+ | 140.7798 140.7798 -140.7798 0.0000000 #)N[O-]5=[N+]C3CC[nH]2BrBrcn)5)=O4[N+]55)=Br[N+]3()= 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.9645 92.9645 -92.9645 0.0000000 #C-cNBrBr4BrO[O-][N+]c4Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.8768 77.8768 -77.8768 0.0000000 (11#c[O-]F)4 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.7464 81.7464 -81.7464 0.0000000 (5[nH]5O=Br3c# 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.6524 106.6524 -106.6524 0.0000000 (O(15[nH](#34[nH]nn#-[O-]31c2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.3827 67.3827 -67.3827 0.0000000 (cN# 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.6599 88.6599 -88.6599 0.0000000 )C(CBrc[O-]Br41cFc) 0 0.0000000 0.0000 None None None None None None None None None
+ | 129.7324 129.7324 -129.7324 0.0000000 )Oc1n=[nH])Br#31Cc2[N+]5=C))2n=NO=Brc[N+] 0 0.0000000 0.0000 None None None None None None None None None
+21:21:36 <INFO> Sampled SMILES Cc[N+]c failed to sanitize.
+21:21:36 <INFO> Sampled SMILES [O-][nH]C failed to sanitize.
+21:21:36 <INFO> Sampled SMILES [nH]Br failed to sanitize.
+21:21:36 <INFO> Sampled SMILES c[O-][N+]O failed to sanitize.
+21:21:36 <INFO> Sampled SMILES nn failed to sanitize.
+21:21:36 <INFO> Score: 0.00 Agent NLL: 91.82 Valid:   3% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 56.5569 65.1259 -65.1259 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 66.4697 74.5825 -74.5825 0.0000000 #4=Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 114.0074 119.9065 -119.9065 0.0000000 #[nH]5#3BrF[O-][O-]-)NNCN52BrF##5Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 104.3902 110.8792 -110.8792 0.0000000 (N[nH]C5[O-](BrBr[nH]4c114c52)n 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.8906 88.4070 -88.4070 0.0000000 )3)-2[nH]Br#Br) 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.9389 93.1682 -93.1682 0.0000000 )Br(4n([O-]C3[N+][nH]F 0 0.0000000 0.0000 None None None None None None None None None
+ | 217.5184 218.4474 -218.4474 0.0000000 )n[N+](([nH]532414F=[N+](C[N+]N(5[nH])Br[O-])NNN-[N+][nH]n)2N21C-3cN-N5#[N+]-3F[nH]2[nH]1n##-2F42( 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.0491 67.5014 -67.5014 0.0000000 - 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.3534 78.3553 -78.3553 0.0000000 -1)C[nH][nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.1538 80.9467 -80.9467 0.0000000 -35O[N+]5F 0 0.0000000 0.0000 None None None None None None None None None
+21:21:37 <INFO> Sampled SMILES nc failed to sanitize.
+21:21:37 <INFO> Score: 0.00 Agent NLL: 134.74 Valid:   5% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 84.8216 87.4611 -87.4611 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 115.1992 117.6320 -117.6320 0.0000000 #)=FC)52[N+]F3nn 0 0.0000000 0.0000 None None None None None None None None None
+ | 154.2091 156.3185 -156.3185 0.0000000 #[N+]O#FC)O=)[N+]4453[O-]O5F)3[N+]3Fc-F)3 0 0.0000000 0.0000 None None None None None None None None None
+ | 121.1884 123.8013 -123.8013 0.0000000 (#c-#n)N[O-]1)[O-]))n) 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.5687 94.2436 -94.2436 0.0000000 (3c 0 0.0000000 0.0000 None None None None None None None None None
+ | 160.3315 162.2579 -162.2579 0.0000000 (5[O-]O[O-]1[N+]1==354(nNNcNn#BrNnF[nH]N3[N+]O( 0 0.0000000 0.0000 None None None None None None None None None
+ | 115.4192 117.8782 -117.8782 0.0000000 (O-2Oc2=)5(OO 0 0.0000000 0.0000 None None None None None None None None None
+ | 290.1229 290.8082 -290.8082 0.0000000 ([O-][N+]F=[nH]5C=Br[O-]4--15N[N+]-#[O-]cBrc44[O-](cO)3[O-]Br(c[N+]C1n)N53=C[O-]4)-4##Br-[N+]1#[nH]15-C-3C[N+]31Oc5#C2c2N[O-])[N+]4[N+]2N 0 0.0000000 0.0000 None None None None None None None None None
+ | 198.1894 199.8346 -199.8346 0.0000000 )12[O-][nH]([O-]N#n)#24((4[nH][N+]421FO14[N+]#nN4[nH]2-N45O111[N+]-432) 0 0.0000000 0.0000 None None None None None None None None None
+ | 159.6151 161.6209 -161.6209 0.0000000 )24[nH]-FC1N3FN[N+]C5=1F2(CN)N[O-]nCN=[N+]( 0 0.0000000 0.0000 None None None None None None None None None
+21:21:38 <INFO> Sampled SMILES BrCcn failed to sanitize.
+21:21:38 <INFO> Sampled SMILES Br[nH] failed to sanitize.
+21:21:38 <INFO> Score: 0.00 Agent NLL: 106.73 Valid:   0% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 69.7796 63.7723 -63.7723 0.0000000  0 0.0000000 0.0000
+ | 134.0719 130.5409 -130.5409 0.0000000 #)BrO[nH][O-]1[O-]4=[nH][N+]-c1CFO[O-][O-]4-[nH]Br[O-]5[nH]Br 0 0.0000000 0.0000
+ | 84.5618 79.2310 -79.2310 0.0000000 #-F[O-]OnC 0 0.0000000 0.0000
+ | 87.7525 82.4900 -82.4900 0.0000000 #52(F#F# 0 0.0000000 0.0000
+ | 76.2178 70.4675 -70.4675 0.0000000 #[N+]F 0 0.0000000 0.0000
+ | 194.2049 193.4302 -193.4302 0.0000000 (#4c5F[O-](5[O-]c[N+]5#5c21c#FBrcCFn-[N+]Br(3Br[nH]FNC(3([N+]3O2cn()[nH])[O-]FFcc2 0 0.0000000 0.0000
+ | 115.0207 110.9720 -110.9720 0.0000000 (([O-]-3[nH][nH])[O-]4F4N[N+]O(c3Br2 0 0.0000000 0.0000
+ | 107.5604 103.1919 -103.1919 0.0000000 (12O[nH]=((CNn[nH]4[nH])FO 0 0.0000000 0.0000
+ | 135.3969 132.1427 -132.1427 0.0000000 (4OcF14ON44[O-]=Nnc1cFN3Br4=cn1BrO 0 0.0000000 0.0000
+ | 90.8540 86.0244 -86.0244 0.0000000 )N#F1BrO)c3 0 0.0000000 0.0000
+21:21:38 <INFO> Sampled SMILES [N+]c failed to sanitize.
+21:21:38 <INFO> Sampled SMILES c failed to sanitize.
+21:21:39 <INFO> Score: 0.00 Agent NLL: 148.93 Valid:   2% Step: 5
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 110.1411 96.2598 -96.2598 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 112.4330 98.6967 -98.6967 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 116.5373 103.0046 -103.0046 0.0000000 #F[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 374.2704 374.1516 -374.1516 0.0000000 (22[nH]F(c-[nH][N+]-n-[N+]2)Nc13[nH]F[O-]C[O-]F2-23[O-]1[N+]C#3[O-]BrC-=N1C35(4[N+](1#5)(F=CN#52O)2#2C3[nH][nH]OOCC-1Br=n)2)N2n41NC[O-]#[N+]N34c=(OO2OO#n42O2[N+][N+])2=4451[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 156.2217 145.0669 -145.0669 0.0000000 (=n##N[N+]N4(-1Br1C1BrBrN15 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.9775 98.3459 -98.3459 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 173.7702 163.5463 -163.5463 0.0000000 )2[O-]OOBrBrBr1)543)3=Oc5nCO)-)([nH][nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 188.7086 179.1748 -179.1748 0.0000000 )O3=4=N=C4)[N+]3cc#-F)5C-#FNBrOc[nH][nH]CF[N+]2[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 143.9859 132.3494 -132.3494 0.0000000 -2F[nH]C#-[nH]Br1cBr24cO 0 0.0000000 0.0000 None None None None None None None None None
+ | 126.6660 113.9745 -113.9745 0.0000000 -5c)[O-][N+]#1 0 0.0000000 0.0000 None None None None None None None None None
+21:21:39 <INFO> Sampled SMILES n failed to sanitize.
+21:21:40 <INFO> Score: 0.00 Agent NLL: 103.63 Valid:   5% Step: 6
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 68.3285 65.1259 -65.1259 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 78.5907 75.8198 -75.8198 0.0000000 #1CN[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 154.6305 153.6429 -153.6429 0.0000000 #2[O-]5Br(1[N+]N5#[O-]n5#F)Brc5FBr=5[O-]=Br()#32N)31C 0 0.0000000 0.0000 None None None None None None None None None
+ | 127.2345 125.7074 -125.7074 0.0000000 #3Br2FF55[O-]3)O)[nH][N+]114C1cBrCnnn 0 0.0000000 0.0000 None None None None None None None None None
+ | 97.1944 95.0565 -95.0565 0.0000000 #=O)1[O-])3-4c3Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 128.3422 126.6406 -126.6406 0.0000000 ((1nF31)C4#=4#3c541([nH]OnN-C 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.7592 83.2796 -83.2796 0.0000000 )-5[N+]O#)C 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.2362 100.9676 -100.9676 0.0000000 )F(N[N+]NO)Br[O-]4#(43 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.3021 88.7998 -88.7998 0.0000000 -=OBrO[O-]([N+]-) 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.8369 90.6339 -90.6339 0.0000000 1)#C2)BrC3(N 0 0.0000000 0.0000 None None None None None None None None None
+21:21:40 <INFO> Sampled SMILES C[nH] failed to sanitize.
+21:21:40 <INFO> Sampled SMILES [nH]nC failed to sanitize.
+21:21:41 <INFO> Score: 0.00 Agent NLL: 77.14 Valid:   0% Step: 7
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 45.1884 46.1748 -46.1748 0.0000000  0 0.0000000 0.0000
+ | 47.6194 48.6117 -48.6117 0.0000000 # 0 0.0000000 0.0000
+ | 59.4619 60.4910 -60.4910 0.0000000 #(n#N3 0 0.0000000 0.0000
+ | 74.1875 75.4062 -75.4062 0.0000000 #)(N[N+]cBr[O-]c[N+]N51 0 0.0000000 0.0000
+ | 85.0110 86.1101 -86.1101 0.0000000 #534N[nH][nH]OBr2Br[O-])[nH]-31 0 0.0000000 0.0000
+ | 53.8868 55.0668 -55.0668 0.0000000 (#C1 0 0.0000000 0.0000
+ | 53.2028 54.1597 -54.1597 0.0000000 ((= 0 0.0000000 0.0000
+ | 81.3738 82.8143 -82.8143 0.0000000 (-C5nc)[N+])2OCcO3[nH] 0 0.0000000 0.0000
+ | 52.3363 53.4126 -53.4126 0.0000000 (C# 0 0.0000000 0.0000
+ | 55.1169 56.0766 -56.0766 0.0000000 ([N+]n( 0 0.0000000 0.0000
+21:21:41 <INFO> Score: 0.00 Agent NLL: 105.78 Valid:   0% Step: 8
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 59.5130 64.4491 -64.4491 0.0000000  0 0.0000000 0.0000
+ | 198.3979 200.2274 -200.2274 0.0000000 #[nH][nH])Br51Br(OFN2FC(O#N[N+]2[O-]Cc([nH])#C(Fc1C[nH]F[O-])[N+]FnF3OBrO4C(5Fc1)n3[nH] 0 0.0000000 0.0000
+ | 94.9216 99.2697 -99.2697 0.0000000 #c[N+]Nc2-(14(1[nH]-n 0 0.0000000 0.0000
+ | 94.8195 99.3093 -99.3093 0.0000000 #nBr-[nH]F-4Br3)N[O-][O-]) 0 0.0000000 0.0000
+ | 62.3338 67.2101 -67.2101 0.0000000 ( 0 0.0000000 0.0000
+ | 147.4807 150.3633 -150.3633 0.0000000 (-C#[nH]2n3N1-5n1F((3)[N+]c[N+][nH]-=[N+]CC()[O-]-4[N+]O# 0 0.0000000 0.0000
+ | 116.7854 120.6473 -120.6473 0.0000000 )#341cC#21[O-](NnBr#n1[nH]))#F5 0 0.0000000 0.0000
+ | 84.4476 89.1746 -89.1746 0.0000000 )5#[O-]nc[N+]Br1N2 0 0.0000000 0.0000
+ | 89.1016 93.8071 -93.8071 0.0000000 )5nCc-2(O1NC[O-] 0 0.0000000 0.0000
+ | 227.6327 227.7531 -227.7531 0.0000000 )n#=2N[O-]-C4n413C(3-[O-][O-]C[O-]N)#cC)5)Nn[N+]N(cN(-CBr2Nc[N+]=[N+]C44(Br=F[N+]c#)#)C[O-]2-Br2CN[O-][nH][nH]4# 0 0.0000000 0.0000
+21:21:41 <INFO> Sampled SMILES BrC[N+]n[O-] failed to sanitize.
+21:21:41 <INFO> Sampled SMILES FC[nH] failed to sanitize.
+21:21:41 <INFO> Sampled SMILES n-NF[O-]Br failed to sanitize.
+21:21:42 <INFO> Score: 0.00 Agent NLL: 86.47 Valid:   3% Step: 9
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 51.0421 57.0040 -57.0040 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 87.0898 92.0058 -92.0058 0.0000000 #-)N-O1)[nH]F-FBr2[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.7140 108.4442 -108.4442 0.0000000 #1n-C[nH]F)n=-FO31n#))(Fc 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.7108 61.5937 -61.5937 0.0000000 #2 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.3558 70.0641 -70.0641 0.0000000 #2OCFn 0 0.0000000 0.0000 None None None None None None None None None
+ | 144.8403 147.7476 -147.7476 0.0000000 #[N+]BrcNFC[N+]1N-Br#NnnBr4FnnOc[O-](([nH][nH]4Br1C(OBrN)4 0 0.0000000 0.0000 None None None None None None None None None
+ | 150.3937 152.8377 -152.8377 0.0000000 #[N+][nH]N)[nH]N#[nH]1c[nH]=[N+]C5[nH]N232-)Br([nH]4535[nH]1#35=Brn(c 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.0195 70.6209 -70.6209 0.0000000 #[O-]1[N+]Br[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.9671 78.4121 -78.4121 0.0000000 #[O-]O)33[O-](- 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.0917 111.3225 -111.3225 0.0000000 #c4n5c(N4-#F=Brn23N5CBr-1 0 0.0000000 0.0000 None None None None None None None None None
+21:21:43 <INFO> Score: 0.00 Agent NLL: 115.53 Valid:   3% Step: 10
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 73.1632 84.0770 -84.0770 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 75.6805 86.5139 -86.5139 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.6799 91.3404 -91.3404 0.0000000 #-# 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.1850 121.0581 -121.0581 0.0000000 #Br[nH]F(3##(c)#1NO5 0 0.0000000 0.0000 None None None None None None None None None
+ | 119.7215 128.9709 -128.9709 0.0000000 #O=[O-]#ONc3[nH]F#)#2[N+]F#n 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.8772 122.1267 -122.1267 0.0000000 #ONBr3BrCC[O-]FC13111O 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.2055 113.5940 -113.5940 0.0000000 #[nH]=4[nH]1#cCN2[nH]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.0281 86.8380 -86.8380 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.5755 95.2587 -95.2587 0.0000000 (1-n2 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.2132 97.8556 -97.8556 0.0000000 (1O##C 0 0.0000000 0.0000 None None None None None None None None None
+21:21:43 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:43 <INFO> Sampled SMILES cO[O-] failed to sanitize.
+21:21:44 <INFO> Score: 0.00 Agent NLL: 104.05 Valid:   2% Step: 11
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 62.3002 69.1869 -69.1869 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 64.7909 71.6238 -71.6238 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.3725 85.0074 -85.0074 0.0000000 #(2CN5n 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.7466 77.5303 -77.5303 0.0000000 #F1[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 203.6346 205.7374 -205.7374 0.0000000 (54FcCn)35[N+]C)1[nH]-)n23F5))2c3F[nH])5FF#Brcn[N+]-5n(C[N+]([N+]C[nH]5n[nH]-[nH]541n 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.7631 113.7628 -113.7628 0.0000000 (N[O-]c)n3#n)O25cN23[N+]N 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.1876 90.5734 -90.5734 0.0000000 (n[O-]=2[N+]34# 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.1838 71.2730 -71.2730 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 209.7965 211.5827 -211.5827 0.0000000 )(32[O-](Nccn1=c[nH]Fc1--[O-]N=45=)52O=FN1nn1#F4335[N+]25nOON#Br#3OnBr#[O-]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 131.7584 136.5749 -136.5749 0.0000000 )(N)([nH]([N+]Br5nn5#--4=F#n(#F2C4= 0 0.0000000 0.0000 None None None None None None None None None
+21:21:44 <INFO> Sampled SMILES O[N+]=[O-][N+]OC failed to sanitize.
+21:21:44 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:45 <INFO> Score: 0.00 Agent NLL: 105.89 Valid:   3% Step: 12
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 67.5540 71.8942 -71.8942 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 128.2001 131.5673 -131.5673 0.0000000 #F)4))5N)53(#FC-CN5n5NN=[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 93.6607 98.3440 -98.3440 0.0000000 (1n[N+]COn1OOc4 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.5519 107.2824 -107.2824 0.0000000 ([N+]35-([O-]([O-]-#[O-][nH]F- 0 0.0000000 0.0000 None None None None None None None None None
+ | 138.1070 141.4181 -141.4181 0.0000000 ([N+]5N4#([nH]313n[N+]==[O-]=n2Br[O-]=(BrN2#Cn 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.1410 85.7176 -85.7176 0.0000000 )((314 0 0.0000000 0.0000 None None None None None None None None None
+ | 169.4981 172.0561 -172.0561 0.0000000 )312113[nH][nH][O-]-3=))[nH]Br[O-]3C5Fc545n))F(c[O-]Br2N3O15N5 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.8870 86.1577 -86.1577 0.0000000 )5n[N+][N+]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 89.0763 93.3943 -93.3943 0.0000000 )O5(2(4(2 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.7592 79.0997 -79.0997 0.0000000 -(2 0 0.0000000 0.0000 None None None None None None None None None
+21:21:45 <INFO> Score: 0.00 Agent NLL: 111.88 Valid:   2% Step: 13
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 73.2087 73.9246 -73.9246 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 75.6080 76.3615 -76.3615 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 99.5688 100.8546 -100.8546 0.0000000 #5-[N+]n[nH]CO21F4 0 0.0000000 0.0000 None None None None None None None None None
+ | 125.0880 126.2493 -126.2493 0.0000000 #53C(1[N+]-[O-]C[nH][O-](3cC-[N+]-F=( 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.5888 84.8289 -84.8289 0.0000000 (#1F) 0 0.0000000 0.0000 None None None None None None None None None
+ | 96.4016 97.6184 -97.6184 0.0000000 ()(4)NN=(N 0 0.0000000 0.0000 None None None None None None None None None
+ | 127.3081 128.3885 -128.3885 0.0000000 (5C2)3(23n(#-115-O(1n(n 0 0.0000000 0.0000 None None None None None None None None None
+ | 96.0855 97.3244 -97.3244 0.0000000 (5C51=[nH])[N+]# 0 0.0000000 0.0000 None None None None None None None None None
+ | 120.3074 122.3585 -122.3585 0.0000000 (O4-[nH]3c#1F2=1)4[N+]([nH]c)c 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.4905 107.5705 -107.5705 0.0000000 ))22=14[nH]F23(O( 0 0.0000000 0.0000 None None None None None None None None None
+21:21:46 <INFO> Sampled SMILES Br#c[nH]N[nH] failed to sanitize.
+21:21:46 <INFO> Sampled SMILES OC[nH] failed to sanitize.
+21:21:46 <INFO> Sampled SMILES OcNc failed to sanitize.
+21:21:46 <INFO> Sampled SMILES n failed to sanitize.
+21:21:46 <INFO> Score: 0.00 Agent NLL: 94.87 Valid:   8% Step: 14
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 56.9338 54.9736 -54.9736 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 59.2802 57.4105 -57.4105 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.3850 77.5834 -77.5834 0.0000000 #353n[N+]C#5c 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.4131 64.7716 -64.7716 0.0000000 #Br[nH]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.1393 79.5137 -79.5137 0.0000000 (3-52[O-]1-c42 0 0.0000000 0.0000 None None None None None None None None None
+ | 79.2731 77.9561 -77.9561 0.0000000 (4=4-F[O-][nH][O-]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.1880 87.5036 -87.5036 0.0000000 (NF=(#n)[N+]2CnBrO 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.7675 73.3363 -73.3363 0.0000000 (O3=-O4F 0 0.0000000 0.0000 None None None None None None None None None
+ | 175.8239 175.9538 -175.9538 0.0000000 )))-[N+]Fc4[O-]--O2OC[N+]5)5)O(ncF3Br=)1=cO-[nH][N+][nH]4CC([N+]NBr=[O-]nBr[O-][O-]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.3532 107.1261 -107.1261 0.0000000 )[N+]32(#=ONN[O-][nH][O-]=)34-N1C( 0 0.0000000 0.0000 None None None None None None None None None
+21:21:47 <INFO> Sampled SMILES c failed to sanitize.
+21:21:47 <INFO> Sampled SMILES ncCBr failed to sanitize.
+21:21:47 <INFO> Score: 0.00 Agent NLL: 118.29 Valid:   2% Step: 15
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 80.0370 73.2478 -73.2478 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 121.4063 116.4527 -116.4527 0.0000000 #BrFc2#O3[nH][N+]FN43=(Br4 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.8371 107.9052 -107.9052 0.0000000 #CcCn=1CBrn2F=[O-]4 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.6747 76.0089 -76.0089 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 104.2456 99.2597 -99.2597 0.0000000 )[N+][nH]cBr1Br)5(( 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.9893 86.3443 -86.3443 0.0000000 -#2Brcn 0 0.0000000 0.0000 None None None None None None None None None
+ | 104.4263 98.6578 -98.6578 0.0000000 -#[nH]O1(555F[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 108.7001 103.5556 -103.5556 0.0000000 -(-3On-=)4[nH]Nn 0 0.0000000 0.0000 None None None None None None None None None
+ | 270.4042 269.9543 -269.9543 0.0000000 -54(21C4n3O)FC355CF-c[nH]nc[O-]BrOCFN44OBrC)N(=1c#2F144Br(=ON[O-][O-]=5=n[N+][nH]34([O-]OF3c(n=FO55OcNC5OOO15N 0 0.0000000 0.0000 None None None None None None None None None
+ | 125.1088 120.5106 -120.5106 0.0000000 -Brcn[nH]OC[O-]Cc)F#F[nH]#F3O# 0 0.0000000 0.0000 None None None None None None None None None
+21:21:48 <INFO> Score: 0.00 Agent NLL: 116.94 Valid:   6% Step: 16
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 103.5439 98.0249 -98.0249 0.0000000 #)O-[O-]C1CC3[N+][nH]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.2865 100.9694 -100.9694 0.0000000 #Br[nH]BrCBr[O-]F=[O-]1[O-]4- 0 0.0000000 0.0000 None None None None None None None None None
+ | 135.5340 130.7596 -130.7596 0.0000000 #O2N23nNBr[nH](NnBrn#CC2F5[nH]4-3- 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.8204 106.7315 -106.7315 0.0000000 (([O-]-=3211[nH][N+]2=(#[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 101.5813 94.8490 -94.8490 0.0000000 ([O-][nH][nH]3[N+]3[nH]-4= 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.2704 97.8712 -97.8712 0.0000000 )-Br5cO[N+]C[N+]#C2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 138.9190 134.9546 -134.9546 0.0000000 )3c)([nH]N5[N+]F3[nH]BrcC5Br=2Br)BrC3F1(C 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.0141 77.5857 -77.5857 0.0000000 )[N+]#N 0 0.0000000 0.0000 None None None None None None None None None
+ | 99.6598 93.4797 -93.4797 0.0000000 )[nH]F3O([O-]=[nH]c1 0 0.0000000 0.0000 None None None None None None None None None
+ | 127.1337 122.7680 -122.7680 0.0000000 -4C5nBr(3([N+]O(N)OCBr2F#)#C 0 0.0000000 0.0000 None None None None None None None None None
+21:21:48 <INFO> Sampled SMILES NnFC failed to sanitize.
+21:21:48 <INFO> Sampled SMILES [nH][N+] failed to sanitize.
+21:21:49 <INFO> Score: 0.00 Agent NLL: 107.24 Valid:   2% Step: 17
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 67.2559 59.7113 -59.7113 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 71.0185 64.2035 -64.2035 0.0000000 #) 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.7970 82.9709 -82.9709 0.0000000 #5=3-N#nN2 0 0.0000000 0.0000 None None None None None None None None None
+ | 109.6734 105.9708 -105.9708 0.0000000 #O[nH][O-]2N2cOC=21cF3[nH]4O) 0 0.0000000 0.0000 None None None None None None None None None
+ | 143.2598 140.6641 -140.6641 0.0000000 #Oc[nH][O-]O[N+]Oc2=#nO354n555cFON2)Br)[N+]1nO[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.8414 62.4724 -62.4724 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 86.7826 80.8818 -80.8818 0.0000000 ((([O-]1#2Br- 0 0.0000000 0.0000 None None None None None None None None None
+ | 173.1559 172.0669 -172.0669 0.0000000 (Br3[nH]N2-2N#)=N[nH][O-]3n(3Ccc4n[N+]c1[N+][nH]c=F55[N+]cO55FO1Br2n[nH]3 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.4114 77.4708 -77.4708 0.0000000 ([N+]F3[O-][O-]1C 0 0.0000000 0.0000 None None None None None None None None None
+ | 116.5127 113.3544 -113.3544 0.0000000 (c5(-[N+]c4#-C[N+])n)14FC=)2n 0 0.0000000 0.0000 None None None None None None None None None
+21:21:49 <INFO> Sampled SMILES n failed to sanitize.
+21:21:50 <INFO> Score: 0.00 Agent NLL: 106.24 Valid:   3% Step: 18
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 69.7670 62.1483 -62.1483 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.1255 66.0522 -66.0522 0.0000000 #14 0 0.0000000 0.0000 None None None None None None None None None
+ | 124.8064 121.1706 -121.1706 0.0000000 #2-3n1F=-cBr(5c3n1[N+][nH]c2nBr52[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.9294 77.6889 -77.6889 0.0000000 (23n1[O-]nBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.9674 77.6334 -77.6334 0.0000000 (FN-[nH]14O 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.0516 61.7974 -61.7974 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.7480 70.4112 -70.4112 0.0000000 ))nOO 0 0.0000000 0.0000 None None None None None None None None None
+ | 103.8258 99.2170 -99.2170 0.0000000 -32C=FnNnnBr2C=NCF 0 0.0000000 0.0000 None None None None None None None None None
+ | 123.0368 119.1312 -119.1312 0.0000000 -5[nH]O)C52[nH]Br[N+]C15[O-])O4C(3[nH]n[N+]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.6445 107.4772 -107.4772 0.0000000 -n[O-]15F1)[O-][nH])O32(NBr[O-])( 0 0.0000000 0.0000 None None None None None None None None None
+21:21:50 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:50 <INFO> Score: 0.00 Agent NLL: 112.88 Valid:   2% Step: 19
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 81.3757 73.8054 -73.8054 0.0000000 #[N+]C# 0 0.0000000 0.0000 None None None None None None None None None
+ | 101.2546 95.4327 -95.4327 0.0000000 ()3Cn[nH]Brc(3[O-][N+]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 150.8257 147.6596 -147.6596 0.0000000 (3F#N#n=NO(C41n[N+]C[O-]F--N3=-)[N+]F3Br4Br#c[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 134.1866 129.2634 -129.2634 0.0000000 (F[N+][N+][nH][O-]Brc[N+]-C([N+]On)=5FBrBr#NF[O-]## 0 0.0000000 0.0000 None None None None None None None None None
+ | 95.8871 89.2208 -89.2208 0.0000000 (Fcc[nH]Fn-FFBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 150.5745 149.2205 -149.2205 0.0000000 (N4[nH][nH]53[O-]F4NNO[nH][nH]12[N+]4cN)Oc)C-)O)-#(c1) 0 0.0000000 0.0000 None None None None None None None None None
+ | 102.8841 97.0701 -97.0701 0.0000000 ([O-][nH][N+]c[N+][nH]Br4-2)#[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 97.2704 90.5664 -90.5664 0.0000000 (c(5nnBr(([nH]F 0 0.0000000 0.0000 None None None None None None None None None
+ | 152.0421 149.2557 -149.2557 0.0000000 )##c([nH]151#3C)NF([O-]C#-4(cc#[O-]5FN=c-CF-[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.5893 81.5909 -81.5909 0.0000000 )4c1(5c4 0 0.0000000 0.0000 None None None None None None None None None
+21:21:50 <INFO> Sampled SMILES [nH]5[N+]C5ncN[nH]BrBr failed to sanitize.
+21:21:50 <INFO> Sampled SMILES cBr failed to sanitize.
+21:21:51 <INFO> Score: 0.00 Agent NLL: 112.31 Valid:   0% Step: 20
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 75.9795 67.8332 -67.8332 0.0000000  0 0.0000000 0.0000
+ | 113.8146 108.1022 -108.1022 0.0000000 (F[O-]#)[O-]214N(2=53#F 0 0.0000000 0.0000
+ | 168.1228 165.6321 -165.6321 0.0000000 (O)5[N+]===C[nH]34C3N-21[O-]F4(([O-](5n[nH]2[nH]BrO[O-][O-]N[N+]=)nc[N+] 0 0.0000000 0.0000
+ | 110.1659 105.5209 -105.5209 0.0000000 (O5FN(FO(32(Cc4( 0 0.0000000 0.0000
+ | 77.4584 69.9193 -69.9193 0.0000000 ) 0 0.0000000 0.0000
+ | 86.5048 79.6340 -79.6340 0.0000000 )23=[nH] 0 0.0000000 0.0000
+ | 92.5564 86.3774 -86.3774 0.0000000 )35C5[N+]=) 0 0.0000000 0.0000
+ | 89.1205 83.1482 -83.1482 0.0000000 )4[N+]O))[O-] 0 0.0000000 0.0000
+ | 127.0631 121.8676 -121.8676 0.0000000 )BrC1412(3CnnBr([N+]-#FF1-[nH]F 0 0.0000000 0.0000
+ | 185.9046 186.7947 -186.7947 0.0000000 -#4n4))521[nH]c#))C=-N255Br)nNCcc2[O-](3(c3CC[O-]N24-[O-]11c4[N+]cc 0 0.0000000 0.0000
+21:21:51 <INFO> Sampled SMILES Br=[O-]Br failed to sanitize.
+21:21:52 <INFO> Score: 0.00 Agent NLL: 105.88 Valid:   3% Step: 21
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 66.5529 61.0650 -61.0650 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 100.4780 96.5353 -96.5353 0.0000000 #OBr2O1F5-[nH]Br--5[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.1620 63.8260 -63.8260 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 154.9798 153.8872 -153.8872 0.0000000 ((1[N+]N#N(3N#Oc1#C5CO[N+]2[N+]c(nO#4BrBr5[N+]Br[O-][O-]=)[nH]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.8853 105.5050 -105.5050 0.0000000 )#C(=nO-)ncN[nH]cc332= 0 0.0000000 0.0000 None None None None None None None None None
+ | 98.2447 95.7364 -95.7364 0.0000000 )(2[N+][nH]([nH]BrC[O-]c)n=n 0 0.0000000 0.0000 None None None None None None None None None
+ | 167.9049 167.4594 -167.4594 0.0000000 )12cc-5NF)#N-cCC3[nH]C#(nn-4#231C[N+]133243[O-]#4-1Nn5 0 0.0000000 0.0000 None None None None None None None None None
+ | 119.5264 117.3116 -117.3116 0.0000000 )Br3[O-]-Br[O-]n4[N+]-C4(2=[N+]F[O-]3[O-]c1[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 93.0463 91.7870 -91.7870 0.0000000 )C43[O-]441c(c[O-]c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.5201 77.5953 -77.5953 0.0000000 -443)=# 0 0.0000000 0.0000 None None None None None None None None None
+21:21:52 <INFO> Sampled SMILES C[O-]nC failed to sanitize.
+21:21:52 <INFO> Sampled SMILES OnC-C failed to sanitize.
+21:21:52 <INFO> Sampled SMILES c failed to sanitize.
+21:21:53 <INFO> Score: 0.00 Agent NLL: 111.96 Valid:   3% Step: 22
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 158.3198 157.4446 -157.4446 0.0000000 (3[N+])(C[O-]c[O-]c#2)(-[N+])(3-44[nH]c55)[N+]F(-)4nN5c 0 0.0000000 0.0000 None None None None None None None None None
+ | 110.4380 107.8324 -107.8324 0.0000000 (5C)5n(1[nH]c2FN-O3 0 0.0000000 0.0000 None None None None None None None None None
+ | 94.0960 90.7200 -90.7200 0.0000000 )-FcN4(Fn 0 0.0000000 0.0000 None None None None None None None None None
+ | 108.8065 105.5619 -105.5619 0.0000000 )221[N+]#cO=31[nH]5-O 0 0.0000000 0.0000 None None None None None None None None None
+ | 248.8273 248.9301 -248.9301 0.0000000 )=(Cc3-C#-1N##Fcc-1[N+]1Br=)Br([nH]F22(n#On[N+][nH]cBr1(OO)35--4#2[nH]OC[O-]5[N+]#4[nH]c[nH]F#FC425Cn2[nH]2[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 89.9746 86.1384 -86.1384 0.0000000 )Br54245 0 0.0000000 0.0000 None None None None None None None None None
+ | 257.7168 256.8953 -256.8953 0.0000000 )nF[N+]--[N+])4Br=OCO)C34O))[O-]n3=)#Fccc=n[nH]5(3[nH]3n[O-][nH]Br[N+]1Brn1[O-]F(#Cc4Fc#-n-C1nN5[O-][O-][N+]c1N)c513F#=1c 0 0.0000000 0.0000 None None None None None None None None None
+ | 139.9995 138.7639 -138.7639 0.0000000 )n[N+]#n[nH]F)=)4Fc(-c(5F#c1c[O-]-5n[nH]) 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.7550 109.8437 -109.8437 0.0000000 -2cF1BrF[N+]-1[nH]-4c[O-][O-]Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 124.6961 124.3207 -124.3207 0.0000000 -4(2[nH]N(F43CC1(314(CF))( 0 0.0000000 0.0000 None None None None None None None None None
+21:21:53 <INFO> Sampled SMILES n failed to sanitize.
+21:21:54 <INFO> Score: 0.00 Agent NLL: 93.08 Valid:   2% Step: 23
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 55.5396 53.6199 -53.6199 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 89.4213 90.3076 -90.3076 0.0000000 #c(#Br33[nH]N[N+]131)nC 0 0.0000000 0.0000 None None None None None None None None None
+ | 148.5844 148.8586 -148.8586 0.0000000 (3CFO22[O-]4[O-]5)[nH][nH][N+]3[O-][N+]1=-=2[N+]CBrN1)[O-]2c51O5FBr-[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.0527 107.8588 -107.8588 0.0000000 )#(31=[O-][nH]#CC=-31-#3n[nH]1C3 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.0750 71.3000 -71.3000 0.0000000 )2#cN-NC 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.2633 62.7712 -62.7712 0.0000000 )3C# 0 0.0000000 0.0000 None None None None None None None None None
+ | 150.8817 151.6768 -151.6768 0.0000000 -=#[O-]4n#BrF3[N+]C[nH]1BrN[O-]c2#4[N+]Cc31[nH]3cF=[O-]=45[N+]1=)F( 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.3772 81.0301 -81.0301 0.0000000 -F3([N+]1)=)[O-])n 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.7475 108.3584 -108.3584 0.0000000 -[nH]O#BrC-[nH]3#BrcC(225)(Br[nH][O-]3 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.9170 59.6262 -59.6262 0.0000000 1)) 0 0.0000000 0.0000 None None None None None None None None None
+21:21:54 <INFO> Sampled SMILES c failed to sanitize.
+21:21:54 <INFO> Score: 0.00 Agent NLL: 104.77 Valid:   0% Step: 24
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 65.9777 64.4491 -64.4491 0.0000000  0 0.0000000 0.0000
+ | 68.2912 66.8860 -66.8860 0.0000000 # 0 0.0000000 0.0000
+ | 83.3492 82.7759 -82.7759 0.0000000 #)5N[O-]=2[O-] 0 0.0000000 0.0000
+ | 114.4900 113.9021 -113.9021 0.0000000 #1)O[N+]4Fn1[N+][N+]N-nF=1F#[O-]O 0 0.0000000 0.0000
+ | 160.9266 162.7783 -162.7783 0.0000000 (3FC=FO4=#(n)O-[O-]N23[nH]CC=[N+]N(3=3nCN3(c-43=)# 0 0.0000000 0.0000
+ | 123.8114 123.7793 -123.7793 0.0000000 (Br)##C43n[O-]2FC)N[N+]2[O-](-Br=[O-][N+]1 0 0.0000000 0.0000
+ | 81.3471 80.6177 -80.6177 0.0000000 (CON-=F 0 0.0000000 0.0000
+ | 69.3396 68.6255 -68.6255 0.0000000 )4 0 0.0000000 0.0000
+ | 86.7727 86.0150 -86.0150 0.0000000 --F([nH]1[nH]== 0 0.0000000 0.0000
+ | 86.1970 85.6891 -85.6891 0.0000000 -[nH]5Br[nH][nH]C5( 0 0.0000000 0.0000
+21:21:54 <INFO> Sampled SMILES CO[N+]n failed to sanitize.
+21:21:54 <INFO> Sampled SMILES C[nH]BrCCCOcC failed to sanitize.
+21:21:54 <INFO> Sampled SMILES Oc failed to sanitize.
+21:21:54 <INFO> Sampled SMILES cC failed to sanitize.
+21:21:55 <INFO> Score: 0.00 Agent NLL: 76.94 Valid:   3% Step: 25
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 48.4786 48.2053 -48.2053 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 50.7969 50.6422 -50.6422 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.5179 83.3727 -83.3727 0.0000000 #F3#C[N+]BrF#On[N+]14= 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.7848 73.4467 -73.4467 0.0000000 #ccC23522#5 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.7181 94.2180 -94.2180 0.0000000 (5)c3)c4cN4nc[nH]5[nH]1134 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.3292 87.9152 -87.9152 0.0000000 )([N+]((=-F(1CnnC-)# 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.8831 61.1855 -61.1855 0.0000000 )3[N+]Nc[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.8485 76.0431 -76.0431 0.0000000 )N-5N(121Br=n 0 0.0000000 0.0000 None None None None None None None None None
+ | 99.1507 99.9563 -99.9563 0.0000000 )OnC[O-])1Brc)=CNN=NO[O-]OF=F 0 0.0000000 0.0000 None None None None None None None None None
+ | 101.6880 102.7686 -102.7686 0.0000000 -(F25OOc3[N+]F1C##=[nH]-C[O-]5F3 0 0.0000000 0.0000 None None None None None None None None None
+21:21:55 <INFO> Sampled SMILES BrBrn failed to sanitize.
+21:21:55 <INFO> Sampled SMILES N[nH] failed to sanitize.
+21:21:55 <INFO> Sampled SMILES [N+]CBrC failed to sanitize.
+21:21:56 <INFO> Score: 0.00 Agent NLL: 95.78 Valid:   3% Step: 26
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 65.0784 64.4491 -64.4491 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 99.8300 101.8802 -101.8802 0.0000000 #-c5[nH]BrFcO)NN=C2# 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.5149 116.2209 -116.2209 0.0000000 #1OC-O-C(1n[O-]NF#5cCccBr)c 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.4143 79.7894 -79.7894 0.0000000 #n[O-](c#c 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.4585 66.5352 -66.5352 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.1518 85.0318 -85.0318 0.0000000 )(Br5cOn-Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 110.8262 113.3334 -113.3334 0.0000000 )[N+]ONncN1O1cN1(Nc-22[N+]N 0 0.0000000 0.0000 None None None None None None None None None
+ | 89.6019 92.9585 -92.9585 0.0000000 -53Br[N+](C)Br)c11 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.3314 70.5196 -70.5196 0.0000000 -[O-]c 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.8936 84.4545 -84.4545 0.0000000 151NC[nH]-[O-]F 0 0.0000000 0.0000 None None None None None None None None None
+21:21:56 <INFO> Sampled SMILES N[O-]F(BrN[N+])[N+]C failed to sanitize.
+21:21:56 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:21:57 <INFO> Score: 0.00 Agent NLL: 89.56 Valid:   3% Step: 27
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 57.0270 56.3272 -56.3272 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 133.9665 135.0400 -135.0400 0.0000000 #[O-]N-c5-=12O53322[N+]O=)(#c==[N+][O-]41)F(5 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.4229 62.7085 -62.7085 0.0000000 #c[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.7700 91.3817 -91.3817 0.0000000 (-4(O2F#[N+]On[nH]1#4 0 0.0000000 0.0000 None None None None None None None None None
+ | 149.9463 154.9628 -154.9628 0.0000000 (-C=O-Br-O#FN1(c1[nH]N#C=2NN)ncn1)c=2[nH]cFCC#42c 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.1142 80.2249 -80.2249 0.0000000 (-[N+]N(n(#F- 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.3228 113.2624 -113.2624 0.0000000 (22Br=F[N+][nH]514-=4))[N+]25(O[N+]n1 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.3744 67.8241 -67.8241 0.0000000 (=4N) 0 0.0000000 0.0000 None None None None None None None None None
+ | 100.0513 102.7102 -102.7102 0.0000000 (C2[O-]N(#BrC5Brc=CC)[nH]ON5 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.8783 76.3071 -76.3071 0.0000000 (F=[nH]C[N+]-c1 0 0.0000000 0.0000 None None None None None None None None None
+21:21:57 <INFO> Sampled SMILES c failed to sanitize.
+21:21:58 <INFO> Score: 0.00 Agent NLL: 83.26 Valid:   6% Step: 28
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 57.7255 56.3272 -56.3272 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 76.6338 77.1325 -77.1325 0.0000000 #5[N+]1Br1-C( 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.4177 64.5329 -64.5329 0.0000000 #cFC 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.1213 91.5775 -91.5775 0.0000000 (BrBr(3n)(#-4C13[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 108.9797 112.0413 -112.0413 0.0000000 (FnCC)[nH]-)2CFC1#(O)4)C[nH]OO 0 0.0000000 0.0000 None None None None None None None None None
+ | 130.0076 130.2872 -130.2872 0.0000000 (c#1F[N+]-4[N+]=Fc)c[N+](=C=22(=#BrNO4(nF 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.1607 70.1659 -70.1659 0.0000000 )#N4[nH]3 0 0.0000000 0.0000 None None None None None None None None None
+ | 86.1499 86.7330 -86.7330 0.0000000 )Br1(=[nH]1#[O-]BrC#4 0 0.0000000 0.0000 None None None None None None None None None
+ | 60.9798 60.5043 -60.5043 0.0000000 )N 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.4982 69.5859 -69.5859 0.0000000 -[nH]CC(c 0 0.0000000 0.0000 None None None None None None None None None
+21:21:58 <INFO> Sampled SMILES C(c) failed to sanitize.
+21:21:58 <INFO> Score: 0.00 Agent NLL: 86.56 Valid:   2% Step: 29
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 52.8759 50.9126 -50.9126 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 107.8154 109.5564 -109.5564 0.0000000 #3Br[nH]n24F354[O-]n=(13c3[nH]NO[O-])1 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.6203 66.5853 -66.5853 0.0000000 #5#)5Cn 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.7069 73.1987 -73.1987 0.0000000 #OC[N+]nC=31c 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.3829 57.9478 -57.9478 0.0000000 #[O-]3 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.4392 70.4753 -70.4753 0.0000000 ((cccO-c# 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.6767 66.2798 -66.2798 0.0000000 (NN)n#c 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.2215 64.6011 -64.6011 0.0000000 )#3OF- 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.3695 66.1581 -66.1581 0.0000000 )cCC=F[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.6487 58.1743 -58.1743 0.0000000 -## 0 0.0000000 0.0000 None None None None None None None None None
+21:21:58 <INFO> Sampled SMILES N[nH]nCBr failed to sanitize.
+21:21:58 <INFO> Sampled SMILES c failed to sanitize.
+21:21:59 <INFO> Score: 0.00 Agent NLL: 78.50 Valid:   5% Step: 30
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 50.2245 47.5285 -47.5285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 58.7563 56.7991 -56.7991 0.0000000 ##BrN 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.0180 86.7740 -86.7740 0.0000000 #Brn)(C2[N+]54(cOcNO3 0 0.0000000 0.0000 None None None None None None None None None
+ | 86.9686 89.2486 -89.2486 0.0000000 (-[O-]#[O-]n13cC[O-]N5Br(3c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 125.4947 131.3278 -131.3278 0.0000000 (cc=FcNNNNC((2CCNC(N=C=CBrFC=(1#3OCO) 0 0.0000000 0.0000 None None None None None None None None None
+ | 52.6467 51.7128 -51.7128 0.0000000 )) 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.1098 60.6810 -60.6810 0.0000000 ))#[O-][N+]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.8489 72.5314 -72.5314 0.0000000 )25C-N3c3OO 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.7711 68.2713 -68.2713 0.0000000 )5FCc[N+]=C= 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.9317 56.0574 -56.0574 0.0000000 )5[O-]) 0 0.0000000 0.0000 None None None None None None None None None
+21:21:59 <INFO> Sampled SMILES CcOONC failed to sanitize.
+21:21:59 <INFO> Sampled SMILES F[nH] failed to sanitize.
+21:22:00 <INFO> Score: 0.00 Agent NLL: 75.46 Valid:   2% Step: 31
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.0504 45.4980 -45.4980 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 51.2477 47.9349 -47.9349 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.0283 87.7290 -87.7290 0.0000000 #cc12--2[nH]Br2(#CF[nH]3F 0 0.0000000 0.0000 None None None None None None None None None
+ | 51.5908 48.2590 -48.2590 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.5847 59.5755 -59.5755 0.0000000 ([nH][nH]C[O-]= 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.9017 53.9815 -53.9815 0.0000000 ))C5 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.4922 74.6225 -74.6225 0.0000000 ))[N+]))nc[nH]1[nH]4C) 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.5753 54.0146 -54.0146 0.0000000 )31n 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.3882 67.6852 -67.6852 0.0000000 )[N+]1=c1O5nN 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.7282 78.5967 -78.5967 0.0000000 -3NBrF#[O-]C[nH])4(=n 0 0.0000000 0.0000 None None None None None None None None None
+21:22:00 <INFO> Sampled SMILES C[N+]BrC failed to sanitize.
+21:22:01 <INFO> Score: 0.00 Agent NLL: 87.86 Valid:   3% Step: 32
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 57.5105 51.5895 -51.5895 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 120.2095 120.4197 -120.4197 0.0000000 #)#))BrBr55=[O-][nH][nH][nH])F#c5CC=([O-]25c2- 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.0604 86.0743 -86.0743 0.0000000 #3#CN2C41=)n2-4 0 0.0000000 0.0000 None None None None None None None None None
+ | 125.8566 129.1133 -129.1133 0.0000000 (#2-BrBr3Oc-1(#ON1[N+]N-[N+][O-]3C31)O2)-cC3 0 0.0000000 0.0000 None None None None None None None None None
+ | 170.7664 169.6738 -169.6738 0.0000000 (#3[N+]-(#35[N+]n2C)[N+]n(3O45[nH][O-][N+]nC5)[N+][N+]31Oc#CcOc(nN2[N+]Br5-4[nH]Nc[O-]4N 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.8127 75.0474 -75.0474 0.0000000 ((F43=O3[O-]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.6311 68.2741 -68.2741 0.0000000 (1[nH]==2[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.0656 58.7572 -58.7572 0.0000000 (4[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.0580 79.7225 -79.7225 0.0000000 )((-32OBrFOF( 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.7556 74.9351 -74.9351 0.0000000 )()311C5(= 0 0.0000000 0.0000 None None None None None None None None None
+21:22:01 <INFO> Sampled SMILES [nH]F[N+] failed to sanitize.
+21:22:01 <INFO> Sampled SMILES n[N+]C failed to sanitize.
+21:22:02 <INFO> Score: 0.00 Agent NLL: 89.05 Valid:   0% Step: 33
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 61.4136 53.6199 -53.6199 0.0000000  0 0.0000000 0.0000
+ | 139.9749 140.8281 -140.8281 0.0000000 #N[N+](---[N+][nH]C1n[N+]13[nH]Cc=)CC1#[N+]c35Br)[N+]2321[N+]n 0 0.0000000 0.0000
+ | 92.1956 88.1517 -88.1517 0.0000000 #O1[N+]2FcC#nO[O-][O-]BrO 0 0.0000000 0.0000
+ | 85.8155 83.3417 -83.3417 0.0000000 #O[nH]5C2CcN4O4( 0 0.0000000 0.0000
+ | 138.8800 138.8055 -138.8055 0.0000000 (NBrO2(Br[O-][N+][O-]C1N5nnN[N+]F#3)[O-]N#=)-4[nH]FCc3nF 0 0.0000000 0.0000
+ | 63.5197 57.8042 -57.8042 0.0000000 )) 0 0.0000000 0.0000
+ | 74.2428 70.7112 -70.7112 0.0000000 )3On2FcC 0 0.0000000 0.0000
+ | 67.3612 62.2593 -62.2593 0.0000000 )3c[N+] 0 0.0000000 0.0000
+ | 76.9649 72.5566 -72.5566 0.0000000 )43)=n3# 0 0.0000000 0.0000
+ | 93.5802 89.2929 -89.2929 0.0000000 )O=5[nH][nH][N+]=4[O-]==CN2 0 0.0000000 0.0000
+21:22:02 <INFO> Sampled SMILES Br#[O-] failed to sanitize.
+21:22:02 <INFO> Sampled SMILES Cc[O-]-Cc failed to sanitize.
+21:22:02 <INFO> Score: 0.00 Agent NLL: 81.85 Valid:   3% Step: 34
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 54.0003 46.8517 -46.8517 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 71.1377 69.1340 -69.1340 0.0000000 #(2cn[N+][N+])1) 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.1885 51.6819 -51.6819 0.0000000 #- 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.0269 78.2298 -78.2298 0.0000000 #14N#Cc=5=3#( 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.9881 70.2664 -70.2664 0.0000000 #3-[N+]F-[O-]2[O-]= 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.4236 86.4535 -86.4535 0.0000000 #35([N+]3[O-][N+]5cN3n)--F 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.3282 51.6497 -51.6497 0.0000000 #[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.1376 58.6116 -58.6116 0.0000000 #[nH]2[nH]# 0 0.0000000 0.0000 None None None None None None None None None
+ | 98.3476 97.9778 -97.9778 0.0000000 #c#([O-])5O[nH]#-[O-]cC#[N+]242c[O-][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.4786 108.0055 -108.0055 0.0000000 (2C=[O-]31On4(5Nc4C[nH]#3(3F)N)2 0 0.0000000 0.0000 None None None None None None None None None
+21:22:03 <INFO> Sampled SMILES c#[nH]#c failed to sanitize.
+21:22:03 <INFO> Score: 0.00 Agent NLL: 67.76 Valid:   3% Step: 35
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 44.3022 38.7291 -38.7291 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 67.8105 66.8570 -66.8570 0.0000000 ##=O#3[N+]-=O)C 0 0.0000000 0.0000 None None None None None None None None None
+ | 102.1660 104.8111 -104.8111 0.0000000 #33[O-]-([N+]N(-=#)4[nH](3Br=nF12Cn))4N 0 0.0000000 0.0000 None None None None None None None None None
+ | 94.7132 98.0441 -98.0441 0.0000000 #[nH]1O(341C[nH](22(C-[N+](4)F1O1C2 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.3981 54.1709 -54.1709 0.0000000 #nNc23C 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.5474 70.8855 -70.8855 0.0000000 (--Br351Cc=nCBr5 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.4975 56.9090 -56.9090 0.0000000 (4[O-][O-]5([nH]c 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.7232 73.5452 -73.5452 0.0000000 (C[N+]Cc42c-3c2c1CC 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.0277 71.1113 -71.1113 0.0000000 (n(=[N+]-Br[nH]c[O-]1)=2 0 0.0000000 0.0000 None None None None None None None None None
+ | 47.2572 42.9575 -42.9575 0.0000000 )5 0 0.0000000 0.0000 None None None None None None None None None
+21:22:03 <INFO> Sampled SMILES Br=n#n#nF[O-]O failed to sanitize.
+21:22:03 <INFO> Sampled SMILES N4[O-][N+]=F4 failed to sanitize.
+21:22:03 <INFO> Sampled SMILES OcN failed to sanitize.
+21:22:03 <INFO> Sampled SMILES [nH]n[O-] failed to sanitize.
+21:22:04 <INFO> Score: 0.00 Agent NLL: 91.49 Valid:   3% Step: 36
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 60.2001 50.2358 -50.2358 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 87.8358 81.3828 -81.3828 0.0000000 #2)Nn([nH]Br[N+][N+]-=4 0 0.0000000 0.0000 None None None None None None None None None
+ | 105.4727 101.8800 -101.8800 0.0000000 #31[nH][O-]4#2C4O)45[O-]N5OOn)- 0 0.0000000 0.0000 None None None None None None None None None
+ | 127.3375 126.1326 -126.1326 0.0000000 #[nH]2c[O-]cc2F#NFBr1F#4[N+]51OC=3[N+][nH]-c[N+]cn( 0 0.0000000 0.0000 None None None None None None None None None
+ | 128.1942 132.4091 -132.4091 0.0000000 ()5c[N+]4CF3[O-]((nC2)c4=2Br4c)c([nH]OC-n(Cc[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 119.6168 120.5775 -120.5775 0.0000000 (-5=[O-]Br#()-N)[nH]=#2C)[O-]1C5[O-]5)[N+](Brcc 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.7272 56.5712 -56.5712 0.0000000 (11 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.2497 66.2936 -66.2936 0.0000000 (45(NOC 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.2496 78.7015 -78.7015 0.0000000 (4n[nH]NO2[nH]5-[nH]- 0 0.0000000 0.0000 None None None None None None None None None
+ | 104.5140 101.8596 -101.8596 0.0000000 (c[nH]-[O-]-#[N+])[N+]Brn[nH]=C=3NnO1) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:04 <INFO> Sampled SMILES F[O-][O-] failed to sanitize.
+21:22:04 <INFO> Sampled SMILES [N+]-3[O-]COc[N+]-n[nH]N[O-]3 failed to sanitize.
+21:22:04 <INFO> Sampled SMILES c[O-][N+] failed to sanitize.
+21:22:05 <INFO> Score: 0.00 Agent NLL: 105.01 Valid:   3% Step: 37
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 73.6202 59.7113 -59.7113 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 100.5775 91.1212 -91.1212 0.0000000 #)-3n[N+]n4[nH]3-=3 0 0.0000000 0.0000 None None None None None None None None None
+ | 204.3640 205.8986 -205.8986 0.0000000 #52--n)4N(#O=[N+]5[nH]2[O-]=O[O-](5c=c1[O-]2c[N+][N+]4C2CO22c5#n3-[N+]C[N+]#ccC(2#-1c[O-]FOCC(N1 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.2224 102.6964 -102.6964 0.0000000 #c2-#C[N+]N-C5N#O5O(= 0 0.0000000 0.0000 None None None None None None None None None
+ | 75.9553 62.4724 -62.4724 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 137.5876 135.3565 -135.3565 0.0000000 (2C4O#)=NC=1[O-]F4([nH]-c-51N34C3#NC31 0 0.0000000 0.0000 None None None None None None None None None
+ | 116.2424 110.6179 -110.6179 0.0000000 (4[O-]C=23F((=[nH]55N)c-cN[nH]F 0 0.0000000 0.0000 None None None None None None None None None
+ | 102.4333 95.6269 -95.6269 0.0000000 (Fcn51)3=3((Br(c 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.0693 84.1467 -84.1467 0.0000000 )n)(((Fc4Nc 0 0.0000000 0.0000 None None None None None None None None None
+ | 142.4249 138.0667 -138.0667 0.0000000 )nn4[N+]---C=((14O-5c55C#Fn[O-]5c3[N+])NF- 0 0.0000000 0.0000 None None None None None None None None None
+21:22:05 <INFO> Sampled SMILES [nH]=CF failed to sanitize.
+21:22:05 <INFO> Sampled SMILES [nH]Br failed to sanitize.
+21:22:05 <INFO> Sampled SMILES cBr[nH] failed to sanitize.
+21:22:05 <INFO> Sampled SMILES cO failed to sanitize.
+21:22:05 <INFO> Sampled SMILES n failed to sanitize.
+21:22:06 <INFO> Score: 0.00 Agent NLL: 107.63 Valid:   0% Step: 38
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 100.6720 90.6750 -90.6750 0.0000000 ##N[N+]=C#O)-2 0 0.0000000 0.0000
+ | 160.9636 161.7899 -161.7899 0.0000000 #1c[N+]Br#42)#1(NN2=n4Br14-OcCnC2CN[N+]n4[O-](CC1[O-](c 0 0.0000000 0.0000
+ | 133.7259 127.9718 -127.9718 0.0000000 #22[nH]Br(N[O-]#1=NC4N1[O-][N+]F51(nNcc[N+] 0 0.0000000 0.0000
+ | 93.5009 80.5880 -80.5880 0.0000000 #Br[O-][nH]-F1 0 0.0000000 0.0000
+ | 128.4817 119.6335 -119.6335 0.0000000 (3BrCn2Brn3N2nN3()[O-]2[nH][O-]#45 0 0.0000000 0.0000
+ | 182.7606 197.8229 -197.8229 0.0000000 (5=O5([N+][N+]c)[nH](cO1cc[nH][N+]NcnNnC)12cnc(cCc[N+]4CFnCC4ccC31CC3N-3cC[nH] 0 0.0000000 0.0000
+ | 137.6297 142.8670 -142.8670 0.0000000 (N[N+]=3#4[N+]nc)N)N[O-](1F(-c1cFnCCCcCcNCC 0 0.0000000 0.0000
+ | 93.1326 80.9707 -80.9707 0.0000000 (c-nO-4 0 0.0000000 0.0000
+ | 100.1718 94.2252 -94.2252 0.0000000 (c[nH]cC41C4(COC 0 0.0000000 0.0000
+ | 120.9472 111.8800 -111.8800 0.0000000 )Br#[nH]3N3(N142-#3Nn[N+]1O 0 0.0000000 0.0000
+21:22:06 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:06 <INFO> Score: 0.00 Agent NLL: 90.10 Valid:   0% Step: 39
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 63.5830 53.6199 -53.6199 0.0000000  0 0.0000000 0.0000
+ | 82.2994 74.8354 -74.8354 0.0000000 #(4O[nH]-BrF= 0 0.0000000 0.0000
+ | 75.4222 68.9278 -68.9278 0.0000000 #-C251[O-] 0 0.0000000 0.0000
+ | 74.8360 66.6388 -66.6388 0.0000000 #2[O-]4[O-]F 0 0.0000000 0.0000
+ | 90.1894 91.2505 -91.2505 0.0000000 #On[nH]nNc1Cc5O)CFcC 0 0.0000000 0.0000
+ | 107.4193 108.8137 -108.8137 0.0000000 (##(-#-Br#(4)c#)C-4)cO(Fc 0 0.0000000 0.0000
+ | 67.9121 58.7282 -58.7282 0.0000000 (- 0 0.0000000 0.0000
+ | 123.9827 127.0926 -127.0926 0.0000000 )[N+]F#NcCc3F-Br)(cC[O-]#Cc[N+]=(=CC(1[N+]33 0 0.0000000 0.0000
+ | 95.3881 94.7264 -94.7264 0.0000000 )[O-]C#=N#(=BrCc-CcnNN 0 0.0000000 0.0000
+ | 65.6046 55.9954 -55.9954 0.0000000 - 0 0.0000000 0.0000
+21:22:07 <INFO> Score: 0.00 Agent NLL: 99.01 Valid:   0% Step: 40
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 74.4546 63.7723 -63.7723 0.0000000  0 0.0000000 0.0000
+ | 76.5167 66.2092 -66.2092 0.0000000 # 0 0.0000000 0.0000
+ | 86.5295 77.6375 -77.6375 0.0000000 ##N45# 0 0.0000000 0.0000
+ | 79.1841 70.5695 -70.5695 0.0000000 #(c 0 0.0000000 0.0000
+ | 197.1079 208.6308 -208.6308 0.0000000 #Cc[O-]C[nH][nH]BrnN2N2(CN[N+][N+]#3CO133=3OCC31(44CC1C1n4NC2FCCc(2(()[O-]1c#C2nC 0 0.0000000 0.0000
+ | 117.9482 116.1294 -116.1294 0.0000000 #[N+][N+]Br51)1[O-]([nH]3[N+]22NFBr[O-]cCc1 0 0.0000000 0.0000
+ | 76.8326 66.5333 -66.5333 0.0000000 ( 0 0.0000000 0.0000
+ | 100.5331 95.8369 -95.8369 0.0000000 (#N2F5nnc-[nH]CNN 0 0.0000000 0.0000
+ | 99.6961 93.9257 -93.9257 0.0000000 ()[nH][N+](C(5CF[nH]4Br 0 0.0000000 0.0000
+ | 80.0223 70.6855 -70.6855 0.0000000 (n2 0 0.0000000 0.0000
+21:22:07 <INFO> Sampled SMILES [N+]c#[N+] failed to sanitize.
+21:22:07 <INFO> Sampled SMILES c failed to sanitize.
+21:22:07 <INFO> Score: 0.00 Agent NLL: 76.10 Valid:   2% Step: 41
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 51.6118 46.8517 -46.8517 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 55.8388 51.7538 -51.7538 0.0000000 ## 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.6102 57.4566 -57.4566 0.0000000 #1FCN 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.6376 67.6809 -67.6809 0.0000000 #[O-]O532nN# 0 0.0000000 0.0000 None None None None None None None None None
+ | 109.4737 112.3813 -112.3813 0.0000000 #[nH]#(-nCC11F=32c3[N+]-1F-Ocnc2(Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.8764 94.1288 -94.1288 0.0000000 #n3c[N+][N+][nH]54C3)[N+](##cC=[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 139.9443 141.8485 -141.8485 0.0000000 ((F[nH]O=Nc#CCBr[O-]3Br[O-]F12#32FBr#34#Fn[nH]NNc2c-c3C- 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.6202 57.3167 -57.3167 0.0000000 )-NNc 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.8192 52.9517 -52.9517 0.0000000 )-c 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.2397 82.0944 -82.0944 0.0000000 )NN([nH]=#c5c[O-]#3-5 0 0.0000000 0.0000 None None None None None None None None None
+21:22:08 <INFO> Sampled SMILES BrFn[nH] failed to sanitize.
+21:22:08 <INFO> Sampled SMILES [O-]BrC failed to sanitize.
+21:22:08 <INFO> Score: 0.00 Agent NLL: 66.29 Valid:   3% Step: 42
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 44.1037 41.4369 -41.4369 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 58.4563 61.6012 -61.6012 0.0000000 #OBr(4)3c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 48.1995 45.9349 -45.9349 0.0000000 #[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 79.3251 88.6809 -88.6809 0.0000000 (#[O-]n[nH]n14(c=)(cNCNcc2C 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.1029 110.2198 -110.2198 0.0000000 )2OcBr=[nH][nH]45[O-]CCc4O=5)-)Oc))-n(( 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.4351 80.7185 -80.7185 0.0000000 )=O1C3C2O(NCN5BrN) 0 0.0000000 0.0000 None None None None None None None None None
+ | 108.0520 108.3111 -108.3111 0.0000000 )N54[nH]C5[nH]F)[nH]NO-14(42([N+][nH]3=-[nH][N+]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.4459 67.4148 -67.4148 0.0000000 )c4#3[N+](Brn34 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.3431 75.5897 -75.5897 0.0000000 -(2[nH][N+]Oc=2C4NC)O 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.5727 68.2693 -68.2693 0.0000000 -)5)-2c1([nH]5c 0 0.0000000 0.0000 None None None None None None None None None
+21:22:09 <INFO> Score: 0.00 Agent NLL: 80.08 Valid:   2% Step: 43
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 56.1381 52.9431 -52.9431 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 83.2195 83.5358 -83.5358 0.0000000 #(F54cC-[N+][O-]2[N+]= 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.0780 73.7263 -73.7263 0.0000000 #3nOC(=FF 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.3990 75.0739 -75.0739 0.0000000 #4c-[nH]2ON)1 0 0.0000000 0.0000 None None None None None None None None None
+ | 60.4041 57.5312 -57.5312 0.0000000 #5 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.5674 57.0108 -57.0108 0.0000000 #c 0 0.0000000 0.0000 None None None None None None None None None
+ | 100.2607 104.9968 -104.9968 0.0000000 (Br[nH](n-F(c3N5[nH]#2(CcC(=N 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.5726 71.7865 -71.7865 0.0000000 (CCBrC1c21 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.8898 71.2277 -71.2277 0.0000000 (n=-(N2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.9270 55.0292 -55.0292 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:09 <INFO> Sampled SMILES [nH]nc failed to sanitize.
+21:22:10 <INFO> Score: 0.00 Agent NLL: 77.15 Valid:   3% Step: 44
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.8581 47.5285 -47.5285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 60.1530 60.2706 -60.2706 0.0000000 #2Fc[O-][O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.8783 90.8130 -90.8130 0.0000000 (-(1[O-]1c3))2214c2-C2 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.9085 79.9624 -79.9624 0.0000000 (4C34O[nH]12O[N+])n- 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.0583 91.5210 -91.5210 0.0000000 ([nH]n#3nnn=)15(1)[N+]cBrF 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.6254 49.6146 -49.6146 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.8181 100.2090 -100.2090 0.0000000 )(nN#23(cNc35NC(14c[O-]Cc( 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.6316 71.6390 -71.6390 0.0000000 )C11)((41)c 0 0.0000000 0.0000 None None None None None None None None None
+ | 53.0639 53.8610 -53.8610 0.0000000 )C2 0 0.0000000 0.0000 None None None None None None None None None
+ | 53.0978 55.4924 -55.4924 0.0000000 )CCc 0 0.0000000 0.0000 None None None None None None None None None
+21:22:10 <INFO> Score: 0.00 Agent NLL: 74.01 Valid:   2% Step: 45
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 50.1309 47.5285 -47.5285 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 66.4609 67.6887 -67.6887 0.0000000 #)-#21[O-]N2 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.9564 72.6305 -72.6305 0.0000000 #[O-]4Nc([N+]1[N+]31 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.8699 49.6146 -49.6146 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.8526 64.1899 -64.1899 0.0000000 )#N[nH]3O( 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.6061 80.0649 -80.0649 0.0000000 )-1)O[O-]4(n4Cn3O 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.1559 74.5485 -74.5485 0.0000000 )C(C((N)OCc3 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.7068 69.5050 -69.5050 0.0000000 )C223FC)CC 0 0.0000000 0.0000 None None None None None None None None None
+ | 60.7196 63.0761 -63.0761 0.0000000 )NNC=#c 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.3902 70.3667 -70.3667 0.0000000 -[O-]21cO5([N+]) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:10 <INFO> Sampled SMILES N[nH][O-][N+] failed to sanitize.
+21:22:10 <INFO> Sampled SMILES cOBrc[nH]CC failed to sanitize.
+21:22:11 <INFO> Score: 0.00 Agent NLL: 74.27 Valid:   6% Step: 46
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 51.6828 48.2053 -48.2053 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 69.3894 68.9741 -68.9741 0.0000000 #4(12#44- 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.7207 77.9972 -77.9972 0.0000000 #5=C=(3)C1)[N+]5 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.9285 96.3371 -96.3371 0.0000000 #NO[O-]22[N+]5n[nH]c)[N+]#[N+]NcO1CF 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.0936 96.3552 -96.3552 0.0000000 )(=cBrFN4(C112=C32cCCC 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.9729 57.2289 -57.2289 0.0000000 )-[O-][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.6389 73.9567 -73.9567 0.0000000 )122N3[O-](=)n 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.3247 75.9930 -75.9930 0.0000000 )5O(31[O-]CC=3C 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.3840 63.9645 -63.9645 0.0000000 -Br[O-]F5[N+]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.4121 64.4314 -64.4314 0.0000000 1(##[nH]24 0 0.0000000 0.0000 None None None None None None None None None
+21:22:11 <INFO> Sampled SMILES n failed to sanitize.
+21:22:12 <INFO> Score: 0.00 Agent NLL: 71.43 Valid:   2% Step: 47
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 44.1496 40.7600 -40.7600 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 51.5638 50.0315 -50.0315 0.0000000 #2N3 0 0.0000000 0.0000 None None None None None None None None None
+ | 96.4812 99.4653 -99.4653 0.0000000 #Br)=[nH]c14-NCO2-C31O[N+]NC#O[N+]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 48.8708 47.8037 -47.8037 0.0000000 #C3 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.6873 59.1129 -59.1129 0.0000000 #F1[O-]3Cn= 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.7414 78.5695 -78.5695 0.0000000 ([nH]=[N+][nH]=5[N+]O3Br1=CO[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 95.7750 101.5058 -101.5058 0.0000000 (c[nH]14ccBr[O-]3#41n2)1c#[nH])2OC(C 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.0429 65.8762 -65.8762 0.0000000 )-#Br[O-]3[nH]FNCC 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.7909 95.5133 -95.5133 0.0000000 )14O--On))5[O-]c23Fc)c)C2C) 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.4996 90.6648 -90.6648 0.0000000 )3n[O-][O-]31F[nH]FBrcC(NCFcC1n) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:13 <INFO> Score: 0.00 Agent NLL: 72.26 Valid:   7% Step: 48
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 47.7341 42.7906 -42.7906 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 84.0211 86.7934 -86.7934 0.0000000 #15[N+]c5FBrc32OC1nn[nH]CBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.3701 68.2791 -68.2791 0.0000000 #334[O-])#[nH]Br45 0 0.0000000 0.0000 None None None None None None None None None
+ | 74.4669 74.9359 -74.9359 0.0000000 #BrC#[O-][N+]21)O[nH]3NF 0 0.0000000 0.0000 None None None None None None None None None
+ | 51.4218 47.3206 -47.3206 0.0000000 #n 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.4691 54.4167 -54.4167 0.0000000 (2##F 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.4619 54.1498 -54.1498 0.0000000 (5C[nH]N 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.4079 68.2443 -68.2443 0.0000000 (CF53#[O-]c(2Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.9320 76.7361 -76.7361 0.0000000 (F[O-])(4CBrCOO3NcF 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.8987 56.5006 -56.5006 0.0000000 )#31=N 0 0.0000000 0.0000 None None None None None None None None None
+21:22:13 <INFO> Sampled SMILES BrO=[O-]c=BrCC[N+]cO failed to sanitize.
+21:22:13 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:13 <INFO> Sampled SMILES c[nH] failed to sanitize.
+21:22:13 <INFO> Sampled SMILES n failed to sanitize.
+21:22:13 <INFO> Sampled SMILES n=n[nH] failed to sanitize.
+21:22:13 <INFO> Score: 0.00 Agent NLL: 72.56 Valid:   2% Step: 49
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.0406 42.7906 -42.7906 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 52.6872 47.3029 -47.3029 0.0000000 #4 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.1293 52.0592 -52.0592 0.0000000 #O=[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.6135 63.6668 -63.6668 0.0000000 (2#[nH]-C[nH]C[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 102.4651 114.8237 -114.8237 0.0000000 ([N+]c1F[nH]4#54C=C=CcC(CnCNcCOCNC[N+]Nc1 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.0981 73.8951 -73.8951 0.0000000 ([O-](1FF[nH]C[nH]cNC[nH]c 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.4097 58.8092 -58.8092 0.0000000 )4[O-]NN4( 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.8714 107.5899 -107.5899 0.0000000 )CF2[nH]=c#14C)CcnC2CC[N+]c(c)Cc-c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.9640 75.0329 -75.0329 0.0000000 )OnOCc3c-c3Brccc 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.1727 65.5634 -65.5634 0.0000000 )[O-]3nc[O-]c(=n 0 0.0000000 0.0000 None None None None None None None None None
+21:22:13 <INFO> Sampled SMILES FCcNF failed to sanitize.
+21:22:13 <INFO> Sampled SMILES [nH]-O failed to sanitize.
+21:22:13 <INFO> Sampled SMILES nBr failed to sanitize.
+21:22:14 <INFO> Score: 0.00 Agent NLL: 79.76 Valid:   0% Step: 50
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 57.5996 48.2053 -48.2053 0.0000000  0 0.0000000 0.0000
+ | 72.4029 67.2777 -67.2777 0.0000000 #)-(4=43 0 0.0000000 0.0000
+ | 97.4893 105.7998 -105.7998 0.0000000 (4(CFBrO3(c)(2[nH][nH]Cc2()CCNC2 0 0.0000000 0.0000
+ | 66.8444 63.7011 -63.7011 0.0000000 (Cn3c=1 0 0.0000000 0.0000
+ | 63.6107 60.7633 -60.7633 0.0000000 )(21cC 0 0.0000000 0.0000
+ | 108.0867 108.5228 -108.5228 0.0000000 )Br23-41c#[nH]2FO33ccCFcN3Br4F[O-] 0 0.0000000 0.0000
+ | 59.5386 50.5808 -50.5808 0.0000000 - 0 0.0000000 0.0000
+ | 68.6108 62.6562 -62.6562 0.0000000 -((5=) 0 0.0000000 0.0000
+ | 84.1144 81.3032 -81.3032 0.0000000 --#([O-]-2[N+][N+])5[nH]C( 0 0.0000000 0.0000
+ | 107.3294 112.4517 -112.4517 0.0000000 -14FF5Br2=[nH](C)Nc2c[O-]22CCcBr1n14 0 0.0000000 0.0000
+21:22:15 <INFO> Score: 0.00 Agent NLL: 88.83 Valid:   6% Step: 51
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 85.3674 78.5362 -78.5362 0.0000000 #1BrN5NN=#Cn 0 0.0000000 0.0000 None None None None None None None None None
+ | 97.0791 103.6677 -103.6677 0.0000000 #2-)(1CCC-N)21c#ccccc(5 0 0.0000000 0.0000 None None None None None None None None None
+ | 99.8937 99.0465 -99.0465 0.0000000 #=[O-][O-]c2#)4CN)(12[nH][N+]C1N 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.9856 81.3516 -81.3516 0.0000000 #[nH]2(5[O-]-Nc[nH]=( 0 0.0000000 0.0000 None None None None None None None None None
+ | 160.4598 172.7335 -172.7335 0.0000000 (111[N+](N2c)c#4)(#3==32C#)=c=22Fc(3(n)cccCN(cO2c)Ccc-cCCc# 0 0.0000000 0.0000 None None None None None None None None None
+ | 107.8221 111.7875 -111.7875 0.0000000 ([N+]5-CONCO51(14C3([nH]C2C((C2 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.0752 67.0497 -67.0497 0.0000000 )-=[nH]34 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.8951 73.3781 -73.3781 0.0000000 )F1c#C=2Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 140.1359 145.3178 -145.3178 0.0000000 -)))-1=#NN1O3)n-Br2C=)3FN2cNnN(31c14((c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.6967 77.6002 -77.6002 0.0000000 -2Br4=F3cBr1) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:15 <INFO> Sampled SMILES Fn failed to sanitize.
+21:22:15 <INFO> Sampled SMILES [O-][O-]Br3c-C3BrCcC failed to sanitize.
+21:22:15 <INFO> Score: 0.00 Agent NLL: 88.97 Valid:   2% Step: 52
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 65.5395 52.2663 -52.2663 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 101.3874 107.0417 -107.0417 0.0000000 (1[O-](-C23C[O-][nH](51[nH]C()c(cCCC 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.5762 61.1916 -61.1916 0.0000000 (F2[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.9205 59.0031 -59.0031 0.0000000 (F4 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.5940 76.6774 -76.6774 0.0000000 )(5[O-]CC)12O2 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.9399 64.9033 -64.9033 0.0000000 )[O-]3Cc) 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.6136 89.3276 -89.3276 0.0000000 )c#3-c=5(4C)2n[nH]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.4220 54.6417 -54.6417 0.0000000 - 0 0.0000000 0.0000 None None None None None None None None None
+ | 141.9292 167.6657 -167.6657 0.0000000 ---42)CcF[O-]n(c(1CF()CC2)(CCC4([O-]c22C2C1C)ccc(CCC2[N+]NCc2C(c 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.1090 72.9041 -72.9041 0.0000000 -3N[O-]F()[O-][nH] 0 0.0000000 0.0000 None None None None None None None None None
+21:22:16 <INFO> Sampled SMILES n failed to sanitize.
+21:22:16 <INFO> Score: 0.00 Agent NLL: 61.36 Valid:   2% Step: 53
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 42.8857 36.0206 -36.0206 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 55.5295 57.4060 -57.4060 0.0000000 #Oc31)Br1[O-]c 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.8242 55.9603 -55.9603 0.0000000 (1BrF[O-]))BrF 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.3551 45.4133 -45.4133 0.0000000 (N[O-]# 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.4712 59.7719 -59.7719 0.0000000 )1-C5)c#NCc 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.2799 52.0955 -52.0955 0.0000000 )1C-=[O-][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.3599 50.4542 -50.4542 0.0000000 )Br([N+]5= 0 0.0000000 0.0000 None None None None None None None None None
+ | 46.4940 44.1206 -44.1206 0.0000000 )C[O-]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 44.8538 40.2016 -40.2016 0.0000000 )n 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.6047 45.6236 -45.6236 0.0000000 -N=# 0 0.0000000 0.0000 None None None None None None None None None
+21:22:17 <INFO> Sampled SMILES FC-[O-]C(Nn[N+]CC) failed to sanitize.
+21:22:17 <INFO> Sampled SMILES [O-]#FNnCFc failed to sanitize.
+21:22:18 <INFO> Score: 0.00 Agent NLL: 77.64 Valid:   0% Step: 54
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 56.3680 45.4980 -45.4980 0.0000000  0 0.0000000 0.0000
+ | 67.5377 62.0415 -62.0415 0.0000000 #(FC==) 0 0.0000000 0.0000
+ | 108.7776 120.9821 -120.9821 0.0000000 #CO1[nH])cC2Fn2cc-C44))c)c3C(CnCncC- 0 0.0000000 0.0000
+ | 60.0812 50.2267 -50.2267 0.0000000 #[nH] 0 0.0000000 0.0000
+ | 67.8183 63.8095 -63.8095 0.0000000 ()=)3n)5 0 0.0000000 0.0000
+ | 69.2413 62.1269 -62.1269 0.0000000 (1Br1=([N+] 0 0.0000000 0.0000
+ | 78.7234 75.2641 -75.2641 0.0000000 (3[O-]5[O-]---N)[O-])O 0 0.0000000 0.0000
+ | 56.8219 47.5841 -47.5841 0.0000000 ) 0 0.0000000 0.0000
+ | 60.7505 54.1440 -54.1440 0.0000000 ))BrN 0 0.0000000 0.0000
+ | 87.8180 89.5620 -89.5620 0.0000000 )-3nNn(4#5cOC(2OcC# 0 0.0000000 0.0000
+21:22:18 <INFO> Sampled SMILES BrFC failed to sanitize.
+21:22:18 <INFO> Sampled SMILES [N+][O-]#F[N+] failed to sanitize.
+21:22:18 <INFO> Sampled SMILES n-N[O-]c failed to sanitize.
+21:22:18 <INFO> Score: 0.00 Agent NLL: 70.17 Valid:   3% Step: 55
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 50.4820 41.4369 -41.4369 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 107.2554 118.5731 -118.5731 0.0000000 #4OC)5=OBr[N+]C245[nH]cC2[N+])C)C#F3Nc2CCCC)c 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.1952 48.5377 -48.5377 0.0000000 #=C 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.0448 71.3682 -71.3682 0.0000000 #O5[nH]Nc1O1NN5( 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.4060 93.6052 -93.6052 0.0000000 #n5(BrnFc4O5cBr2[nH]nnn3(-c 0 0.0000000 0.0000 None None None None None None None None None
+ | 52.6454 44.1978 -44.1978 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.0185 91.4912 -91.4912 0.0000000 ()On35n)[O-]3=c))cc[N+]C4(c1 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.4393 77.2830 -77.2830 0.0000000 (FO1-13[N+]4)Brn3[nH]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.0743 57.7757 -57.7757 0.0000000 (OBr34N- 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.3464 60.9873 -60.9873 0.0000000 )2)2O[N+]cc# 0 0.0000000 0.0000 None None None None None None None None None
+21:22:19 <INFO> Sampled SMILES c2-c#Br#[O-]BrC2#OO[N+]cC failed to sanitize.
+21:22:19 <INFO> Sampled SMILES n failed to sanitize.
+21:22:19 <INFO> Score: 0.00 Agent NLL: 85.33 Valid:   3% Step: 56
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 64.9959 54.0713 -54.0713 0.0000000 #4 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.0594 56.8673 -56.8673 0.0000000 #C( 0 0.0000000 0.0000 None None None None None None None None None
+ | 85.4045 85.5396 -85.5396 0.0000000 #[nH](112[O-](ccCC(cBr[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.1955 72.8881 -72.8881 0.0000000 #[nH]=Br35N[O-]-[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 147.1123 155.7149 -155.7149 0.0000000 #n3[nH]F)nc3[N+]C22N[N+]N)cn)c)CN-Br44)BrNcONCC)CCC)2-2cN5 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.7302 52.3200 -52.3200 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.2430 83.5844 -83.5844 0.0000000 (3F4CNCn[nH]C[O-]22)4 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.2785 63.0828 -63.0828 0.0000000 (3ON-1 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.5664 70.3277 -70.3277 0.0000000 (5=O[N+]--[O-]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.5533 70.4411 -70.4411 0.0000000 (OOC25[N+]#n 0 0.0000000 0.0000 None None None None None None None None None
+21:22:19 <INFO> Sampled SMILES [O-]nC failed to sanitize.
+21:22:19 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:20 <INFO> Score: 0.00 Agent NLL: 69.34 Valid:   2% Step: 57
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.6406 41.4369 -41.4369 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 81.3572 82.9006 -82.9006 0.0000000 #1C[nH][nH]-cNc#n5[nH]C[N+]C2O 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.7332 50.2901 -50.2901 0.0000000 #F[nH]n 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.7334 95.0658 -95.0658 0.0000000 #N--)=14[N+]CC1C))C3)C))cCC 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.3898 48.3251 -48.3251 0.0000000 #[nH]5 0 0.0000000 0.0000 None None None None None None None None None
+ | 51.8250 44.1978 -44.1978 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.7333 86.0078 -86.0078 0.0000000 (1[O-]Brc55n[nH][nH]c4BrFc#)N( 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.0795 95.0871 -95.0871 0.0000000 (51=4#Br=Br=c[O-]1#(1Nnc[nH]2[O-]) 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.1119 82.3279 -82.3279 0.0000000 ([nH]#F[N+]Cc1[nH]Ccc4NCN4= 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.9705 57.2845 -57.2845 0.0000000 )-=55[nH]1 0 0.0000000 0.0000 None None None None None None None None None
+21:22:20 <INFO> Sampled SMILES O[nH] failed to sanitize.
+21:22:20 <INFO> Sampled SMILES OcC failed to sanitize.
+21:22:20 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:21 <INFO> Score: 0.00 Agent NLL: 83.38 Valid:   5% Step: 58
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 61.8081 50.9126 -50.9126 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 63.6973 53.3495 -53.3495 0.0000000 # 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.4593 57.8564 -57.8564 0.0000000 ##[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.2782 64.3953 -64.3953 0.0000000 #1O4[nH]- 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.8018 91.5712 -91.5712 0.0000000 #[N+]5c#)[O-]BrFC([nH]ncO12c 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.0087 53.6737 -53.6737 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.1811 57.7910 -57.7910 0.0000000 (On 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.2498 52.9987 -52.9987 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.6292 64.6695 -64.6695 0.0000000 )1(C() 0 0.0000000 0.0000 None None None None None None None None None
+ | 94.0121 98.0779 -98.0779 0.0000000 -4FC(C442N)[O-]C[O-]1CC)11n 0 0.0000000 0.0000 None None None None None None None None None
+21:22:21 <INFO> Sampled SMILES c failed to sanitize.
+21:22:21 <INFO> Score: 0.00 Agent NLL: 70.32 Valid:   0% Step: 59
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 49.1573 42.1137 -42.1137 0.0000000  0 0.0000000 0.0000
+ | 91.8530 97.5633 -97.5633 0.0000000 #2-[O-]#2-54[nH](O-FNnc4O))12C 0 0.0000000 0.0000
+ | 51.3807 44.8747 -44.8747 0.0000000 ( 0 0.0000000 0.0000
+ | 76.9278 82.7410 -82.7410 0.0000000 (((Nn[O-]CN-c3cc[N+]1N31 0 0.0000000 0.0000
+ | 67.1544 65.3035 -65.3035 0.0000000 (235=Br)1Br[N+] 0 0.0000000 0.0000
+ | 79.7644 88.7679 -88.7679 0.0000000 (n(cN)[nH][nH]C[O-]CFc4nc[N+]cCc) 0 0.0000000 0.0000
+ | 61.4061 59.8437 -59.8437 0.0000000 )3[nH]11[N+]#1 0 0.0000000 0.0000
+ | 71.4794 73.8281 -73.8281 0.0000000 )3c)[nH][nH]=C[O-]N[N+]nc) 0 0.0000000 0.0000
+ | 80.8425 88.3492 -88.3492 0.0000000 )F(Br43C-1([O-]2()c(CC[nH]C 0 0.0000000 0.0000
+ | 70.5974 76.0506 -76.0506 0.0000000 )NO[O-]CCC[N+]OC[nH]c(NC 0 0.0000000 0.0000
+21:22:22 <INFO> Sampled SMILES F#n failed to sanitize.
+21:22:22 <INFO> Sampled SMILES cBrN[nH] failed to sanitize.
+21:22:22 <INFO> Score: 0.00 Agent NLL: 62.02 Valid:   3% Step: 60
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 41.5300 36.6979 -36.6979 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 48.6858 49.3281 -49.3281 0.0000000 ##ccNn 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.3727 73.5177 -73.5177 0.0000000 #-#c1N[nH]#[O-]4--NNFC 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.4196 53.1885 -53.1885 0.0000000 #=#43[N+]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 45.9914 43.2900 -43.2900 0.0000000 #[O-]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 43.7725 39.4585 -39.4585 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.4107 48.0127 -48.0127 0.0000000 (-O1[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.9748 83.1588 -83.1588 0.0000000 (2)#n-N2=c==4C#C-#2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 53.6304 51.5043 -51.5043 0.0000000 )=#=-= 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.3472 79.0854 -79.0854 0.0000000 )C5CCCcc1C[N+]O(Cc=C2) 0 0.0000000 0.0000 None None None None None None None None None
+21:22:22 <INFO> Sampled SMILES OFC failed to sanitize.
+21:22:23 <INFO> Score: 0.00 Agent NLL: 69.15 Valid:   5% Step: 61
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.7416 43.4675 -43.4675 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 60.3891 60.8721 -60.8721 0.0000000 #1--(2cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.3114 59.3655 -59.3655 0.0000000 #C=[O-][N+])O 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.7088 87.7119 -87.7119 0.0000000 #n##[N+]O5c1)Br5OccCcCCc 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.8645 80.8414 -80.8414 0.0000000 (([O-]31cn-n[O-]15F5#- 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.8890 110.8414 -110.8414 0.0000000 ((nc22F355C1[O-]5)c=C[O-]cNN)FcO1-# 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.7047 60.1305 -60.1305 0.0000000 )2c[nH]2O1c 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.6997 58.9118 -58.9118 0.0000000 )3c)[nH][N+]) 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.3588 87.5406 -87.5406 0.0000000 )cF(-=422([nH]CC2C-3CC 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.4633 61.9494 -61.9494 0.0000000 -#[N+]3C[O-]43 0 0.0000000 0.0000 None None None None None None None None None
+21:22:23 <INFO> Sampled SMILES CCc[nH][nH] failed to sanitize.
+21:22:23 <INFO> Sampled SMILES O#c failed to sanitize.
+21:22:24 <INFO> Score: 0.00 Agent NLL: 60.89 Valid:   0% Step: 62
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 41.7849 37.3751 -37.3751 0.0000000  0 0.0000000 0.0000
+ | 48.7788 46.5725 -46.5725 0.0000000 #1[N+]3 0 0.0000000 0.0000
+ | 47.4998 44.5892 -44.5892 0.0000000 (#n 0 0.0000000 0.0000
+ | 78.3716 85.3279 -85.3279 0.0000000 (#n([nH][O-]-2CON)c[O-]n)c-N2N 0 0.0000000 0.0000
+ | 56.5010 59.9232 -59.9232 0.0000000 (Br-[nH]1))=c- 0 0.0000000 0.0000
+ | 85.1780 101.4775 -101.4775 0.0000000 (BrCO1)c2OCCO1C)C#ccCcnc123CCcCC3c 0 0.0000000 0.0000
+ | 52.9707 51.0349 -51.0349 0.0000000 ([nH]BrNnN 0 0.0000000 0.0000
+ | 47.3033 44.2319 -44.2319 0.0000000 (nO 0 0.0000000 0.0000
+ | 48.1831 46.8062 -46.8062 0.0000000 )#(N 0 0.0000000 0.0000
+ | 60.0610 62.0601 -62.0601 0.0000000 )[nH]F=15)Nc5[nH] 0 0.0000000 0.0000
+21:22:24 <INFO> Sampled SMILES FnO failed to sanitize.
+21:22:24 <INFO> Sampled SMILES [nH][O-] failed to sanitize.
+21:22:24 <INFO> Sampled SMILES n[N+]F[nH] failed to sanitize.
+21:22:25 <INFO> Score: 0.00 Agent NLL: 58.33 Valid:   3% Step: 63
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 39.1857 35.3433 -35.3433 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 49.2425 50.7003 -50.7003 0.0000000 #[O-]OBr3Cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 43.0464 41.7257 -41.7257 0.0000000 #cBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.1852 60.7390 -60.7390 0.0000000 #nN2=[nH]3c[O-](F 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.0186 82.4180 -82.4180 0.0000000 (2[O-]--#5[O-]O[N+](4cnCnO1cC[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 47.5277 46.8489 -46.8489 0.0000000 (=ON) 0 0.0000000 0.0000 None None None None None None None None None
+ | 79.2363 87.9646 -87.9646 0.0000000 )))=C-[O-]4-Cn#cc-N)FcCCC4C 0 0.0000000 0.0000 None None None None None None None None None
+ | 86.2533 92.1415 -92.1415 0.0000000 )541O(nNOO()-c2[N+]OCC(4c[N+]#Cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 52.1093 53.1652 -53.1652 0.0000000 )=-[nH]-Nnc 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.4592 77.4264 -77.4264 0.0000000 )[N+](Nc#CBr)BrcN)2cC52c 0 0.0000000 0.0000 None None None None None None None None None
+21:22:25 <INFO> Sampled SMILES C#NN#[O-] failed to sanitize.
+21:22:25 <INFO> Sampled SMILES [nH][nH] failed to sanitize.
+21:22:25 <INFO> Score: 0.00 Agent NLL: 70.88 Valid:   2% Step: 64
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 47.7695 42.1137 -42.1137 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 90.9572 93.8876 -93.8876 0.0000000 #34[nH][O-](c45[nH]5[N+]1[nH][nH]=ccBrC([nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.9670 69.7488 -69.7488 0.0000000 #5#F[nH]#C-#[O-]nF 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.2034 60.1051 -60.1051 0.0000000 #=cBr[N+][O-]O) 0 0.0000000 0.0000 None None None None None None None None None
+ | 101.3299 109.3193 -109.3193 0.0000000 #NN4(#[nH]4Br3=[O-]1[N+]cN1C[O-]ON(1[nH]CCC2C 0 0.0000000 0.0000 None None None None None None None None None
+ | 72.6530 76.2916 -76.2916 0.0000000 #O2(FC=1FN3)Brc4 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.0281 44.8747 -44.8747 0.0000000 ( 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.4883 76.8971 -76.8971 0.0000000 (#2)--[O-]Br2=2F=cN 0 0.0000000 0.0000 None None None None None None None None None
+ | 48.2089 44.1998 -44.1998 0.0000000 ) 0 0.0000000 0.0000 None None None None None None None None None
+ | 49.7364 44.4891 -44.4891 0.0000000 - 0 0.0000000 0.0000 None None None None None None None None None
+21:22:25 <INFO> Sampled SMILES C[N+]#nC failed to sanitize.
+21:22:25 <INFO> Sampled SMILES c=c failed to sanitize.
+21:22:25 <INFO> Sampled SMILES n failed to sanitize.
+21:22:26 <INFO> Score: 0.00 Agent NLL: 69.06 Valid:   0% Step: 65
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 46.3269 40.7600 -40.7600 0.0000000  0 0.0000000 0.0000
+ | 86.7132 88.4415 -88.4415 0.0000000 #n[O-]O[N+]2N[N+]n#4(Br-NnBrO)( 0 0.0000000 0.0000
+ | 71.4832 79.2018 -79.2018 0.0000000 (4FC)-#(c=cc3)[nH]1) 0 0.0000000 0.0000
+ | 87.0878 89.5291 -89.5291 0.0000000 (4FOn(-Br4F2144N[O-]c[O-]N1# 0 0.0000000 0.0000
+ | 61.5602 63.6320 -63.6320 0.0000000 (C[nH]C-1C=1= 0 0.0000000 0.0000
+ | 62.1456 65.4307 -65.4307 0.0000000 )1=[N+](Cc(1CO 0 0.0000000 0.0000
+ | 50.7591 47.7416 -47.7416 0.0000000 )3[N+] 0 0.0000000 0.0000
+ | 62.6259 61.7152 -61.7152 0.0000000 )4322[N+]3-O 0 0.0000000 0.0000
+ | 64.2971 66.4540 -66.4540 0.0000000 )54Fc)-[N+]C(- 0 0.0000000 0.0000
+ | 61.5692 66.4550 -66.4550 0.0000000 )N2)()Brcc[O-]Fc 0 0.0000000 0.0000
+21:22:27 <INFO> Score: 0.00 Agent NLL: 72.74 Valid:   3% Step: 66
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 49.3212 42.7906 -42.7906 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 95.0680 100.5095 -100.5095 0.0000000 #(c3(42C1c(2cN[N+][N+](1[N+]c3#NBrc 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.1602 58.8498 -58.8498 0.0000000 #2[N+][O-]1#- 0 0.0000000 0.0000 None None None None None None None None None
+ | 75.1533 76.9355 -76.9355 0.0000000 #O43)Br1[nH]c#[N+]1Br[nH]c 0 0.0000000 0.0000 None None None None None None None None None
+ | 121.1519 127.9595 -127.9595 0.0000000 (Br2[N+]FFC()[N+]))#BrC=Br-)nc)(C24c)Ccc2Nc13[N+]c3C- 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.8247 82.1234 -82.1234 0.0000000 (F#[O-]Br4N13-1[O-]#N1Br) 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.0387 70.9952 -70.9952 0.0000000 (c14[N+]([nH])((#c 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.1177 78.3732 -78.3732 0.0000000 )((FCCn2c1CN)C(c 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.0118 60.3040 -60.3040 0.0000000 )-5F3c[N+]1 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.1332 90.2728 -90.2728 0.0000000 )C5FO22=ccC)[N+]cc3BrCC[O-]1 0 0.0000000 0.0000 None None None None None None None None None
+21:22:27 <INFO> Sampled SMILES [N+][nH] failed to sanitize.
+21:22:27 <INFO> Sampled SMILES [nH]n[N+]=[nH] failed to sanitize.
+21:22:27 <INFO> Sampled SMILES cF failed to sanitize.
+21:22:27 <INFO> Sampled SMILES nC#[N+]C failed to sanitize.
+21:22:27 <INFO> Score: 0.00 Agent NLL: 81.65 Valid:   0% Step: 67
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 62.1427 52.2663 -52.2663 0.0000000  0 0.0000000 0.0000
+ | 75.4688 70.4468 -70.4468 0.0000000 #)1F3(F4 0 0.0000000 0.0000
+ | 111.0670 115.0864 -115.0864 0.0000000 #32(O-4[nH]Br-[nH]4)[N+])FBr[N+]3C)(1C211 0 0.0000000 0.0000
+ | 73.8316 66.3907 -66.3907 0.0000000 #3[N+]#NBr 0 0.0000000 0.0000
+ | 68.1875 61.4872 -61.4872 0.0000000 #=C2 0 0.0000000 0.0000
+ | 69.2140 61.1184 -61.1184 0.0000000 #nn5 0 0.0000000 0.0000
+ | 78.7883 79.4947 -79.4947 0.0000000 ())[O-](FCCc2(n 0 0.0000000 0.0000
+ | 75.9467 70.4070 -70.4070 0.0000000 (-121-[O-]- 0 0.0000000 0.0000
+ | 69.6028 61.5401 -61.5401 0.0000000 (F4# 0 0.0000000 0.0000
+ | 85.7581 88.7125 -88.7125 0.0000000 (N)=F2))3[nH]CC[O-]NCC 0 0.0000000 0.0000
+21:22:27 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:28 <INFO> Score: 0.00 Agent NLL: 77.64 Valid:   2% Step: 68
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 58.7588 49.5590 -49.5590 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 75.9303 72.1243 -72.1243 0.0000000 ##-O#Br[nH]121 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.5948 72.4031 -72.4031 0.0000000 #5(O52[nH]C4O 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.5316 56.6838 -56.6838 0.0000000 #=n 0 0.0000000 0.0000 None None None None None None None None None
+ | 75.2123 73.9168 -73.9168 0.0000000 #O))N[N+]nn1c[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.7340 99.8313 -99.8313 0.0000000 ())N(n(=31c)=-C)CC32cC 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.8861 63.3661 -63.3661 0.0000000 (4Cn[nH][N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.1076 58.4623 -58.4623 0.0000000 (OFN 0 0.0000000 0.0000 None None None None None None None None None
+ | 90.1383 92.8948 -92.8948 0.0000000 ([nH]##4F#c(cNNO2c4nNC 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.0616 75.0773 -75.0773 0.0000000 ([nH]=)CCBr24(n 0 0.0000000 0.0000 None None None None None None None None None
+21:22:29 <INFO> Score: 0.00 Agent NLL: 69.97 Valid:   2% Step: 69
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 51.6169 44.1443 -44.1443 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 82.9146 83.8985 -83.8985 0.0000000 #21132C(#O(#[N+]=[N+]Cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.6847 57.2163 -57.2163 0.0000000 #3)1N4 0 0.0000000 0.0000 None None None None None None None None None
+ | 79.1901 80.6025 -80.6025 0.0000000 #CF[nH]35[nH]cOBrBr(c45c 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.1948 72.0838 -72.0838 0.0000000 #nO=44nC(3)C 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.6541 102.2707 -102.2707 0.0000000 (Br3#N5n34)43)cc(C-cCccn(cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.5743 82.9886 -82.9886 0.0000000 (F(c[nH]n34413cO(cnC 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.1978 50.8795 -50.8795 0.0000000 (NF 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.9841 51.1450 -51.1450 0.0000000 (c= 0 0.0000000 0.0000 None None None None None None None None None
+ | 53.9220 48.6090 -48.6090 0.0000000 )- 0 0.0000000 0.0000 None None None None None None None None None
+21:22:29 <INFO> Sampled SMILES F[O-]n[O-]-O failed to sanitize.
+21:22:29 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:29 <INFO> Sampled SMILES ncF failed to sanitize.
+21:22:29 <INFO> Score: 0.00 Agent NLL: 94.09 Valid:   2% Step: 70
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 69.2816 57.6809 -57.6809 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 96.2184 92.5753 -92.5753 0.0000000 #NBr[nH]#()-F)2[nH][O-]C[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.8531 115.4168 -115.4168 0.0000000 (5=235Cn4[O-][N+]2NN2=c2CC-C[nH]c) 0 0.0000000 0.0000 None None None None None None None None None
+ | 76.0332 68.5057 -68.5057 0.0000000 (Brn2c 0 0.0000000 0.0000 None None None None None None None None None
+ | 109.9546 106.8554 -106.8554 0.0000000 )N(c-#[nH][N+][nH]Br245--c-c13# 0 0.0000000 0.0000 None None None None None None None None None
+ | 120.2628 117.0249 -117.0249 0.0000000 )[nH][O-]#C124O45O-CNnO-=1[nH]53)) 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.2193 60.0563 -60.0563 0.0000000 - 0 0.0000000 0.0000 None None None None None None None None None
+ | 87.5270 84.5810 -84.5810 0.0000000 -1#[O-])Oc-C)5n 0 0.0000000 0.0000 None None None None None None None None None
+ | 108.6178 118.6156 -118.6156 0.0000000 -=Fn5[O-][O-]))cC-c[O-]CncC5Nc)CCCC1 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.7842 77.3315 -77.3315 0.0000000 -C[nH]5#11)C 0 0.0000000 0.0000 None None None None None None None None None
+21:22:30 <INFO> Sampled SMILES Oc[N+] failed to sanitize.
+21:22:30 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:30 <INFO> Sampled SMILES c failed to sanitize.
+21:22:30 <INFO> Sampled SMILES cC=c failed to sanitize.
+21:22:30 <INFO> Sampled SMILES n#NCnc([N+]#[N+]cc)cC failed to sanitize.
+21:22:30 <INFO> Score: 0.00 Agent NLL: 75.27 Valid:   5% Step: 71
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 53.8686 46.1748 -46.1748 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 77.0936 72.3429 -72.3429 0.0000000 #(4[O-]F=5=Br[N+]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.3506 83.5552 -83.5552 0.0000000 #-(2nF-=CO))[N+][O-]4# 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.8337 60.9208 -60.9208 0.0000000 #-)1[nH]cF 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.8875 74.6728 -74.6728 0.0000000 #=([N+]4441=53# 0 0.0000000 0.0000 None None None None None None None None None
+ | 95.1497 107.7588 -107.7588 0.0000000 #=54F(Br-F#C)c2Nc(3c3CBrc)1C) 0 0.0000000 0.0000 None None None None None None None None None
+ | 79.6422 80.2333 -80.2333 0.0000000 #Br43351#Cc[nH]15nN 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.8282 77.6044 -77.6044 0.0000000 #O4[nH]CCncCO()CC 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.8485 75.9554 -75.9554 0.0000000 #[N+][N+][nH](cc#=4C(c 0 0.0000000 0.0000 None None None None None None None None None
+ | 86.8970 85.6475 -85.6475 0.0000000 #[nH]-)22c=2)[O-]1N##5F 0 0.0000000 0.0000 None None None None None None None None None
+21:22:30 <INFO> Sampled SMILES F[nH] failed to sanitize.
+21:22:30 <INFO> Sampled SMILES Oc failed to sanitize.
+21:22:30 <INFO> Sampled SMILES c failed to sanitize.
+21:22:31 <INFO> Score: 0.00 Agent NLL: 79.87 Valid:   2% Step: 72
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 54.3478 46.8517 -46.8517 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 72.9204 69.8363 -69.8363 0.0000000 #3N1F34O(F 0 0.0000000 0.0000 None None None None None None None None None
+ | 57.8603 51.3640 -51.3640 0.0000000 #4 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.2764 75.6367 -75.6367 0.0000000 #N3#Br#cOc=cc- 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.9685 81.9764 -81.9764 0.0000000 #[O-]#()[nH]Br)C#(-[O-]n[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.4602 56.5536 -56.5536 0.0000000 (([nH][O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 83.4946 81.5364 -81.5364 0.0000000 (-5[O-]1F41[N+]5c[N+](F4 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.6117 87.5940 -87.5940 0.0000000 (=54[N+]n#)C3(CC[nH]c[nH]cN 0 0.0000000 0.0000 None None None None None None None None None
+ | 82.9170 79.4171 -79.4171 0.0000000 (NCBrBr4[O-]Br[O-]nnO-n 0 0.0000000 0.0000 None None None None None None None None None
+ | 98.0832 108.9200 -108.9200 0.0000000 (OCCnNc(C1F)CC4))Cc[O-]2c[nH]#1(2 0 0.0000000 0.0000 None None None None None None None None None
+21:22:31 <INFO> Sampled SMILES C([nH]=3NCC[O-]nCn)C[N+]3 failed to sanitize.
+21:22:31 <INFO> Sampled SMILES C2[nH]O2C failed to sanitize.
+21:22:31 <INFO> Sampled SMILES OnCCFcN[nH]NN failed to sanitize.
+21:22:31 <INFO> Sampled SMILES ccnn failed to sanitize.
+21:22:31 <INFO> Score: 0.00 Agent NLL: 67.01 Valid:   2% Step: 73
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 48.8928 42.7906 -42.7906 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 52.8055 47.3786 -47.3786 0.0000000 #5 0 0.0000000 0.0000 None None None None None None None None None
+ | 89.5380 92.2706 -92.2706 0.0000000 #[nH]NcNO2[nH]OC(O-c4[O-][nH]=)1( 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.7852 98.8726 -98.8726 0.0000000 #nO[N+]1n1#OnCBr[O-]1N1-[O-]c(cc(3 0 0.0000000 0.0000 None None None None None None None None None
+ | 92.0281 98.2671 -98.2671 0.0000000 (#1FBrBrnN)=[O-](5C[N+])3n345Ccc 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.4131 67.7094 -67.7094 0.0000000 ((##55OOc2n 0 0.0000000 0.0000 None None None None None None None None None
+ | 112.7459 126.5476 -126.5476 0.0000000 (5C5n)C21N([nH]3(C3)c)[O-]C31Cn(2C4Nc3((Cc1NC 0 0.0000000 0.0000 None None None None None None None None None
+ | 73.7703 72.9578 -72.9578 0.0000000 (cN)[N+]3O1525n# 0 0.0000000 0.0000 None None None None None None None None None
+ | 66.2300 65.7258 -65.7258 0.0000000 )253-321N[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.2377 53.8614 -53.8614 0.0000000 )=N[O-]C 0 0.0000000 0.0000 None None None None None None None None None
+21:22:32 <INFO> Sampled SMILES Cn failed to sanitize.
+21:22:32 <INFO> Sampled SMILES c failed to sanitize.
+21:22:32 <INFO> Sampled SMILES ncF failed to sanitize.
+21:22:32 <INFO> Score: 0.00 Agent NLL: 83.77 Valid:   5% Step: 74
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 58.9754 50.9126 -50.9126 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 111.8819 116.9649 -116.9649 0.0000000 ##C3312C1n3CC3NC)cCBrN2-n3=(Br 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.2723 57.3438 -57.3438 0.0000000 #4F 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.8051 57.6070 -57.6070 0.0000000 #5[O-] 0 0.0000000 0.0000 None None None None None None None None None
+ | 75.1249 74.1557 -74.1557 0.0000000 #5cCN3[nH]N(2 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.5192 80.6588 -80.6588 0.0000000 #F#n=)[nH]cBr[N+]3cN 0 0.0000000 0.0000 None None None None None None None None None
+ | 110.8195 116.1908 -116.1908 0.0000000 #c3)[N+]((c322CF2[N+]c15C12c4-NCO( 0 0.0000000 0.0000 None None None None None None None None None
+ | 121.9568 130.5846 -130.5846 0.0000000 #c3[O-]N[nH][O-]c(3C44-3Br-[O-]C-#=CnC#2c(CCC() 0 0.0000000 0.0000 None None None None None None None None None
+ | 145.1433 153.1025 -153.1025 0.0000000 (-2O2n[N+]=)1cBrC2[O-]2NNONN1(Br(F-#[N+]c)(4(cN3N[O-]cN1Cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 111.4086 122.7002 -122.7002 0.0000000 (3)[nH]F4()322)2CN(4nnC(1=CCc5)C2C 0 0.0000000 0.0000 None None None None None None None None None
+21:22:33 <INFO> Score: 0.00 Agent NLL: 79.92 Valid:   2% Step: 75
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 52.0262 45.4980 -45.4980 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 82.1608 82.3816 -82.3816 0.0000000 #[N+]cF5Br4[nH]F(C2FN1[nH] 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.4388 77.5191 -77.5191 0.0000000 #[nH][N+]-N=244)F[O-]c= 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.1428 98.3313 -98.3313 0.0000000 #cn#c31=[O-][nH]O)Cc)()N3cNC) 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.6190 50.2865 -50.2865 0.0000000 () 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.0146 50.7033 -50.7033 0.0000000 (3 0 0.0000000 0.0000 None None None None None None None None None
+ | 70.4725 68.8526 -68.8526 0.0000000 (5#3[N+]N)N4= 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.0836 64.0391 -64.0391 0.0000000 ))([O-]41([N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.9557 61.0693 -61.0693 0.0000000 ))[nH])NOBr 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.0949 65.7506 -65.7506 0.0000000 )c4C[N+]-445 0 0.0000000 0.0000 None None None None None None None None None
+21:22:33 <INFO> Sampled SMILES FFn failed to sanitize.
+21:22:34 <INFO> Score: 0.00 Agent NLL: 64.74 Valid:   8% Step: 76
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 45.2851 40.0831 -40.0831 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 71.2660 76.2092 -76.2092 0.0000000 ##cO[N+]5c222BrNC[nH]Cc 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.7138 63.4391 -63.4391 0.0000000 #-Cc==nBr[N+]2 0 0.0000000 0.0000 None None None None None None None None None
+ | 64.4484 66.9445 -66.9445 0.0000000 #cF1[nH]2-ncC[nH]N 0 0.0000000 0.0000 None None None None None None None None None
+ | 50.8001 47.3217 -47.3217 0.0000000 (3n 0 0.0000000 0.0000 None None None None None None None None None
+ | 48.2575 48.5457 -48.5457 0.0000000 )2C) 0 0.0000000 0.0000 None None None None None None None None None
+ | 51.8831 50.9140 -50.9140 0.0000000 )[nH]n4C 0 0.0000000 0.0000 None None None None None None None None None
+ | 71.5129 80.9004 -80.9004 0.0000000 -)N4(3ncCc2NNCBr)2) 0 0.0000000 0.0000 None None None None None None None None None
+ | 61.2764 59.1572 -59.1572 0.0000000 -2n4=N([N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 54.9415 53.9001 -53.9001 0.0000000 -Br3)#N 0 0.0000000 0.0000 None None None None None None None None None
+21:22:34 <INFO> Sampled SMILES BrnN failed to sanitize.
+21:22:34 <INFO> Sampled SMILES cN[O-]NCNC[O-]cNC failed to sanitize.
+21:22:34 <INFO> Score: 0.00 Agent NLL: 73.28 Valid:   3% Step: 77
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 52.3216 45.4980 -45.4980 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 73.6882 72.7746 -72.7746 0.0000000 ##[N+]2[nH][O-]n5)n[O-]C 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.6116 108.4846 -108.4846 0.0000000 #(#)#Br3-1[O-]=[nH]N#)=N[O-]N1[N+]21[nH]5cC 0 0.0000000 0.0000 None None None None None None None None None
+ | 68.1013 67.4345 -67.4345 0.0000000 #()cN[O-]Fc[N+]O 0 0.0000000 0.0000 None None None None None None None None None
+ | 69.4062 67.0210 -67.0210 0.0000000 #(N[N+])[N+]-3# 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.7408 56.2175 -56.2175 0.0000000 #Oc22 0 0.0000000 0.0000 None None None None None None None None None
+ | 106.0424 110.8217 -110.8217 0.0000000 #[nH]c332[O-]251[O-][O-]N=22Br21CF-ccCO(N 0 0.0000000 0.0000 None None None None None None None None None
+ | 80.6983 88.4998 -88.4998 0.0000000 #cO3c[N+]([nH](3Br)1C22cCC 0 0.0000000 0.0000 None None None None None None None None None
+ | 58.4488 58.3282 -58.3282 0.0000000 ((1)cC 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.0979 85.6821 -85.6821 0.0000000 ((2Br1C[N+]c2c)5cOCCCC 0 0.0000000 0.0000 None None None None None None None None None
+21:22:34 <INFO> Sampled SMILES BrBrnNOF failed to sanitize.
+21:22:34 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:35 <INFO> Score: 0.00 Agent NLL: 84.55 Valid:   0% Step: 78
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw)
+ | 61.2514 52.2663 -52.2663 0.0000000  0 0.0000000 0.0000
+ | 102.4203 104.5872 -104.5872 0.0000000 #5[N+]4=NN4(C((nN)Br3[nH]#c33 0 0.0000000 0.0000
+ | 83.9530 83.7646 -83.7646 0.0000000 #[N+]-[O-][N+]c22[N+][nH]cC[O-]) 0 0.0000000 0.0000
+ | 72.8752 71.6936 -71.6936 0.0000000 #[O-]5)n2CcC 0 0.0000000 0.0000
+ | 113.2780 113.1185 -113.1185 0.0000000 (cBrCO5N)3F=(2Fc[nH]Fcc134OBr42 0 0.0000000 0.0000
+ | 66.8829 59.1355 -59.1355 0.0000000 (n[O-] 0 0.0000000 0.0000
+ | 81.0110 81.1819 -81.1819 0.0000000 )#--[O-])O)cC1Brn 0 0.0000000 0.0000
+ | 79.0170 76.7714 -76.7714 0.0000000 )44#[O-](FcO21 0 0.0000000 0.0000
+ | 78.7541 75.3961 -75.3961 0.0000000 )n5[nH](#F3c[N+] 0 0.0000000 0.0000
+ | 77.7455 74.8022 -74.8022 0.0000000 )n[nH]5[nH]N[nH]cC[N+] 0 0.0000000 0.0000
+21:22:35 <INFO> Sampled SMILES [nH] failed to sanitize.
+21:22:35 <INFO> Sampled SMILES [nH]45ONCC[N+]c5c4 failed to sanitize.
+21:22:35 <INFO> Sampled SMILES cc failed to sanitize.
+21:22:35 <INFO> Sampled SMILES nc failed to sanitize.
+21:22:36 <INFO> Score: 0.00 Agent NLL: 76.57 Valid:   5% Step: 79
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 53.6506 46.1748 -46.1748 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 94.9689 93.5927 -93.5927 0.0000000 #[N+]CBrCON[N+]-F-2[nH]=O5C3)[N+] 0 0.0000000 0.0000 None None None None None None None None None
+ | 91.1749 101.0530 -101.0530 0.0000000 #[nH]c2c24N=CC[N+][nH])c3C13C3cNN 0 0.0000000 0.0000 None None None None None None None None None
+ | 81.0015 82.5247 -82.5247 0.0000000 ()O(OcN(C234[nH]Fcn 0 0.0000000 0.0000 None None None None None None None None None
+ | 62.9115 61.6895 -61.6895 0.0000000 (C35Cc- 0 0.0000000 0.0000 None None None None None None None None None
+ | 84.0603 95.7335 -95.7335 0.0000000 )1c(=OcC14([O-]3CC)CcC(cN 0 0.0000000 0.0000 None None None None None None None None None
+ | 100.1140 112.0877 -112.0877 0.0000000 )=1O=4[N+]F42cN3O=4(Ccc(()1ccc1N 0 0.0000000 0.0000 None None None None None None None None None
+ | 77.2496 81.2661 -81.2661 0.0000000 )O[nH]4)C((4cCC([O-]( 0 0.0000000 0.0000 None None None None None None None None None
+ | 89.4724 92.3775 -92.3775 0.0000000 -C35CBr=[O-]-3[nH])cCC55C-) 0 0.0000000 0.0000 None None None None None None None None None
+ | 59.0129 52.7681 -52.7681 0.0000000 -Nn 0 0.0000000 0.0000 None None None None None None None None None
+21:22:36 <INFO> Sampled SMILES Br=NBrO failed to sanitize.
+21:22:36 <INFO> Sampled SMILES FFOF[N+]nBrc-N[N+] failed to sanitize.
+21:22:36 <INFO> Sampled SMILES cFc[N+]NBrc#FcN failed to sanitize.
+21:22:36 <INFO> Sampled SMILES n failed to sanitize.
+21:22:36 <INFO> Sampled SMILES ncnc failed to sanitize.
+21:22:37 <INFO> Score: 0.00 Agent NLL: 66.39 Valid:   2% Step: 80
+ | Agent Prior Target Score SMILES SMILES_state SeriesCE_Similarity_Guided SeriesCE_Similarity_Guided (raw) required_match (SeriesCE_Similarity_Guided) qsar_score (SeriesCE_Similarity_Guided) forbidden_absent (SeriesCE_Similarity_Guided) pred_pic50 (SeriesCE_Similarity_Guided) sim_score (SeriesCE_Similarity_Guided) pharm_score (SeriesCE_Similarity_Guided) pharm_fit_score (SeriesCE_Similarity_Guided) pharm_matched_features (SeriesCE_Similarity_Guided) pharm_rmsd (SeriesCE_Similarity_Guided)
+ | 45.9657 40.0831 -40.0831 0.0000000  0 0.0000000 0.0000 None None None None None None None None None
+ | 66.5748 66.0166 -66.0166 0.0000000 #-3[N+]5#N3FC( 0 0.0000000 0.0000 None None None None None None None None None
+ | 67.8418 68.6381 -68.6381 0.0000000 #Br4=Brcn((C(O 0 0.0000000 0.0000 None None None None None None None None None
+ | 63.4345 62.4514 -62.4514 0.0000000 #F=nCFn24F 0 0.0000000 0.0000 None None None None None None None None None
+ | 78.9395 83.7583 -83.7583 0.0000000 #N12-)#C5[nH]c23c-C-c= 0 0.0000000 0.0000 None None None None None None None None None
+ | 56.7040 53.9660 -53.9660 0.0000000 #[O-])=[N+]n 0 0.0000000 0.0000 None None None None None None None None None
+ | 55.1843 51.8943 -51.8943 0.0000000 (n3N- 0 0.0000000 0.0000 None None None None None None None None None
+ | 65.6309 67.1994 -67.1994 0.0000000 )##O#cNBrn1Br) 0 0.0000000 0.0000 None None None None None None None None None
+ | 88.4376 102.2805 -102.2805 0.0000000 )1NnBrF[nH]-cnc)1#CC)[nH](3cNCCcccC 0 0.0000000 0.0000 None None None None None None None None None
+ | 51.2573 46.4809 -46.4809 0.0000000 -F4 0 0.0000000 0.0000 None None None None None None None None None
+21:22:37 <WARN> Maximum number of steps of 80 reached in stage 1. Terminating all stages.
+21:22:37 <INFO> Peak main memory usage: 1697.348 MiB
+21:22:37 <INFO> Finished REINVENT on 2026-03-12
