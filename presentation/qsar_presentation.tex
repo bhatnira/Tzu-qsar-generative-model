@@ -1,0 +1,675 @@
+%% ============================================================
+%%  QSAR + Pharmacophore + REINVENT4 – Beamer Presentation
+%%  Compile:  pdflatex qsar_presentation.tex  (run twice)
+%% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ── Theme ─────────────────────────────────────────────────────────────────────
+\usetheme{Madrid}
+\usecolortheme{whale}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+% ── Palette / custom colours ──────────────────────────────────────────────────
+\definecolor{schblue}{RGB}{0,82,147}
+\definecolor{schcyan}{RGB}{0,160,210}
+\definecolor{schgreen}{RGB}{0,153,76}
+\definecolor{schemerald}{RGB}{46,163,108}
+\definecolor{schred}{RGB}{192,0,0}
+\definecolor{schorange}{RGB}{230,110,20}
+\definecolor{lightgray}{RGB}{240,240,240}
+\definecolor{codebg}{RGB}{245,245,245}
+
+\setbeamercolor{palette primary}{bg=schblue, fg=white}
+\setbeamercolor{palette secondary}{bg=schcyan, fg=white}
+\setbeamercolor{palette tertiary}{bg=schblue!70, fg=white}
+\setbeamercolor{palette quaternary}{bg=schblue!50, fg=white}
+\setbeamercolor{structure}{fg=schblue}
+\setbeamercolor{alerted text}{fg=schred}
+\setbeamercolor{example text}{fg=schgreen}
+
+% ── listings style ────────────────────────────────────────────────────────────
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  breaklines=true,
+  keywordstyle=\color{schblue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{schred},
+  language=Python,
+}
+
+% ── TikZ arrow style ──────────────────────────────────────────────────────────
+\tikzstyle{block} = [rectangle, rounded corners=4pt, draw=schblue,
+                     fill=schblue!10, text width=2.6cm, align=center,
+                     minimum height=0.8cm, font=\scriptsize]
+\tikzstyle{blockw}= [rectangle, rounded corners=4pt, draw=schblue,
+                     fill=white, text width=5.5cm, align=left,
+                     minimum height=0.9cm, font=\small, inner sep=4pt]
+\tikzstyle{arr}   = [-{Stealth[length=5pt]}, thick, color=schblue]
+\tikzstyle{arrd}  = [-{Stealth[length=5pt]}, thick, color=schorange, dashed]
+
+% ── Helper commands ────────────────────────────────────────────────────────────
+\newcommand{\R}{\textsuperscript{2}}
+\newcommand{\pIC}{\(p\mathrm{IC}_{50}\)}
+\newcommand{\IC}{\(\mathrm{IC}_{50}\)}
+
+%% ============================================================
+%%  TITLE
+%% ============================================================
+\title[QSAR · Pharmacophore · REINVENT4]{%
+  Low-Data QSAR Modelling, Pharmacophore Generation\\
+  \& AI-Driven Molecular Design with REINVENT 4}
+\subtitle{Spiro-Piperidine Series C/E Dataset}
+\author{Destinee Zhu \and Roy}
+\institute{Computational Drug Discovery}
+\date{\today}
+
+\begin{document}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Outline}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+%% ============================================================
+\section{Project Overview}
+%% ============================================================
+
+\begin{frame}{Project Overview}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+      \begin{block}{Objective}
+        Build an end-to-end pipeline for a \textbf{small, proprietary dataset}
+        of spiro-piperidine compounds to:
+        \begin{enumerate}
+          \item Predict \pIC{} via classical ML (QSAR)
+          \item Build a 3-D pharmacophore using Schrödinger Phase
+          \item Drive \textbf{de novo} molecular generation via REINVENT~4
+        \end{enumerate}
+      \end{block}
+      \vspace{4pt}
+      \begin{alertblock}{Key Challenge}
+        $<$150 labelled data points \textrightarrow{} low-data ML regime
+      \end{alertblock}
+    \column{0.42\textwidth}
+      \begin{block}{Pipeline at a Glance}
+        \begin{center}
+          \begin{tikzpicture}[node distance=0.55cm]
+            \node[block,fill=schblue!20] (d) {Dataset\\preprocessing};
+            \node[block,fill=schemerald!20, below=of d] (q) {QSAR\\modelling};
+            \node[block,fill=schorange!20, below=of q] (p) {Pharmacophore\\(Phase)};
+            \node[block,fill=schred!20, below=of p]    (r) {REINVENT 4\\generation};
+            \draw[arr] (d)--(q);
+            \draw[arr] (q)--(p);
+            \draw[arr] (p)--(r);
+          \end{tikzpicture}
+        \end{center}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+%% ============================================================
+\section{Dataset Overview}
+%% ============================================================
+
+\begin{frame}{Dataset Overview}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Composition}
+        \begin{tabular}{lrr}
+          \toprule
+          \textbf{Group} & \textbf{n} & \textbf{IC\(_50\) range} \\
+          \midrule
+          Series C (active)  & -- & 0.78 – 10  \(\mu\)M \\
+          Series E (active)  & -- & 0.39 – 108 \(\mu\)M \\
+          Dropped rows       & 31 & 100 / 200 \(\mu\)M (limit) \\
+          Non-numeric rows   & 11 & \texttt{>100}, \texttt{<0.39} \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \begin{block}{Preprocessing}
+        \begin{itemize}
+          \item RDKit SMILES standardisation chain:\\
+                {\scriptsize Cleanup $\to$ FragmentParent $\to$ Uncharger\\
+                $\to$ TautomerEnumerator.Canonicalize}
+          \item \pIC{} = $-\log_{10}(\mathrm{IC}_{50}/10^6)$
+          \item SimpleImputer (median) for missing descriptors
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Descriptor Fingerprints Tested}
+        \begin{itemize}
+          \item \textbf{RDKit} 2-D descriptors (200 features)
+          \item \textbf{ECFP} r1, r2, r3 (Morgan)
+          \item \textbf{MACCS} keys (167 bits)
+          \item \textbf{Mordred} − full descriptor set
+        \end{itemize}
+      \end{block}
+      \begin{exampleblock}{Feature Dimensionality}
+        Best model uses \textbf{217 RDKit features}\\
+        (after imputation \& scaling)
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+%% ============================================================
+\section{QSAR Modelling}
+%% ============================================================
+
+\begin{frame}{QSAR Modelling – Approach}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{AutoML Strategy}
+        \begin{itemize}
+          \item Exhaustive grid over 9 regressors \(\times\) 4 descriptors
+          \item 5-fold stratified cross-validation
+          \item Metrics: \(R^2\), MAE on \pIC{}
+          \item Best model serialised as \\
+                \texttt{qsar\_best\_model.joblib}
+        \end{itemize}
+      \end{block}
+      \begin{block}{Regressors Evaluated}
+        {\small
+        KNN, Random Forest (RF), Extra Trees (ET),\\
+        Gradient Boosting (GB), LGBM, XGBoost,\\
+        CatBoost, MLP, Bayesian Ridge, Decision Tree
+        }
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Workflow}
+        \begin{center}
+          \scalebox{0.82}{
+          \begin{tikzpicture}[node distance=0.5cm]
+            \node[block,fill=schblue!15]  (s) {SMILES\\(standardised)};
+            \node[block,fill=schblue!20, below=of s] (d) {Descriptor\\computation};
+            \node[block,fill=schblue!20, below=of d] (i) {Impute +\\Scale};
+            \node[block,fill=schemerald!20,below=of i] (cv) {5-fold CV\\grid search};
+            \node[block,fill=schred!20,  below=of cv] (b) {Best model\\serialise};
+            \draw[arr](s)--(d); \draw[arr](d)--(i);
+            \draw[arr](i)--(cv); \draw[arr](cv)--(b);
+          \end{tikzpicture}}
+        \end{center}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{QSAR Results – Model Leaderboard (Top 10)}
+  \begin{center}
+    {\small
+    \begin{tabular}{llrrl}
+      \toprule
+      \textbf{Rank} & \textbf{Descriptor} & \textbf{Model} & \textbf{\(R^2\)} & \textbf{MAE} \\
+      \midrule
+      \rowcolor{schemerald!25}
+      \textbf{1} & RDKit   & KNN           & \textbf{0.887} & \textbf{0.118} \\
+      2 & ECFP r2  & MLP            & 0.790 & 0.148 \\
+      3 & RDKit    & Decision Tree  & 0.682 & 0.169 \\
+      4 & ECFP r3  & KNN            & 0.677 & 0.185 \\
+      5 & RDKit    & LGBM           & 0.540 & 0.233 \\
+      6 & RDKit    & Extra Trees    & 0.454 & 0.230 \\
+      7 & Mordred  & LGBM           & 0.453 & 0.243 \\
+      8 & MACCS    & Extra Trees    & 0.357 & 0.282 \\
+      9 & RDKit    & Bayesian Ridge & 0.191 & 0.272 \\
+      10& RDKit    & XGBoost        & 0.096 & 0.338 \\
+      \bottomrule
+    \end{tabular}
+    }
+    \vspace{6pt}
+
+    \begin{beamercolorbox}[wd=0.75\textwidth,sep=4pt,center,rounded=true]{palette primary}
+      \small \textbf{Best model:} RDKit + KNN \quad $R^2 = 0.887$,\; MAE $= 0.118$ \pIC{} units
+    \end{beamercolorbox}
+  \end{center}
+\end{frame}
+
+\begin{frame}{QSAR Predictions – Series C \& E}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Series C (Spiro-Piperidine)}
+        {\tiny
+        \begin{tabular}{cccc}
+          \toprule
+          \textbf{ID} & \textbf{Actual \pIC} & \textbf{Pred. \pIC} & \textbf{Pred. \IC{} (\(\mu\)M)} \\
+          \midrule
+          173-001 & 5.328 & 5.302 & 4.98 \\
+          174-001 & 5.009 & 5.183 & 6.57 \\
+          220-001 & 6.107 & 5.931 & 1.17 \\
+          221-001 & -- (>200) & 4.848 & 14.18 \\
+          175-001 & 5.165 & 5.215 & 6.09 \\
+          211-001 & 5.745 & 5.909 & 1.23 \\
+          \bottomrule
+        \end{tabular}
+        }
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Series E (Spiro-Piperidine-2)}
+        {\tiny
+        \begin{tabular}{ccc}
+          \toprule
+          \textbf{ID} & \textbf{Pred. \pIC} & \textbf{Pred. \IC{} (\(\mu\)M)} \\
+          \midrule
+          308   & 4.883 & 13.08 \\
+          307   & 4.467 & 34.11 \\
+          287   & 5.132 &  7.38 \\
+          286   & 4.953 & 11.15 \\
+          277   & 5.621 &  2.39 \\
+          275   & 4.563 & 27.33 \\
+          268   & 4.767 & 17.09 \\
+          \bottomrule
+        \end{tabular}
+        }
+      \end{block}
+  \end{columns}
+  \vspace{4pt}
+  \begin{exampleblock}{Observation}
+    Predictions are consistent with experimental order of potency;
+    compound \textbf{220-001} (IC\(_{50}\) $\approx$ 0.8 $\mu$M) correctly ranked
+    highest in Series C.
+  \end{exampleblock}
+\end{frame}
+
+%% ============================================================
+\section{Pharmacophore Modelling (Schrödinger Phase)}
+%% ============================================================
+
+\begin{frame}{Pharmacophore Pipeline – Schrödinger API Process}
+  \begin{center}
+    \scalebox{0.78}{
+    \begin{tikzpicture}[node distance=0.5cm and 0.8cm]
+      % Nodes
+      \node[block,fill=schblue!15,text width=2.9cm]   (s0) {Input SMILES\\(actives + inactives)};
+      \node[block,fill=schblue!20,text width=2.4cm, right=1.1cm of s0] (s1)
+            {\textbf{Step 1}\\SMILES $\to$\\Schrödinger\\Structure};
+      \node[block,fill=schblue!20,text width=2.4cm, right=1.1cm of s1] (s2)
+            {\textbf{Step 2}\\LigPrep\\(ionisation,\\tautomers)};
+      \node[block,fill=schorange!20,text width=2.4cm, right=1.1cm of s2] (s3)
+            {\textbf{Step 3}\\ConfGen\\(MAX\_CONFS=100,\\E-window=10 kcal)};
+
+      \node[block,fill=schgreen!20,text width=2.4cm, below=1.1cm of s3] (s4)
+            {\textbf{Step 4}\\Phase CPH\\Hypothesis\\(AHHR\_1)};
+      \node[block,fill=schgreen!20,text width=2.4cm, left=1.1cm of s4] (s5)
+            {\textbf{Step 5}\\phase\_screen\\actives+inactives\\(-match 3)};
+      \node[block,fill=schemerald!20,text width=2.4cm, left=1.1cm of s5] (s6)
+            {\textbf{Step 6}\\Metrics\\ROC-AUC\\EF, CM};
+      \node[block,fill=schred!10,text width=2.4cm, left=1.1cm of s6] (s7)
+            {\textbf{Step 7}\\Save outputs\\CSV + MAE\\logs};
+
+      % Arrows top row
+      \draw[arr] (s0)--(s1);
+      \draw[arr] (s1)--(s2);
+      \draw[arr] (s2)--(s3);
+      % Down
+      \draw[arr] (s3)--(s4);
+      % Reverse bottom row
+      \draw[arr] (s4)--(s5);
+      \draw[arr] (s5)--(s6);
+      \draw[arr] (s6)--(s7);
+
+      % Labels below nodes
+      \node[font=\scriptsize,color=gray,below=0.05cm of s1] {\texttt{SmilesStructure()}};
+      \node[font=\scriptsize,color=gray,below=0.05cm of s2] {\texttt{ligprep -ismi}};
+      \node[font=\scriptsize,color=gray,below=0.05cm of s3] {\texttt{confgen -c \$n}};
+      \node[font=\scriptsize,color=gray,below=0.05cm of s4] {\texttt{phase\_hypo}};
+      \node[font=\scriptsize,color=gray,below=0.05cm of s5] {\texttt{phase\_screen}};
+    \end{tikzpicture}
+    }
+  \end{center}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Feature Set}
+        \textbf{AHHR\_1} hypothesis includes features:\\
+        D (H-bond donor), A (H-bond acceptor),\\
+        H (hydrophobic), R (aromatic ring)
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Phase Constants}
+        Min sites = \textbf{4}, Max sites = \textbf{6}\\
+        RMSD pruning = \textbf{1.0 \AA}\\
+        NCPUS = all available (24)
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pharmacophore Model – Hypothesis AHHR\_1}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Hypothesis Schematic}
+        \begin{center}
+          \begin{tikzpicture}[scale=0.85]
+            % Feature spheres
+            \filldraw[fill=blue!40, draw=blue!70]   (-1.5, 1.2) circle (0.45) node[white,font=\scriptsize\bfseries]{A};
+            \filldraw[fill=green!50!black, draw=green!70] (0.0, 2.0) circle (0.45) node[white,font=\scriptsize\bfseries]{H};
+            \filldraw[fill=orange!70, draw=orange!80]    (1.5, 1.2) circle (0.45) node[white,font=\scriptsize\bfseries]{H};
+            \filldraw[fill=red!60, draw=red!70]          (0.0, 0.0) circle (0.45) node[white,font=\scriptsize\bfseries]{R};
+            % Distances
+            \draw[dashed,gray,thick] (-1.5,1.2) -- (0,2.0) node[midway,above,font=\tiny]{4.1\,\AA};
+            \draw[dashed,gray,thick] (0,2.0) -- (1.5,1.2) node[midway,above right,font=\tiny]{3.8\,\AA};
+            \draw[dashed,gray,thick] (-1.5,1.2) -- (0,0.0) node[midway,left,font=\tiny]{3.2\,\AA};
+            \draw[dashed,gray,thick] (0,0.0) -- (1.5,1.2) node[midway,right,font=\tiny]{3.5\,\AA};
+          \end{tikzpicture}
+        \end{center}
+        {\scriptsize
+        \textbf{A} = H-bond Acceptor \quad \textbf{H} = Hydrophobic\\
+        \textbf{R} = Aromatic Ring \quad (4-feature hypothesis)
+        }
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Phase Feature Codes Used}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{Code} & \textbf{Feature} & \textbf{Atoms} \\
+          \midrule
+          D & H-bond Donor    & N–H, O–H \\
+          A & H-bond Acceptor & N, O, F \\
+          H & Hydrophobic     & C, S, halogens \\
+          R & Aromatic Ring   & 5/6-mem. rings \\
+          P & Pos. Ionisable  & amines \\
+          N & Neg. Ionisable  & acids \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \begin{alertblock}{Note}
+        Current screening against AHHR\_1 yields zero hits for all
+        151 compounds, suggesting chemical incompatibility of the
+        spiro-piperidine scaffold with this hypothesis.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pharmacophore – Evaluation \& Scoring}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Metrics Computed by Pipeline}
+        \begin{itemize}
+          \item \textbf{ROC-AUC}: area under receiver-operating curve
+          \item \textbf{Enrichment Factor (EF1\%)}: quality at top 1\%
+          \item \textbf{Confusion matrix}: TP, FP, TN, FN
+          \item \textbf{Phase score}: fitness to hypothesis per compound
+          \item \textbf{Binary hit}: 1 if matches $\geq$ 3 features
+        \end{itemize}
+      \end{block}
+      \begin{block}{Interpretation}
+        \begin{tabular}{lrr}
+          \toprule
+          & \textbf{Series C} & \textbf{Series E} \\
+          \midrule
+          \# predicted hits  & 0 & 0 \\
+          pharm score (mean) & 0.00 & 0.00 \\
+          \bottomrule
+        \end{tabular}\\[4pt]
+        \small ROC-AUC $\approx$ 0.50 (random) –– confirms\\
+        hypothesis–scaffold mismatch
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Why Zero Hits?}
+        \begin{itemize}
+          \item Spiro-piperidine scaffold presents features in
+                unusual 3-D geometry
+          \item AHHR\_1 built on a different (reference) chemotype
+          \item Conformational sampling (MAX 100) may still miss
+                the bioactive conformer
+          \item Possible fix: run Phase with additional hypotheses
+                (AHHR\_2 – AHHR\_8) or generate a \textbf{new} CPH
+                seeded from Series C/E aligned conformers
+        \end{itemize}
+      \end{block}
+      \begin{exampleblock}{Next Step}
+        Re-build pharmacophore from scratch using the most potent
+        compounds (IC\(_{50}\) $<$ 1 \(\mu\)M) as actives
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+%% ============================================================
+\section{Integration with REINVENT 4}
+%% ============================================================
+
+\begin{frame}{REINVENT 4 – Architecture \& Modes}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+      \begin{block}{What is REINVENT 4?}
+        Open-source molecular generative model (AstraZeneca)
+        based on \textbf{recurrent neural networks + reinforcement
+        learning}. Supports:
+        \begin{itemize}
+          \item \textbf{Reinvent} − SMILES-level RL
+          \item \textbf{LibInvent} − R-group decoration
+          \item \textbf{LinkInvent} − fragment linking
+          \item \textbf{Mol2Mol} − molecular translation
+        \end{itemize}
+      \end{block}
+      \begin{block}{Scoring Components Used in This Work}
+        \begin{itemize}
+          \item Custom QSAR scorer (\texttt{reinvent\_qsar\_pharm\_score.py})
+          \item Tanimoto similarity to Series C/E seeds
+          \item QSAR predicted \pIC{} threshold filter
+          \item Pharmacophore screen (Phase)
+        \end{itemize}
+      \end{block}
+    \column{0.42\textwidth}
+      \begin{block}{Staged RL Loop}
+        \begin{center}
+          \begin{tikzpicture}[node distance=0.52cm]
+            \node[block,fill=schblue!15,text width=3.0cm]  (p)  {Prior model\\(pretrained SMILES RNN)};
+            \node[block,fill=schorange!15,text width=3.0cm, below=of p] (a)  {Agent samples\\SMILES batch};
+            \node[block,fill=schemerald!15,text width=3.0cm,below=of a] (sc) {QSAR + Pharm\\scoring};
+            \node[block,fill=schred!15,text width=3.0cm,   below=of sc] (rl) {PPO reward\\update};
+            \draw[arr](p)--(a); \draw[arr](a)--(sc);
+            \draw[arr](sc)--(rl);
+            \draw[arrd] (rl.east) .. controls+(1.2,0) and+(1.2,0) .. (a.east)
+                  node[midway,right,font=\tiny,color=schorange]{iterate};
+          \end{tikzpicture}
+        \end{center}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{REINVENT 4 – Configuration \& Staged Runs}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Generation Modes Configured}
+        \begin{tabular}{ll}
+          \toprule
+          \textbf{Config} & \textbf{Strategy} \\
+          \midrule
+          \texttt{similarity}         & Tanimoto RL \\
+          \texttt{scaffold\_hopping}  & Scaffold diversification \\
+          \texttt{scaffold\_generation}& New scaffolds \\
+          \texttt{guided\_quick}      & QSAR-guided fast run \\
+          \texttt{mol2mol}            & Molecular translation \\
+          \texttt{libinvent}          & R-group decoration \\
+          \texttt{linkinvent}         & Fragment linking \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Custom Scoring Script (excerpt)}
+        \begin{lstlisting}[language=Python]
+def score(smiles: list[str]) -> list[float]:
+    scores = []
+    for smi in smiles:
+        qsar_s = qsar_model.predict(smi)
+        pharm_s = phase_screen(smi)
+        scores.append(0.7*qsar_s + 0.3*pharm_s)
+    return scores
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+  \begin{exampleblock}{Transfer Learning Seed}
+    Motif-positive seeds (\textit{n} = filtered subset of Series C/E)
+    used for transfer learning (\texttt{reinvent\_transfer\_motif\_seeds.toml})
+    to bias the prior toward the spiro-piperidine motif.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{REINVENT 4 – Generated Molecules (Initial Sampling)}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Sampling Results}
+        \begin{itemize}
+          \item \textbf{Initial sampling}: \texttt{initial\_samples.csv}
+          \item \textbf{Guided quick}: \texttt{initial\_samples\_guided\_quick.csv}
+          \item \textbf{Motif focused}: \texttt{initial\_samples\_motif\_focus.csv}
+        \end{itemize}
+        Outputs include full SMILES, scores, and stage checkpoints:
+        \texttt{reinvent\_series\_ce\_*.chkpt}
+      \end{block}
+      \begin{block}{Post-Processing}
+        \texttt{post\_screen.py} filters generated SMILES by:
+        \begin{enumerate}
+          \item Validity (RDKit parse)
+          \item Predicted \pIC{} $> 5.0$ (IC\(_{50} <\) 10 \(\mu\)M)
+          \item Optional pharmacophore match
+        \end{enumerate}
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Diversity Strategy}
+        \begin{center}
+          \scalebox{0.82}{
+          \begin{tikzpicture}
+            \draw[thick,schblue,fill=schblue!10] (0,0) ellipse (1.8 and 0.9)
+                  node[font=\scriptsize\bfseries]{Series C/E seeds};
+            \draw[thick,schorange,fill=schorange!10,opacity=0.7]
+                  (1.4,0.0) ellipse (1.4 and 0.7)
+                  node[right,font=\scriptsize]{similarity};
+            \draw[thick,schred,fill=schred!10,opacity=0.5]
+                  (-1.0,0.6) ellipse (1.6 and 0.75);
+            \node[font=\scriptsize,color=schred] at (-1.5,1.4){scaffold hop};
+            \node[font=\scriptsize,color=schemerald!70!black] at (0,-1.6){Generated molecules};
+            \draw[->,schemerald!70!black,thick] (0,-1.4) -- (0,-0.9);
+          \end{tikzpicture}
+          }
+        \end{center}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+%% ============================================================
+\section{Challenges}
+%% ============================================================
+
+\begin{frame}{Challenges Encountered}
+  \begin{enumerate}
+    \item \textbf{Low-data ML:}
+          \begin{itemize}
+            \item $<$150 labelled points $\Rightarrow$ high variance in CV metrics
+            \item KNN outperforms deep methods -- typical in low-data settings
+          \end{itemize}
+
+    \vspace{4pt}
+    \item \textbf{Pharmacophore–Scaffold Mismatch:}
+          \begin{itemize}
+            \item Phase hypothesis AHHR\_1 returns \textbf{zero hits} for all compounds
+            \item Likely due to unusual 3-D geometry of the spiro-piperidine motif
+            \item Phase screening with \texttt{-match 3} (loose) still gives no matches
+          \end{itemize}
+
+    \vspace{4pt}
+    \item \textbf{Software Environment Inconsistencies:}
+          \begin{itemize}
+            \item Conda \texttt{qsar-env}: 210 RDKit features \; $\neq$ \;
+                  artifact expects 217 $\Rightarrow$ always use \texttt{.venv}
+            \item UMAP \texttt{check\_array(force\_all\_finite)} API mismatch
+                  in conda env
+          \end{itemize}
+
+    \vspace{4pt}
+    \item \textbf{Git Large-File Push Failure:}
+          \begin{itemize}
+            \item REINVENT4 \texttt{.prior} binaries ($\sim$2 GB) caused HTTP 500
+            \item Resolved via \texttt{git reset --mixed} + \texttt{.gitignore} update
+          \end{itemize}
+
+    \vspace{4pt}
+    \item \textbf{Non-Numeric IC\(_50\) Values:}
+          \begin{itemize}
+            \item Entries labelled \texttt{>100} or \texttt{<0.39}\;
+                  handled as auxiliary set with standardised SMILES predictions
+          \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+%% ============================================================
+\section{Conclusions \& Future Work}
+%% ============================================================
+
+\begin{frame}{Conclusions \& Future Work}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Achieved}
+        \begin{itemize}
+          \item[$\checkmark$] Best QSAR model: \textbf{RDKit + KNN},
+                $R^2 = 0.887$, MAE $= 0.118$ \pIC{}
+          \item[$\checkmark$] Predictions on entire dataset including
+                dropped and non-numeric rows
+          \item[$\checkmark$] Pharmacophore pipeline (7-step Schrödinger API)
+                fully automated
+          \item[$\checkmark$] REINVENT~4 staged RL runs across 7 modes
+          \item[$\checkmark$] End-to-end pipeline version-controlled
+                and pushed to GitHub (excl. priors)
+        \end{itemize}
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Planned Next Steps}
+        \begin{itemize}
+          \item Rebuild pharmacophore from scratch with highly potent
+                actives (IC$_{50} < 1\,\mu$M) as reference ligands
+          \item Investigate AHHR\_2--AHHR\_8 hypotheses
+          \item Validate generated compounds with Glide docking
+          \item Expand dataset with ChEMBL analogues for data augmentation
+          \item Apply 3-D shape-based scoring (ROCS) as additional REINVENT scorer
+        \end{itemize}
+      \end{block}
+  \end{columns}
+  \vspace{8pt}
+  \begin{center}
+    \begin{beamercolorbox}[wd=0.85\linewidth,sep=6pt,center,rounded=true]{palette primary}
+      \textbf{Pipeline:}
+      Dataset preprocessing $\;\to\;$ QSAR AutoML $\;\to\;$
+      Phase pharmacophore $\;\to\;$ REINVENT~4 generation
+    \end{beamercolorbox}
+  \end{center}
+\end{frame}
+
+%% ============================================================
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\Huge\textbf{\textcolor{schblue}{Thank You}}}\\[1.2cm]
+    {\large Questions \& Discussion}\\[0.8cm]
+    \hrule
+    \vspace{0.4cm}
+    {\small
+    \textbf{Repository:}
+    \href{https://github.com/bhatnira/Tzu-qsar-generative-model}{%
+          github.com/bhatnira/Tzu-qsar-generative-model}\\[0.3cm]
+    \textbf{Tools:} RDKit · Schrödinger Suite 2026-1 · REINVENT~4 ·
+    scikit-learn · LightGBM · XGBoost
+    }
+  \end{center}
+\end{frame}
+
+\end{document}

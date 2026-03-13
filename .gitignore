@@ -6,6 +6,18 @@ pharm_outputs/
 *.maegz
 *.phypo
 pipeline_run.log
+
+# LaTeX build artifacts
+presentation/*.aux
+presentation/*.log
+presentation/*.nav
+presentation/*.out
+presentation/*.snm
+presentation/*.toc
+presentation/*.vrb
+presentation/*.fls
+presentation/*.fdb_latexmk
+
 *.prior
 15641297.zip
 reinvent_integration/priors/
