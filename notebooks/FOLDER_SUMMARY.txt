@@ -1,0 +1,20 @@
+Folder: notebooks
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Notebook assets and exported notebook-related materials.
+
+Contents
+--------
+Subfolders: 0
+Files: 3
+- Copy_of_Qsar_Model_classical_aproach_Problem_Specific_low_data_qsar_modeling_Destinee_Zhu_Roy.ipynb (1110.3 KB)
+- Excluded_Data_Analysis.ipynb (12.5 KB)
+- QSAR_Debug_Pipeline.ipynb (301.4 KB)
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

@@ -1,0 +1,11 @@
+## Sampling from Series C/E Transfer-Learned model
+## Fine-tuned on 13 Series C/E compounds - generates Series C/E-like scaffolds
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/results/series_ce_tuned_reinvent.model"
+num_smiles = 5000
+output_file = "reinvent_integration/results/series_ce_tuned_raw_samples.csv"
+unique_molecules = false
+randomize_smiles = true

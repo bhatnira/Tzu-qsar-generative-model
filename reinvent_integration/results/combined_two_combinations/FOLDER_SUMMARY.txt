@@ -1,0 +1,32 @@
+Folder: reinvent_integration/results/combined_two_combinations
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Intermediate and final REINVENT training, sampling, and scoring artifacts.
+
+Contents
+--------
+Subfolders: 0
+Files: 3
+- Generated_all_modes_combined.csv (752.4 KB)
+- Generated_combo_no_preservation.csv (751.5 KB)
+- Generated_combo_preserve_or_similar_SMARTS.csv (5.9 KB)
+
+Schema / structure detected
+-------------------------
+File: Generated_all_modes_combined.csv
+- Type: CSV
+- Columns: canonical_smiles, murcko_scaffold, novel_scaffold, pred_log10_ic50_uM, pred_ic50_uM, max_sim_to_seriesCE, has_spiro_motif, drug_like, mw, logp, hbd, hba, rot_bonds, tpsa, source_mode
+File: Generated_combo_no_preservation.csv
+- Type: CSV
+- Columns: canonical_smiles, murcko_scaffold, novel_scaffold, pred_log10_ic50_uM, pred_ic50_uM, max_sim_to_seriesCE, has_spiro_motif, drug_like, mw, logp, hbd, hba, rot_bonds, tpsa, source_mode
+File: Generated_combo_preserve_or_similar_SMARTS.csv
+- Type: CSV
+- Columns: canonical_smiles, murcko_scaffold, novel_scaffold, pred_log10_ic50_uM, pred_ic50_uM, max_sim_to_seriesCE, has_spiro_motif, drug_like, mw, logp, hbd, hba, rot_bonds, tpsa, source_mode
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

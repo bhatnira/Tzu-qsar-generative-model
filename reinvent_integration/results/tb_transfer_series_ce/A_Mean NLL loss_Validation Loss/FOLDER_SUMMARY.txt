@@ -1,0 +1,18 @@
+Folder: reinvent_integration/results/tb_transfer_series_ce/A_Mean NLL loss_Validation Loss
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Intermediate and final REINVENT training, sampling, and scoring artifacts.
+
+Contents
+--------
+Subfolders: 0
+Files: 1
+- events.out.tfevents.1773362297.panacea.1769394.3 (0.3 KB)
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

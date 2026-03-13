@@ -1,0 +1,32 @@
+Folder: reinvent_integration/results/mol2mol_rl_adme
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Mol2Mol reinforcement-learning training and sampling artifacts for QSAR+ADME optimization.
+
+What was done here
+------------------
+- Used Mol2Mol reinforcement learning with a combined QSAR + ADME objective.
+- Optimization targeted predicted IC50 <= 5 uM, cLogP 1-3.5, logS >= -6.0, microsome clearance <= 70, hepatocyte clearance <= 80, and half-life >= 40.
+
+Contents
+--------
+Subfolders: 0
+Files: 4
+- mol2mol_rl_adme.chkpt (78320.0 KB)
+- sample.log (5.6 KB)
+- samples.csv (261.0 KB)
+- train.log (176.0 KB)
+
+Schema / structure detected
+-------------------------
+File: samples.csv
+- Type: CSV
+- Columns: SMILES, SMILES_state, Input_SMILES, Tanimoto, NLL
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

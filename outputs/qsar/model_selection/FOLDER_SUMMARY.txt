@@ -1,0 +1,28 @@
+Folder: outputs/qsar/model_selection
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+QSAR prediction outputs and supporting exports.
+
+Contents
+--------
+Subfolders: 0
+Files: 2
+- model_results.csv (2.9 KB)
+- model_selection_results.csv (2.9 KB)
+
+Schema / structure detected
+-------------------------
+File: model_results.csv
+- Type: CSV
+- Columns: Descriptor, Model, R2
+File: model_selection_results.csv
+- Type: CSV
+- Columns: Descriptor, Model, R2
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

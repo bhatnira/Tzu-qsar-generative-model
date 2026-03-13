@@ -1,0 +1,120 @@
+18:59:14 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-13
+18:59:14 <INFO> Command line: .venv/bin/reinvent -l reinvent_integration/results/mol2mol_rl_adme/sample.log reinvent_integration/configs/sample_reinforcement_learning_mol2mol_adme.toml
+18:59:14 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/sample_reinforcement_learning_mol2mol_adme.toml using format toml
+18:59:14 <INFO> User nbhatta1 on host panacea
+18:59:14 <INFO> Python version 3.11.13
+18:59:14 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+18:59:14 <INFO> PyTorch compiled with CUDA version 12.8
+18:59:14 <INFO> RDKit version 2025.09.6
+18:59:14 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+18:59:14 <INFO> CUDA driver version 590.48.01
+18:59:14 <INFO> Number of PyTorch CUDA devices 1
+18:59:14 <WARN> 'use_cuda' is deprecated, use 'device' instead
+18:59:14 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+18:59:14 <INFO> GPU memory: 46124 MiB free, 48400 MiB total
+18:59:14 <INFO> Starting Sampling
+18:59:14 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_rl_adme/mol2mol_rl_adme.chkpt has valid hash:
+{ 'comments': ['RL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aabc3cd31f1888c64a26646538ed0cbb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': '595a7122492447e0b10b11b6cf47b2ae',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': [1773442728.6873133]}
+18:59:14 <INFO> Number of network parameters: 17,462,400
+18:59:14 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=128, bias=True)
+  )
+)
+18:59:14 <INFO> Using generator Mol2Mol
+18:59:14 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/mol2mol_rl_adme/samples.csv
+18:59:14 <INFO> Sampling 1950 SMILES from model reinvent_integration/results/mol2mol_rl_adme/mol2mol_rl_adme.chkpt
+18:59:26 <INFO> Sampled SMILES CC1C(=O)N(c2ccc(C#CCCCO)cc2)CCCO1CCN(Cc1cc([N+](=O)[O-])cc(C#N)c1)CC1CC1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES CC(C)#Cc1cncc(N2CCC3(CCN(C(=O)N4CC[C@@H](O)C4)C3)C2)c1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES CC(=O)c1cc(N2CCC3(CC2)CN(C(=O)OC(C)(C)C)C3)nn1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES O[C@H]1CN(c2cccnc2C#Cc2cccnc2)C[C@@H](C[nH](=O)C2CNC2)C1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES NC(=O)N[C@@H]1C[C@H]2(CC1)C[C@H](c1ccnc(N3CCc4ccccc4C3)n1)C2 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES COCCNC(=O)N1CCC2(CC1)CCN(c1cncc(C#Cc3ccc(-n4cnnn4)c3)c1)C2 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES CC(C)#Cc1cncc(N2CCC3(CCN(C(=O)c4cncc(C#CCCO)c4)C3)C2)n1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES O=N1CCC2(CCN(c3cncc(N4CCC(OCc5cccnc5)CC4)c3)C2)C1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES CC(=O)NC1CCCc2cc(CN3CC4(CCN(c5cncc(C#CCCCC(=O)O)c5)C4)C3)ccn21 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES [C@@H](#Cc1cncc(N2CCNCC2)c1)c1ccccc1 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES CC(=O)N1[C@H]2CC[C@@H]1C[C@](C)(C(=O)Nc1cccn(-c3ccccc3)n1)C2 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES O=C(O)C[C@@H]1C[C@H]12CN(c1cncc(C#Cc3cccc(-n4cnnn4)c3)c1)C2 failed to sanitize.
+18:59:26 <INFO> Sampled SMILES O=[N+]([O-])c1cc(COC2CC2)cc(CN2CC3(CCN(Cc4ncnc[nH]4)C3)C2)c1 failed to sanitize.
+18:59:26 <INFO> Peak main memory usage: 1833.438 MiB
+18:59:26 <INFO> Finished REINVENT on 2026-03-13

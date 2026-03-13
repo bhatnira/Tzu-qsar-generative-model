@@ -1,0 +1,12 @@
+run_type = "sampling"
+device = "cuda"
+
+[parameters]
+model_file = "reinvent_integration/priors/mol2mol_similarity.prior"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+sample_strategy = "multinomial"
+temperature = 1.0
+output_file = "reinvent_integration/results/mol2mol_plain/samples.csv"
+num_smiles = 150
+unique_molecules = false
+randomize_smiles = false

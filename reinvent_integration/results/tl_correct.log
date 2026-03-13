@@ -1,0 +1,47 @@
+16:52:14 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-13
+16:52:14 <INFO> Command line: .venv/bin/reinvent -l reinvent_integration/results/tl_correct.log reinvent_integration/configs/transfer_series_ce_from_prior.toml
+16:52:14 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/transfer_series_ce_from_prior.toml using format toml
+16:52:14 <INFO> User nbhatta1 on host panacea
+16:52:14 <INFO> Python version 3.11.13
+16:52:14 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+16:52:14 <INFO> PyTorch compiled with CUDA version 12.8
+16:52:14 <INFO> RDKit version 2025.09.6
+16:52:14 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+16:52:14 <INFO> CUDA driver version 590.48.01
+16:52:14 <INFO> Number of PyTorch CUDA devices 1
+16:52:14 <WARN> 'use_cuda' is deprecated, use 'device' instead
+16:52:14 <INFO> Using CPU x86_64
+16:52:14 <INFO> Writing TensorBoard summary to /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/tb_transfer_seriesce_correct
+16:52:14 <INFO> Starting Transfer Learning
+16:52:14 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/reinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+16:52:14 <INFO> Number of network parameters: 5,805,602
+16:52:14 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+16:52:14 <INFO> Using generator Reinvent
+16:52:14 <INFO> Applying filter default to input SMILES
+16:52:14 <INFO> Read 13 input SMILES from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/data/series_ce_unique.smi
+16:52:14 <INFO> Read 13 validation SMILES from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/data/series_ce_unique.smi
+16:52:16 <INFO> Sampled SMILES c1c([N+](=O)[O-])c(N)cc2[nH]c(=O)c3nc(=O)[nH]c3c12 failed to sanitize.
+16:52:16 <INFO> Sampled SMILES C(c1csc(C2CC(CN=c3[nH]ccc(-n4ncc5c4ccc4[nH][nH]cc45)n3)C2)n1)C failed to sanitize.
+16:52:16 <INFO> Sampled SMILES c1c2c(ccc1)C1(C(c3ccccc3)C3c4ccccc4CCN3C1(C)C)OC=2 failed to sanitize.
+16:52:16 <INFO> Sampled SMILES C1CC2(c3cccc(NC(c4c5n(c6cccc(C(O)=O)c6cn5)ccc4)=O)c3)CCC1(CCOCCCOC)CC2 failed to sanitize.
+16:52:17 <INFO> Sampled SMILES C1Cc2[nH]c(=N)nc3c2c1n(-c1ccc(OC)c(Cl)c1)c(=S)[nH]3 failed to sanitize.
+16:52:17 <INFO> Sampled SMILES c1ccc(C(OC2C3(O)C(O)(COC(=O)C)(C4(OC4)C2)C2(COC(C(OC(C)=O)(C)C)CC2C)O3)=O)cc1 failed to sanitize.
+16:52:18 <INFO> Sampled SMILES c1sc(N)c2c(-c3ccc(N(C)C)cc3)n(-c3ccc(-c4noc(CC)n4)cc3)c(-c3c(O)cccc3)c12 failed to sanitize.
+16:52:18 <INFO> Best validation loss (26.864) was at epoch 20
+16:52:18 <WARN> No clear minimum found in validation loss. Consider training your model for additional epochs.
+16:52:18 <INFO> Peak main memory usage: 1335.102 MiB
+16:52:18 <INFO> Finished REINVENT on 2026-03-13

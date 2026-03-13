@@ -1,0 +1,4 @@
+canonical_smiles,murcko_scaffold,novel_scaffold,pred_log10_ic50_uM,pred_ic50_uM,max_sim_to_seriesCE,has_spiro_motif,drug_like,mw,logp,hbd,hba,rot_bonds,tpsa
+[N+][N+],,0,2.0077,101.7999,0.0333,0,0,28.01,-0.96,0,0,0,44.6
+[N+][N+]F,,0,2.0347,108.3098,0.0179,0,0,47.01,-0.54,0,0,0,36.4
+[O-]O[O-],,0,2.0779,119.6418,0.0208,0,0,48.0,-2.45,0,3,0,55.35

@@ -1,0 +1,58 @@
+Folder: reinvent_integration/configs
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Configuration files for REINVENT generation, transfer learning, RL, curriculum learning, and sampling workflows.
+
+What was done here
+------------------
+- Files in this folder were used to define sampling, transfer learning, RL, curriculum learning, and model-family-specific runs.
+
+Contents
+--------
+Subfolders: 0
+Files: 37
+- create_reinvent_prior_series_ce.toml (0.4 KB)
+- curriculum_learning_adme.toml (2.4 KB)
+- curriculum_learning_adme_stage2.toml (1.5 KB)
+- curriculum_learning_mol2mol_adme_stage1.toml (1.5 KB)
+- curriculum_learning_mol2mol_adme_stage2.toml (1.6 KB)
+- libinvent_staged_qsar_pharm.toml (1.1 KB)
+- linkinvent_staged_qsar_pharm.toml (1.1 KB)
+- mol2mol_staged_qsar_pharm.toml (1.1 KB)
+- reinforcement_learning_adme.toml (1.5 KB)
+- reinforcement_learning_mol2mol_adme.toml (1.5 KB)
+- reinvent_sampling_guided_quick.toml (0.3 KB)
+- reinvent_sampling_initial.toml (0.3 KB)
+- reinvent_sampling_scaffold_generation.toml (0.3 KB)
+- reinvent_sampling_scaffold_hopping.toml (0.3 KB)
+- reinvent_sampling_similarity.toml (0.3 KB)
+- reinvent_staged_qsar_pharm.toml (1.1 KB)
+- reinvent_staged_series_ce_guided.toml (1.4 KB)
+- reinvent_staged_series_ce_scaffold_generation.toml (1.5 KB)
+- reinvent_staged_series_ce_scaffold_hopping.toml (1.5 KB)
+- reinvent_staged_series_ce_similarity.toml (1.4 KB)
+- reinvent_transfer_motif_seeds.toml (0.3 KB)
+- reinvent_transfer_series_ce.toml (0.6 KB)
+- sample_all_libinvent.toml (0.3 KB)
+- sample_all_linkinvent.toml (0.3 KB)
+- sample_all_mol2mol.toml (0.4 KB)
+- sample_all_reinvent.toml (0.3 KB)
+- sample_curriculum_learning_adme.toml (0.3 KB)
+- sample_curriculum_learning_mol2mol_adme.toml (0.4 KB)
+- sample_finetuned_seriesce.toml (0.3 KB)
+- sample_reinforcement_learning_adme.toml (0.3 KB)
+- sample_reinforcement_learning_mol2mol_adme.toml (0.4 KB)
+- sample_series_ce_mol2mol_plain.toml (0.4 KB)
+- sample_series_ce_scaffold_generation.toml (0.5 KB)
+- sample_series_ce_scaffold_hopping.toml (0.4 KB)
+- sample_series_ce_similarity.toml (0.4 KB)
+- sample_series_ce_tuned.toml (0.4 KB)
+- transfer_series_ce_from_prior.toml (0.7 KB)
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

@@ -1,0 +1,28 @@
+Folder: outputs/qsar/non_numeric
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+QSAR prediction outputs and supporting exports.
+
+Contents
+--------
+Subfolders: 0
+Files: 2
+- Non_numeric_IC50_predictions.csv (4.0 KB)
+- Non_numeric_rows_predictions.csv (4.1 KB)
+
+Schema / structure detected
+-------------------------
+File: Non_numeric_IC50_predictions.csv
+- Type: CSV
+- Columns: Identifier, Series, Canonical SMILES, Canonical SMILES.1, IC50 uM, PIC50, Series_Name, Series_Code, Valid_SMILES, SMILES_Error, Clean_SMILES, Canonical_SMILES, cleanedMol, Predicted_IC50
+File: Non_numeric_rows_predictions.csv
+- Type: CSV
+- Columns: Identifier, Series, Canonical SMILES, Canonical SMILES.1, IC50 uM, PIC50, Series_Name, Series_Code, Valid_SMILES, SMILES_Error, Clean_SMILES, Canonical_SMILES, Predicted_IC50, Predicted_IC50_uM, Predicted_pIC50
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

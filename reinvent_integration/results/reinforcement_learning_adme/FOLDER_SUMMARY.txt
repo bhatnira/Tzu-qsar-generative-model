@@ -1,0 +1,31 @@
+Folder: reinvent_integration/results/reinforcement_learning_adme
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+REINVENT reinforcement-learning artifacts for QSAR+ADME optimization.
+
+What was done here
+------------------
+- Used REINVENT reinforcement learning with the external QSAR + ADME scorer.
+
+Contents
+--------
+Subfolders: 0
+Files: 4
+- rl_adme.chkpt (22684.6 KB)
+- sample.log (6.0 KB)
+- samples.csv (114.1 KB)
+- train.log (200.0 KB)
+
+Schema / structure detected
+-------------------------
+File: samples.csv
+- Type: CSV
+- Columns: SMILES, SMILES_state, NLL
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

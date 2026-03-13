@@ -1,0 +1,33 @@
+Folder: reinvent_integration
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Project folder containing source, data, configuration, or generated artifacts.
+
+Contents
+--------
+Subfolders: 6
+- artifacts/
+- configs/
+- data/
+- logs/
+- priors/
+- results/
+Files: 10
+- build_qsar_artifact.py (6.9 KB)
+- export_qsar_model.py (3.3 KB)
+- pharm_screen_series.py (3.4 KB)
+- populate_output_series.py (5.3 KB)
+- post_screen.py (22.6 KB)
+- prepare_series_ce_data.py (3.3 KB)
+- README.md (4.2 KB)
+- reinvent_qsar_adme_score.py (8.5 KB)
+- reinvent_qsar_pharm_score.py (19.2 KB)
+- score_generated_smiles_adme.py (7.5 KB)
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

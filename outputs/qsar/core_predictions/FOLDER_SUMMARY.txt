@@ -1,0 +1,28 @@
+Folder: outputs/qsar/core_predictions
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+QSAR prediction outputs and supporting exports.
+
+Contents
+--------
+Subfolders: 0
+Files: 2
+- SeriesC_test_with_predictions.csv (1.4 KB)
+- SeriesE_with_predictions.csv (2.5 KB)
+
+Schema / structure detected
+-------------------------
+File: SeriesC_test_with_predictions.csv
+- Type: CSV
+- Columns: Identifier, Series, Canonical SMILES, Canonical SMILES.1, IC50 uM, PIC50, Sheet, Predicted_pIC50, Predicted_IC50_uM
+File: SeriesE_with_predictions.csv
+- Type: CSV
+- Columns: Identifier, Series, Canonical SMILES, Canonical SMILES.1, IC50 uM, PIC50, Series_Name, Series_Code, Valid_SMILES, SMILES_Error, Clean_SMILES, Canonical_SMILES, transformed_IC50, UMAP1, UMAP2, Cluster, Scaffold, Predicted_IC50, Predicted_IC50_uM, Predicted_pIC50
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

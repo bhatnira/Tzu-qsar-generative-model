@@ -34,3 +34,23 @@ A REINVENT4 integration is available in `reinvent_integration/` for guided gener
 See:
 - `reinvent_integration/README.md` for setup and run instructions
 - `reinvent_integration/configs/` for staged-learning templates for REINVENT, LibInvent, LinkInvent, and Mol2Mol
+
+## Repository Organization
+
+The repo has been organized into clearer folders while preserving backward compatibility via root-level symlinks.
+
+- `docs/` — project summaries, setup and usage notes
+- `notebooks/` — exploratory and debug notebooks
+- `data/raw/structures/` — raw structure containers (`*.maegz`)
+- `data/raw/pharmacophore/` — pharmacophore input artifacts
+- `data/processed/` — processed intermediate CSVs
+- `results/training_logs/` — pipeline logs and `catboost_info/`
+
+Primary pipeline folders remain unchanged:
+- `outputs/` — QSAR outputs and plots
+- `pharm_outputs/` — pharmacophore pipeline outputs
+- `reinvent_integration/` — REINVENT4 configs, artifacts, and generated results
+
+Notes:
+- Existing scripts that reference old root paths continue to work through symlinks.
+- New files should be added directly to the organized folders above.

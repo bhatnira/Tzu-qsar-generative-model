@@ -1,0 +1,54 @@
+Folder: outputs/generated/mol2mol/curriculum_learning
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Mol2Mol curriculum-learning optimized outputs scored with QSAR and ADME criteria.
+
+What was done here
+------------------
+- Used Mol2Mol curriculum learning with a relaxed stage followed by a strict optimization stage.
+- Final strict stage used the same optimality thresholds as the RL workflow.
+- Excel outputs in this folder include a Structure image column for each SMILES row.
+
+Contents
+--------
+Subfolders: 0
+Files: 5
+- manifest.csv (0.3 KB)
+- mol2mol_cl_generated_optimal.csv (18.0 KB)
+- mol2mol_cl_generated_optimal.xlsx (263.9 KB)
+- mol2mol_cl_generated_scored.csv (541.5 KB)
+- mol2mol_cl_generated_scored.xlsx (8603.8 KB)
+
+Schema / structure detected
+-------------------------
+File: manifest.csv
+- Type: CSV
+- Columns: file, rows, cutoff
+File: mol2mol_cl_generated_optimal.csv
+- Type: CSV
+- Columns: canonical_smiles, Input_SMILES, SMILES_state, Tanimoto, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: mol2mol_cl_generated_optimal.xlsx
+- Type: XLSX
+- Sheet Compounds: Structure, canonical_smiles, Input_SMILES, SMILES_state, Tanimoto, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: mol2mol_cl_generated_scored.csv
+- Type: CSV
+- Columns: canonical_smiles, Input_SMILES, SMILES_state, Tanimoto, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: mol2mol_cl_generated_scored.xlsx
+- Type: XLSX
+- Sheet Compounds: Structure, canonical_smiles, Input_SMILES, SMILES_state, Tanimoto, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+
+Recorded output summary
+-----------------------
+- file=mol2mol_cl_generated_scored.csv; rows=1863.0
+- file=mol2mol_cl_generated_optimal.csv; rows=56.0
+- file=mol2mol_cl_generated_scored.xlsx; rows=1863.0
+- file=mol2mol_cl_generated_optimal.xlsx; rows=56.0
+- cutoff=IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

@@ -1,0 +1,28 @@
+Folder: reinvent_integration/data
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Prepared input data used for REINVENT training or sampling.
+
+Contents
+--------
+Subfolders: 0
+Files: 5
+- motif_positive_seeds.smi (0.7 KB)
+- motif_positive_seeds_filtered.smi (0.6 KB)
+- series_ce_labeled.csv (4.0 KB)
+- series_ce_smiles.smi (0.7 KB)
+- series_ce_unique.smi (0.7 KB)
+
+Schema / structure detected
+-------------------------
+File: series_ce_labeled.csv
+- Type: CSV
+- Columns: Identifier, Series, Canonical SMILES, Canonical SMILES.1, IC50 uM, PIC50, Series_Name, Series_Code, Valid_SMILES, SMILES_Error, Clean_SMILES, Series_Label, Canonical_SMILES
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

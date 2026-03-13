@@ -1,0 +1,19 @@
+Folder: data
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Project data assets, prepared tables, or structure inputs.
+
+Contents
+--------
+Subfolders: 2
+- processed/
+- raw/
+Files: 0
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

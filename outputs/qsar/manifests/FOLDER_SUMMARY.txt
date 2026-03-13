@@ -1,0 +1,28 @@
+Folder: outputs/qsar/manifests
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+QSAR prediction outputs and supporting exports.
+
+Contents
+--------
+Subfolders: 0
+Files: 2
+- additional_qsar_outputs_manifest.csv (0.1 KB)
+- qsar_outputs_manifest.csv (0.1 KB)
+
+Schema / structure detected
+-------------------------
+File: additional_qsar_outputs_manifest.csv
+- Type: CSV
+- Columns: file, rows
+File: qsar_outputs_manifest.csv
+- Type: CSV
+- Columns: file, rows
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

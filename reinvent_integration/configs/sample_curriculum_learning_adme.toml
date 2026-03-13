@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/results/curriculum_learning_adme/cl_stage2.chkpt"
+num_smiles = 2000
+output_file = "reinvent_integration/results/curriculum_learning_adme/samples.csv"
+unique_molecules = false
+randomize_smiles = true

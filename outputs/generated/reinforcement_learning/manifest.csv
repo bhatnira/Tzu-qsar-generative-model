@@ -1,0 +1,6 @@
+file,rows,cutoff
+rl_generated_scored.csv,1956.0,
+rl_generated_optimal.csv,3.0,
+rl_generated_scored.xlsx,1956.0,
+rl_generated_optimal.xlsx,3.0,
+,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40

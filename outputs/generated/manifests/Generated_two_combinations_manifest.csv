@@ -1,0 +1,5 @@
+file,rows,note
+Generated_all_modes_combined.csv,4870.0,
+Generated_combo_preserve_or_similar_SMARTS.csv,37.0,
+Generated_combo_no_preservation.csv,4865.0,
+,,preserve_or_similar rule: has_spiro_motif==1 OR max_sim_to_seriesCE>=0.35

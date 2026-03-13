@@ -1,0 +1,28 @@
+Folder: pharmacophore
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Project folder containing source, data, configuration, or generated artifacts.
+
+Contents
+--------
+Subfolders: 0
+Files: 5
+- pharmacophore-model-1.png (92.5 KB)
+- pharmacophore-model-2.png (57.2 KB)
+- pharmacophore_ligands_snapshot.png (96.8 KB)
+- pharmacophore_non_ligands_snapshot.png (85.4 KB)
+- snapshot_manifest.csv (0.1 KB)
+
+Schema / structure detected
+-------------------------
+File: snapshot_manifest.csv
+- Type: CSV
+- Columns: snapshot, source_series, structures_drawn
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

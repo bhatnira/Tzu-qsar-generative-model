@@ -1,0 +1,27 @@
+Folder: docs
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Documentation and project notes.
+
+Contents
+--------
+Subfolders: 0
+Files: 10
+- COMPLETION_SUMMARY.md (7.2 KB)
+- DEPENDENCIES_VERIFIED.md (7.1 KB)
+- FINAL_REPORT.md (6.2 KB)
+- MODULE_MAPPING.md (8.8 KB)
+- MODULES_SUMMARY.txt (9.5 KB)
+- qsar_pharmacophore_reinvent4_summary.txt (13.1 KB)
+- REPLICATION_CHECKLIST.md (12.4 KB)
+- REQUIREMENTS_UPDATE.md (5.1 KB)
+- SETUP_GUIDE.md (5.8 KB)
+- USAGE_GUIDE.md (9.6 KB)
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

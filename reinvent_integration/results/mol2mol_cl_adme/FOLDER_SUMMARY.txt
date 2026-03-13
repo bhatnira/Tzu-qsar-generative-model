@@ -1,0 +1,34 @@
+Folder: reinvent_integration/results/mol2mol_cl_adme
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Mol2Mol curriculum-learning stage artifacts and sampling outputs for QSAR+ADME optimization.
+
+What was done here
+------------------
+- Used Mol2Mol curriculum learning with a relaxed stage followed by a strict optimization stage.
+- Final strict stage used the same optimality thresholds as the RL workflow.
+
+Contents
+--------
+Subfolders: 0
+Files: 6
+- mol2mol_cl_stage1.chkpt (78320.5 KB)
+- mol2mol_cl_stage2.chkpt (78320.6 KB)
+- sample.log (5.1 KB)
+- samples.csv (259.4 KB)
+- train_stage1.log (149.0 KB)
+- train_stage2.log (151.5 KB)
+
+Schema / structure detected
+-------------------------
+File: samples.csv
+- Type: CSV
+- Columns: SMILES, SMILES_state, Input_SMILES, Tanimoto, NLL
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

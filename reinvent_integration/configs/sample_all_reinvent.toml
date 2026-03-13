@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/priors/reinvent.prior"
+output_file = "reinvent_integration/results/all_generation_models/reinvent/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

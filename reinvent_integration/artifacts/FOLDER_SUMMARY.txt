@@ -1,0 +1,29 @@
+Folder: reinvent_integration/artifacts
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Saved QSAR model bundles and metadata used by generation workflows.
+
+What was done here
+------------------
+- The saved QSAR model bundle in this area is reused by downstream scoring scripts.
+
+Contents
+--------
+Subfolders: 0
+Files: 2
+- model_selection_results.csv (4.5 KB)
+- qsar_best_model.joblib (243.1 KB)
+
+Schema / structure detected
+-------------------------
+File: model_selection_results.csv
+- Type: CSV
+- Columns: Descriptor, Model, R2, MAE
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

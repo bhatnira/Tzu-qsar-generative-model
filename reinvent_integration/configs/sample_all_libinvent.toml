@@ -1,0 +1,10 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/priors/libinvent.prior"
+smiles_file = "REINVENT4/configs/scaffolds.smi"
+output_file = "reinvent_integration/results/all_generation_models/libinvent/samples.csv"
+num_smiles = 500
+unique_molecules = false
+randomize_smiles = true

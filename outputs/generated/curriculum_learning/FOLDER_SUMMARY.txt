@@ -1,0 +1,53 @@
+Folder: outputs/generated/curriculum_learning
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+REINVENT curriculum-learning optimized molecule outputs and exports.
+
+What was done here
+------------------
+- Used REINVENT curriculum learning with staged threshold tightening.
+- Excel outputs in this folder include a Structure image column for each SMILES row.
+
+Contents
+--------
+Subfolders: 0
+Files: 5
+- cl_generated_optimal.csv (0.3 KB)
+- cl_generated_optimal.xlsx (5.3 KB)
+- cl_generated_scored.csv (416.0 KB)
+- cl_generated_scored.xlsx (10332.1 KB)
+- manifest.csv (0.2 KB)
+
+Schema / structure detected
+-------------------------
+File: cl_generated_optimal.csv
+- Type: CSV
+- Columns: canonical_smiles, SMILES_state, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: cl_generated_optimal.xlsx
+- Type: XLSX
+- Sheet Compounds: Structure, canonical_smiles, SMILES_state, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: cl_generated_scored.csv
+- Type: CSV
+- Columns: canonical_smiles, SMILES_state, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: cl_generated_scored.xlsx
+- Type: XLSX
+- Sheet Compounds: Structure, canonical_smiles, SMILES_state, NLL, pred_logIC50_uM, pred_ic50_uM, pred_pIC50, pred_cLogP, pred_logS_ESOL, pred_Solubility_ESOL_mol_per_L, pred_Solubility_ESOL_class, pred_MetStab_Clearance_Microsome_AZ, pred_MetStab_Clearance_Hepatocyte_AZ, pred_MetStab_Half_Life_Obach, passes_optimal
+File: manifest.csv
+- Type: CSV
+- Columns: file, rows, cutoff
+
+Recorded output summary
+-----------------------
+- file=cl_generated_scored.csv; rows=1953.0
+- file=cl_generated_optimal.csv; rows=0.0
+- file=cl_generated_scored.xlsx; rows=1953.0
+- file=cl_generated_optimal.xlsx; rows=0.0
+- cutoff=IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.

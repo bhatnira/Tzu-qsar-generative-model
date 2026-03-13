@@ -1,0 +1,24 @@
+Folder: reinvent_integration/results/generated_scaffold_generation/spreadsheets
+Generated: 2026-03-13T19:22:55
+
+Purpose
+-------
+Intermediate and final REINVENT training, sampling, and scoring artifacts.
+
+Contents
+--------
+Subfolders: 0
+Files: 1
+- scored_druglike.xlsx (26.1 KB)
+
+Schema / structure detected
+-------------------------
+File: scored_druglike.xlsx
+- Type: XLSX
+- Sheet Compounds: Structure, canonical_smiles, murcko_scaffold, novel_scaffold, pred_log10_ic50_uM, pred_ic50_uM, max_sim_to_seriesCE, has_spiro_motif, drug_like, mw, logp, hbd, hba, rot_bonds, tpsa
+
+Other information
+-----------------
+- Summaries were generated automatically for project-owned folders.
+- Vendor, cache, and environment folders were skipped to avoid clutter.
+- Review manifests, logs, and scored CSV/XLSX files in this folder for detailed run-level results when present.
