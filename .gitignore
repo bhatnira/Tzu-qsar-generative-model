@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
 *.pyo
+.venv/
+catboost_info/
 pharm_outputs/
 *.mae
 *.maegz

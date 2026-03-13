@@ -1,0 +1,405 @@
+QSAR + Pharmacophore + REINVENT4 Project Summary
+=================================================
+
+This document summarizes three parts of the project:
+1. QSAR model pipeline
+2. Pharmacophore modeling pipeline
+3. REINVENT4 integration for smart-preserving molecule generation
+
+
+1) QSAR MODEL PIPELINE
+======================
+
+Purpose
+-------
+The QSAR workflow trains regression models that predict molecular potency from curated SMILES-derived descriptors. The current pipeline uses Series A/B/D for training, Series C for held-out testing, and Series E for forward prediction.
+
+Main implementation files
+-------------------------
+- main.py
+  Orchestrates the end-to-end QSAR workflow.
+- data_loader.py
+  Loads Excel sheets, cleans SMILES, canonicalizes structures, removes duplicates, and keeps numeric IC50 values.
+- descriptors.py
+  Builds descriptor matrices: RDKit descriptors, ECFP radius 1/2/3 fingerprints, MACCS keys, and Mordred descriptors.
+- clustering.py
+  Provides UMAP dimensionality reduction, HDBSCAN clustering, and scaffold extraction.
+- model.py
+  Trains multiple regressors across descriptor sets, compares R2 values, selects the best model, and generates predictions.
+- visualization.py
+  Produces IC50 distribution plots, UMAP cluster plots, and true-vs-predicted plots.
+
+QSAR implementation flow
+------------------------
+Step 1. Load and clean data
+- main.py loads the workbook and calls:
+  - load_excel_sheets()
+  - apply_smiles_cleaning()
+  - combine_and_deduplicate()
+  - filter_numeric_ic50()
+- data_loader.py performs:
+  - salt/format cleanup
+  - canonical SMILES generation
+  - duplicate removal by canonical SMILES
+  - IC50 numeric filtering
+
+Step 2. Transform response variable
+- main.py creates transformed_IC50 = log10(IC50 uM + 1e-8)
+- This stabilizes the target for regression.
+
+Step 3. Compute descriptors
+- descriptors.py computes six feature sets:
+  - RDKit
+  - ECFP_r1
+  - ECFP_r2
+  - ECFP_r3
+  - MACCS
+  - Mordred
+
+Step 4. Explore chemical space
+- main.py applies UMAP on the RDKit descriptor matrix.
+- HDBSCAN assigns cluster labels.
+- Bemis-Murcko-like scaffold extraction is used for scaffold-aware interpretation.
+
+Step 5. Train models
+- model.py evaluates multiple regressors for each descriptor family, including:
+  - Random Forest
+  - Extra Trees
+  - Gradient Boosting
+  - XGBoost
+  - LightGBM
+  - CatBoost
+  - SVR
+  - KNN
+  - MLP
+  - Ridge / Lasso / ElasticNet / BayesianRidge / Huber
+  - Decision Tree
+- Missing values are mean-imputed.
+- Scaled models use StandardScaler.
+- The best model is selected by highest test-set R2.
+
+Step 6. Predict held-out and external series
+- Series C is used as the test set.
+- Series E is used as the prediction set.
+- Predictions are converted back from log10(IC50) to IC50 in uM.
+
+Step 7. Save outputs
+- Plots and CSV outputs are written to outputs/.
+
+QSAR result files to refer to
+-----------------------------
+- outputs/model_selection_results.csv
+- outputs/SeriesC_test_with_predictions.csv
+- outputs/SeriesE_with_predictions.csv
+- outputs/qsar_outputs_manifest.csv
+
+QSAR headline results
+---------------------
+From outputs/model_selection_results.csv:
+- Best descriptor/model combination: RDKit + KNN
+- Best R2: 0.8868330397369572
+- Best MAE: 0.1180576560462755
+
+Top entries from the ranking file:
+1. RDKit + KNN -> R2 = 0.8868, MAE = 0.1181
+2. ECFP_r2 + MLP -> R2 = 0.7897, MAE = 0.1483
+3. RDKit + Decision Tree -> R2 = 0.6819, MAE = 0.1687
+
+Example held-out test predictions (outputs/SeriesC_test_with_predictions.csv)
+-----------------------------------------------------------------------------
+- ROY-0000220-001
+  - experimental pIC50 = 6.1072
+  - predicted pIC50 = 5.9307
+  - predicted IC50 = 1.1731 uM
+- ROY-0000211-001
+  - experimental pIC50 = 5.7447
+  - predicted pIC50 = 5.9088
+  - predicted IC50 = 1.2338 uM
+
+Example forward predictions (outputs/SeriesE_with_predictions.csv)
+------------------------------------------------------------------
+- ROY-0000277
+  - predicted pIC50 = 5.6212
+  - predicted IC50 = 2.3923 uM
+- ROY-0000287
+  - predicted pIC50 = 5.1320
+  - predicted IC50 = 7.3784 uM
+
+Interpretation
+--------------
+The current QSAR pipeline is the strongest-performing component in the repository. The RDKit + KNN model gives a strong held-out Series C fit and is also the model exported for downstream REINVENT4 scoring.
+
+
+2) PHARMACOPHORE MODELING PIPELINE
+==================================
+
+Purpose
+-------
+The pharmacophore workflow builds a ligand-based pharmacophore model using Schrödinger tools and screens compounds against the resulting hypothesis.
+
+Main implementation files
+-------------------------
+- pharmacophore_pipeline.py
+  Full ligand-based pharmacophore workflow using Schrödinger Python API and CLI tools.
+- run_pharmacophore.py
+  Logging wrapper that loads pharm_input.csv and runs the pipeline.
+- pharm_input.csv
+  Input table used for pharmacophore processing.
+
+Pharmacophore implementation flow
+---------------------------------
+Step 1. Balance the dataset
+- pharmacophore_pipeline.py defines actives as Series E + Series C.
+- Inactives are taken from the non_numeric group.
+- Inactives are downsampled to match active count.
+- Output includes activity and activity_class labels.
+
+Step 2. Convert SMILES to Schrödinger structures
+- Each SMILES is converted to a Structure object.
+- Metadata such as activity and series are stored as structure properties.
+
+Step 3. Ligand preparation
+- LigPrep adds hydrogens, assigns ionization states, generates 3D geometry, and optimizes structures.
+- Local multi-core execution is used.
+
+Step 4. Conformer generation
+- ConfGen generates up to 100 conformers per ligand.
+- Default energy window is 10 kcal/mol.
+- RMSD pruning threshold is 1.0 A.
+
+Step 5. Common pharmacophore hypothesis generation
+- Phase find_common is used.
+- Hypotheses are built with 4 to 6 pharmacophore sites.
+- Standard feature codes are used:
+  - D = H-bond donor
+  - A = H-bond acceptor
+  - H = hydrophobe
+  - R = aromatic ring
+  - P = positive ionizable
+  - N = negative ionizable
+
+Step 6. Screening
+- The balanced dataset is screened against the best hypothesis.
+- Per-structure Phase fit metrics are collected.
+
+Step 7. Evaluation
+- The pipeline computes:
+  - ROC-AUC
+  - enrichment factor at 1%, 5%, and 10%
+  - confusion matrix related metrics
+
+Step 8. Save outputs
+- Results are written to pharm_outputs/.
+
+Pharmacophore result files to refer to
+--------------------------------------
+- pharm_outputs/pipeline_summary.csv
+- pharm_outputs/hypotheses/hypothesis_ranking.csv
+- pharm_outputs/screening/pharm_screen_results.csv
+- pharm_outputs/screening/pharm_screen_results_abce_qsar_pharm.csv
+- pharm_outputs/hypotheses/pharm_hypo.phzip
+
+Pharmacophore headline results
+------------------------------
+From pharm_outputs/pipeline_summary.csv:
+- Best hypothesis:
+  pharm_outputs/hypotheses/pharm_hypo_find_common/pharm_hypo_find_common/hypotheses/AHHR_1.phypo
+- Balanced evaluation set:
+  - actives = 11
+  - inactives = 11
+- ROC-AUC = 0.5
+- EF_1pct = 0.13297872340425532
+- EF_5pct = 0.026595744680851064
+- EF_10pct = 0.013297872340425532
+
+Top-ranked hypotheses from pharm_outputs/hypotheses/hypothesis_ranking.csv
+---------------------------------------------------------------------------
+1. AHHR_1
+   - Survival = 4.9072
+   - BEDROC = 0.8768
+   - Matches = 10
+2. AHHR_2
+   - Survival = 4.9044
+   - BEDROC = 0.8951
+   - Matches = 10
+3. AHHR_3
+   - Survival = 4.8992
+   - BEDROC = 0.8814
+   - Matches = 10
+
+Example screening output
+------------------------
+The file pharm_outputs/screening/pharm_screen_results.csv contains ranked compounds with columns such as:
+- pred_pic50
+- qsar_score
+- pharm_y_pred
+- pharm_y_score
+- combined_score
+
+Example rows from the current output:
+- TB-VS12-73
+  - predicted pIC50 = 6.0471
+  - qsar_score = 0.5118
+  - pharm_y_score = 0.0
+  - combined_score = 0.3071
+- TB-VS12-112
+  - predicted pIC50 = 5.9571
+  - qsar_score = 0.4893
+  - pharm_y_score = 0.0
+  - combined_score = 0.2936
+
+Interpretation
+--------------
+The current pharmacophore run produced a valid top hypothesis (AHHR_1), but the exported benchmark in pipeline_summary.csv shows ROC-AUC = 0.5, which means the present pharmacophore screen did not separate actives from inactives better than random in that evaluation set. In the example ranking file, combined ranking is therefore dominated by the QSAR component.
+
+
+3) REINVENT4 INTEGRATION FOR SMART-PRESERVING MOLECULE GENERATION
+=================================================================
+
+Purpose
+-------
+The REINVENT4 integration combines QSAR guidance, optional pharmacophore guidance, similarity to Series C/E references, and optional substructure constraints. The design goal is to generate new molecules while preserving useful chemistry from known actives.
+
+Main implementation files
+-------------------------
+- reinvent_integration/README.md
+  Setup and run instructions.
+- reinvent_integration/prepare_series_ce_data.py
+  Extracts Series C/E compounds for transfer learning and similarity guidance.
+- reinvent_integration/export_qsar_model.py
+  Trains and exports the best QSAR bundle for reuse by REINVENT4.
+- reinvent_integration/reinvent_qsar_pharm_score.py
+  External scorer called by REINVENT4.
+- reinvent_integration/configs/*.toml
+  REINVENT / LibInvent / LinkInvent / Mol2Mol configuration templates.
+- reinvent_integration/artifacts/qsar_best_model.joblib
+  Exported QSAR model bundle.
+- reinvent_integration/artifacts/model_selection_results.csv
+  Exported model benchmark table.
+
+REINVENT4 implementation flow
+-----------------------------
+Step 1. Prepare reference chemistry
+- prepare_series_ce_data.py creates Series C/E SMILES files.
+- These references are used for transfer learning and similarity reward.
+
+Step 2. Export the QSAR model
+- export_qsar_model.py retrains the local QSAR workflow.
+- It stores:
+  - model object
+  - imputer
+  - scaler if needed
+  - descriptor name
+  - model name
+- The current exported best model is again RDKit + KNN.
+
+Step 3. Score generated molecules during REINVENT runs
+- reinvent_qsar_pharm_score.py reads generated SMILES from stdin.
+- It computes:
+  - QSAR predicted pIC50
+  - QSAR score
+  - pharmacophore fit score (optional)
+  - pharmacophore RMSD (optional)
+  - matched pharmacophore features (optional)
+  - similarity score to Series C/E references
+  - required substructure match score
+  - forbidden substructure absence score
+
+Step 4. Combine component scores
+- The scorer forms a weighted mean of available components.
+- Default major weights in the script are:
+  - qsar_weight = 0.7
+  - pharm_weight = 0.3
+  - sim_weight = optional, default 0.0
+  - required_weight = optional, default 0.0
+  - forbidden_weight = optional, default 0.0
+
+Conceptually:
+combined_score =
+(qsar_weight * qsar_score
+ + pharm_weight * pharm_score
+ + sim_weight * sim_score
+ + required_weight * required_match
+ + forbidden_weight * forbidden_absent)
+/ total_weight
+
+How smart-preserving generation is implemented
+----------------------------------------------
+1. Transfer learning on Series C/E
+- A prior can be fine-tuned on Series C/E compounds before reinforcement learning.
+- This biases the generator toward known active-like chemistry.
+
+2. Similarity reward
+- Morgan fingerprints are computed for generated molecules.
+- Maximum Tanimoto similarity to reference C/E molecules becomes sim_score.
+- This keeps generations chemically close to the desired region of chemical space.
+
+3. Required SMARTS reward
+- required_smarts can enforce preservation of a specific motif, core, or pharmacophoric pattern.
+- Matching molecules receive a positive reward.
+
+4. Forbidden SMARTS filtering
+- forbidden_smarts discourages undesired substructures.
+- Molecules without the forbidden motif are rewarded.
+
+5. Optional pharmacophore reward
+- If a Schrödinger pharmacophore hypothesis and installation path are provided, the scorer:
+  - prepares ligands
+  - generates conformers
+  - screens with Phase
+  - keeps the best fit score per molecule
+- That fit score is transformed into pharm_score and added to the final objective.
+
+Example output fields returned to REINVENT4
+-------------------------------------------
+The external scorer returns payload keys including:
+- qsar_pharm_score
+- qsar_score
+- pharm_score
+- pharm_fit_score
+- pharm_rmsd
+- pharm_matched_features
+- sim_score
+- required_match
+- forbidden_absent
+- pred_pic50
+
+Files to use for a practical REINVENT4 run
+------------------------------------------
+- reinvent_integration/configs/reinvent_transfer_series_ce.toml
+- reinvent_integration/configs/reinvent_staged_series_ce_guided.toml
+- reinvent_integration/reinvent_qsar_pharm_score.py
+- reinvent_integration/artifacts/qsar_best_model.joblib
+- pharm_outputs/hypotheses/pharm_hypo.phzip or a selected .phypo hypothesis
+
+Suggested project interpretation
+--------------------------------
+- QSAR is currently the strongest predictive module and should remain the primary optimization signal.
+- Pharmacophore scoring is implemented and usable, but the current benchmark suggests it should be treated as a secondary or optional reward until the hypothesis is improved.
+- For smart-preserving molecule generation, the most reliable setup is:
+  1. transfer learning on Series C/E,
+  2. QSAR as the main reward,
+  3. similarity reward to Series C/E,
+  4. optional required SMARTS to preserve the key chemotype,
+  5. pharmacophore score as a softer secondary objective.
+
+
+Recommended repository paths for quick review
+=============================================
+- main.py
+- data_loader.py
+- descriptors.py
+- model.py
+- pharmacophore_pipeline.py
+- run_pharmacophore.py
+- outputs/model_selection_results.csv
+- outputs/SeriesC_test_with_predictions.csv
+- outputs/SeriesE_with_predictions.csv
+- pharm_outputs/pipeline_summary.csv
+- pharm_outputs/hypotheses/hypothesis_ranking.csv
+- pharm_outputs/screening/pharm_screen_results.csv
+- reinvent_integration/README.md
+- reinvent_integration/export_qsar_model.py
+- reinvent_integration/reinvent_qsar_pharm_score.py
+
+End of summary.
