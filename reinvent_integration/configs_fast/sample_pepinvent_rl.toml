@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cuda"
+[parameters]
+model_file = "reinvent_integration/results/pepinvent_rl_adme/pepinvent_rl.chkpt"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+output_file = "reinvent_integration/results/pepinvent_rl/samples.csv"
+num_smiles = 1
+unique_molecules = false
+randomize_smiles = true

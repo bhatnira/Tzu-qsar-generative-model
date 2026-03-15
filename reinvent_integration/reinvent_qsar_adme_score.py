@@ -17,7 +17,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from descriptors import rdkit_desc
+from qsar_core.descriptors import rdkit_desc
+from reinvent_integration.qsar_ensemble import summarize_predictions
 
 _ADMET_MODEL = None
 
@@ -51,47 +52,18 @@ def _load_admet_model():
 
 
 def _predict_qsar(smiles_list: List[str], model_bundle: Dict) -> Dict[str, List[float]]:
-    imputer = model_bundle['imputer']
-    scaler = model_bundle['scaler']
-    model = model_bundle['model']
-
-    rows = []
-    valid = []
-    for smi in smiles_list:
-        mol = Chem.MolFromSmiles(smi)
-        if mol is None:
-            valid.append(False)
-            rows.append(None)
-            continue
-        try:
-            rows.append(np.asarray(rdkit_desc(smi), dtype=float))
-            valid.append(True)
-        except Exception:
-            valid.append(False)
-            rows.append(None)
-
-    x = [r for r in rows if r is not None]
-    if not x:
-        return {'pred_log_ic50_uM': [99.0] * len(smiles_list), 'pred_pic50': [0.0] * len(smiles_list)}
-
-    x = np.vstack(x)
-    x = imputer.transform(x)
-    if scaler is not None:
-        x = scaler.transform(x)
-    pred_log_ic50 = model.predict(x).astype(float)
-    pred_pic50 = 6.0 - pred_log_ic50
-
-    out_log, out_pic = [], []
-    idx = 0
-    for ok in valid:
-        if ok:
-            out_log.append(float(pred_log_ic50[idx]))
-            out_pic.append(float(pred_pic50[idx]))
-            idx += 1
-        else:
-            out_log.append(99.0)
-            out_pic.append(0.0)
-    return {'pred_log_ic50_uM': out_log, 'pred_pic50': out_pic}
+    summary = summarize_predictions(smiles_list, model_bundle, max_models=5)
+    pred_log = np.asarray(summary['pred_logIC50_uM'], dtype=float)
+    pred_pic50 = np.asarray(summary['pred_pIC50'], dtype=float)
+    pred_unc = np.asarray(summary['pred_pIC50_uncertainty'], dtype=float)
+    pred_log = np.where(np.isfinite(pred_log), pred_log, 99.0)
+    pred_pic50 = np.where(np.isfinite(pred_pic50), pred_pic50, 0.0)
+    pred_unc = np.where(np.isfinite(pred_unc), pred_unc, 99.0)
+    return {
+        'pred_log_ic50_uM': pred_log.tolist(),
+        'pred_pic50': pred_pic50.tolist(),
+        'pred_pic50_uncertainty': pred_unc.tolist(),
+    }
 
 
 def _predict_adme_py(smiles_list: List[str]) -> Dict[str, List[float | str]]:
@@ -136,6 +108,29 @@ def _predict_admet_ai(smiles_list: List[str]) -> Dict[str, List[float]]:
     }
 
 
+def _compile_smarts(smarts_list: List[str]) -> List[Chem.Mol]:
+    compiled = []
+    for smarts in smarts_list:
+        patt = Chem.MolFromSmarts(smarts)
+        if patt is not None:
+            compiled.append(patt)
+    return compiled
+
+
+def _disallowed_mask(smiles_list: List[str], patterns: List[Chem.Mol]) -> List[int]:
+    if not patterns:
+        return [0] * len(smiles_list)
+    mask = []
+    for smi in smiles_list:
+        mol = Chem.MolFromSmiles(smi)
+        if mol is None:
+            mask.append(1)
+            continue
+        is_disallowed = any(mol.HasSubstructMatch(patt) for patt in patterns)
+        mask.append(1 if is_disallowed else 0)
+    return mask
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument('--qsar-model', required=True)
@@ -153,6 +148,8 @@ def main() -> None:
     p.add_argument('--hepatocyte-weight', type=float, default=0.10)
     p.add_argument('--half-life-weight', type=float, default=0.10)
     p.add_argument('--property-name', default='qsar_adme_score')
+    p.add_argument('--disallow-smarts', action='append', default=[])
+    p.add_argument('--disallow-penalty', type=float, default=1.0)
     args = p.parse_args()
 
     smiles_list = [line.strip() for line in sys.stdin if line.strip()]
@@ -174,6 +171,9 @@ def main() -> None:
     half_life_scores = [_high_better_score(v, args.half_life_min, 8.0) for v in admet['pred_MetStab_Half_Life_Obach']]
 
     total_weight = max(1e-6, args.qsar_weight + args.clogp_weight + args.solubility_weight + args.microsome_weight + args.hepatocyte_weight + args.half_life_weight)
+    disallowed_patterns = _compile_smarts(args.disallow_smarts)
+    disallowed = _disallowed_mask(smiles_list, disallowed_patterns)
+    penalty = min(max(args.disallow_penalty, 0.0), 1.0)
     combined = []
     for i in range(len(smiles_list)):
         score = (
@@ -184,6 +184,8 @@ def main() -> None:
             args.hepatocyte_weight * hepatocyte_scores[i] +
             args.half_life_weight * half_life_scores[i]
         ) / total_weight
+        if disallowed[i] == 1:
+            score = score * (1.0 - penalty)
         combined.append(float(score))
 
     payload = {
@@ -196,12 +198,14 @@ def main() -> None:
         'pred_MetStab_Clearance_Microsome_AZ': [float(x) for x in admet['pred_MetStab_Clearance_Microsome_AZ']],
         'pred_MetStab_Clearance_Hepatocyte_AZ': [float(x) for x in admet['pred_MetStab_Clearance_Hepatocyte_AZ']],
         'pred_MetStab_Half_Life_Obach': [float(x) for x in admet['pred_MetStab_Half_Life_Obach']],
+        'pred_pic50_uncertainty': [float(x) for x in qsar['pred_pic50_uncertainty']],
         'qsar_score': [float(x) for x in qsar_scores],
         'clogp_score': [float(x) for x in clogp_scores],
         'solubility_score': [float(x) for x in sol_scores],
         'microsome_score': [float(x) for x in microsome_scores],
         'hepatocyte_score': [float(x) for x in hepatocyte_scores],
         'half_life_score': [float(x) for x in half_life_scores],
+        'disallowed_smarts': [int(x) for x in disallowed],
     }
     print(json.dumps({'version': 1, 'payload': payload}))
 

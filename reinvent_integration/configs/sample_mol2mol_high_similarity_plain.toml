@@ -1,0 +1,12 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/priors/mol2mol_high_similarity.prior"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+sample_strategy = "beamsearch"
+temperature = 1.0
+output_file = "reinvent_integration/results/mol2mol_high_similarity_plain/samples.csv"
+num_smiles = 500
+unique_molecules = false
+randomize_smiles = true

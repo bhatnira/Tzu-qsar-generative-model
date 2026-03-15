@@ -1,0 +1,281 @@
+12:52:42 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+12:52:42 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/libinvent_transformer_pubchem_rl_train_manual.log /tmp/libinvent_tp_rl_manual.toml
+12:52:42 <INFO> Reading run configuration from /tmp/libinvent_tp_rl_manual.toml using format toml
+12:52:42 <INFO> User nbhatta1 on host panacea
+12:52:42 <INFO> Python version 3.11.13
+12:52:42 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+12:52:42 <INFO> PyTorch compiled with CUDA version 12.8
+12:52:42 <INFO> RDKit version 2025.09.6
+12:52:42 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+12:52:42 <INFO> CUDA driver version 590.48.01
+12:52:42 <INFO> Number of PyTorch CUDA devices 1
+12:52:42 <WARN> 'use_cuda' is deprecated, use 'device' instead
+12:52:42 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+12:52:42 <INFO> GPU memory: 46043 MiB free, 48400 MiB total
+12:52:42 <INFO> Starting 1 stage of Reinforcement Learning
+12:52:42 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/libinvent_transformer_pubchem.prior has valid hash:
+{ 'comments': ['Transformer Libinvent model'],
+  'creation_date': 1719994341.467345,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'd4b9212ed3cb477ab74940022d4b41d8',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '7c8e104e81124bafb5f62d14c64ec9f9',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'PubChem',
+  'updates': []}
+12:52:42 <INFO> Number of network parameters: 17,490,853
+12:52:42 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(165, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(165, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=165, bias=True)
+  )
+)
+12:52:43 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/libinvent_transformer_pubchem.prior has valid hash:
+{ 'comments': ['Transformer Libinvent model'],
+  'creation_date': 1719994341.467345,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'd4b9212ed3cb477ab74940022d4b41d8',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '7c8e104e81124bafb5f62d14c64ec9f9',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'PubChem',
+  'updates': []}
+12:52:43 <INFO> Number of network parameters: 17,490,853
+12:52:43 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(165, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(165, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=165, bias=True)
+  )
+)
+12:52:43 <INFO> Using generator LibinventTransformer
+12:52:43 <INFO> Prior read from reinvent_integration/priors/libinvent_transformer_pubchem.prior
+12:52:43 <INFO> Agent read from reinvent_integration/priors/libinvent_transformer_pubchem.prior
+12:52:43 <INFO> Input molecules/fragments read from file reinvent_integration/data/scaffolds.smi
+12:52:43 <INFO> Using reward strategy dap
+12:52:43 <INFO> Using diversity filter IdenticalMurckoScaffold
+12:52:43 <INFO> Purging diversity filter memories after each stage
+12:52:43 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+12:52:43 <INFO> Registered scoring component GroupCount
+12:52:43 <INFO> Registered scoring component FragmentQed
+12:52:43 <INFO> Registered scoring component FragmentSlogP
+12:52:43 <INFO> Registered scoring component FragmentMolecularWeight
+12:52:43 <INFO> Registered scoring component FragmentTPSA
+12:52:43 <INFO> Registered scoring component FragmentDistanceMatrix
+12:52:43 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+12:52:43 <INFO> Registered scoring component FragmentHBondAcceptors
+12:52:43 <INFO> Registered scoring component FragmentHBondDonors
+12:52:43 <INFO> Registered scoring component FragmentNumRotBond
+12:52:43 <INFO> Registered scoring component FragmentCsp3
+12:52:43 <INFO> Registered scoring component Fragmentnumsp
+12:52:43 <INFO> Registered scoring component Fragmentnumsp2
+12:52:43 <INFO> Registered scoring component Fragmentnumsp3
+12:52:43 <INFO> Registered scoring component FragmentEffectiveLength
+12:52:43 <INFO> Registered scoring component FragmentGraphLength
+12:52:43 <INFO> Registered scoring component FragmentLengthRatio
+12:52:43 <INFO> Registered scoring component FragmentNumHeavyAtoms
+12:52:43 <INFO> Registered scoring component FragmentNumHeteroAtoms
+12:52:43 <INFO> Registered scoring component FragmentNumRings
+12:52:43 <INFO> Registered scoring component FragmentNumAromaticRings
+12:52:43 <INFO> Registered scoring component FragmentNumAliphaticRings
+12:52:43 <INFO> Registered scoring component FragmentSlogP
+12:52:43 <INFO> Registered scoring component MatchingSubstructure
+12:52:43 <INFO> Registered scoring component MolVolume
+12:52:43 <INFO> Registered scoring component Qed
+12:52:43 <INFO> Registered scoring component LargestRingSize
+12:52:43 <INFO> Registered scoring component MolecularWeight
+12:52:43 <INFO> Registered scoring component GraphLength
+12:52:43 <INFO> Registered scoring component NumAtomStereoCenters
+12:52:43 <INFO> Registered scoring component HBondAcceptors
+12:52:43 <INFO> Registered scoring component HBondDonors
+12:52:43 <INFO> Registered scoring component NumRotBond
+12:52:43 <INFO> Registered scoring component Csp3
+12:52:43 <INFO> Registered scoring component numsp
+12:52:43 <INFO> Registered scoring component numsp2
+12:52:43 <INFO> Registered scoring component numsp3
+12:52:43 <INFO> Registered scoring component NumHeavyAtoms
+12:52:43 <INFO> Registered scoring component NumHeteroAtoms
+12:52:43 <INFO> Registered scoring component NumRings
+12:52:43 <INFO> Registered scoring component NumAromaticRings
+12:52:43 <INFO> Registered scoring component NumAliphaticRings
+12:52:43 <INFO> Registered scoring component SlogP
+12:52:43 <INFO> Registered scoring component LargestRingSize
+12:52:43 <INFO> Registered scoring component PMI
+12:52:43 <INFO> Registered scoring component RDKitDescriptors
+12:52:43 <INFO> Registered scoring component TanimotoSimilarity
+12:52:43 <INFO> Registered scoring component TanimotoDistance
+12:52:43 <INFO> Registered scoring component TPSA
+12:52:43 <INFO> Registered scoring component SAScore
+12:52:43 <INFO> Registered scoring component ChemProp
+12:52:43 <INFO> Registered scoring component CustomAlerts
+12:52:43 <INFO> Registered scoring component DockStream
+12:52:43 <INFO> Registered scoring component ExternalProcess
+12:52:43 <INFO> Registered scoring component REST
+12:52:43 <INFO> Registered scoring component Icolos
+12:52:43 <INFO> Registered scoring component MMP
+12:52:43 <INFO> Registered scoring component Qptuna
+12:52:43 <INFO> Registered scoring component ReactionFilter
+12:52:43 <INFO> Registered scoring component RingPrecedence
+12:52:43 <INFO> Registered scoring component Maize
+12:52:43 <INFO> Registered scoring component SynthSense
+12:52:43 <INFO> Registered scoring component CAZP
+12:52:43 <INFO> Creating scoring component ExternalProcess
+12:52:43 <INFO> Writing tabular data for stage to libinvent_transformer_pubchem_rl_adme_1.csv
+12:52:43 <INFO> Starting stage 1 <<<
+12:52:43 <INFO> Current GPU memory usage: 2606 MiB used, 45794 MiB free
+12:52:46 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCOC1CN(c2cncc(N3CCC4(CN(C(=O)OC(C)(C)C)C4)C3)c2)C1*CC[nH]c(=O)c(C(F)F)c1ccc(F)cc1F could not be converted
+12:52:46 <INFO> Score: 0.00 Agent NLL: 7.40 Valid:   0% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold LIBINVENT TRANSFORMER PUBCHEM_RL_ADME LIBINVENT TRANSFORMER PUBCHEM_RL_ADME (raw)
+ | 1.5722 1.5722 -1.5722 0.0000000 C*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *C -- 0.0000000 0.0000
+ | 9.0746 9.0746 -9.0746 0.0000000 CC(O)(*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1)C(F)(F)F 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *C(C)(O)C(F)(F)F -- 0.0000000 0.0000
+ | 3.5723 3.5723 -3.5723 0.0000000 CC(C)*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *C(C)C -- 0.0000000 0.0000
+ | 4.1803 4.1803 -4.1803 0.0000000 FC(F)(F)*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *C(F)(F)F -- 0.0000000 0.0000
+ | 2.6709 2.6709 -2.6709 0.0000000 *(c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1)C1CC1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *C1CC1 -- 0.0000000 0.0000
+ | 10.5983 10.5983 -10.5983 0.0000000 *(CC1CNC1)c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *CC1CNC1 -- 0.0000000 0.0000
+ | 9.8441 9.8441 -9.8441 0.0000000 *(CCN1CCOCC1)c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *CCN1CCOCC1 -- 0.0000000 0.0000
+ | 6.4791 6.4791 -6.4791 0.0000000 FC*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *CF -- 0.0000000 0.0000
+ | 8.6128 8.6128 -8.6128 0.0000000 Fc1ccc(Cl)cc1*c1ccccc1C#Cc1cncc(N2CCC3(CNC3)C2)c1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *c1cc(Cl)ccc1F -- 0.0000000 0.0000
+ | 5.9716 5.9716 -5.9716 0.0000000 FC(F)(F)c1ccc(*c2ccccc2C#Cc2cncc(N3CCC4(CNC4)C3)c2)cc1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 *c1ccc(C(F)(F)F)cc1 -- 0.0000000 0.0000
+12:52:46 <INFO> Purging diversity filter memories in stage 1
+12:52:46 <WARN> Maximum number of steps of 1 reached in stage 1. Terminating all stages.
+12:52:46 <INFO> Peak main memory usage: 2390.715 MiB
+12:52:46 <INFO> Finished REINVENT on 2026-03-15

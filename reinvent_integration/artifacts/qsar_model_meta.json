@@ -1,0 +1,35 @@
+{
+  "bundle": "/home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/artifacts/qsar_best_model.joblib",
+  "descriptor_name": "RDKit",
+  "model_name": "KNN",
+  "best_r2": 0.886833040439035,
+  "ensemble_models": [
+    {
+      "descriptor_name": "RDKit",
+      "model_name": "KNN",
+      "r2": 0.886833040439035
+    },
+    {
+      "descriptor_name": "ECFP_r3",
+      "model_name": "KNN",
+      "r2": 0.677226091970615
+    },
+    {
+      "descriptor_name": "RDKit",
+      "model_name": "DT",
+      "r2": 0.6650381748937777
+    },
+    {
+      "descriptor_name": "RDKit",
+      "model_name": "LGBM",
+      "r2": 0.5404661596268534
+    },
+    {
+      "descriptor_name": "RDKit",
+      "model_name": "ET",
+      "r2": 0.4326369609220009
+    }
+  ],
+  "n_train": 138,
+  "n_test": 5
+}

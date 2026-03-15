@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cuda"
+[parameters]
+model_file = "reinvent_integration/results/libinvent_transformer_pubchem_rl_adme/libinvent_transformer_pubchem_rl.chkpt"
+smiles_file = "reinvent_integration/data/scaffolds.smi"
+output_file = "reinvent_integration/results/libinvent_transformer_pubchem_rl/samples.csv"
+num_smiles = 1
+unique_molecules = false
+randomize_smiles = true

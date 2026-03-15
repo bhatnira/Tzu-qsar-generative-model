@@ -36,7 +36,7 @@ sys.path.insert(0, str(ROOT))
 from rdkit import Chem, DataStructs
 from rdkit.Chem import AllChem
 
-from descriptors import ecfp, maccs, mordred_desc, rdkit_desc
+from qsar_core.descriptors import ecfp, maccs, mordred_desc, rdkit_desc
 
 
 # ─────────────────────────────────────────────────────────────────────────────

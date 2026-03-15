@@ -1,1 +1,0 @@
-docs/qsar_pharmacophore_reinvent4_summary.txt

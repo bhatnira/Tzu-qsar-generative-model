@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from descriptors import ecfp, maccs, mordred_desc, rdkit_desc
+from qsar_core.descriptors import ecfp, maccs, mordred_desc, rdkit_desc
 
 INPUT_CSV = ROOT / "pharm_input.csv"
 QSAR_MODEL = ROOT / "reinvent_integration" / "artifacts" / "qsar_best_model.joblib"

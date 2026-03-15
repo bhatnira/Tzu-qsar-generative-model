@@ -22,11 +22,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from data_loader import load_excel_sheets, apply_smiles_cleaning
+from qsar_core.data_loader import load_excel_sheets, apply_smiles_cleaning
+from qsar_core.paths import DATASET_XLSX
 
 
 def main() -> None:
-    excel_path = PROJECT_ROOT / "TB Project QSAR.xlsx"
+    excel_path = DATASET_XLSX
     if not excel_path.exists():
         raise FileNotFoundError(f"Missing dataset: {excel_path}")
 

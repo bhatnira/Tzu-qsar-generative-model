@@ -1,0 +1,42 @@
+run_type = "staged_learning"
+device = "cuda"
+[parameters]
+prior_file = "reinvent_integration/priors/mol2mol_similarity.prior"
+agent_file = "reinvent_integration/priors/mol2mol_similarity.prior"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+batch_size = 32
+unique_sequences = true
+randomize_smiles = false
+sample_strategy = "multinomial"
+summary_csv_prefix = "mol2mol_similarity_rl_adme"
+
+[learning_strategy]
+type = "dap"
+sigma = 64
+rate = 0.00005
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 20
+minscore = 0.45
+minsimilarity = 0.4
+penalty_multiplier = 0.5
+
+[[stage]]
+chkpt_file = "reinvent_integration/results/mol2mol_similarity_rl_adme/mol2mol_similarity_rl.chkpt"
+termination = "simple"
+min_steps = 1
+max_steps = 2
+[stage.scoring]
+type = "custom_sum"
+
+[[stage.scoring.component]]
+[stage.scoring.component.ExternalProcess]
+params.executable = "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python"
+params.args = "reinvent_integration/reinvent_qsar_adme_score.py --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib --target-pic50 5.30103 --clogp-low 1.0 --clogp-high 3.5 --logs-threshold -6.0 --microsome-clearance-max 70 --hepatocyte-clearance-max 80 --half-life-min 40 --qsar-weight 0.40 --clogp-weight 0.15 --solubility-weight 0.15 --microsome-weight 0.10 --hepatocyte-weight 0.10 --half-life-weight 0.10 --property-name qsar_adme_score"
+
+[[stage.scoring.component.ExternalProcess.endpoint]]
+name = "MOL2MOL SIMILARITY_RL_ADME"
+weight = 1.0
+[stage.scoring.component.ExternalProcess.endpoint.params]
+property = "qsar_adme_score"

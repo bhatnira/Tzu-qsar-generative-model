@@ -1,0 +1,3 @@
+23:24:03 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-14
+23:24:03 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_rl_train_nitro.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/rl_mol2mol_scaffold.toml
+23:24:03 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/rl_mol2mol_scaffold.toml using format toml

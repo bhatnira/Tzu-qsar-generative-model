@@ -1,0 +1,93 @@
+[2026-03-15 15:02:42] === RUN ALL GENERATION START ===
+[2026-03-15 15:02:42] ---- MODEL reinvent ----
+[2026-03-15 15:02:42] START sample_reinvent_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/sample_reinvent_plain.toml
+[2026-03-15 15:02:48] DONE sample_reinvent_plain
+[2026-03-15 15:02:48] START score_reinvent_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent/plain --label reinvent_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 494.77it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 514.57it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 496.01it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 425.27it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 393.08it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 472.23it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 468.41it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 460.02it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 518.58it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 31/31 0:00:00 • 0:00:00 496.74it/s 
+[2026-03-15 15:03:34] score_reinvent_plain | reinvent_plain valid_unique=1960 optimal=0
+[2026-03-15 15:03:34] score_reinvent_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-15 15:03:34] score_reinvent_plain | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-15 15:03:34] score_reinvent_plain |   warnings.warn(
+[2026-03-15 15:03:34] score_reinvent_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-15 15:03:34] score_reinvent_plain | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-15 15:03:34] score_reinvent_plain |   warnings.warn(
+[2026-03-15 15:03:34] score_reinvent_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-15 15:03:34] score_reinvent_plain | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-15 15:03:34] score_reinvent_plain |   warnings.warn(
+[2026-03-15 15:03:34] score_reinvent_plain | 
+[2026-03-15 15:03:34] score_reinvent_plain | SMILES to Mol:   0%|          | 0/1960 [00:00<?, ?it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | SMILES to Mol:  90%|████████▉ | 1758/1960 [00:00<00:00, 17572.52it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | SMILES to Mol: 100%|██████████| 1960/1960 [00:00<00:00, 17515.85it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | 
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:   0%|          | 0/1960 [00:00<?, ?it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:   3%|▎         | 54/1960 [00:00<00:03, 536.49it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:   6%|▌         | 108/1960 [00:00<00:03, 529.70it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:   8%|▊         | 163/1960 [00:00<00:03, 534.73it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  11%|█         | 217/1960 [00:00<00:03, 535.09it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  14%|█▍        | 271/1960 [00:00<00:03, 534.92it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  17%|█▋        | 325/1960 [00:00<00:03, 534.33it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  19%|█▉        | 379/1960 [00:00<00:02, 531.17it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  22%|██▏       | 433/1960 [00:00<00:02, 522.67it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  25%|██▍       | 486/1960 [00:00<00:02, 514.05it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  28%|██▊       | 540/1960 [00:01<00:02, 520.22it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  30%|███       | 593/1960 [00:01<00:02, 516.35it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  33%|███▎      | 645/1960 [00:01<00:02, 514.65it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  36%|███▌      | 699/1960 [00:01<00:02, 521.21it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  38%|███▊      | 752/1960 [00:01<00:02, 515.73it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  41%|████      | 804/1960 [00:01<00:02, 516.31it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  44%|████▎     | 857/1960 [00:01<00:02, 518.54it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  46%|████▋     | 910/1960 [00:01<00:02, 519.80it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  49%|████▉     | 962/1960 [00:01<00:01, 513.17it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  52%|█████▏    | 1014/1960 [00:01<00:01, 508.54it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  54%|█████▍    | 1067/1960 [00:02<00:01, 513.29it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  57%|█████▋    | 1120/1960 [00:02<00:01, 515.92it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  60%|█████▉    | 1173/1960 [00:02<00:01, 519.11it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  62%|██████▎   | 1225/1960 [00:02<00:01, 517.66it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  65%|██████▌   | 1277/1960 [00:02<00:01, 517.83it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  68%|██████▊   | 1329/1960 [00:02<00:01, 513.81it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  70%|███████   | 1381/1960 [00:02<00:01, 513.15it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  73%|███████▎  | 1433/1960 [00:02<00:01, 511.39it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  76%|███████▌  | 1486/1960 [00:02<00:00, 515.36it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  79%|███████▊  | 1540/1960 [00:02<00:00, 520.79it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  81%|████████▏ | 1593/1960 [00:03<00:00, 514.06it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  84%|████████▍ | 1645/1960 [00:03<00:00, 514.56it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  87%|████████▋ | 1697/1960 [00:03<00:00, 514.52it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  89%|████████▉ | 1749/1960 [00:03<00:00, 513.31it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  92%|█████████▏| 1801/1960 [00:03<00:00, 508.68it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  94%|█████████▍| 1852/1960 [00:03<00:00, 503.17it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties:  97%|█████████▋| 1903/1960 [00:03<00:00, 483.26it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties: 100%|█████████▉| 1953/1960 [00:03<00:00, 486.45it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | Computing physchem properties: 100%|██████████| 1960/1960 [00:03<00:00, 514.17it/s]
+[2026-03-15 15:03:34] score_reinvent_plain | 
+[2026-03-15 15:03:34] score_reinvent_plain | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
+[2026-03-15 15:03:34] score_reinvent_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 15:03:34] score_reinvent_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 15:03:34] score_reinvent_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | 
+[2026-03-15 15:03:34] score_reinvent_plain | model ensembles:  50%|█████     | 1/2 [00:01<00:01,  1.37s/it]GPU available: True (cuda), used: True
+[2026-03-15 15:03:34] score_reinvent_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 15:03:34] score_reinvent_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 15:03:34] score_reinvent_plain | 
+[2026-03-15 15:03:34] score_reinvent_plain | model ensembles: 100%|██████████| 2/2 [00:02<00:00,  1.25s/it]
+[2026-03-15 15:03:34] score_reinvent_plain | model ensembles: 100%|██████████| 2/2 [00:02<00:00,  1.27s/it]
+[2026-03-15 15:03:34] DONE score_reinvent_plain
+[2026-03-15 15:03:34] START train_reinvent_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs/rl_reinvent.toml

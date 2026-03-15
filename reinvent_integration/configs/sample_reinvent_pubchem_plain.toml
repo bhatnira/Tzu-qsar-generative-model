@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/priors/pubchem_ecfp4_with_count_with_rank_reinvent4_dict_voc.prior"
+output_file = "reinvent_integration/results/reinvent_pubchem_plain/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

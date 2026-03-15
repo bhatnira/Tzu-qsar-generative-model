@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cuda"
+[parameters]
+model_file = "reinvent_integration/results/linkinvent_cl_adme/linkinvent_cl_stage2.chkpt"
+smiles_file = "reinvent_integration/data/warheads.smi"
+output_file = "reinvent_integration/results/linkinvent_cl/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

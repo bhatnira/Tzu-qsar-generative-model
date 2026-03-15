@@ -1,0 +1,11 @@
+run_type = "sampling"
+device = "cuda"
+[parameters]
+model_file = "reinvent_integration/priors/mol2mol_scaffold_generic.prior"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+sample_strategy = "beamsearch"
+temperature = 1.0
+output_file = "reinvent_integration/results/mol2mol_scaffold_generic_plain/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

@@ -1,0 +1,309 @@
+[2026-03-14 21:29:09] === FAST GENERATION START ===
+[2026-03-14 21:29:09] ---- MODEL reinvent ----
+[2026-03-14 21:29:09] SKIP plain pipeline for reinvent: outputs already exist
+[2026-03-14 21:29:09] SKIP RL pipeline for reinvent: outputs already exist
+[2026-03-14 21:29:09] START train_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_reinvent.toml
+[2026-03-14 21:29:25] DONE train_reinvent_cl
+[2026-03-14 21:29:25] START sample_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_cl.toml
+[2026-03-14 21:29:27] sample_reinvent_cl | Traceback (most recent call last):
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:29:27] sample_reinvent_cl |     sys.exit(main_script())
+[2026-03-14 21:29:27] sample_reinvent_cl |              ^^^^^^^^^^^^^
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:29:27] sample_reinvent_cl |     main(args)
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:29:27] sample_reinvent_cl |     runner(
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-14 21:29:27] sample_reinvent_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-14 21:29:27] sample_reinvent_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-14 21:29:27] sample_reinvent_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-14 21:29:27] sample_reinvent_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-14 21:29:27] sample_reinvent_cl |     raise RuntimeError(msg)
+[2026-03-14 21:29:27] sample_reinvent_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_cl_adme/reinvent_cl_stage2.chkpt is not accessible
+[2026-03-14 21:29:27] FAIL sample_reinvent_cl (exit=1)
+[2026-03-14 21:29:27] FALLBACK score_reinvent_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_plain/samples.csv
+[2026-03-14 21:29:27] START score_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent/curriculum_learning --label reinvent_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 175.93it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 972.38it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 1030.53it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 1044.37it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 925.54it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 832.95it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 850.09it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 800.42it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 776.40it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 704.44it/s 
+[2026-03-14 21:29:34] score_reinvent_cl | reinvent_cl valid_unique=97 optimal=0
+[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
+[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
+[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
+[2026-03-14 21:29:34] score_reinvent_cl | 
+[2026-03-14 21:29:34] score_reinvent_cl | SMILES to Mol:   0%|          | 0/97 [00:00<?, ?it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | SMILES to Mol: 100%|██████████| 97/97 [00:00<00:00, 16547.26it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | 
+[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:   0%|          | 0/97 [00:00<?, ?it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:  46%|████▋     | 45/97 [00:00<00:00, 437.71it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:  94%|█████████▍| 91/97 [00:00<00:00, 449.53it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties: 100%|██████████| 97/97 [00:00<00:00, 449.90it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | 
+[2026-03-14 21:29:34] score_reinvent_cl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
+[2026-03-14 21:29:34] score_reinvent_cl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:29:34] score_reinvent_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:29:34] score_reinvent_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | 
+[2026-03-14 21:29:34] score_reinvent_cl | model ensembles:  50%|█████     | 1/2 [00:01<00:01,  1.06s/it]GPU available: True (cuda), used: True
+[2026-03-14 21:29:34] score_reinvent_cl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:29:34] score_reinvent_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:29:34] score_reinvent_cl | 
+[2026-03-14 21:29:34] score_reinvent_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.14it/s]
+[2026-03-14 21:29:34] score_reinvent_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.10it/s]
+[2026-03-14 21:29:34] DONE score_reinvent_cl
+[2026-03-14 21:29:34] ---- MODEL reinvent_pubchem ----
+[2026-03-14 21:29:34] SKIP plain pipeline for reinvent_pubchem: outputs already exist
+[2026-03-14 21:29:34] START train_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_reinvent_pubchem.toml
+[2026-03-14 21:35:43] DONE train_reinvent_pubchem_rl
+[2026-03-14 21:35:43] START sample_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_pubchem_rl.toml
+[2026-03-14 21:35:47] DONE sample_reinvent_pubchem_rl
+[2026-03-14 21:35:47] START score_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent_pubchem/reinforcement_learning --label reinvent_pubchem_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | reinvent_pubchem_rl valid_unique=13 optimal=0
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | SMILES to Mol:   0%|          | 0/13 [00:00<?, ?it/s]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | SMILES to Mol: 100%|██████████| 13/13 [00:00<00:00, 14390.59it/s]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Computing physchem properties:   0%|          | 0/13 [00:00<?, ?it/s]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Computing physchem properties: 100%|██████████| 13/13 [00:00<00:00, 445.94it/s]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles:  50%|█████     | 1/2 [00:00<00:00,  1.03it/s]GPU available: True (cuda), used: True
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.23it/s]
+[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.20it/s]
+[2026-03-14 21:35:52] DONE score_reinvent_pubchem_rl
+[2026-03-14 21:35:52] START train_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_reinvent_pubchem.toml
+[2026-03-14 21:39:33] DONE train_reinvent_pubchem_cl
+[2026-03-14 21:39:33] START sample_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_pubchem_cl.toml
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl | Traceback (most recent call last):
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     sys.exit(main_script())
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     main(args)
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     runner(
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     raise RuntimeError(msg)
+[2026-03-14 21:39:35] sample_reinvent_pubchem_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_cl_adme/reinvent_pubchem_cl_stage2.chkpt is not accessible
+[2026-03-14 21:39:35] FAIL sample_reinvent_pubchem_cl (exit=1)
+[2026-03-14 21:39:35] FALLBACK score_reinvent_pubchem_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_plain/samples.csv
+[2026-03-14 21:39:35] START score_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent_pubchem/curriculum_learning --label reinvent_pubchem_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | reinvent_pubchem_cl valid_unique=13 optimal=0
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | SMILES to Mol:   0%|          | 0/13 [00:00<?, ?it/s]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | SMILES to Mol: 100%|██████████| 13/13 [00:00<00:00, 13060.11it/s]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Computing physchem properties:   0%|          | 0/13 [00:00<?, ?it/s]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Computing physchem properties: 100%|██████████| 13/13 [00:00<00:00, 422.15it/s]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles:  50%|█████     | 1/2 [00:00<00:00,  1.00it/s]GPU available: True (cuda), used: True
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | TPU available: False, using: 0 TPU cores
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.26it/s]
+[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.21it/s]
+[2026-03-14 21:39:39] DONE score_reinvent_pubchem_cl
+[2026-03-14 21:39:39] ---- MODEL pepinvent ----
+[2026-03-14 21:39:39] START sample_pepinvent_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_plain.toml
+[2026-03-14 21:39:42] sample_pepinvent_plain | Traceback (most recent call last):
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:42] sample_pepinvent_plain |     sys.exit(main_script())
+[2026-03-14 21:39:42] sample_pepinvent_plain |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:42] sample_pepinvent_plain |     main(args)
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:42] sample_pepinvent_plain |     runner(
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 84, in run_sampling
+[2026-03-14 21:39:42] sample_pepinvent_plain |     input_smilies = read_smiles_csv_file(smiles_input_filename, 0, allowed_tokens)
+[2026-03-14 21:39:42] sample_pepinvent_plain |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
+[2026-03-14 21:39:42] sample_pepinvent_plain |     validate_tokens(smiles, allowed_tokens)
+[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
+[2026-03-14 21:39:42] sample_pepinvent_plain |     raise ValueError(
+[2026-03-14 21:39:42] sample_pepinvent_plain | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
+[2026-03-14 21:39:42] sample_pepinvent_plain | Allowed tokens are: ({'Br', '[N@@]', '|', '[C@]', '-', '?', '3', 'c', 'O', '*', '^', '4', '[N@@+]', '[N@+]', '\\', '/', 'Cl', '[N@]', 'S', 'F', '[N+]', '[C@H]', '[C@@H]', '1', '(', 'n', 's', '[n+]', '2', '6', 'N', '$', 'o', '8', '[S@@]', '#', '5', '=', '[C@@]', ')', 'C', '[nH]', '[S@]'}, set())
+[2026-03-14 21:39:42] FAIL sample_pepinvent_plain (exit=1)
+[2026-03-14 21:39:42] SKIP score_pepinvent_plain: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_plain/samples.csv and no plain fallback
+[2026-03-14 21:39:42] START train_pepinvent_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_pepinvent.toml
+[2026-03-14 21:39:44] train_pepinvent_rl | Traceback (most recent call last):
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:44] train_pepinvent_rl |     sys.exit(main_script())
+[2026-03-14 21:39:44] train_pepinvent_rl |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:44] train_pepinvent_rl |     main(args)
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:44] train_pepinvent_rl |     runner(
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/RL/run_staged_learning.py", line 97, in run_staged_learning
+[2026-03-14 21:39:44] train_pepinvent_rl |     smilies = config_parse.read_smiles_csv_file(parameters.smiles_file, 0, allowed_tokens)
+[2026-03-14 21:39:44] train_pepinvent_rl |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
+[2026-03-14 21:39:44] train_pepinvent_rl |     validate_tokens(smiles, allowed_tokens)
+[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
+[2026-03-14 21:39:44] train_pepinvent_rl |     raise ValueError(
+[2026-03-14 21:39:44] train_pepinvent_rl | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
+[2026-03-14 21:39:44] train_pepinvent_rl | Allowed tokens are: ({'8', ')', '[C@]', '[C@@H]', 's', '(', 'F', '[S@@]', '/', '?', '5', '#', 'Cl', 'c', '$', '[nH]', 'Br', '4', '6', '^', '[N@+]', '3', '-', '2', '=', '[n+]', 'o', '[C@@]', '1', 'O', '*', 'S', '[N+]', '[N@]', '|', 'C', '[S@]', '[C@H]', '[N@@+]', 'n', '[N@@]', '\\', 'N'}, set())
+[2026-03-14 21:39:44] FAIL train_pepinvent_rl (exit=1)
+[2026-03-14 21:39:44] START sample_pepinvent_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_rl.toml
+[2026-03-14 21:39:46] sample_pepinvent_rl | Traceback (most recent call last):
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:46] sample_pepinvent_rl |     sys.exit(main_script())
+[2026-03-14 21:39:46] sample_pepinvent_rl |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:46] sample_pepinvent_rl |     main(args)
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:46] sample_pepinvent_rl |     runner(
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-14 21:39:46] sample_pepinvent_rl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-14 21:39:46] sample_pepinvent_rl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-14 21:39:46] sample_pepinvent_rl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-14 21:39:46] sample_pepinvent_rl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-14 21:39:46] sample_pepinvent_rl |     raise RuntimeError(msg)
+[2026-03-14 21:39:46] sample_pepinvent_rl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_rl_adme/pepinvent_rl.chkpt is not accessible
+[2026-03-14 21:39:46] FAIL sample_pepinvent_rl (exit=1)
+[2026-03-14 21:39:46] SKIP score_pepinvent_rl: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_rl/samples.csv and no plain fallback
+[2026-03-14 21:39:46] START train_pepinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_pepinvent.toml
+[2026-03-14 21:39:48] train_pepinvent_cl | Traceback (most recent call last):
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:48] train_pepinvent_cl |     sys.exit(main_script())
+[2026-03-14 21:39:48] train_pepinvent_cl |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:48] train_pepinvent_cl |     main(args)
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:48] train_pepinvent_cl |     runner(
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/RL/run_staged_learning.py", line 97, in run_staged_learning
+[2026-03-14 21:39:48] train_pepinvent_cl |     smilies = config_parse.read_smiles_csv_file(parameters.smiles_file, 0, allowed_tokens)
+[2026-03-14 21:39:48] train_pepinvent_cl |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
+[2026-03-14 21:39:48] train_pepinvent_cl |     validate_tokens(smiles, allowed_tokens)
+[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
+[2026-03-14 21:39:48] train_pepinvent_cl |     raise ValueError(
+[2026-03-14 21:39:48] train_pepinvent_cl | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
+[2026-03-14 21:39:48] train_pepinvent_cl | Allowed tokens are: ({'N', ')', '[S@]', '(', 'n', '=', '6', '|', '[S@@]', '[N@+]', '[C@]', 'Cl', '[C@H]', 'C', 'O', 'o', '$', '*', '?', 'Br', '[N+]', '^', '5', '[N@@]', '[C@@H]', 's', 'F', '[nH]', '#', '[N@]', '8', '3', 'S', '-', '[C@@]', '2', '1', '[N@@+]', '/', '[n+]', '\\', 'c', '4'}, set())
+[2026-03-14 21:39:48] FAIL train_pepinvent_cl (exit=1)
+[2026-03-14 21:39:48] START sample_pepinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_cl.toml
+[2026-03-14 21:39:50] sample_pepinvent_cl | Traceback (most recent call last):
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-14 21:39:50] sample_pepinvent_cl |     sys.exit(main_script())
+[2026-03-14 21:39:50] sample_pepinvent_cl |              ^^^^^^^^^^^^^
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-14 21:39:50] sample_pepinvent_cl |     main(args)
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-14 21:39:50] sample_pepinvent_cl |     runner(
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-14 21:39:50] sample_pepinvent_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-14 21:39:50] sample_pepinvent_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-14 21:39:50] sample_pepinvent_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-14 21:39:50] sample_pepinvent_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-14 21:39:50] sample_pepinvent_cl |     raise RuntimeError(msg)
+[2026-03-14 21:39:50] sample_pepinvent_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_cl_adme/pepinvent_cl_stage2.chkpt is not accessible
+[2026-03-14 21:39:50] FAIL sample_pepinvent_cl (exit=1)
+[2026-03-14 21:39:50] SKIP score_pepinvent_cl: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_cl/samples.csv and no plain fallback
+[2026-03-14 21:39:50] ---- MODEL mol2mol_similarity ----
+[2026-03-14 21:39:50] SKIP plain pipeline for mol2mol_similarity: outputs already exist
+[2026-03-14 21:39:50] SKIP RL pipeline for mol2mol_similarity: outputs already exist
+[2026-03-14 21:39:50] START train_mol2mol_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_similarity.toml

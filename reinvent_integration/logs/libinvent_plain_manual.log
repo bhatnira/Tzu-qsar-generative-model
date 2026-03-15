@@ -1,0 +1,176 @@
+12:52:03 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+12:52:03 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/libinvent_plain_manual.log /tmp/libinvent_plain_manual.toml
+12:52:03 <INFO> Reading run configuration from /tmp/libinvent_plain_manual.toml using format toml
+12:52:03 <INFO> User nbhatta1 on host panacea
+12:52:03 <INFO> Python version 3.11.13
+12:52:03 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+12:52:03 <INFO> PyTorch compiled with CUDA version 12.8
+12:52:03 <INFO> RDKit version 2025.09.6
+12:52:03 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+12:52:03 <INFO> CUDA driver version 590.48.01
+12:52:03 <INFO> Number of PyTorch CUDA devices 1
+12:52:03 <WARN> 'use_cuda' is deprecated, use 'device' instead
+12:52:03 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+12:52:03 <INFO> GPU memory: 46025 MiB free, 48400 MiB total
+12:52:03 <INFO> Starting Sampling
+12:52:03 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+12:52:03 <INFO> Number of network parameters: 23,686,692
+12:52:03 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+12:52:03 <INFO> Using generator Libinvent
+12:52:03 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/libinvent_plain/samples.csv
+12:52:03 <INFO> Sampling 260 SMILES from model reinvent_integration/priors/libinvent.prior
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(=O)c(=O)c(N2CC3CC2CN3C(=O)C)cnn1CCCC(C)(C)C(=O)NCCCCC(*)(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc(S(=O)(CC)=O)c(C)c1C(c1c(CCC)oc(CCCCOc2cc(CCC(=O)O)cc(C#CCCCC(C(=O)O)(C)C)c2O)c1)=O)C1C(C(=O)O)C(*)C1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C1NC2C(CSC2c2cc(CC(C)C)c(OCCOCCOCC#C)cc1C(N)=O)C(CCCCC(=O)NCCCCC(=O)NCCOCCOCCOCCN*)n2 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C#N)CN(CCC#N)C1CCN(C(CC)=O)CC1C(c1cc(Cl)c(Cl)cc1)CC(NCCCNC(CCCC#C)=O)C(CCCCN)(C)C#N)C#CCCCC#CC#CCC#CCCCC(NCCN(C)C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c12n(C)cc(-c3nc(NC(CC)C(F)(F)F)sc3)nc1c(C#N)c(C(C)(C)C)s2)COC(=O)CC1CC1C(=O)NC(C)C(C(F)(F)F)O* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCC(CC)NC(=O)C(C(C)CC)C(NC(C(=O)O)CCCCC(=O)N)C(NC(C(=O)O)CCC(=O)NC(C(O)=O)C(CC)C)C(=O)NCC(=O)NCC(C(N)=O)CC#CC(C)C(NCCCC)=O)CCCC(NCCCC(C)C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(N)ncnc2[nH]cc(CN3CC(C)N(C(C4C(O)CC(C(=O)O)C4)=O)CC3C(N)=O)c12)CCNC(CCCCC1C2C(NC(=O)N2)CS1)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(NC(C(Cc1ccc(Cl)cc1)NC(=O)c1cnn(CCC2CC2)c1C(=O)N(C)C)=O)(C(C)C)C(=O)CCC(=O)N1CCCC1C(=O)NC(C(=O)N)CCCC(=O)NC(CC(C)C)C(CC(C(C)C)C(N1CCCC1)=O)=O)C(C(*)=O)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: n1c(C(=O)N)cc(C)c(C#Cc2cnc(N)c(C#N)c2OC)c1CCCC(C)NC(CCC(C)C)C(NC(CCCC)C(=O)OCCCCOC(=O)CCC(=O)N(CCC)CCC)=O)CCCC(NO)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(O)C1CCCN1c1ncc(C#Cc2cnc(N)nc2)c(CCC)c1C(=O)NCc1oc(C(C)(C)C(CCC(=O)C(F)(F)F)(C(F)(F)F)NC(CCC(C(F)(F)F)(C(F)(F)F)O)=O)c(=O)n1-c1cc(F)cc(F)c1CC(C(=O)O)CCc1cc(F)cc(F)c1OC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(c1scnc1)(=O)NCc1sc(C2CC2)nc1C(C)C1CCN(C(CCC2CCCC2)=O)CC1C(=O)CCC(C(=O)O)(C)C#N)Oc1ccc(C#CC(CC)C(C)C)cc1CCC(C)C(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C1CN(C(=O)OC(C)(C)C)CCC1)(NC(C(C)(C)C)C(=O)O)=O)C1CCCN1C(=O)C(CC(=O)O)NC(=O)c1nc(Cl)c(N(C)C)nc1NCC(O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(N)(C1CCN(C(=O)CC#N)CC1)CCC#CC#CCCC(N)C(C(=O)NCC#C)C#CCCCCC#CC#CCC(C)C(=O)NCCC#CCCCCn1cc(CO)c(=O)n(C)c1=O)C(CCCCN)NC(=O)C#CCCCCC#N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC12C(=O)NC(C3CCC(C)C(C(C)C)C3)C1=CC(C)C2C(=O)CCC(=O)CCCC(=O)OCCOCCOC(CCCCC(=O)NC(C(=O)O)CCC(=O)O)=O)CCCC(C(O)=O)NC(=O)CCC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1(CC(NC2CC2)=O)CCCC(CCC(OC)=O)N1C(CN(Cc1ccccc1)C(=O)OC(C(=O)CC)C(C(C)C)NC(=O)CCC(=O)N)C(NC(C(=O)OC)C(CC)C)=O)C(OC(C)C)=O)CC(C)C(NC(C(N)=O)CCCCN)C(=O)NCCC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cccc(-c2nccc(C(=O)Nc3ccc(C)c(Nc4cc(NC(C)=O)c(C)c3)c3CC4CCCC(=O)N(C)C4)c3c2)c1CNC(=O)CCC(NC(CCC(=O)O)C(=O)NCC(C)CCCC(C)C(NC(C(C)CC)C(=O)N1CC(C(NCCCC(C)C)=O)CCC1)=O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(N1Cc2c(ccc(S(=O)(N)=O)c2)CC1)CCCCC(=O)OCCCc1ccc(F)c(C(C2CC2)=O)c1C(OC(C)(C)C)=O)CCC(=O)NCCCCC(C(=O)O)NC(=O)c1ccc(N(CC#C)C)cc1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#CC(C)(C)C)COc1c(C(C)(C(F)(F)F)O)c(OCCCC(C(O)=O)C(O)=O)c(F)c(C)c1CCC(C)C(NC(C(=O)O)CCC(N)=O)=O)CCCC1CCCCC1C(NC(CC(O)=O)C(=O)NC(C(C)CC)C(=O)CCCc1nnn[nH]1)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(=O)(C)N1CCc2c1cc(-c1c(C(=O)NCC#N)ncc(C(=O)NC3CC3)c1)cc2C(=O)CCCC(=O)NCCCC(=O)N1CCC(CCCC(OCC)=O)CC1C(=O)NC(C(C)CC)C(=O)NC(CC(C)C)C(=O)OC1CC2CC(CC2)C1C(=O)NC(CC(C)C)C(=O)NC(C(C)C)C(C(NCC(C)C)=O)(=O)* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(C)(OC(=O)N1C(c2ccc(F)cc2F)CN(C(=O)CCC(O)=O)C(C(C)C)C1)C(=O)NC1C(O)CC(C(=O)CCC)C1C(=O)CCC(=O)CCC#Cc1ccc(OCCCC#C)c(C#CCC(O)C(C(CO)O)NC(CCCC#C)=O)c1CCNC(=O)C(C)(C)COC(=O)CCC(C(O)=O)NC(=O)CCC(O)=O)c1ccc(OCCCCC(C#N)NC(=O)CCC2CCC(CCCC#C)C2O)cc1C(=O)NC1C(O) could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(NCC(F)(F)F)(C1(C#N)CCN(C)CC1)=O)C1CC1c1ccc(Br)c(OCCCCO)c1CCCN1CCC(CCCC#C)(NC(=O)CCC2CCC(CNC(=O)CCC#C)CC2)CC1CCCC#CC#N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(F)ccc1C#CCN1CCN(CC(NC(C(O)CN)C(=O)CCCC(O)=O)=O)C1C(N)=O)CCS(=O)(=O)N1CCC(CCCC(N2CCCCC2C(=O)Nc2c(C(NC(CC3CCCCC3)C(N)=O)=O)ccc(CCCCC(C(=O)O)C(N)=O)c2)CC(C(=O)O)(C)C)c1-c1ccc(CCCC#C)cc1C(Cl)(n1nnnc1)CCCCO could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#CCN(C)C)c1c(OC)nc(C)nc1OCCN1CC(C#CC)(C(O)=O)C(CCC(=O)O)(C#Cc2ccc(Cl)c(CC(NC(CCCCN)C(O)=O)C(O)=O)c2)C1CCCC#CC#CCCCOc1ccc(CCC(O)(CC)CC#CC#CC#CC(=O)N)cc1C(=O)NCCN(C)CC(O)CCC(O)C(N)Cc1ccc(OCCOCCOC2CCCCO2)c(C(C)(C(=O)O)C)c1OCCOCCOCC#CCOCCOCCOCCNC(=O)c1oc(=O) could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: Clc1cc2[nH]c(C(=O)O)c(CCCNC(C3CC3)=O)c2cc1C(NC1CC2CCCCC2CC1)=O)CCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O1CCC(COc2ncc(C(=O)NCC)c(OCCCN(C)CCC(S(=O)(=O)C)C)c2C#CCNC(=O)CCCCC2CCCCC2)CC1CNC(C2CC1CC2C(=O)N1CC(O)C(N)Cc1cc(CO)c(OC)c(COCCN(CCN)S(=O)(=O)NC(CC(C)C)C(=O)NCCCCC(N)C(=O)CCC(NCCOCCOCCOCC#C)=O)c1)=O)C(NC(=O)OC(C)(C)C)CC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1c(Cl)c(C(c2ccccc2)C#N)cc(Cl)c1CS(=O)(N1CCN(C(CCCC(=O)C(NC(CCCN=C(N)N)C(C)C)=O)C(CC)C)=NC1=O)C(N1C(C(O)=O)CCC1C(NCC(C(O)C(=O)N)NC(=O)CCC(=O)NCC(C(F)(F)F)(Br)CC*)=O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1C(CC#N)CCC(C#N)N1C(CC1C2C(OC1CCOC(C)=O)OC2)=O)OC(=O)CCC(=O)CCC(=O)C(=O)OC(C)c1ccc(Cl)cc1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#CCCCNc1cc(C)c(C#CCNC(=O)C)cc1CC12CC3CC(CC(C1)C3)C2NC(=O)CCC(=O)NCCNC(=O)CCCCC#N)CCCC1CCC(C(=O)C#N)N(C(=O)CCC(C(=O)N)CCCCNC(CCCOCCCCNC(CCCCC#C)=O)C(=O)CCC2CCN(C(=O)CCC(C(=O)N)C(=O)NCC#CCOCCOCCOCCN)CC2CCCOc2cc(OC)c(C#CCNC(=O)C)cc2C)C1CCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#Cc1nccnc1N1CCC(CCCCC#CCOC(Cn2cc(-c3cc(Cl)ccc3)c(=O)[nH]2)=O)C(COc2cn(C)c(C3CCN(C(CC#C)C(=O)N(C)CCNC(=O)OC(C)(C)C)CC3)c2)C1=O)C(=O)OC(C)(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(C1CC1)N1C(C(O)=O)CC(N(C)C(=O)OC(C)(C)C)C1C(=O)OC1CN(C(OCC#C)=O)C(CCCCOC(=O)CCCC#C)C1OCCOCCOCCOCCOCCOCC#CC#CC#CC(C)(C)CNC(CCCOc1ccc(C#CCN(C)C)cc1)=O)C(=O)COc1c(OC)c(C(O)=O)cc(C=CC(=O)OCCOCCNC(=O)CCC(C(=O)O)N)c1OCC1OC(=O)N(CC(C(O)CO)O)C1NC(=O)CCCCN(CC(= could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N(CCC(C)C)(C(C)C)C(C)C(O)C(CC1CCCCC1)NC(=O)CCCC#CC#CC#CCNC(=O)CCCC#CCN(C)C(C)=O)Oc1ccc(CC(C)C(=O)O)c(CCOC)c1CCCN(C(CCC(N)=O)C(N)=O)CCCN(C)C(=O)CC(C(NC(=O)OC(C)(C)C)CCCCN)C(N)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1(CC(=O)OC)CCC(CNC(=O)CCC(C(=O)OC)NC(=O)CCCC(OCc2ccccc2)=O)CC1CCCC(=O)OCCOC(=O)CCC(NC(=O)OC(C)(C)C)C(OC(C)(C)C)=O)C(NC(CC(C)C)C(=O)NCC(C(C)CC)C(NCC(C(=O)O)CCCC)=O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1c2nc(C3CC3)c(OCC)nc2ccc1C(N1CC(CCCCCC)C1)=O)CC1CCC(CC*)CC1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1(C)(C)C2C1(C)C(c1c(F)ccc(Cl)c1F)(CCCNC(=O)C=Cc1c[nH]c3ccc(C(C)C(O)CCCN4CCN(CC(CC)CC(C(N)C(C)C)C(O)=O)CC5)c3c1)C2CCC(C)NC(=O)OC(C)(C)C)OCC1C2C1CN(C(OC(C)(C)C)=O)C2C(C)CC#CC(C)(c1ncc(F)cn1)C#CCCCC(O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=S1(=O)NCc2ccc(-c3ccc(C(C(CCC)(C)C(=O)O)C3CC3)cc3)c3c2C1C(CCCC(C)C)C3C(=O)NCCCCC(C(=O)O)C(=O)CCC(=O)CCC(=O)OC1C(O)C(O)C(COC)C1CCC(=O)OCCCC)C(C(=O)O)CC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(-c2nc(C(=O)N)c(CCCOC)nc2CCCC)nn1-c1cn2c(cc1)nnc2C(=O)CCCCOc1ccc(C#CCOc2ccc(CCC(C(=O)O)N)cc2)c(CCCCC)c1OCC(O)CNC(C)(C)C#CC(C)CCCCOC(C(C)(C)C)=O)CCCNC(C(C)(C)C(O)=O)=O)C#CCCCO could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1NCCC1C(NCC)=O)(C#N)C#N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1C2(CCC(C#C)O2)C1C(C1CC1)=O)Oc1ccc(C=CC(=O)O)c(OC(CC2CC3C(C3)C(C(=O)O)N2)C(CCCc2ccccc2)C(=O)O)c1)C(C(O)C(COC(=O)c1oc(C)cc1)CCCC)(COO)C(CC1CCCC1)C(O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CN1C(=O)C(C)N(c2ncc(N3CC(CCCCC#C)N(Cc4c(OC)c(F)c(OCCCC(=O)NCCCCC4CC5)c(F)c4)C(CCCCC)C3)cc2)CC1CC(=O)NCCCCC(N)C(=O)NC(C(O)=O)CCC(NC(OC(C)(C)C)=O)C(=O)NC(c1nc(C(C)C)sc1)C(NC(C(O)=O)CCCCNC(=O)CCCCN)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(F)(F)(F)c1cc(Cn2cc(Nc3nccc(C(F)(F)F)n3)c(C(=O)NC)n2)ccc1C(=O)N1CC(C)(NC(CCC=C(CCC=C(C)C)C)C)=NC2(CCN(C(=O)OC(C)(C)C)CC2)C1CCCCC(C)C(=O)OCOC(=O)CCC(C(OCC)=O)N* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(c1ncc(Cl)cc1)(NC1CC1)=O)CC12CC3CC(C(=O)C1C3)C2(C(=O)O)CNC(=O)c1c(C(F)(F)F)nc(CCC)n1Cc1ccc(C#CC#CCCCC(O)=O)cc1CS(=O)(=O)N1CC(C)C(C(=O)O)C(CCCCC#CCC(=O)CCCC[N+](C)(C)CCOc2ccc(CCCC(=O)O)c(C#CCCCC(C(=O)O)(C)C)c2)c1CCC1CCC(CCC)C(CCC(=O)C(F)(F)F)C1COC(=O)C(Cc1ccc could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC1CCC(NC(Cc1ccc(Cl)cc1)C(C(=O)NC(C(=O)N)C(C)O)=O)C(NC(C(=O)O)C(C)C)=O)CCCNC(=O)CCCCN(C(=O)C)C(COC(=O)C)C(O)C(C(CO)O)O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1C2CC3CC(CC1(C#Cc1c4c(cc(NC(CC)=O)c(OCCCOC4OC(OC)C5C5CC5C(=O)N(CCCCC(C)C)C(CCCCC5)C4)c3)C(O)C1O)C3)C2C(=O)NCCCCC(C(=O)O)NC(C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C12CN(c3c(Cl)c(C=CC(C4CC4)=O)c(C)nc3C)CC(C1)CN2c1c(Cl)cnc(N2C(C(=O)NCC)CCC2)c1C(NCCN(C)CCO)=O)c1csc(COC2CCN(C(CCCCC3C4NC(=O)NC(=O)N4C(CCCCC(NC)=O)C(NCCCCC(NC(CSCCNC(CCCC4C5C(OC(CCCO)C(O)C6CC4CC4)=O)(C)C5)=O)C3)=O)C(CCCC)CCC)C2=O)n1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: n1c(Cl)cc(CC(Nc2c(F)cc(F)cc2)C2(Cn3cncn3)OCC(C(Cc3ccccc3)CC(C)C)C(C(=O)OCC)N2)c1C=CC(=O)c1ccc(OCCCC#CCC(=O)n2cc(CCC#C)nc2-c2cn(C(C(O)=O)CCCC)nn2)c(CCCC2CCCC2)c1C#N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CCCN1C1CCN(C(C)=O)CC1C(N)=O)C#CCCCC* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc(C2(C#N)CCN(CC(=O)N)CC2)c(OCCCC(C#N)(C)C)c1OCCCCC(=O)NCCCC(NC(C)=O)C(=O)OCC(N(C)C)=O)CCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(OC)nc(N2C(C)CN(Cc3c(F)cc(C#CCNC(=O)CCCC(=O)N)cc3)CC2)c1CCCOc1ccc(CC2CCC(CCC(=O)NCCCOCCOCCOCCNC(=O)CCCCC3CCC(N4CCC(CCCC(N)=O)C(=O)CCC5)CC4)c3cc(OC)c2)c2c1cc(CCC(O)=O)c(CCC)c2OCCCCOc1c(CC)cc(CC(C(N)=O)NC(=O)CCCCO)cc1CCC(C)C(=O)NC(CC(C)C)C(=O)N(CC)CC(O) could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(C(NC2CC2c2ccc(Cl)cc2)=O)nc(CC(=O)C)sc1Nc1ncc(Cl)c(N2CC(C)(C)C(C(NC(C#C)CC=C)=O)C2)n1)CCCCC(N(C)OC)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=[N+]([O-])c1ccc(C=CC(N2C3CC(N(Cc4nc(C)c(C#CCNC(=O)C(C)C)o4)C(C)C3)C2)CCCC(N)C(NCCCC#CCN(C(=O)OC)C(C)C*)=O)c1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(C#N)ccc1N1CC(C)N(S(=O)(C)=O)C(C)C1COC(=O)CCC(=O)CCS(NC(CC(C)C)C(=O)CC(C(C)C)C(=O)OCC)(=O)=O)OCC1CC1C#CC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O1COc2ccc(C(C#N)(C)CC(C)C)c2C1=NOC(C(=O)O)C(CO)NC(C(C(C)O)NC(C(CC)NC(=O)CCCC(=O)N)=O)=O)C(O)C(C(C)C)CCCC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C(N)=O)(C#N)C#N)C#CCCCCCc1ccc(NC(CCNC(C)(CC#C)C)=O)cc1OCCCC#Cc1ccc(OCCCCC#C)c(C(=O)NC(CCC#C)C(=O)N2CCCC2C(=O)NCCC(=O)O)c1OCCOCCOCC#CC#CC#CC(C)(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(Nc1cc(Nc2c(C(=O)NC)ccc(C)c2)cc(C(C)C)c1)=O)CC1CCC(N)C(O)C1CCCC(N1CCC(C#N)(CN)CC1)CNC(=O)CCC(C(=O)N)NC(=O)c1cc(N*)ncc1F could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(c1ccc(F)cc1)C1CCN(C(=O)Cc2ccc(C#CCN(C)C)cc2)C(Cc2ccc(OCCN(C)C)c(CCC(C)C(N3CCN(C(=O)C=Cc4ccc(C#N)cc4)CC3)=O)c2)C1C(=O)Nc1ccc(C#CC#CCCCCC)cc1CCCC(NCCCCNC(=O)CCCCC1CCCCC1)=O)CCCC2CCC(=O)N2 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1N(C(OC(C)(C)C)=O)C(C)CN(C(=O)c2csc(-c3c(S(=O)(=O)C)cc(NC(CCCCC(=O)NCCNC(=O)CCCC(C)(C)C(=O)N4C(C(=O)O)CC4)=O)n(CCCC(=S)N3CCCCC(C)C(C)C(=O)C3CCC(C)(C)CC3CCN(C)C4CC5CC4)[O-])c2)C1COCC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C(=O)N)Oc1ccc(C(N(C)CC2CC2)=O)cc1CCCC#CC#CCOCCOCCNC(=O)CCCCC(C(=O)NCc1nnn(C)c1)NC(=O)CCOCCOCCOCCNC(C(CC)C)C(C)C#CCC)CCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(COc1cccc(-c2nnc(C#CCCCC#N)o2)c1)CNC(CCCC(NC(=O)C(C)C(C(=O)O)O)C(C)C)=O)C(N)C(=O)NCCN(C)C(=O)CCCC(N)C(=O)NCCC(C)C(O)C(C(C)C)O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(C(N)=O)NC(CCC(NC(=O)C)C(O)C(N)CC(N)=O)C(=O)NCC(C(O)=O)NC(=O)c1nc(C(O)=O)c(CCCC#C)n1CCCCC#CC#CC#CC#CC#CC#CC#CC#CCN(C)CCNC(=O)c1cc(O)c(O)cc1CCNC(=O)CCC(C(=O)O)NC(CCCC(C)=O)=O)C#CCCCC(=O)NCCOCCOCCOCCC(C#N)NC(=O)c1cc2c(c(Cl)c(Cl)s2)[nH]1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(C(C2CC2)(O)C2CC2)ccc(OC)c(NC(C)=O)c1CCCC1(CCC)OC(=O)C(C)(C)C1CCCCC(C1CSC2C1CC2C(=O)NCCOCCOCCOCC#C)OCC1CC1C(CO)NC(=O)c1sc(Br)c(C(=O)C)n1COC(=O)CCCCC(=O)NCCCC(C)C(CO)NC(=O)CCC(C(=O)O)NC(=O)CCCC1(CO)C2CCC(C2)C1C(CC(C(C(C)C)C(=O)O)O)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(C1CCC1)Nc1cc(C(F)(F)F)c(-c2sc(CC)cn2)cc1C(NCC1CC2CN(C3CCOCC3)CC2C1)=O)NC(=O)CCC1CCC(C(NC(C)C(=O)O)=O)C(CCSC)C1NC(OC(C)(C)C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C1N(C)CCN(CCN2C(=O)OCc3c2cccc3)C1C(C)C(C(=O)NC)NC(=O)c1cncc(-c2ccc(C#CCCCC(=O)O)cc2)c1C(C(CC(CO)C)NC(=O)C)=O)CCC(=O)NCCCC(F)(F)F could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC1(C)S(Nc1ccc(Cl)c(CNC(=O)C2CN(C3CCOCC3)C2)c1-c1ccc(C#CC#CC)cc1)(=O)=O)OCC1(C*)CCC1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1N(S(=O)(C)=O)CCN(C2CCN(C(CCC#CC#CCCCC#CCCCCC#N)(CSCCN)C3CC3)=O)CC(C#CCC2)C1NC(=O)CCC(=O)NCCNC(=O)CCCCC1C2NC(=O)NC2CS1)CCCC(=O)NCCCC(C#N)NC(=O)COC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(C)(OC(=O)N1C(C(C(C)C)C(C(=O)NCCCC)O)CC(NC(C)=O)(CCCC)C1)C(=O)NC1CC1C(NC(C(C)(C)C)C(=O)COc1ccc(CCCCC(N(C)C)=O)c(C=CC(=O)OCC)c1)C(=O)CCC(C(N)=O)NC(CCCCC(=O)NCCOCCOCCOCCNC(=O)CCCC(=O)NCC(=O)O)=O)CCC(NCCOCCOCCNC(C(C(C)C)N)=O)C(NCc1ccc(N(C)C)cc1)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#CCC(=O)NCc1ccc(OC)c(O)c1CN1CCC2(OCCN(C)C2)C1C(=O)NCCC(=O)N(O)CCOCCOCCOCCNC(CCC(C(=O)N)NC(C)=O)=O)CCC(N)C(=O)NCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC1S(=O)(N1CCC(N(C)C)C1C(=O)Nc1cc(OC)c(CCC(=O)Nc2cc(Cl)c(Cl)c(C(=O)N3CC(CCOC)C(C(O)=O)CC3)c2)cc1CCCC(=O)NCCCN(C)C)c1ccccc1CCCC(NC(=O)OC(C)(C)C)C(=O)CCCCOc1ccc(CC(C(N)=O)NC(=O)C2N(C(=O)CCC3CCCCC3)CC(NC(=O)C=CC(O)C(NC(=O)OC(C)(C)C)CCCC(N)=O)CC2)cc1C(=O)NCC( could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: Cn1ncc(CC(c2ccc(F)cc2OCCC)C(=O)CCC)c2cc(C)c(CCC(*)C3CC3)nc12 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(OC(CC1c2c(nc(N)s2)CCC1)=O)C(OC1C(O)C(O)C(O)C(CO)O1)=O)CCC(=O)OC(C)(C)C(OC1C(O)C(O)C(CO)C(O)C1O)CCCC=CC* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: FC(F)(F)C(O)(C(F)(F)F)c1cn(C(C(N(C)CCC)=O)CC(C)C)nn1CCCC#CCC(O)C(NC(CCCC(O)=O)=O)C(O)CC(C(C)C(C(C)C)C)NC(CCCCC(NC(CCC)C(O)=O)=O)C(NC(C(*)=O)C(C)CC)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O1CCN(C(C)C)CC1COc1cc(Cl)c(C#N)cc1CN1CCC(C#CCC(C)C)CC1C(N1CCC2(CC2CCC)CC1C(=O)NCCOC(C(C(C)C)NC(CCC(=O)O)=O)=O)CS(=O)(=O)CCCC(C)C(NCC1CCC(C(=O)O)CC1)=O)* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(CCC)C1CC1C#CC1(O)CC2CCC(C1)C2CNC(=O)c1oc(CCC#Cc2ccc(C#CCCCC(CS(=O)(=O)C)C)cc2)cc1CCC(=O)OCCCCOS(=O)(C(F)(F)F)=O)CCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(OC(C)(C)C)c1ccc(N2C(=O)CCC2)c(C#Cc2cnc(N)nc2O)c1CCCCNC(CC(O)C(C(O)C(O)CO)O)=O)C(C(C)CN)NC(=O)C(N)CC(C)C(=O)NC(C(O)=O)C(C)CCCC(C)NC(CCCCOc1cc(C#CCNC(=O)C)ccc1OC(=O)CCCC#C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O(C)c1nc(OC)ncc1NCCC#CC(C)(C)Oc1ccc(C#CCNC(=O)c2ccc(O)c(OC)c2)cc1CCS(=O)(=O)NC(C(=O)N)CCCC1CCC(CN)CC1C(NC(CCCCN)C(=O)O)=O)CNC(=O)c1cnc(OC)nc1OC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(C)NC(=O)CCC(N)C(=O)Nc1ccc(OCC2CC2)c(CCCC(=O)NC(C(N)=O)C#N)c1CCCCNCC(C)(C)C(=O)NC(C(C)CC)C(NCCOCCOCCOC)=O)COCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#N)C1CCC(CNC(=O)c2cc(OC)c(O)c(OC)c2)C(C(=O)NCC#C)N1C(CCCCNC(=O)c1ccc(C#N)cc1)=O)C#CCCCCC#CCCC(O)=O)C#CCCCCC(N)CCC(=O)NCC(NCCCC(N)C(N)=O)C(NCCCCC(C(=O)O)N)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC1C(N1CCCC(C)(C#N)C1)CNc1cccc(Cl)c1C(Nc1ccc(C)c(C(=O)N2CCC(C(=O)NC3C(C(O)=O)CC(C)CC3)CC2)c1CCC(NCC(=O)O)=O)=O)CCC(=O)* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(OC(C)(C)C)(=O)N1CC(C)N(S(=O)(CCC)=O)CC1COc1ccc(C#CCN(C)C)cc1C(=O)NOCCOC1CCN(C(=O)OC(C)(C)C)CC1C(=O)NC(C(OCC)=O)C1CCCCC1C(CC2CCCCC2)=O)CCCCOC(CCC(C(=O)O)(C)C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(c1onc(C)c1)CS(=O)(c1ccc(CC(C(=O)OC)NC(=O)CCCC(=O)CC(C)NC(CCCCC#C)=O)cc1C#CCC(O)C(NC(OC1C2CCOC2OC1)=O)C(CC1CC1)C(C(N)Cc1cccc(Cl)c1)=O)C(=O)NCCC1CC1C(C)(C)C(=O)COC(=O)CCC(=O)NCCCC(C(=O)O)(C)COCC1CC1C#CCC(C)C(C)C(=O)NCCOC(C)(C#CC#C)COCCOC(c1ccc(C#CC#CC#COC) could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#Cc1cc(C#N)c(S(C)(=O)=O)cc1C(NC(C(O)=O)CCCCNCCN1CCCC(c2ccc(Cl)cc2)C1C(=O)NCCCC(NCCCC(C)(C)CNC(=O)CCC(N)C(=O)O)=O)=O)NC(C(C)CC)C(=O)NCCCC(=O)NCCC#CC#N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: COC(=O)C1CC23CC(O)CCC2(C)C3CC1C(C(=O)CCCC(C)C)COC(=O)CCC(=O)OCCOC(=O)CCC(=O)C(C#N)C(C)COC(OC(C)(C)C)=O)COC(C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(S(=O)(CC)=O)ccc1CS(=O)(=O)N1CC2C(C1)C2C(NC1CC1)=O)CCC* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(CC(C(N(C)C2CC2)=O)C)c(C(F)(F)F)cc1C(C)C(=O)c1ccc(C#CCOCCOCCOCCOCCOCCOc2c(C#CCNC(=O)C(C)C3C3CC3)ccc(S(=O)(CCCC(=O)O)=O)c2)cc1NC(=O)c1ccc(C(O)=O)c(C)c1CCCC(C(=O)N)NC(OC(C)(C)C)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CCCCC1C(=O)NC1CC2C(C3C(C3)C2C(=O)N)C1C(=O)CCC(C(C)C)C(=O)NCc1ccc(CCCC(c2ccc(OC)cc2)C(=O)OCC)cc1CCC(C)(C)C(=O)CCC(C(C)C)C(O)=O)* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1N(C(C(CC)CC)=O)CCC(C#N)(C(N2C(C#N)CC2)=O)C1C(=O)NCCC#CCCCC#CC#CC#CCCC(C)CC=CCCCC(=O)NCC(C)C(=O)NCCCCC#CC#CCNC(CCCC#CCC#CCOC)=O)CCCN(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(n1cncc1)C(=O)N(c1ccc(OCCO)cc1)CC(CO)COC(=O)CCCCC#CCOC(=O)CCCCC1CCC(C#CCC=CCC(O)=O)CN1c1nonc1CCCCOc1ccc(C=CCC(=O)O)c(OCCOCC#CC#CC#CC#CC#CCCCCC)c1CNC(CCCCC(OCCOCCOCCNC(CCC#CC#CCCCCC)=O)CCCCOc1c(OC)cc2c(c(NCCCCNCCCCNC(C)=O)nc(C)n2)c1C=CC(=O)OCCNC(=O)c1c(OC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC1C(Nc1c(NC(=O)C)cc(C(c2ccc(OC)cc2OC)=O)cc1)(C(=O)NC)C#N)CCC#CCC#CC#CCC(CC)CC(O)C#CC#CCCCCCC#CC#CC#CCCC(N)C(=O)NCC(O)CNC(=O)OC(C)(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cncc(C#N)c1OCC(CNS(=O)(=O)C)C(C)CCNC(=O)CCCC#CC#CCCCCC(=O)NCCN(C)CCNC(C)=O)C(O)C(C(C(C(CO)O)O)O)OCCNC(=O)CCCCC(C#N)C(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CCCC1CC1C(N)CC(c2ccc(Cl)cc2C)C(C(=O)NCC)C1OCCOC(CCCCc1c(C(CC)(C)C)cc(Cl)c(C(=O)C(CCC(O)=O)N)c1)=O)C(NC(CCSC)C(=O)O)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1C(NC(=O)c2cn3c(c(C(=O)N)n2)CSC3)C(C(OC)=O)CCN1C(C)CC(C(C)C)NC(C1CC1c1cccc(CC(C(=O)OC(C)(C)C)NC(=O)CCC(=O)OC(C)(C)C)c1)=O)CC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#N)c1cc(NC(=O)OCCN(C)C)c(C(NC(C(O)=O)C(C)C)=O)cc1OCCCCC(O)=O)C(NC(Cc1ccccc1)C(O)CC(C(NC(CC(C)C)COCC#C)=O)CCCCN(C)CCOCCOCCNC(=O)C(C(C)C)NC(=O)OC1C(O)CN(C(C=CC(=O)O)=O)C(CC(C)C)C1OC(=O)C(CCCCC)NC(=O)CCCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(Cl)nc(C(=O)NCC)c2n1cc(C#CCCC(O)(C)C)cc2OCCCCOCCOCCOCC#CC#CC#CC#CCNC(=O)c1cc(N)c(C(N)=O)c(OC)c1C#CCCCCOC(C(C)(C)C)=O)COCCOCCOCCOCC#CC#CC#CC#CCO could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1(C)CN(C(=O)c2c(OC)c(C#N)cc3cc(OC)c(OC)cc32)CCN1C(C)C(O)C1N(C(OC(C)(C)C)=O)C(CC(O)=O)C(CSCCC(C)C)NC1C(O)=O)CCC(=O)NCCCC(C(NCCC)=O)CC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#Cc1ccc(NC(CC)CCC(=O)OC)cc1S(=O)(=O)NC(C(=O)OC)CCCCN(C)C(CC(C)C)C(N)=O)CCCC* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(Br)ccc1NC(=O)C(=O)C1CC2CCCC(C1)N2C(=O)C(C)(C(F)(F)F)C(=O)N1C(C(N(C)C)=O)CC(CCCC(O)C(C)C(C(=O)NC)CC2CCC(F)(CCCC#Cc3cccc(COC(=O)CCC(C(NCCN(C)C)=O)(c3ccccc3)CC(C)C)O)c(=O)n2CC1C)CCCC1CC1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(=O)(N1CCN(CC#C)CC1)CSc1ccncc1C(CCC=C)=O)CCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(C#N)cc(Oc2ccc(C3CCCN3CCCOc3c(OC)cc(C#CCNC(=O)OC)c(OC)c3)cc2)c(OC)c(C(F)(F)F)c1OCCCCN(CC1CC1)CCCCOC(=O)CCCC#CC#CCC(C)CC=CCCCC(=O)OCCOCCOCC#CC#CC#CC#CCC(C)(O)C(O)CN(C)C(CCCOCCOCCOCCNC(CC1C(=O)NC(=O)N1)=O)C(=O)Nc1ccc(C)c(NC(=O)C=CCOCCOCCOCCNC(=O)OCCCC#CC# could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(OC(C)(C)C)(=O)C(NC(OC(C)(C)C)=O)CCC(C)C(NC(C(O)=O)CCCCN)c1nc(N)[nH]c(=O)c1CNC(=O)CCNC(CCCCC#C)=OC(=O)CC(C(O)C(N)=O)CCC(O)C(NC(C(N)CC(C)C)=O)CCCC(C(=O)NCCCn1nnc(CCCC#C)n1)NC(=O)CCC(C(N)=O)NC(=O)CCCCC(=O)N could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1N(C(C=C)=O)CCN(c2cnc(N3CCC(CC(CCC(=O)O)NC(C(N)Cc4ccc(OCCCCOCCCNC(=O)CCC(C(=O)NCCCCC)(O)N)cc4)=O)c(CCC(NCCN(CCN)CCNC(=O)CCC(=O)Nc5c(CC)c(CCC)cc(CC(=O)N5CCC(C(=O)N)CC5)c(CCC(C)C)c4CC3)CC(O)=O)CC3)CC2CCCC(C)C)C1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1CC2CC1C(C1CCC(F)(F)CC1)N2C(CCCC(NC(C(=O)NC)Cc1ccc(C#N)nc1)=O)C(OC(C)(C)C)=O)CS(=O)(NCCCCC(N)C(=O)NC(C(N1CCCC1C(=O)OCC)=O)C(C(CC)C)NC(=O)CNC(=O)CCC(=O)C(Cc1ccccc1)C(CC)C(C(O)=O)C(C)C)NC(CCCC#C)(COC(=O)CCC)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(-c2nc3c(c(OC)n2)c(C(CNC3CCN(C)CC3)N)cc(F)c(CCCC#N)c1)CN1CCCC(C(N)=O)C1CNC(=O)c1ccc(C#CCCCCC#C)cc1CCCC#CCNC(=O)CCCCNC(CCCC#C)=O)CCCC1CCN(C(CCCCNC(CCCC2CCNC2=O)=O)=O)CC1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: N#CCC(C)(C)CCC(NC(C(O)=O)C(C)C)=O)Oc1c(C#N)cc(CCCC#C)cc1CCCN(C)CCC(C(=O)C)NC(C)=O)CC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(OC(=O)CC1CC1)c1c(F)cc(C)c(CCC(C)(C)O)c1C(=O)COC(CC1(C)CC1)=O)CCC#CC(c1sc(Br)cc1)(C)C#CC#CCCCC#CC#CCCCC(=O)NCCCCC#C* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)CCCC#CC(=O)N(CCCC(C)C)CCCNC(CCC(C)C(=O)NC(CC(C)C)C(NCC(=O)N)=O)=O)C(NC(=O)OC(C)(C)C)C(C)CC(=O)NCC#CCC(C)C(N)C(C)C(C)CCCC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C1C(Oc2nc(N)ncc2F)CNC1CN(C(c1c(-c2ccc(C#N)cn2)cc(NS(=O)(C)=O)c(CC)c1)=O)CCC(=O)NCC(=O)NC(CC)CC)(=O)CCC(NCCO)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: FC(F)(c1cnc(C2CCCCC2C(=O)Nc2ccc(Cl)cc2)cc1C(=O)NC1CCN(c2ccc(C#CC#CC)cc2)CC1)CS(=O)(N1CCC(CCC2CCCCC2)CC1C(=O)Nc1cc(C(NC2CC2)=O)c(C)cc1CCCC1CCC(NC(=O)C)=C(C(C(CC)C)NC(OC(C)(C)C)=O)=N1)NC(c1cc(Br)c(OCCCCN2CCCC2)c(C#N)c1)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(=O)NC1C(OCc2ccccc2)CC(C)N(C(C(N)=O)CC(C)C)C1=O)CCCC(C)(c1ccccc1F)COC(=O)CCC(C(=O)OC)NC(=O)CCCCC=C(C(O)=O)C#CCC(C)C(NC(OC(C)(C)C)=O)C(=O)CCC(C)C(O)C(C)CC(C)C(=O)NCCOCCOCCOC(=O)CCCCC1SCC2NC(=O)NC21 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C12CC3CC(N(C)C(=O)C)(C1)CC(C2)C3NC(C)C(O)=O)CCC(=O)NCCCC#CCOCCOCCOCCOCCNC(=O)CCC(C(O)=O)NC(=O)c1ccc(CCCC#C)cc1C#CCCCOCCOCCNC(C(CC)CC)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: NC(=O)C1CCCN1c1ncnc(N)c1C#CCCOc1ccc(NC(CC)=O)c(OCC2(O)CCN(C(CCC(=O)N)=O)CC2)c1CCNC(=O)CCC(N)C(O)C(NC(C(=O)O)CCCCN)C(NC(CCCC(N)=O)C(NCC#C)=O)=O)CC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(=O)(C1CC1)N1CCN(Cc2ccc(C#N)cc2)CC1CCCC#CCN(C)C(=O)CCCC#CC1CCC(C#CC)N1C(CCCCC(NCCCC(N(C=O)O)CCC#C)=O)C(NC(C(=O)O)CCCCN)=O)OCC#C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O(C(C)(C)C)C(C(CO)NC(=O)C1N(CC(=O)O)CC(N(C)CC(=O)NC(C#N)C#N)C1)=O)CCC(=O)N(CCO)Cc1cc(CC(N(C)CCN(CCO)C)=O)cc(OCCOCCOCCOCC#C)c1C#CC#CCC(C)(C)COCCNC(=O)C(C)CC(C(C(C)C)CO)NC(=O)OCC(C)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)n1c2ccccc2nc1-c1csc(N2CC(CC)C(CC(=O)O)C2)n1)CC(O)(C(F)(F)F)C(=O)NC1C(C(=O)O)C2C(C1)C2CCCCC(=O)* could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C1CC1)(CCC(NC(CCC(O)=O)C(=O)O)=O)C(=O)CCCc1n(C)c(=O)n(CC(C)CCC#C)c1=O)CC(NC)=O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(O)c1ccc(-c2nc(C(F)(F)F)c(Nc3nc(NC(F)(F)F)nc(C)c3CCCC(=O)NCC)o2)cc1CCCOc1c(Cl)cc(O)c(C=CC(NC2C(O)CC(C(O)=O)CC2)=O)c1C(NCC(C)(C)C)=O)CCCCC1C2NC(=O)NC2CS1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=S(c1ccc(Cl)cc1)(=O)N(c1ccc(C#N)cc1)C1CCC(CCC(C(N)=O)NC(=O)CCC)CC1C(Nc1ccc(C(C)C(NC(C(=O)NC2CCCC2)C(CC)C)=O)cc1)=O)CCCCOc1ccc(C=CC(OC(C)(C)C)=O)cc1C(=O)OC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C12(CC(=O)c3cc(C#CCCCCOc3cccc(C#CC(C)(C)CO)c3Br)OC1)CN(C(=O)CCC(C)C)C(C(=O)NC1C(O)C(O)C(C)=C(C(=O)NC3CCC3)C1)C2CC(C)C(C(F)(F)F)(CS(=O)(NC(CCCN)=O)C(NC(c1ccccc1)C)=O)C(C(=O)NCCNC(=O)OC(C)(C)C)CC(C(C)C)NC(=O)c1ncc(CCCCN2C(C(*)=O)CCC2)[nH]1 could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1cc(C#CC)ccc1-c1onc(C)c1CCC(C1(C#N)CCOCC1)CS(N1CCN(CCc2ncc(C#N)cc2)CC1)(=O)=O)C1C(CC#C)CC(C(=O)NCC(O)(C)C)C1C#CC1(O)CC(CC)C(CC)C(C)(C(F)(F)F)O1)CCC(=O)OCC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(C)(C)CC(C(CN(C)C)=O)NC(c1oc(C)c(NC(CCCC#CC#N)=O)c1C(=O)CNC(=O)COc1ccc(CC(=O)O)c(CC2CCCCN2C(=O)CCCC(NCCO)=O)c1)C(=O)CCC#CC#CCN(C)CCOCCOCCNC(=O)CCC1C2C3CN(CC3C(=O)N2CC(C)C)C1C(NCCOCCOCCNC(=O)C)=O)CCCC#CC#CC could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(O)(C(N)CCC(=O)O)=O)CCCC#CC1(C(=O)O)CCN(C(CCCC#C)=O)CC1C(Nc1c(=O)[nH]c(=O)n(CCCCC(=O)N)c1)CCCCN(CCC*)C could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1(OC(F)F)ccc(C#Cc2c(C)c(C(=O)NCCC#N)ccc2)cc1C(C#N)CC(C)C1C(C)C1)C#CC(C)(C)O could not be converted
+12:52:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: NC(=O)CCCC#CC(Nc1ccc(Cl)c(C(C=C)(C#N)CCCCNC(=O)CCC(=O)O)c1)C(OC(=O)CCCCC(=O)NCC(=O)NC(CC(C)C)C(OCC)=O)CC(C(C(O)C)CC(=O)NCCCC)C(O)CC(C)C(NCCC)=O)* could not be converted
+12:52:04 <INFO> Peak main memory usage: 1728.547 MiB
+12:52:04 <INFO> Finished REINVENT on 2026-03-15

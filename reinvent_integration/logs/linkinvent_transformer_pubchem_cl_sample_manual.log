@@ -1,0 +1,108 @@
+12:52:21 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+12:52:21 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/linkinvent_transformer_pubchem_cl_sample_manual.log /tmp/linkinvent_tp_cl_sample_manual.toml
+12:52:21 <INFO> Reading run configuration from /tmp/linkinvent_tp_cl_sample_manual.toml using format toml
+12:52:21 <INFO> User nbhatta1 on host panacea
+12:52:21 <INFO> Python version 3.11.13
+12:52:21 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+12:52:21 <INFO> PyTorch compiled with CUDA version 12.8
+12:52:21 <INFO> RDKit version 2025.09.6
+12:52:21 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+12:52:22 <INFO> CUDA driver version 590.48.01
+12:52:22 <INFO> Number of PyTorch CUDA devices 1
+12:52:22 <WARN> 'use_cuda' is deprecated, use 'device' instead
+12:52:22 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+12:52:22 <INFO> GPU memory: 46040 MiB free, 48400 MiB total
+12:52:22 <INFO> Starting Sampling
+12:52:22 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/linkinvent_transformer_pubchem_cl_adme/linkinvent_transformer_pubchem_cl_stage1.chkpt has valid hash:
+{ 'comments': ['Transformer Linkinvent model', 'RL', 'RL'],
+  'creation_date': 1715609724.342211,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'eb9f871c172a784cd71734d2f9ffa651',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': '9ef8cd169df24d58a16ee58b882d20af',
+  'model_id_format': 'uuid.uuid4 3.11.9',
+  'origina_data_source': 'PubChem',
+  'updates': [1773593539.2572548, 1773593539.4058673]}
+12:52:22 <INFO> Number of network parameters: 17,463,169
+12:52:22 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(129, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(129, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=129, bias=True)
+  )
+)
+12:52:22 <INFO> Using generator LinkinventTransformer
+12:52:22 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/linkinvent_transformer_pubchem_cl/samples.csv
+12:52:22 <WARN> randomize_smiles was set to True but the model was not trained with randomized SMILES.  Setting randomize_smiles to False.
+12:52:22 <INFO> Sampling 260 SMILES from model reinvent_integration/results/linkinvent_transformer_pubchem_cl_adme/linkinvent_transformer_pubchem_cl_stage1.chkpt
+12:52:25 <INFO> Peak main memory usage: 1736.883 MiB
+12:52:25 <INFO> Finished REINVENT on 2026-03-15

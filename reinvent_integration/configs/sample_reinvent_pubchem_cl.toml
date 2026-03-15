@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cpu"
+
+[parameters]
+model_file = "reinvent_integration/results/reinvent_pubchem_cl_adme/reinvent_pubchem_cl_stage2.chkpt"
+output_file = "reinvent_integration/results/reinvent_pubchem_cl/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

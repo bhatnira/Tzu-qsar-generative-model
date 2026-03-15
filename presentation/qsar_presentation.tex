@@ -1,674 +1,1498 @@
 %% ============================================================
-%%  QSAR + Pharmacophore + REINVENT4 – Beamer Presentation
-%%  Compile:  pdflatex qsar_presentation.tex  (run twice)
+%%  QSAR Project Presentation (Less Technical)
+%%  Source: docs/REPO_STRUCTURE_AND_OUTPUTS.txt
+%%          docs/TERMS_AND_WORKFLOW_EXPLAINED.txt
 %% ============================================================
 \documentclass[aspectratio=169,10pt]{beamer}
 
-% ── Theme ─────────────────────────────────────────────────────────────────────
+% Theme
 \usetheme{Madrid}
 \usecolortheme{whale}
-\usefonttheme{professionalfonts}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[page number]
 
-% ── Packages ──────────────────────────────────────────────────────────────────
+% Packages
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{colortbl}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\usepackage{listings}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
-\usepackage{microtype}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
 \usepackage{hyperref}
 \hypersetup{colorlinks=false}
 
-% ── Palette / custom colours ──────────────────────────────────────────────────
-\definecolor{schblue}{RGB}{0,82,147}
-\definecolor{schcyan}{RGB}{0,160,210}
-\definecolor{schgreen}{RGB}{0,153,76}
-\definecolor{schemerald}{RGB}{46,163,108}
-\definecolor{schred}{RGB}{192,0,0}
-\definecolor{schorange}{RGB}{230,110,20}
-\definecolor{lightgray}{RGB}{240,240,240}
-\definecolor{codebg}{RGB}{245,245,245}
+% Colors
+\definecolor{mainblue}{RGB}{0,82,147}
+\definecolor{accent}{RGB}{0,150,136}
+\definecolor{warn}{RGB}{220,90,40}
+\definecolor{softgray}{RGB}{245,245,245}
 
-\setbeamercolor{palette primary}{bg=schblue, fg=white}
-\setbeamercolor{palette secondary}{bg=schcyan, fg=white}
-\setbeamercolor{palette tertiary}{bg=schblue!70, fg=white}
-\setbeamercolor{palette quaternary}{bg=schblue!50, fg=white}
-\setbeamercolor{structure}{fg=schblue}
-\setbeamercolor{alerted text}{fg=schred}
-\setbeamercolor{example text}{fg=schgreen}
+\setbeamercolor{palette primary}{bg=mainblue, fg=white}
+\setbeamercolor{palette secondary}{bg=accent, fg=white}
+\setbeamercolor{structure}{fg=mainblue}
 
-% ── listings style ────────────────────────────────────────────────────────────
-\lstset{
-  basicstyle=\ttfamily\scriptsize,
-  backgroundcolor=\color{codebg},
-  frame=single,
-  breaklines=true,
-  keywordstyle=\color{schblue}\bfseries,
-  commentstyle=\color{gray}\itshape,
-  stringstyle=\color{schred},
-  language=Python,
-}
+% TikZ styles
+\tikzstyle{pstep}=[rectangle,rounded corners=4pt,draw=mainblue,fill=mainblue!10,
+                  minimum height=0.9cm,text width=2.9cm,align=center,font=\scriptsize]
+\tikzstyle{arrow}=[-{Stealth[length=5pt]},thick,draw=mainblue]
+\tikzstyle{gatebox}=[rectangle,rounded corners=4pt,draw=accent,fill=accent!12,
+                  minimum height=0.9cm,text width=3.0cm,align=center,font=\scriptsize]
 
-% ── TikZ arrow style ──────────────────────────────────────────────────────────
-\tikzstyle{block} = [rectangle, rounded corners=4pt, draw=schblue,
-                     fill=schblue!10, text width=2.6cm, align=center,
-                     minimum height=0.8cm, font=\scriptsize]
-\tikzstyle{blockw}= [rectangle, rounded corners=4pt, draw=schblue,
-                     fill=white, text width=5.5cm, align=left,
-                     minimum height=0.9cm, font=\small, inner sep=4pt]
-\tikzstyle{arr}   = [-{Stealth[length=5pt]}, thick, color=schblue]
-\tikzstyle{arrd}  = [-{Stealth[length=5pt]}, thick, color=schorange, dashed]
-
-% ── Helper commands ────────────────────────────────────────────────────────────
-\newcommand{\R}{\textsuperscript{2}}
-\newcommand{\pIC}{\(p\mathrm{IC}_{50}\)}
-\newcommand{\IC}{\(\mathrm{IC}_{50}\)}
-
-%% ============================================================
-%%  TITLE
-%% ============================================================
-\title[QSAR · Pharmacophore · REINVENT4]{%
-  Low-Data QSAR Modelling, Pharmacophore Generation\\
-  \& AI-Driven Molecular Design with REINVENT 4}
-\subtitle{Spiro-Piperidine Series C/E Dataset}
-\author{Destinee Zhu \and Roy}
+% Title
+\title[QSAR Pipeline Overview]{QSAR + REINVENT Pipeline Overview\\
+Simple, Process-Focused Project Presentation}
+\subtitle{Based on the comprehensive report and repository structure documents}
+\author{QSAR Project Team}
 \institute{Computational Drug Discovery}
 \date{\today}
 
 \begin{document}
 
-% ─────────────────────────────────────────────────────────────────────────────
 \begin{frame}[plain]
   \titlepage
 \end{frame}
 
-% ─────────────────────────────────────────────────────────────────────────────
-\begin{frame}{Outline}
-  \tableofcontents[hideallsubsections]
+\begin{frame}{What this presentation covers}
+  \tableofcontents
 \end{frame}
 
-%% ============================================================
-\section{Project Overview}
-%% ============================================================
+% ============================================================
+\section{QSAR to translation walkthrough}
+% ============================================================
 
-\begin{frame}{Project Overview}
-  \begin{columns}[T]
-    \column{0.55\textwidth}
-      \begin{block}{Objective}
-        Build an end-to-end pipeline for a \textbf{small, proprietary dataset}
-        of spiro-piperidine compounds to:
-        \begin{enumerate}
-          \item Predict \pIC{} via classical ML (QSAR)
-          \item Build a 3-D pharmacophore using Schrödinger Phase
-          \item Drive \textbf{de novo} molecular generation via REINVENT~4
-        \end{enumerate}
-      \end{block}
-      \vspace{4pt}
-      \begin{alertblock}{Key Challenge}
-        $<$150 labelled data points \textrightarrow{} low-data ML regime
-      \end{alertblock}
-    \column{0.42\textwidth}
-      \begin{block}{Pipeline at a Glance}
-        \begin{center}
-          \begin{tikzpicture}[node distance=0.55cm]
-            \node[block,fill=schblue!20] (d) {Dataset\\preprocessing};
-            \node[block,fill=schemerald!20, below=of d] (q) {QSAR\\modelling};
-            \node[block,fill=schorange!20, below=of q] (p) {Pharmacophore\\(Phase)};
-            \node[block,fill=schred!20, below=of p]    (r) {REINVENT 4\\generation};
-            \draw[arr] (d)--(q);
-            \draw[arr] (q)--(p);
-            \draw[arr] (p)--(r);
-          \end{tikzpicture}
-        \end{center}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-%% ============================================================
-\section{Dataset Overview}
-%% ============================================================
-
-\begin{frame}{Dataset Overview}
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-      \begin{block}{Composition}
-        \begin{tabular}{lrr}
-          \toprule
-          \textbf{Group} & \textbf{n} & \textbf{IC\(_50\) range} \\
-          \midrule
-          Series C (active)  & -- & 0.78 – 10  \(\mu\)M \\
-          Series E (active)  & -- & 0.39 – 108 \(\mu\)M \\
-          Dropped rows       & 31 & 100 / 200 \(\mu\)M (limit) \\
-          Non-numeric rows   & 11 & \texttt{>100}, \texttt{<0.39} \\
-          \bottomrule
-        \end{tabular}
-      \end{block}
-      \begin{block}{Preprocessing}
-        \begin{itemize}
-          \item RDKit SMILES standardisation chain:\\
-                {\scriptsize Cleanup $\to$ FragmentParent $\to$ Uncharger\\
-                $\to$ TautomerEnumerator.Canonicalize}
-          \item \pIC{} = $-\log_{10}(\mathrm{IC}_{50}/10^6)$
-          \item SimpleImputer (median) for missing descriptors
-        \end{itemize}
-      \end{block}
-    \column{0.48\textwidth}
-      \begin{block}{Descriptor Fingerprints Tested}
-        \begin{itemize}
-          \item \textbf{RDKit} 2-D descriptors (200 features)
-          \item \textbf{ECFP} r1, r2, r3 (Morgan)
-          \item \textbf{MACCS} keys (167 bits)
-          \item \textbf{Mordred} − full descriptor set
-        \end{itemize}
-      \end{block}
-      \begin{exampleblock}{Feature Dimensionality}
-        Best model uses \textbf{217 RDKit features}\\
-        (after imputation \& scaling)
-      \end{exampleblock}
-  \end{columns}
-\end{frame}
-
-%% ============================================================
-\section{QSAR Modelling}
-%% ============================================================
-
-\begin{frame}{QSAR Modelling – Approach}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{AutoML Strategy}
-        \begin{itemize}
-          \item Exhaustive grid over 9 regressors \(\times\) 4 descriptors
-          \item 5-fold stratified cross-validation
-          \item Metrics: \(R^2\), MAE on \pIC{}
-          \item Best model serialised as \\
-                \texttt{qsar\_best\_model.joblib}
-        \end{itemize}
-      \end{block}
-      \begin{block}{Regressors Evaluated}
-        {\small
-        KNN, Random Forest (RF), Extra Trees (ET),\\
-        Gradient Boosting (GB), LGBM, XGBoost,\\
-        CatBoost, MLP, Bayesian Ridge, Decision Tree
-        }
-      \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Workflow}
-        \begin{center}
-          \scalebox{0.82}{
-          \begin{tikzpicture}[node distance=0.5cm]
-            \node[block,fill=schblue!15]  (s) {SMILES\\(standardised)};
-            \node[block,fill=schblue!20, below=of s] (d) {Descriptor\\computation};
-            \node[block,fill=schblue!20, below=of d] (i) {Impute +\\Scale};
-            \node[block,fill=schemerald!20,below=of i] (cv) {5-fold CV\\grid search};
-            \node[block,fill=schred!20,  below=of cv] (b) {Best model\\serialise};
-            \draw[arr](s)--(d); \draw[arr](d)--(i);
-            \draw[arr](i)--(cv); \draw[arr](cv)--(b);
-          \end{tikzpicture}}
-        \end{center}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{QSAR Results – Model Leaderboard (Top 10)}
+\begin{frame}{Pipeline order used in this project}
   \begin{center}
-    {\small
-    \begin{tabular}{llrrl}
-      \toprule
-      \textbf{Rank} & \textbf{Descriptor} & \textbf{Model} & \textbf{\(R^2\)} & \textbf{MAE} \\
-      \midrule
-      \rowcolor{schemerald!25}
-      \textbf{1} & RDKit   & KNN           & \textbf{0.887} & \textbf{0.118} \\
-      2 & ECFP r2  & MLP            & 0.790 & 0.148 \\
-      3 & RDKit    & Decision Tree  & 0.682 & 0.169 \\
-      4 & ECFP r3  & KNN            & 0.677 & 0.185 \\
-      5 & RDKit    & LGBM           & 0.540 & 0.233 \\
-      6 & RDKit    & Extra Trees    & 0.454 & 0.230 \\
-      7 & Mordred  & LGBM           & 0.453 & 0.243 \\
-      8 & MACCS    & Extra Trees    & 0.357 & 0.282 \\
-      9 & RDKit    & Bayesian Ridge & 0.191 & 0.272 \\
-      10& RDKit    & XGBoost        & 0.096 & 0.338 \\
-      \bottomrule
-    \end{tabular}
-    }
-    \vspace{6pt}
+    \begin{tikzpicture}[node distance=0.45cm and 0.35cm]
+      \node[pstep] (q)  {1. QSAR training\\and validation};
+      \node[pstep,right=of q] (g)  {2. Generation optimization\\(plain / RL / CL)};
+      \node[pstep,right=of g] (s)  {3. Scoring\\potency + ADME + uncertainty};
+      \node[pstep,below=of q] (g1) {4. Gate 1\\triage + diversity};
+      \node[pstep,right=of g1] (g2) {5. Gate 2\\uncertainty + chemistry quality};
+      \node[pstep,right=of g2] (g3) {6. Gate 3\\clinical translation priority};
 
-    \begin{beamercolorbox}[wd=0.75\textwidth,sep=4pt,center,rounded=true]{palette primary}
-      \small \textbf{Best model:} RDKit + KNN \quad $R^2 = 0.887$,\; MAE $= 0.118$ \pIC{} units
-    \end{beamercolorbox}
-  \end{center}
-\end{frame}
-
-\begin{frame}{QSAR Predictions – Series C \& E}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Series C (Spiro-Piperidine)}
-        {\tiny
-        \begin{tabular}{cccc}
-          \toprule
-          \textbf{ID} & \textbf{Actual \pIC} & \textbf{Pred. \pIC} & \textbf{Pred. \IC{} (\(\mu\)M)} \\
-          \midrule
-          173-001 & 5.328 & 5.302 & 4.98 \\
-          174-001 & 5.009 & 5.183 & 6.57 \\
-          220-001 & 6.107 & 5.931 & 1.17 \\
-          221-001 & -- (>200) & 4.848 & 14.18 \\
-          175-001 & 5.165 & 5.215 & 6.09 \\
-          211-001 & 5.745 & 5.909 & 1.23 \\
-          \bottomrule
-        \end{tabular}
-        }
-      \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Series E (Spiro-Piperidine-2)}
-        {\tiny
-        \begin{tabular}{ccc}
-          \toprule
-          \textbf{ID} & \textbf{Pred. \pIC} & \textbf{Pred. \IC{} (\(\mu\)M)} \\
-          \midrule
-          308   & 4.883 & 13.08 \\
-          307   & 4.467 & 34.11 \\
-          287   & 5.132 &  7.38 \\
-          286   & 4.953 & 11.15 \\
-          277   & 5.621 &  2.39 \\
-          275   & 4.563 & 27.33 \\
-          268   & 4.767 & 17.09 \\
-          \bottomrule
-        \end{tabular}
-        }
-      \end{block}
-  \end{columns}
-  \vspace{4pt}
-  \begin{exampleblock}{Observation}
-    Predictions are consistent with experimental order of potency;
-    compound \textbf{220-001} (IC\(_{50}\) $\approx$ 0.8 $\mu$M) correctly ranked
-    highest in Series C.
-  \end{exampleblock}
-\end{frame}
-
-%% ============================================================
-\section{Pharmacophore Modelling (Schrödinger Phase)}
-%% ============================================================
-
-\begin{frame}{Pharmacophore Pipeline – Schrödinger API Process}
-  \begin{center}
-    \scalebox{0.78}{
-    \begin{tikzpicture}[node distance=0.5cm and 0.8cm]
-      % Nodes
-      \node[block,fill=schblue!15,text width=2.9cm]   (s0) {Input SMILES\\(actives + inactives)};
-      \node[block,fill=schblue!20,text width=2.4cm, right=1.1cm of s0] (s1)
-            {\textbf{Step 1}\\SMILES $\to$\\Schrödinger\\Structure};
-      \node[block,fill=schblue!20,text width=2.4cm, right=1.1cm of s1] (s2)
-            {\textbf{Step 2}\\LigPrep\\(ionisation,\\tautomers)};
-      \node[block,fill=schorange!20,text width=2.4cm, right=1.1cm of s2] (s3)
-            {\textbf{Step 3}\\ConfGen\\(MAX\_CONFS=100,\\E-window=10 kcal)};
-
-      \node[block,fill=schgreen!20,text width=2.4cm, below=1.1cm of s3] (s4)
-            {\textbf{Step 4}\\Phase CPH\\Hypothesis\\(AHHR\_1)};
-      \node[block,fill=schgreen!20,text width=2.4cm, left=1.1cm of s4] (s5)
-            {\textbf{Step 5}\\phase\_screen\\actives+inactives\\(-match 3)};
-      \node[block,fill=schemerald!20,text width=2.4cm, left=1.1cm of s5] (s6)
-            {\textbf{Step 6}\\Metrics\\ROC-AUC\\EF, CM};
-      \node[block,fill=schred!10,text width=2.4cm, left=1.1cm of s6] (s7)
-            {\textbf{Step 7}\\Save outputs\\CSV + MAE\\logs};
-
-      % Arrows top row
-      \draw[arr] (s0)--(s1);
-      \draw[arr] (s1)--(s2);
-      \draw[arr] (s2)--(s3);
-      % Down
-      \draw[arr] (s3)--(s4);
-      % Reverse bottom row
-      \draw[arr] (s4)--(s5);
-      \draw[arr] (s5)--(s6);
-      \draw[arr] (s6)--(s7);
-
-      % Labels below nodes
-      \node[font=\scriptsize,color=gray,below=0.05cm of s1] {\texttt{SmilesStructure()}};
-      \node[font=\scriptsize,color=gray,below=0.05cm of s2] {\texttt{ligprep -ismi}};
-      \node[font=\scriptsize,color=gray,below=0.05cm of s3] {\texttt{confgen -c \$n}};
-      \node[font=\scriptsize,color=gray,below=0.05cm of s4] {\texttt{phase\_hypo}};
-      \node[font=\scriptsize,color=gray,below=0.05cm of s5] {\texttt{phase\_screen}};
+      \draw[arrow] (q)--(g);
+      \draw[arrow] (g)--(s);
+      \draw[arrow] (s)--(g1);
+      \draw[arrow] (g1)--(g2);
+      \draw[arrow] (g2)--(g3);
     \end{tikzpicture}
-    }
   \end{center}
-  \vspace{2pt}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Feature Set}
-        \textbf{AHHR\_1} hypothesis includes features:\\
-        D (H-bond donor), A (H-bond acceptor),\\
-        H (hydrophobic), R (aromatic ring)
-      \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Phase Constants}
-        Min sites = \textbf{4}, Max sites = \textbf{6}\\
-        RMSD pruning = \textbf{1.0 \AA}\\
-        NCPUS = all available (24)
-      \end{block}
-  \end{columns}
+
+  \vspace{4pt}
+  \begin{block}{Why this ordering}
+    Learn from known data first (QSAR), optimize generation next, then use
+    staged risk filters before selecting compounds for lab planning.
+  \end{block}
 \end{frame}
 
-\begin{frame}{Pharmacophore Model – Hypothesis AHHR\_1}
+\begin{frame}{Data acquisition \(\rightarrow\) deployment lifecycle}
+  \small
   \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Hypothesis Schematic}
-        \begin{center}
-          \begin{tikzpicture}[scale=0.85]
-            % Feature spheres
-            \filldraw[fill=blue!40, draw=blue!70]   (-1.5, 1.2) circle (0.45) node[white,font=\scriptsize\bfseries]{A};
-            \filldraw[fill=green!50!black, draw=green!70] (0.0, 2.0) circle (0.45) node[white,font=\scriptsize\bfseries]{H};
-            \filldraw[fill=orange!70, draw=orange!80]    (1.5, 1.2) circle (0.45) node[white,font=\scriptsize\bfseries]{H};
-            \filldraw[fill=red!60, draw=red!70]          (0.0, 0.0) circle (0.45) node[white,font=\scriptsize\bfseries]{R};
-            % Distances
-            \draw[dashed,gray,thick] (-1.5,1.2) -- (0,2.0) node[midway,above,font=\tiny]{4.1\,\AA};
-            \draw[dashed,gray,thick] (0,2.0) -- (1.5,1.2) node[midway,above right,font=\tiny]{3.8\,\AA};
-            \draw[dashed,gray,thick] (-1.5,1.2) -- (0,0.0) node[midway,left,font=\tiny]{3.2\,\AA};
-            \draw[dashed,gray,thick] (0,0.0) -- (1.5,1.2) node[midway,right,font=\tiny]{3.5\,\AA};
-          \end{tikzpicture}
-        \end{center}
-        {\scriptsize
-        \textbf{A} = H-bond Acceptor \quad \textbf{H} = Hydrophobic\\
-        \textbf{R} = Aromatic Ring \quad (4-feature hypothesis)
-        }
+    \column{0.48\textwidth}
+      \begin{block}{1) Data acquisition}
+        Experimental series data (C/E + historical labels), SMILES cleaning,
+        canonicalization, and deduplication.
       \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Phase Feature Codes Used}
-        \begin{tabular}{cll}
-          \toprule
-          \textbf{Code} & \textbf{Feature} & \textbf{Atoms} \\
-          \midrule
-          D & H-bond Donor    & N–H, O–H \\
-          A & H-bond Acceptor & N, O, F \\
-          H & Hydrophobic     & C, S, halogens \\
-          R & Aromatic Ring   & 5/6-mem. rings \\
-          P & Pos. Ionisable  & amines \\
-          N & Neg. Ionisable  & acids \\
-          \bottomrule
-        \end{tabular}
+      \begin{block}{2) Modeling}
+        Descriptor generation + model selection for potency prediction.
+        Best potency model: \textbf{RDKit + KNN}.
       \end{block}
-      \begin{alertblock}{Note}
-        Current screening against AHHR\_1 yields zero hits for all
-        151 compounds, suggesting chemical incompatibility of the
-        spiro-piperidine scaffold with this hypothesis.
-      \end{alertblock}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Pharmacophore – Evaluation \& Scoring}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Metrics Computed by Pipeline}
-        \begin{itemize}
-          \item \textbf{ROC-AUC}: area under receiver-operating curve
-          \item \textbf{Enrichment Factor (EF1\%)}: quality at top 1\%
-          \item \textbf{Confusion matrix}: TP, FP, TN, FN
-          \item \textbf{Phase score}: fitness to hypothesis per compound
-          \item \textbf{Binary hit}: 1 if matches $\geq$ 3 features
-        \end{itemize}
+      \begin{block}{3) Evaluation}
+        Held-out validation on Series C and prospective ranking on Series E.
       \end{block}
-      \begin{block}{Interpretation}
-        \begin{tabular}{lrr}
-          \toprule
-          & \textbf{Series C} & \textbf{Series E} \\
-          \midrule
-          \# predicted hits  & 0 & 0 \\
-          pharm score (mean) & 0.00 & 0.00 \\
-          \bottomrule
-        \end{tabular}\\[4pt]
-        \small ROC-AUC $\approx$ 0.50 (random) –– confirms\\
-        hypothesis–scaffold mismatch
+    \column{0.48\textwidth}
+      \begin{block}{4) Testing (in-silico pipeline testing)}
+        REINVENT generation campaigns, automated scoring, and
+        stage-gated filtering (Gate 1 \(\rightarrow\) 2 \(\rightarrow\) 3).
       \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Why Zero Hits?}
-        \begin{itemize}
-          \item Spiro-piperidine scaffold presents features in
-                unusual 3-D geometry
-          \item AHHR\_1 built on a different (reference) chemotype
-          \item Conformational sampling (MAX 100) may still miss
-                the bioactive conformer
-          \item Possible fix: run Phase with additional hypotheses
-                (AHHR\_2 – AHHR\_8) or generate a \textbf{new} CPH
-                seeded from Series C/E aligned conformers
-        \end{itemize}
+      \begin{block}{5) Deployment / operational use}
+        Final ranked workbook is produced for chemistry/biology teams to
+        choose wet-lab candidates and plan experiments.
       \end{block}
-      \begin{exampleblock}{Next Step}
-        Re-build pharmacophore from scratch using the most potent
-        compounds (IC\(_{50}\) $<$ 1 \(\mu\)M) as actives
+      \begin{exampleblock}{Key current results}
+        Series C: MAE \textbf{0.118}, \(R^2=\textbf{0.887}\)\\
+        Gate flow: \textbf{200} \(\rightarrow\) \textbf{46} \(\rightarrow\) \textbf{34}
       \end{exampleblock}
   \end{columns}
 \end{frame}
 
-%% ============================================================
-\section{Integration with REINVENT 4}
-%% ============================================================
-
-\begin{frame}{REINVENT 4 – Architecture \& Modes}
+\begin{frame}{Step 1: QSAR model training and key result}
   \begin{columns}[T]
-    \column{0.55\textwidth}
-      \begin{block}{What is REINVENT 4?}
-        Open-source molecular generative model (AstraZeneca)
-        based on \textbf{recurrent neural networks + reinforcement
-        learning}. Supports:
-        \begin{itemize}
-          \item \textbf{Reinvent} − SMILES-level RL
-          \item \textbf{LibInvent} − R-group decoration
-          \item \textbf{LinkInvent} − fragment linking
-          \item \textbf{Mol2Mol} − molecular translation
-        \end{itemize}
+    \column{0.54\textwidth}
+      \begin{block}{How QSAR is built}
+        \begin{enumerate}
+          \item Clean and standardize molecular structures.
+          \item Compute descriptor families (RDKit/ECFP/MACCS/Mordred).
+          \item Train multiple regressors and compare on held-out data.
+          \item Keep best model for primary IC\(_{50}\) prediction.
+        \end{enumerate}
       \end{block}
-      \begin{block}{Scoring Components Used in This Work}
+    \column{0.44\textwidth}
+      \begin{block}{Key performance (current artifact)}
+        \small
+        Best model:\\
+        \textbf{RDKit + KNN}\\
+        \(R^2 \approx 0.887\)
+
+        \vspace{4pt}
+        Additional positive-\(R^2\) models used for uncertainty:
         \begin{itemize}
-          \item Custom QSAR scorer (\texttt{reinvent\_qsar\_pharm\_score.py})
-          \item Tanimoto similarity to Series C/E seeds
-          \item QSAR predicted \pIC{} threshold filter
-          \item Pharmacophore screen (Phase)
+          \item ECFP\_r3 + KNN
+          \item RDKit + Decision Tree
+          \item RDKit + LGBM
+          \item RDKit + Extra Trees
         \end{itemize}
-      \end{block}
-    \column{0.42\textwidth}
-      \begin{block}{Staged RL Loop}
-        \begin{center}
-          \begin{tikzpicture}[node distance=0.52cm]
-            \node[block,fill=schblue!15,text width=3.0cm]  (p)  {Prior model\\(pretrained SMILES RNN)};
-            \node[block,fill=schorange!15,text width=3.0cm, below=of p] (a)  {Agent samples\\SMILES batch};
-            \node[block,fill=schemerald!15,text width=3.0cm,below=of a] (sc) {QSAR + Pharm\\scoring};
-            \node[block,fill=schred!15,text width=3.0cm,   below=of sc] (rl) {PPO reward\\update};
-            \draw[arr](p)--(a); \draw[arr](a)--(sc);
-            \draw[arr](sc)--(rl);
-            \draw[arrd] (rl.east) .. controls+(1.2,0) and+(1.2,0) .. (a.east)
-                  node[midway,right,font=\tiny,color=schorange]{iterate};
-          \end{tikzpicture}
-        \end{center}
       \end{block}
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{REINVENT 4 – Configuration \& Staged Runs}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Generation Modes Configured}
-        \begin{tabular}{ll}
-          \toprule
-          \textbf{Config} & \textbf{Strategy} \\
-          \midrule
-          \texttt{similarity}         & Tanimoto RL \\
-          \texttt{scaffold\_hopping}  & Scaffold diversification \\
-          \texttt{scaffold\_generation}& New scaffolds \\
-          \texttt{guided\_quick}      & QSAR-guided fast run \\
-          \texttt{mol2mol}            & Molecular translation \\
-          \texttt{libinvent}          & R-group decoration \\
-          \texttt{linkinvent}         & Fragment linking \\
-          \bottomrule
-        \end{tabular}
-      \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Custom Scoring Script (excerpt)}
-        \begin{lstlisting}[language=Python]
-def score(smiles: list[str]) -> list[float]:
-    scores = []
-    for smi in smiles:
-        qsar_s = qsar_model.predict(smi)
-        pharm_s = phase_screen(smi)
-        scores.append(0.7*qsar_s + 0.3*pharm_s)
-    return scores
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-  \begin{exampleblock}{Transfer Learning Seed}
-    Motif-positive seeds (\textit{n} = filtered subset of Series C/E)
-    used for transfer learning (\texttt{reinvent\_transfer\_motif\_seeds.toml})
-    to bias the prior toward the spiro-piperidine motif.
+\begin{frame}{Where QSAR test outputs are saved (Series C/E)}
+  \small
+  \begin{block}{Primary C/E prediction files}
+    {\scriptsize\texttt{outputs/qsar/core\_predictions/SeriesC\_test\_with\_predictions.csv}}\\
+    {\scriptsize\texttt{outputs/qsar/core\_predictions/SeriesE\_with\_predictions.csv}}
+  \end{block}
+
+  \begin{block}{Manifest files}
+    {\scriptsize\texttt{outputs/qsar/manifests/qsar\_outputs\_manifest.csv}}\\
+    {\scriptsize\texttt{outputs/qsar/manifests/additional\_qsar\_outputs\_manifest.csv}}
+  \end{block}
+
+  \begin{exampleblock}{What each contains}
+    \begin{itemize}
+      \item Canonical structures and identifiers
+      \item Predicted \(pIC_{50}\) and predicted IC\(_{50}\) (\(\mu\)M)
+      \item Source/series metadata and downstream analysis fields
+    \end{itemize}
   \end{exampleblock}
 \end{frame}
 
-\begin{frame}{REINVENT 4 – Generated Molecules (Initial Sampling)}
+\begin{frame}{Series C and E testing: key QSAR outputs}
   \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Sampling Results}
+    \column{0.48\textwidth}
+      \begin{block}{Series C (test set)}
         \begin{itemize}
-          \item \textbf{Initial sampling}: \texttt{initial\_samples.csv}
-          \item \textbf{Guided quick}: \texttt{initial\_samples\_guided\_quick.csv}
-          \item \textbf{Motif focused}: \texttt{initial\_samples\_motif\_focus.csv}
+          \item Total rows: \textbf{6}
+          \item Rows with measured pIC\(_{50}\): \textbf{5}
+          \item MAE (pIC\(_{50}\)): \textbf{0.118}
+          \item \(R^2\): \textbf{0.887}
         \end{itemize}
-        Outputs include full SMILES, scores, and stage checkpoints:
-        \texttt{reinvent\_series\_ce\_*.chkpt}
       \end{block}
-      \begin{block}{Post-Processing}
-        \texttt{post\_screen.py} filters generated SMILES by:
-        \begin{enumerate}
-          \item Validity (RDKit parse)
-          \item Predicted \pIC{} $> 5.0$ (IC\(_{50} <\) 10 \(\mu\)M)
-          \item Optional pharmacophore match
-        \end{enumerate}
+    \column{0.48\textwidth}
+      \begin{block}{Series E (prediction set)}
+        \begin{itemize}
+          \item Total rows predicted: \textbf{6}
+          \item Predicted pIC\(_{50}\) range: \textbf{4.467 to 5.132}
+          \item Predicted IC\(_{50}\) range: \textbf{7.38 to 34.11 \(\mu\)M}
+        \end{itemize}
       \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Diversity Strategy}
-        \begin{center}
-          \scalebox{0.82}{
-          \begin{tikzpicture}
-            \draw[thick,schblue,fill=schblue!10] (0,0) ellipse (1.8 and 0.9)
-                  node[font=\scriptsize\bfseries]{Series C/E seeds};
-            \draw[thick,schorange,fill=schorange!10,opacity=0.7]
-                  (1.4,0.0) ellipse (1.4 and 0.7)
-                  node[right,font=\scriptsize]{similarity};
-            \draw[thick,schred,fill=schred!10,opacity=0.5]
-                  (-1.0,0.6) ellipse (1.6 and 0.75);
-            \node[font=\scriptsize,color=schred] at (-1.5,1.4){scaffold hop};
-            \node[font=\scriptsize,color=schemerald!70!black] at (0,-1.6){Generated molecules};
-            \draw[->,schemerald!70!black,thick] (0,-1.4) -- (0,-0.9);
-          \end{tikzpicture}
-          }
-        \end{center}
+  \end{columns}
+
+  \vspace{4pt}
+  \begin{alertblock}{Interpretation for presentation}
+    Series C confirms model quality on known test compounds; Series E provides
+    prospective potency ranking for compounds without direct fitted labels.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Step 2: Generation optimization (plain, RL, CL)}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{How optimization works}
+        \begin{itemize}
+          \item \textbf{Plain}: broad exploration from prior model.
+          \item \textbf{RL}: sample \(\rightarrow\) score \(\rightarrow\) update agent.
+          \item \textbf{CL}: staged objectives from easier to stricter targets.
+        \end{itemize}
+      \end{block}
+      \begin{exampleblock}{Why CL is important}
+        More stable learning, fewer invalid molecules,
+        better quality at convergence.
+      \end{exampleblock}
+    \column{0.48\textwidth}
+      \begin{block}{Used in this project}
+        Families/modes were run across campaigns, then all sampled outputs
+        were passed through one consistent scoring and gating workflow.
+
+        \vspace{3pt}
+        Typical path:\\
+        {\scriptsize\texttt{reinvent\_integration/results/}}\\
+        {\scriptsize\texttt{<family\_mode>/samples.csv}}
       \end{block}
   \end{columns}
 \end{frame}
 
-%% ============================================================
-\section{Challenges}
-%% ============================================================
+\begin{frame}{Step 3: Scoring and ranking logic}
+  \small
+  \begin{block}{Scoring stack}
+    Validate SMILES \(\rightarrow\) descriptors \(\rightarrow\) potency prediction
+    \(\rightarrow\) ADME/risk enrichment \(\rightarrow\) uncertainty estimation
+    \(\rightarrow\) gate-ready output fields.
+  \end{block}
 
-\begin{frame}{Challenges Encountered}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Gate 1 triage equation}
+      \[
+\text{triage}=0.35P+0.15S+0.15L+0.10M+0.10H+0.15T
+      \]
+      \(P\): potency, \(S\): solubility, \(L\): cLogP window,\\
+      \(M\)/\(H\): clearance terms, \(T\): half-life.
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Scored output location}
+        \texttt{outputs/generated/<family>/<mode>/}\\
+        CSV + Excel with structures and fields used by gates.
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{How uncertainty is controlled in ranking}
+  \small
+  \begin{block}{Uncertainty calculation}
+    Up to 5 positive-\(R^2\) models predict each molecule.
+    \[
+      \mu = \frac{1}{k}\sum_{i=1}^{k}\hat{y}_i,
+      \quad
+      \sigma = \sqrt{\frac{1}{k-1}\sum_{i=1}^{k}(\hat{y}_i-\mu)^2}
+    \]
+    Lower \(\sigma\) means higher confidence.
+  \end{block}
+
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Control mechanism}
+        \begin{itemize}
+          \item Primary potency remains best model output.
+          \item Gate 2 penalizes high disagreement.
+          \item Confidence columns are carried into final ranking.
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{alertblock}{Practical effect}
+        Reduces false positives that look strong in one model but unstable
+        across the ensemble.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Step 4: Clinical translation stage (Gate 3)}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{What Gate 3 optimizes}
+        \begin{itemize}
+          \item Toxicity risk (e.g., hERG, DILI, AMES proxies)
+          \item DDI/CYP risk (interaction liability)
+          \item Absorption support (HIA/bioavailability proxies)
+          \item Final experimental priority score
+        \end{itemize}
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Current outputs}
+        \texttt{outputs/hybrid\_stage/}\\
+        \texttt{gate3\_target\_free\_translational/}\\
+        \texttt{translational\_candidates.xlsx}
+      \end{block}
+      \begin{exampleblock}{Current pass counts}
+        Gate 1: 200 shortlisted\\
+        Gate 2: 46 passes\\
+        Gate 3: 34 passes
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{What was done and what you can present}
+  \small
   \begin{enumerate}
-    \item \textbf{Low-data ML:}
-          \begin{itemize}
-            \item $<$150 labelled points $\Rightarrow$ high variance in CV metrics
-            \item KNN outperforms deep methods -- typical in low-data settings
-          \end{itemize}
-
-    \vspace{4pt}
-    \item \textbf{Pharmacophore–Scaffold Mismatch:}
-          \begin{itemize}
-            \item Phase hypothesis AHHR\_1 returns \textbf{zero hits} for all compounds
-            \item Likely due to unusual 3-D geometry of the spiro-piperidine motif
-            \item Phase screening with \texttt{-match 3} (loose) still gives no matches
-          \end{itemize}
-
-    \vspace{4pt}
-    \item \textbf{Software Environment Inconsistencies:}
-          \begin{itemize}
-            \item Conda \texttt{qsar-env}: 210 RDKit features \; $\neq$ \;
-                  artifact expects 217 $\Rightarrow$ always use \texttt{.venv}
-            \item UMAP \texttt{check\_array(force\_all\_finite)} API mismatch
-                  in conda env
-          \end{itemize}
-
-    \vspace{4pt}
-    \item \textbf{Git Large-File Push Failure:}
-          \begin{itemize}
-            \item REINVENT4 \texttt{.prior} binaries ($\sim$2 GB) caused HTTP 500
-            \item Resolved via \texttt{git reset --mixed} + \texttt{.gitignore} update
-          \end{itemize}
-
-    \vspace{4pt}
-    \item \textbf{Non-Numeric IC\(_50\) Values:}
-          \begin{itemize}
-            \item Entries labelled \texttt{>100} or \texttt{<0.39}\;
-                  handled as auxiliary set with standardised SMILES predictions
-          \end{itemize}
+    \item Built QSAR with best-performing potency model and ensemble uncertainty.
+    \item Ran REINVENT generation campaigns across families and optimization modes.
+    \item Scored all generated molecules with one consistent scoring pipeline.
+    \item Applied stage-gated ranking (Gate 1 \(\rightarrow\) Gate 2 \(\rightarrow\) Gate 3).
+    \item Produced ranked Excel outputs for medicinal-chemistry review and lab planning.
   \end{enumerate}
+
+  \vspace{4pt}
+  \begin{block}{Final narrative}
+    \textbf{QSAR learns}, \textbf{REINVENT explores/optimizes},
+    \textbf{gates control risk}, and \textbf{Gate 3 translates to action}.
+  \end{block}
 \end{frame}
 
-%% ============================================================
-\section{Conclusions \& Future Work}
-%% ============================================================
+% ============================================================
+\section{QSAR Modeling (Detailed)}
+% ============================================================
 
-\begin{frame}{Conclusions \& Future Work}
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Achieved}
-        \begin{itemize}
-          \item[$\checkmark$] Best QSAR model: \textbf{RDKit + KNN},
-                $R^2 = 0.887$, MAE $= 0.118$ \pIC{}
-          \item[$\checkmark$] Predictions on entire dataset including
-                dropped and non-numeric rows
-          \item[$\checkmark$] Pharmacophore pipeline (7-step Schrödinger API)
-                fully automated
-          \item[$\checkmark$] REINVENT~4 staged RL runs across 7 modes
-          \item[$\checkmark$] End-to-end pipeline version-controlled
-                and pushed to GitHub (excl. priors)
-        \end{itemize}
-      \end{block}
-    \column{0.46\textwidth}
-      \begin{block}{Planned Next Steps}
-        \begin{itemize}
-          \item Rebuild pharmacophore from scratch with highly potent
-                actives (IC$_{50} < 1\,\mu$M) as reference ligands
-          \item Investigate AHHR\_2--AHHR\_8 hypotheses
-          \item Validate generated compounds with Glide docking
-          \item Expand dataset with ChEMBL analogues for data augmentation
-          \item Apply 3-D shape-based scoring (ROCS) as additional REINVENT scorer
-        \end{itemize}
-      \end{block}
-  \end{columns}
-  \vspace{8pt}
+\begin{frame}{QSAR modeling flowchart: data acquisition to model artifact}
   \begin{center}
-    \begin{beamercolorbox}[wd=0.85\linewidth,sep=6pt,center,rounded=true]{palette primary}
-      \textbf{Pipeline:}
-      Dataset preprocessing $\;\to\;$ QSAR AutoML $\;\to\;$
-      Phase pharmacophore $\;\to\;$ REINVENT~4 generation
-    \end{beamercolorbox}
+    \begin{tikzpicture}[node distance=0.48cm and 0.36cm]
+      \node[pstep] (d1) {Acquire assay data\\Series C/E + historical labels};
+      \node[pstep,right=of d1] (d2) {SMILES standardization\\canonicalization + cleanup};
+      \node[pstep,right=of d2] (d3) {Descriptor generation\\RDKit/ECFP/MACCS/Mordred};
+      \node[pstep,below=of d1] (d4) {Train/test split\\Series C test, Series E prospective};
+      \node[pstep,right=of d4] (d5) {Model selection\\multi-regressor benchmarking};
+      \node[pstep,right=of d5] (d6) {Export artifact\\best model + ensemble metadata};
+
+      \draw[arrow] (d1)--(d2);
+      \draw[arrow] (d2)--(d3);
+      \draw[arrow] (d3)--(d4);
+      \draw[arrow] (d4)--(d5);
+      \draw[arrow] (d5)--(d6);
+    \end{tikzpicture}
   \end{center}
 \end{frame}
 
-%% ============================================================
-\begin{frame}[plain]
+\begin{frame}{QSAR modeling details: what is trained and selected}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Candidate models tested}
+        \begin{itemize}
+          \item KNN, Decision Tree, Extra Trees
+          \item Gradient boosting family (e.g., LGBM)
+          \item Descriptor families compared side by side
+          \item Selection by held-out predictive quality
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Selected setup (current)}
+        \begin{itemize}
+          \item Primary potency model: \textbf{RDKit + KNN}
+          \item Key metric: \(R^2 \approx 0.887\)
+          \item Backup positive-\(R^2\) models kept for uncertainty
+          \item Artifact path:\\
+            {\scriptsize\texttt{reinvent\_integration/artifacts/qsar\_best\_model.joblib}}
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{QSAR evaluation and test outputs (Series C and E)}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Series C (test evaluation)}
+        \begin{itemize}
+          \item Total rows: \textbf{6}
+          \item Measured pIC\(_{50}\) rows: \textbf{5}
+          \item MAE (pIC\(_{50}\)): \textbf{0.118}
+          \item \(R^2\): \textbf{0.887}
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Series E (prospective predictions)}
+        \begin{itemize}
+          \item Predicted rows: \textbf{6}
+          \item Predicted pIC\(_{50}\): \textbf{4.467 to 5.132}
+          \item Predicted IC\(_{50}\): \textbf{7.38 to 34.11 \(\mu\)M}
+        \end{itemize}
+      \end{block}
+  \end{columns}
+
+  \vspace{2pt}
+  \begin{exampleblock}{Output files}
+    {\scriptsize\texttt{outputs/qsar/core\_predictions/SeriesC\_test\_with\_predictions.csv}}\\
+    {\scriptsize\texttt{outputs/qsar/core\_predictions/SeriesE\_with\_predictions.csv}}
+  \end{exampleblock}
+\end{frame}
+
+% ============================================================
+\section{REINVENT4 Generation (Detailed)}
+% ============================================================
+
+\begin{frame}{REINVENT4 generation flowchart}
   \begin{center}
-    \vspace{1.5cm}
-    {\Huge\textbf{\textcolor{schblue}{Thank You}}}\\[1.2cm]
-    {\large Questions \& Discussion}\\[0.8cm]
-    \hrule
-    \vspace{0.4cm}
-    {\small
-    \textbf{Repository:}
-    \href{https://github.com/bhatnira/Tzu-qsar-generative-model}{%
-          github.com/bhatnira/Tzu-qsar-generative-model}\\[0.3cm]
-    \textbf{Tools:} RDKit · Schrödinger Suite 2026-1 · REINVENT~4 ·
-    scikit-learn · LightGBM · XGBoost
-    }
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[pstep] (r1) {Start from prior\\drug-like SMILES model};
+      \node[pstep,right=of r1] (r2) {Choose mode\\plain / RL / CL};
+      \node[pstep,right=of r2] (r3) {Sample batch\\candidate SMILES};
+      \node[pstep,below=of r1] (r4) {Score batch\\QSAR + ADME + uncertainty};
+      \node[pstep,right=of r4] (r5) {Agent update\\(RL/CL only)};
+      \node[pstep,right=of r5] (r6) {Write outputs\\samples.csv + scored files};
+
+      \draw[arrow] (r1)--(r2);
+      \draw[arrow] (r2)--(r3);
+      \draw[arrow] (r3)--(r4);
+      \draw[arrow] (r4)--(r5);
+      \draw[arrow] (r5)--(r6);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{REINVENT4 modes and optimization details}
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Mode} & \textbf{How optimization behaves} \\
+    \midrule
+    Plain & No policy update; broad exploration from prior distribution. \\
+    RL & Iterative policy optimization from reward signal after scoring each batch. \\
+    CL & Multi-stage objective: easier constraints first, stricter objectives later. \\
+    Mol2Mol/LibINVENT/LinkINVENT & Family-specific generation constraints layered on top of training mode. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{4pt}
+  \begin{alertblock}{Why curriculum learning was used}
+    It improves stability and validity while pushing toward higher-quality,
+    multi-objective molecules under realistic constraints.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{REINVENT4 project execution and outputs}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{What was run}
+        \begin{itemize}
+          \item Multiple generation families and modes
+          \item Automated score pass after each sampling output
+          \item Unified downstream gate ranking across all runs
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Where outputs are saved}
+        Raw samples:\\
+        {\scriptsize\texttt{reinvent\_integration/results/<family\_mode>/samples.csv}}\\
+        Scored results:\\
+        {\scriptsize\texttt{outputs/generated/<family>/<mode>/}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Generation activity scope in this project (not just 3 modes)}
+  \small
+  \begin{block}{Model families orchestrated in campaigns}
+    reinvent, reinvent\_pubchem, pepinvent, mol2mol\_similarity,
+    mol2mol\_high\_similarity, mol2mol\_medium\_similarity,
+    mol2mol\_scaffold, mol2mol\_scaffold\_generic, mol2mol\_mmp,
+    libinvent, libinvent\_transformer\_pubchem, linkinvent,
+    linkinvent\_transformer\_pubchem.
+  \end{block}
+
+  \begin{exampleblock}{Operational implication}
+    Each family was executed across plain/RL/CL flows with post-scoring, so
+    the generation program is a \textbf{matrix of campaigns}, not a single run.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Generation campaign matrix: families \(\times\) optimization modes}
+  \small
+  \begin{tabularx}{\textwidth}{lccc}
+    \toprule
+    \textbf{Family group} & \textbf{Plain} & \textbf{RL} & \textbf{CL} \\
+    \midrule
+    REINVENT / REINVENT\_PubChem & \checkmark & \checkmark & \checkmark \\
+    PepINVENT & \checkmark & \checkmark & \checkmark \\
+    Mol2Mol (sim/high/medium/scaffold/mmp) & \checkmark & \checkmark & \checkmark \\
+    LibINVENT (+ transformer prior) & \checkmark & \checkmark & \checkmark \\
+    LinkINVENT (+ transformer prior) & \checkmark & \checkmark & \checkmark \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{3pt}
+  \begin{block}{Why this matrix matters}
+    It separates exploration (plain), exploitation (RL), and robust staged optimization (CL),
+    while covering multiple molecular design tasks (de novo, analoging, linking, decorating).
+  \end{block}
+\end{frame}
+
+\begin{frame}{REINVENT / REINVENT\_PubChem (\checkmark \checkmark \checkmark)}
+  \small
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \begin{block}{What this family contributes}
+        \begin{itemize}
+          \item Core de novo generation backbone
+          \item REINVENT\_PubChem adds broader prior chemistry exposure
+          \item Strong for novelty-first exploration
+        \end{itemize}
+      \end{block}
+      \begin{block}{Modes in this project}
+        \textbf{Plain}: baseline de novo sampling\\
+        \textbf{RL}: reward-guided potency/ADME optimization\\
+        \textbf{CL}: staged objective tightening for stable convergence
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Concrete run artifacts}
+        Config examples:\\
+        {\scriptsize\texttt{sample\_reinvent\_plain.toml}}\\
+        {\scriptsize\texttt{rl\_reinvent.toml}} / {\scriptsize\texttt{cl\_reinvent.toml}}\\
+        {\scriptsize\texttt{sample\_reinvent\_rl.toml}} / {\scriptsize\texttt{sample\_reinvent\_cl.toml}}\\[2pt]
+        Raw outputs:\\
+        {\scriptsize\texttt{reinvent\_integration/results/reinvent\_<mode>/samples.csv}}\\
+        Scored outputs:\\
+        {\scriptsize\texttt{outputs/generated/reinvent/<mode>/}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{PepINVENT (\checkmark \checkmark \checkmark)}
+  \small
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \begin{block}{What this family contributes}
+        \begin{itemize}
+          \item Peptide-like sequence/structure generation focus
+          \item Complements small-molecule-focused families
+          \item Adds modality diversity to candidate pool
+        \end{itemize}
+      \end{block}
+      \begin{block}{Modes in this project}
+        \textbf{Plain}: broad peptide-like proposal space\\
+        \textbf{RL}: prioritize higher reward peptide candidates\\
+        \textbf{CL}: staged constraints to improve quality stability
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Concrete run artifacts}
+        Config examples:\\
+        {\scriptsize\texttt{sample\_pepinvent\_plain.toml}}\\
+        {\scriptsize\texttt{rl\_pepinvent.toml}} / {\scriptsize\texttt{cl\_pepinvent.toml}}\\
+        {\scriptsize\texttt{sample\_pepinvent\_rl.toml}} / {\scriptsize\texttt{sample\_pepinvent\_cl.toml}}\\[2pt]
+        Raw outputs:\\
+        {\scriptsize\texttt{reinvent\_integration/results/pepinvent\_<mode>/samples.csv}}\\
+        Scored outputs:\\
+        {\scriptsize\texttt{outputs/generated/pepinvent/<mode>/}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Mol2Mol (sim/high/medium/scaffold/mmp) (\checkmark \checkmark \checkmark)}
+  \small
+  \begin{columns}[T]
+    \column{0.54\textwidth}
+      \begin{block}{What this family contributes}
+        \begin{itemize}
+          \item Controlled analog generation around references
+          \item Multiple transformation regimes: similarity, scaffold, MMP
+          \item Balances novelty with medicinal chemistry continuity
+        \end{itemize}
+      \end{block}
+      \begin{block}{Modes in this project}
+        \textbf{Plain}: analog exploration without policy updates\\
+        \textbf{RL}: optimize transformations toward reward\\
+        \textbf{CL}: staged analog objective tightening per regime
+      \end{block}
+    \column{0.44\textwidth}
+      \begin{block}{Concrete run artifacts}
+        Examples:\\
+        {\scriptsize\texttt{sample\_mol2mol\_similarity\_plain.toml}}\\
+        {\scriptsize\texttt{rl\_mol2mol\_high\_similarity.toml}}\\
+        {\scriptsize\texttt{cl\_mol2mol\_scaffold.toml}}\\[2pt]
+        Raw outputs:\\
+        {\scriptsize\texttt{reinvent\_integration/results/mol2mol\_<variant>\_<mode>/samples.csv}}\\
+        Scored outputs:\\
+        {\scriptsize\texttt{outputs/generated/mol2mol/<variant>/<mode>/}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{LibINVENT (+ transformer prior) (\checkmark \checkmark \checkmark)}
+  \small
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \begin{block}{What this family contributes}
+        \begin{itemize}
+          \item Scaffold decoration/library-style expansion
+          \item Useful for R-group exploration at fixed cores
+          \item Transformer prior variant broadens syntactic diversity
+        \end{itemize}
+      \end{block}
+      \begin{block}{Modes in this project}
+        \textbf{Plain}: enumerate baseline decoration ideas\\
+        \textbf{RL}: improve decoration reward profile\\
+        \textbf{CL}: staged decoration quality constraints
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Concrete run artifacts}
+        Config examples:\\
+        {\scriptsize\texttt{sample\_libinvent\_plain.toml}}\\
+        {\scriptsize\texttt{rl\_libinvent.toml}} / {\scriptsize\texttt{cl\_libinvent.toml}}\\
+        {\scriptsize\texttt{sample\_libinvent\_transformer\_pubchem\_cl.toml}}\\[2pt]
+        Raw outputs:\\
+        {\scriptsize\texttt{reinvent\_integration/results/libinvent\_<mode>/samples.csv}}\\
+        {\scriptsize\texttt{reinvent\_integration/results/libinvent\_transformer\_pubchem\_<mode>/samples.csv}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{LinkINVENT (+ transformer prior) (\checkmark \checkmark \checkmark)}
+  \small
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \begin{block}{What this family contributes}
+        \begin{itemize}
+          \item Linker design between anchors/fragments
+          \item Critical for fragment-joining and geometry-aware assembly
+          \item Transformer prior variant increases linker novelty breadth
+        \end{itemize}
+      \end{block}
+      \begin{block}{Modes in this project}
+        \textbf{Plain}: linker idea exploration\\
+        \textbf{RL}: optimize linker candidates by reward\\
+        \textbf{CL}: staged linker constraint tightening
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Concrete run artifacts}
+        Config examples:\\
+        {\scriptsize\texttt{sample\_linkinvent\_plain.toml}}\\
+        {\scriptsize\texttt{rl\_linkinvent.toml}} / {\scriptsize\texttt{cl\_linkinvent.toml}}\\
+        {\scriptsize\texttt{sample\_linkinvent\_transformer\_pubchem\_cl.toml}}\\[2pt]
+        Raw outputs:\\
+        {\scriptsize\texttt{reinvent\_integration/results/linkinvent\_<mode>/samples.csv}}\\
+        {\scriptsize\texttt{reinvent\_integration/results/linkinvent\_transformer\_pubchem\_<mode>/samples.csv}}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Generation config taxonomy used in repository}
+  \small
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Core config types}
+        \begin{itemize}
+          \item \texttt{sample\_<family>\_plain.toml}
+          \item \texttt{rl\_<family>.toml}
+          \item \texttt{sample\_<family>\_rl.toml}
+          \item \texttt{cl\_<family>.toml}
+          \item \texttt{sample\_<family>\_cl.toml}
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Variant config sets}
+        \begin{itemize}
+          \item \texttt{reinvent\_integration/configs/}
+          \item \texttt{reinvent\_integration/configs\_fast/}
+          \item \texttt{reinvent\_integration/configs\_strict/}
+          \item Nitro campaign-specific configs
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Generation execution lifecycle (per family)}
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[pstep] (e1) {Plain sample\\baseline exploration};
+      \node[pstep,right=of e1] (e2) {Score plain output\\QSAR + ADME};
+      \node[pstep,right=of e2] (e3) {Train RL policy\\reward-driven update};
+      \node[pstep,below=of e1] (e4) {Sample RL policy\\optimized candidates};
+      \node[pstep,right=of e4] (e5) {Train CL stages\\threshold progression};
+      \node[pstep,right=of e5] (e6) {Sample CL policy\\high-quality pool};
+      \draw[arrow] (e1)--(e2);
+      \draw[arrow] (e2)--(e3);
+      \draw[arrow] (e3)--(e4);
+      \draw[arrow] (e4)--(e5);
+      \draw[arrow] (e5)--(e6);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{How run orchestration is implemented}
+  \small
+  \begin{block}{Controller scripts}
+    \texttt{reinvent\_integration/run\_all\_generation.py}\\
+    \texttt{reinvent\_integration/run\_all\_generation\_fast.py}\\
+    \texttt{reinvent\_integration/run\_all\_generation\_strict.py}\\
+    \texttt{reinvent\_integration/run\_nitro\_bioisostere\_campaign.py}
+  \end{block}
+
+  \begin{block}{Automated per-family sequence}
+    For each family: plain sample \(\rightarrow\) score,
+    RL train \(\rightarrow\) RL sample \(\rightarrow\) score,
+    CL train \(\rightarrow\) CL sample \(\rightarrow\) score,
+    then merge into hybrid stage-gate pipeline.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Diverse generation activities: family-specific intent}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Exploration and analoging}
+        \begin{itemize}
+          \item REINVENT / REINVENT\_PubChem: broad de novo novelty
+          \item Mol2Mol similarity/high/medium: controllable analog search
+          \item Mol2Mol scaffold/scaffold\_generic: scaffold-preserving design
+          \item Mol2Mol MMP: matched-pair style transformations
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Assembly and decoration tasks}
+        \begin{itemize}
+          \item PepINVENT: peptide-like sequence/structure design
+          \item LinkINVENT: linker optimization between anchors
+          \item LibINVENT: scaffold decoration libraries
+          \item Transformer-PubChem variants: broader prior transfer
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Optimization depth: what RL and CL improve over plain}
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Aspect} & \textbf{Practical behavior in pipeline} \\
+    \midrule
+    Potency targeting & RL/CL shift sampled distribution toward higher QSAR-ranked molecules. \\
+    ADME alignment & Objective shaping increases fraction within preferred ADME windows. \\
+    Feasibility control & CL staging reduces abrupt jumps that produce unstable candidates. \\
+    Gate readiness & RL/CL outputs generally show better downstream Gate 1 and Gate 2 conversion. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Generation run variants: default, fast, strict, campaign-specific}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Default/full campaign}
+        Broad model matrix, full scoring stack,
+        standard gate thresholds for ranked export.
+      \end{block}
+      \begin{block}{Fast variant}
+        Reduced runtime profile for rapid iteration and sanity checks.
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Strict variant}
+        Tighter constraints / stricter progression,
+        useful for high-confidence candidate narrowing.
+      \end{block}
+      \begin{block}{Nitro bioisostere campaign}
+        Focused chemistry campaign with dedicated configs and logs.
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Generation logs: what information is captured}
+  \small
+  \begin{block}{Log locations and examples}
+    \texttt{reinvent\_integration/logs/run\_all\_generation.log}\\
+    \texttt{reinvent\_integration/logs/run\_all\_generation\_fast.log}\\
+    \texttt{reinvent\_integration/logs/run\_all\_generation\_strict.log}\\
+    Family logs: \texttt{<family>\_<mode>\_<train/sample>\_*.log}
+  \end{block}
+
+  \begin{block}{Operational signals extracted}
+    \begin{itemize}
+      \item step completion/failure status for each run
+      \item training progress and sampling completion
+      \item mode-specific checkpoints and campaign diagnostics
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Generation output hierarchy and handoff to scoring}
+  \small
+  \begin{columns}[T]
+    \column{0.49\textwidth}
+      \begin{block}{Raw generation outputs}
+        \texttt{reinvent\_integration/results/<family>\_<mode>/samples.csv}\\
+        plus campaign-level artifacts/checkpoints in results tree.
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Scored generation outputs}
+        \texttt{outputs/generated/<family>/<mode>/}\\
+        standardized scored files used by Gate 1 input pooling.
+      \end{block}
+  \end{columns}
+
+  \vspace{3pt}
+  \begin{exampleblock}{End-to-end linkage}
+    Generation activity \(\rightarrow\) scoring normalization \(\rightarrow\)
+    Gate 1 ranking \(\rightarrow\) Gate 2 refinement \(\rightarrow\) Gate 3 translational shortlist.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Generation coverage summary for presentation narrative}
+  \small
+  \begin{block}{Core message to stakeholders}
+    The project performed a \textbf{diversified generation program} spanning
+    de novo design, analoging, scaffold-conditioned transformation, linker design,
+    and library decoration, each optimized via plain/RL/CL and then evaluated in one
+    consistent scoring + gate framework.
+  \end{block}
+
+  \begin{alertblock}{Why this is stronger than a single-generator story}
+    It reduces model-family bias, increases chemical search breadth,
+    and produces more robust downstream candidates for translational prioritization.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{REINVENT4 generation families: what each generates}
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Family} & \textbf{Generation behavior and practical use} \\
+    \midrule
+    REINVENT (de novo) & Generates full molecules from learned prior; best for broad exploration. \\
+    Mol2Mol & Starts from reference scaffold/seed and proposes close-but-improved analogs. \\
+    LinkINVENT & Generates linkers to connect fragments while preserving anchor context. \\
+    LibINVENT & Enumerates decoration vectors around a scaffold under reaction-like constraints. \\
+    Transformer-PubChem variants & Broader pretraining bias for novelty and chemical grammar robustness. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{4pt}
+  \begin{exampleblock}{Project strategy}
+    Use multiple families in parallel: broad exploration (de novo) + local optimization
+    (scaffold/fragment-driven families), then merge all outputs into one scoring/gating path.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Plain generation details (exploration mode)}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{What happens in plain mode}
+        \begin{itemize}
+          \item Agent weights are fixed (no optimization loop)
+          \item Batched sampling from prior policy
+          \item Strongly useful for baseline diversity
+          \item Fast throughput for first-pass idea space
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{How outputs are used}
+        \begin{itemize}
+          \item Post-scored by QSAR + ADME pipeline
+          \item Feeds Gate 1 diversity-aware shortlist
+          \item Acts as discovery baseline vs RL/CL gains
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Reinforcement learning generation: optimization loop}
+  \small
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[pstep] (rl1) {Sample molecules\\from current policy};
+      \node[pstep,right=of rl1] (rl2) {Compute reward\\multi-objective score};
+      \node[pstep,right=of rl2] (rl3) {Update policy\\increase expected reward};
+      \node[pstep,right=of rl3] (rl4) {Resample and repeat\\until step budget};
+      \draw[arrow] (rl1)--(rl2);
+      \draw[arrow] (rl2)--(rl3);
+      \draw[arrow] (rl3)--(rl4);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{3pt}
+  \begin{block}{Optimization objective (conceptual)}
+    \[
+      J(\theta)=\mathbb{E}_{x\sim\pi_{\theta}}[R(x)]
+      \quad \Rightarrow \quad
+      \theta \leftarrow \theta + \eta\,\nabla_{\theta}J(\theta)
+    \]
+    Where \(R(x)\) combines potency, ADME, and feasibility/risk constraints.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Curriculum learning generation: staged optimization}
+  \small
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+      \begin{block}{Why curriculum is stronger than single-stage RL}
+        \begin{enumerate}
+          \item Stage 1: satisfy validity/basic chemistry and minimal potency.
+          \item Stage 2: tighten potency + key ADME windows.
+          \item Stage 3: enforce full objective stack before final sampling.
+        \end{enumerate}
+        This reduces optimization collapse and improves final feasible hit-rate.
+      \end{block}
+    \column{0.40\textwidth}
+      \begin{block}{Progression rule (conceptual)}
+        Advance stage when:
+        \[
+        \bar{R}_{\text{window}} \ge \tau_s
+        \]
+        where \(\tau_s\) is stage threshold.
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Reward construction used for REINVENT optimization}
+  \small
+  \begin{block}{Composite reward structure}
+    \[
+      R = w_p f_{\text{potency}} +
+          w_s f_{\text{solubility}} +
+          w_l f_{\log P} +
+          w_m f_{\text{microsomal}} +
+          w_h f_{t_{1/2}} -
+          w_u f_{\text{uncertainty}} -
+          w_t f_{\text{tox risk}}
+    \]
+    Positive terms drive efficacy/developability; penalty terms suppress unstable or risky candidates.
+  \end{block}
+
+  \begin{alertblock}{Important practical point}
+    Generation optimization and gate triage are aligned but not identical:
+    reward guides learning dynamics, gates enforce strict deployment filters.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{How to read REINVENT optimization quality in this project}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Healthy optimization signals}
+        \begin{itemize}
+          \item Mean score trend increases over steps
+          \item Valid SMILES fraction stays high
+          \item Diversity does not collapse too early
+          \item Top candidates survive Gate 1 and Gate 2
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Warning patterns to monitor}
+        \begin{itemize}
+          \item Score spike with low diversity (mode collapse)
+          \item Rising uncertainty in high-score molecules
+          \item ADME out-of-window drift at later steps
+          \item Weak Gate 2/3 conversion ratio
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+% ============================================================
+\section{Gate 1 (Detailed)}
+% ============================================================
+
+\begin{frame}{Gate 1 flowchart: triage and diversity shortlist}
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[gatebox] (g1a) {Pool all scored outputs\\across families/modes};
+      \node[gatebox,right=of g1a] (g1b) {Compute triage score\\weighted multi-objective};
+      \node[gatebox,right=of g1b] (g1c) {Rank all candidates\\descending score};
+      \node[gatebox,below=of g1a] (g1d) {Apply scaffold cap\\max-per-scaffold};
+      \node[gatebox,right=of g1d] (g1e) {Select top-K shortlist\\default 200};
+      \node[gatebox,right=of g1e] (g1f) {Export Gate 1 files\\CSV + XLSX + summary};
+
+      \draw[arrow] (g1a)--(g1b);
+      \draw[arrow] (g1b)--(g1c);
+      \draw[arrow] (g1c)--(g1d);
+      \draw[arrow] (g1d)--(g1e);
+      \draw[arrow] (g1e)--(g1f);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Gate 1 details: scoring and output artifacts}
+  \small
+  \begin{block}{Triage equation}
+    \[
+    \text{triage}=0.35P+0.15S+0.15L+0.10M+0.10H+0.15T
+    \]
+    Potency is weighted highest; ADME balance and stability terms control quality.
+  \end{block}
+
+  \begin{block}{Gate 1 outputs}
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate1/gate1\_master\_ranked.csv}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate1/gate1\_shortlist.csv}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate1/gate1\_shortlist.xlsx}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate1/gate1\_summary.json}}
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{Gate 2 (Detailed)}
+% ============================================================
+
+\begin{frame}{Gate 2 flowchart: uncertainty and chemistry refinement}
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[gatebox] (g2a) {Input Gate 1 shortlist};
+      \node[gatebox,right=of g2a] (g2b) {Compute uncertainty\\ensemble disagreement};
+      \node[gatebox,right=of g2b] (g2c) {Add chemistry filters\\SA + PAINS/BRENK/NIH};
+      \node[gatebox,below=of g2a] (g2d) {Ligand support\\2D Tanimoto + 3D shape};
+      \node[gatebox,right=of g2d] (g2e) {Gate 2 pass logic\\confidence + quality};
+      \node[gatebox,right=of g2e] (g2f) {Export refined set\\target-free candidates};
+
+      \draw[arrow] (g2a)--(g2b);
+      \draw[arrow] (g2b)--(g2c);
+      \draw[arrow] (g2c)--(g2d);
+      \draw[arrow] (g2d)--(g2e);
+      \draw[arrow] (g2e)--(g2f);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Gate 2 details: uncertainty control and outputs}
+  \small
+  \begin{block}{Uncertainty control mechanism}
+    Primary potency stays the best model prediction; up to five positive-\(R^2\)
+    models are used to compute disagreement (\(\sigma\)).
+    High-\(\sigma\) molecules are deprioritized or filtered.
+  \end{block}
+
+  \begin{block}{Gate 2 output files}
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/target\_free\_candidates.csv}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/target\_free\_candidates.xlsx}}
+  \end{block}
+
+  \begin{exampleblock}{Current count}
+    Gate 2 passes: \textbf{46}
+  \end{exampleblock}
+\end{frame}
+
+% ============================================================
+\section{Gate 3 (Detailed)}
+% ============================================================
+
+\begin{frame}{Gate 3 flowchart: translational prioritization}
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
+      \node[gatebox] (g3a) {Input Gate 2 candidates};
+      \node[gatebox,right=of g3a] (g3b) {Toxicity risk layer\\hERG/DILI/AMES proxies};
+      \node[gatebox,right=of g3b] (g3c) {DDI risk layer\\CYP interaction liability};
+      \node[gatebox,below=of g3a] (g3d) {Absorption layer\\HIA/bioavailability support};
+      \node[gatebox,right=of g3d] (g3e) {Final priority score\\translational ranking};
+      \node[gatebox,right=of g3e] (g3f) {Export final shortlist\\for experiment planning};
+
+      \draw[arrow] (g3a)--(g3b);
+      \draw[arrow] (g3b)--(g3c);
+      \draw[arrow] (g3c)--(g3d);
+      \draw[arrow] (g3d)--(g3e);
+      \draw[arrow] (g3e)--(g3f);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Gate 3 details: outputs and deployment handoff}
+  \small
+  \begin{block}{Final Gate 3 artifacts}
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/translational\_candidates.csv}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/translational\_candidates.xlsx}}\\
+    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/experimental\_shortlist\_template.csv}}
+  \end{block}
+
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{exampleblock}{Current count}
+        Gate 3 passes: \textbf{34}
+      \end{exampleblock}
+    \column{0.48\textwidth}
+      \begin{alertblock}{Deployment meaning in this project}
+        "Deployment" = operational delivery of ranked candidates to
+        medicinal chemistry / biology for wet-lab testing decisions.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ============================================================
+\section{Why this project}
+% ============================================================
+
+\begin{frame}{Problem we are solving}
+  \begin{block}{Goal}
+    Start from many AI-generated molecules and end with a small, high-quality
+    shortlist for laboratory testing.
+  \end{block}
+
+  \vspace{3pt}
+  \begin{itemize}
+    \item We do \textbf{not} have a reliable protein target structure for physics-heavy simulation.
+    \item So we use a \textbf{target-free, data-driven pipeline}.
+    \item We combine potency prediction, ADME quality, uncertainty, safety risk,
+          and diversity before selecting final candidates.
+  \end{itemize}
+
+  \vspace{4pt}
+  \begin{alertblock}{Business rationale}
+    Reduce expensive false positives early, while keeping chemical diversity high.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Core idea in one line}
+  \begin{center}
+    \Large
+    Generate many molecules \(\rightarrow\) score quickly \(\rightarrow\)
+    refine confidently \(\rightarrow\) prioritize translationally
+  \end{center}
+\end{frame}
+
+% ============================================================
+\section{Key terms (plain language)}
+% ============================================================
+
+\begin{frame}{Key terms everyone should know}
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Term} & \textbf{Simple meaning} \\
+    \midrule
+    SMILES & Text format for molecules (a way to write chemistry as strings). \\
+    QSAR & Model that predicts activity/properties from structure. \\
+    IC\(_{50}\) & Potency: lower value means stronger molecule. \\
+    pIC\(_{50}\) & Log version of IC\(_{50}\): higher value means stronger molecule. \\
+    ADME & Absorption, distribution, metabolism, excretion properties. \\
+    Murcko scaffold & Core ring skeleton used to track diversity. \\
+    Uncertainty & How much multiple good models disagree on prediction. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Generation terms used in this project}
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Term} & \textbf{Simple meaning} \\
+    \midrule
+    REINVENT (plain) & Generate molecules directly from pretrained chemistry language model. \\
+    RL mode & Reinforcement learning: reward molecules with better predicted profile. \\
+    CL mode & Curriculum learning: optimize in staged difficulty. \\
+    Mol2Mol & Create analogs from seed molecules. \\
+    LibINVENT & Decorate a scaffold with substituents. \\
+    LinkINVENT & Connect fragments with designed linker. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+% ============================================================
+\section{REINVENT 4 in this project}
+% ============================================================
+
+\begin{frame}{How REINVENT 4 generation modes work}
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Mode} & \textbf{How it generates molecules} \\
+    \midrule
+    Plain (prior sampling) & Samples directly from pretrained chemical language model for broad exploration. \\
+    RL (reinforcement learning) & Generates a batch, scores it, then updates the agent to prefer higher-scoring molecules. \\
+    CL (curriculum learning) & Runs optimization in stages: easier objective first, then stricter objective later. \\
+    Mol2Mol & Starts from known molecules and proposes close analogs. \\
+    LibINVENT & Keeps a core scaffold and decorates attachment points with substituents. \\
+    LinkINVENT & Connects two fragments with generated linkers. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{How curriculum learning optimization is done}
+  \begin{columns}[T]
+    \column{0.57\textwidth}
+      \begin{block}{Optimization sequence}
+        \begin{enumerate}
+          \item Start from prior model (chemically valid baseline).
+          \item Stage 1 objective: easier constraints (validity + broad quality).
+          \item Stage 2 objective: stricter score (potency/ADME/uncertainty).
+          \item At each step: sample \(\rightarrow\) score \(\rightarrow\) update agent.
+          \item Stop at max steps or convergence, then sample final set.
+        \end{enumerate}
+      \end{block}
+    \column{0.40\textwidth}
+      \begin{block}{Why curriculum helps}
+        \begin{itemize}
+          \item More stable optimization
+          \item Fewer invalid molecules
+          \item Better quality-diversity tradeoff
+          \item Less mode collapse
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{How REINVENT 4 was used in this project}
+  \small
+  \begin{block}{What was done}
+    Multiple generation families were run (including Mol2Mol, PepINVENT,
+    LibINVENT, LinkINVENT and transformer variants) in one or more training
+    modes (plain, RL, CL), then each sampled output was scored by the same
+    QSAR + ADME + uncertainty pipeline.
+  \end{block}
+
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Execution flow}
+        \begin{enumerate}
+          \item Run REINVENT campaign config
+          \item Write \texttt{samples.csv}
+          \item Score via \texttt{score\_generated\_smiles\_adme.py}
+          \item Save scored CSV/XLSX
+        \end{enumerate}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Where files are}
+        \begin{itemize}
+          \item Raw generations:\\
+            \texttt{reinvent\_integration/results/}
+          \item Scored outputs:\\
+            \texttt{outputs/generated/<family>/<mode>/}
+          \item Gate outputs:\\
+            \texttt{outputs/hybrid\_stage/}
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{REINVENT outputs that feed decision-making}
+  \small
+  \begin{block}{Per-run output}
+    Each campaign produces generated SMILES plus scored tables containing
+    potency, ADME, uncertainty, and source metadata.
+  \end{block}
+
+  \begin{block}{Cross-run integration}
+    All scored runs are pooled and moved through:
+    \begin{itemize}
+      \item \textbf{Gate 1}: triage + scaffold-diverse top shortlist
+      \item \textbf{Gate 2}: confidence and chemistry refinement
+      \item \textbf{Gate 3}: translational ranking for experiment planning
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{Final deliverable}
+    A ranked candidate workbook with structures and rationale-ready fields,
+    used by chemistry and biology teams for lab selection.
+  \end{exampleblock}
+\end{frame}
+
+% ============================================================
+\section{Process schema}
+% ============================================================
+
+\begin{frame}{End-to-end process schema}
+  \begin{center}
+    \begin{tikzpicture}[node distance=0.55cm and 0.45cm]
+      \node[pstep] (s1) {1. Train QSAR\\from historical assay data};
+      \node[pstep,right=of s1] (s2) {2. Export model artifact\\for scoring};
+      \node[pstep,right=of s2] (s3) {3. Generate molecules\\with REINVENT modes};
+      \node[pstep,below=of s1] (s4) {4. Score molecules\\potency + ADME + uncertainty};
+      \node[pstep,right=of s4] (s5) {5. Gate 1\\triage + diversity shortlist};
+      \node[pstep,right=of s5] (s6) {6. Gate 2\\confidence + chemistry filters};
+      \node[pstep,below=of s5] (s7) {7. Gate 3\\tox/DDI/absorption priority};
+      \node[pstep,left=of s7] (s8) {8. Final shortlist\\for wet lab};
+
+      \draw[arrow] (s1)--(s2);
+      \draw[arrow] (s2)--(s3);
+      \draw[arrow] (s3)--(s4);
+      \draw[arrow] (s4)--(s5);
+      \draw[arrow] (s5)--(s6);
+      \draw[arrow] (s6)--(s7);
+      \draw[arrow] (s7)--(s8);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{What each gate does (simple view)}
+  \begin{columns}[T]
+    \column{0.32\textwidth}
+      \begin{block}{Gate 1}
+        \textbf{Fast triage}
+        \begin{itemize}
+          \item Potency + ADME
+          \item Composite triage score
+          \item Scaffold-diverse top 200
+        \end{itemize}
+      \end{block}
+    \column{0.32\textwidth}
+      \begin{block}{Gate 2}
+        \textbf{Confidence \& quality}
+        \begin{itemize}
+          \item QSAR uncertainty
+          \item Synthetic accessibility
+          \item PAINS/BRENK/NIH alerts
+          \item 2D/3D ligand similarity
+        \end{itemize}
+      \end{block}
+    \column{0.32\textwidth}
+      \begin{block}{Gate 3}
+        \textbf{Translational priority}
+        \begin{itemize}
+          \item Toxicity risk
+          \item CYP/DDI risk
+          \item Absorption support
+          \item Final experiment rank
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{How scoring is carried out (step-by-step)}
+  \small
+  \begin{enumerate}
+    \item \textbf{Validate SMILES} (remove invalid molecules).
+    \item \textbf{Compute descriptors} from structure.
+    \item \textbf{Predict potency} with best QSAR model.
+    \item \textbf{Estimate uncertainty} from up to 5 positive-\(R^2\) models.
+    \item \textbf{Add ADME / risk fields} (solubility, lipophilicity, clearance).
+    \item \textbf{Apply gate logic} for ranking and filtering.
+    \item \textbf{Export CSV + Excel} with structures for human review.
+  \end{enumerate}
+
+  \vspace{3pt}
+  \begin{block}{Outcome}
+    Every candidate has machine-scored evidence + a readable review format,
+    so computational and chemistry teams can make the same decision from the
+    same table.
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{How scoring is carried out (math)}
+% ============================================================
+
+\begin{frame}{Scoring mathematics: Gate 1 triage score}
+  \small
+  \begin{block}{Composite triage function}
+  \[
+  \text{triage} = 0.35\,P + 0.15\,S + 0.15\,L + 0.10\,M + 0.10\,H + 0.15\,T
+  \]
+  with\
+  \(P\)=potency, \(S\)=solubility, \(L\)=cLogP window,
+  \(M\)=microsomal clearance, \(H\)=hepatocyte clearance,
+  \(T\)=half-life.
+  \end{block}
+
+  \begin{exampleblock}{Normalization}
+  Higher-is-better:
+  \[
+  x_{norm}=\frac{x-x_{\min}}{x_{\max}-x_{\min}}
+  \]
+  Lower-is-better features are inverted after scaling.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Why these weights? (rationale)}
+  \begin{itemize}
+    \item \textbf{0.35 Potency}: strongest requirement; non-potent compounds are rarely useful.
+    \item \textbf{0.30 Solubility + cLogP}: captures absorption/permeability balance.
+    \item \textbf{0.20 Clearance terms}: avoids compounds that disappear too quickly in vivo.
+    \item \textbf{0.15 Half-life}: rewards exposure duration without dominating the score.
+  \end{itemize}
+
+  \vspace{4pt}
+  \begin{alertblock}{Important interpretation}
+    This is a \textbf{triage utility score}, not a perfect biological truth.
+    It is designed to rank candidates consistently for decision-making.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{How uncertainty is computed}
+  \begin{block}{Model strategy}
+    Keep the \textbf{best IC\(_{50}\)} model as primary prediction,
+    then evaluate up to \textbf{five positive-\(R^2\)} models for the same molecule.
+  \end{block}
+
+  \begin{block}{Uncertainty proxy}
+    Let predictions be \(\hat{y}_1,\hat{y}_2,\dots,\hat{y}_k\), \(k\leq 5\).
+    \[
+      \mu = \frac{1}{k}\sum_{i=1}^k \hat{y}_i,
+      \quad
+      \sigma = \sqrt{\frac{1}{k-1}\sum_{i=1}^k(\hat{y}_i-\mu)^2}
+    \]
+    Larger \(\sigma\) means lower confidence.
+  \end{block}
+
+  \begin{exampleblock}{Why it helps}
+    Prevents over-prioritizing molecules that look strong in only one model.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Who carries out scoring? (roles in process)}
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Role} & \textbf{What they do} \\
+    \midrule
+    REINVENT engine & Generates candidate SMILES across modes (plain/RL/CL). \\
+    QSAR scoring script & Computes potency + ADME + uncertainty fields. \\
+    Gate script & Applies triage math, diversity selection, Gate 2/3 ranking. \\
+    Medicinal chemist & Reviews computed outputs for structural quality and synthesis practicality. \\
+    DMPK/safety scientist & Interprets computed tox/DDI/absorption risk outputs for go/no-go decisions. \\
+    Project lead & Approves final shortlist for experiment. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+% ============================================================
+\section{Repository map and outputs}
+% ============================================================
+
+\begin{frame}{Repository structure (current)}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Code folders}
+        \begin{itemize}
+          \item \texttt{qsar\_core/} core modules
+          \item \texttt{reinvent\_integration/} generation + scoring + gates
+          \item \texttt{scripts/} runnable scripts
+          \item \texttt{config/} environment files
+        \end{itemize}
+      \end{block}
+    \column{0.46\textwidth}
+      \begin{block}{Data \& outputs}
+        \begin{itemize}
+          \item \texttt{data/raw/} input dataset
+          \item \texttt{outputs/generated/} scored generations
+          \item \texttt{outputs/hybrid\_stage/} gate outputs
+          \item \texttt{docs/} plain-language documentation
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Main output files used in decisions}
+  \small
+  \begin{block}{1) Gate 1 shortlist (diversity + triage)}
+    \texttt{outputs/hybrid\_stage/gate1/}\
+    \texttt{gate1\_shortlist.xlsx}
+  \end{block}
+
+  \begin{block}{2) Gate 2 refinement (confidence + chemistry quality)}
+    \texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/}\
+    \texttt{target\_free\_candidates.xlsx}
+  \end{block}
+
+  \begin{block}{3) Gate 3 final ranking (translational priority)}
+    \texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/}\
+    \texttt{translational\_candidates.xlsx}
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{Practical usage}
+% ============================================================
+
+\begin{frame}{How to run the pipeline (practical commands)}
+  \begin{block}{From repository root}
+    \begin{itemize}
+      \item Export / refresh model artifact:\\
+            {\scriptsize\texttt{python reinvent\_integration/export\_qsar\_model.py}}
+      \item Run generation pipeline:\\
+            {\scriptsize\texttt{python scripts/run\_pipeline.py}}
+      \item Build stage-gated rankings:\\
+            {\scriptsize\texttt{python reinvent\_integration/run\_hybrid\_stage\_gates.py}}
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{Preset options}
+    {\scriptsize\texttt{python scripts/run\_pipeline.py --generation-preset fast|balanced|diverse}}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Decision logic summary}
+  \begin{enumerate}
+    \item Generate broad chemical space.
+    \item Score with potency + ADME + uncertainty.
+    \item Keep diversity while ranking quality.
+    \item Remove uncertain / high-liability / hard-to-make molecules.
+    \item Prioritize by translational risk and experiment value.
+  \end{enumerate}
+
+  \vspace{6pt}
+  \begin{alertblock}{Why this works in no-target settings}
+    It is fast, auditable, and aligned with real project decision gates,
+    even when structure-based physics methods are unavailable.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Thank you}
+  \begin{center}
+    \Large Questions?
+
+    \vspace{8pt}
+    \normalsize
+    Reference docs used:\\
+    \texttt{docs/REPO\_STRUCTURE\_AND\_OUTPUTS.txt}\\
+    \texttt{docs/TERMS\_AND\_WORKFLOW\_EXPLAINED.txt}
   \end{center}
 \end{frame}
 

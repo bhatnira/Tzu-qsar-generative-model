@@ -1,0 +1,6 @@
+file,rows,cutoff
+linkinvent_transformer_pubchem_plain_generated_scored.csv,108.0,
+linkinvent_transformer_pubchem_plain_generated_optimal.csv,0.0,
+linkinvent_transformer_pubchem_plain_generated_scored.xlsx,108.0,
+linkinvent_transformer_pubchem_plain_generated_optimal.xlsx,0.0,
+,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40

@@ -1,0 +1,2 @@
+canonical_smiles,SMILES_state,NLL,pred_logIC50_uM,pred_ic50_uM,pred_pIC50,pred_cLogP,pred_logS_ESOL,pred_Solubility_ESOL_mol_per_L,pred_Solubility_ESOL_class,pred_MetStab_Clearance_Microsome_AZ,pred_MetStab_Clearance_Hepatocyte_AZ,pred_MetStab_Half_Life_Obach,passes_optimal
+COc1cc2oc(CCN3CCOCC3)c(C#N)c2cc1-c1cnco1,1,30.12,0.5373768663618216,3.4464887591242173,5.4626231336381785,2.842780000000001,-4.396667234254418,4.011739880065739e-05,Moderately Soluble,44.71778,52.14369,47.472206,1

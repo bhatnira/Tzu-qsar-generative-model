@@ -1,0 +1,108 @@
+12:40:38 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+12:40:38 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_rl_sample_manual.log /tmp/sample_pepinvent_rl_manual.toml
+12:40:38 <INFO> Reading run configuration from /tmp/sample_pepinvent_rl_manual.toml using format toml
+12:40:38 <INFO> User nbhatta1 on host panacea
+12:40:38 <INFO> Python version 3.11.13
+12:40:38 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+12:40:38 <INFO> PyTorch compiled with CUDA version 12.8
+12:40:38 <INFO> RDKit version 2025.09.6
+12:40:38 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+12:40:39 <INFO> CUDA driver version 590.48.01
+12:40:39 <INFO> Number of PyTorch CUDA devices 1
+12:40:39 <WARN> 'use_cuda' is deprecated, use 'device' instead
+12:40:39 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+12:40:39 <INFO> GPU memory: 46073 MiB free, 48400 MiB total
+12:40:39 <INFO> Starting Sampling
+12:40:39 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_rl_adme/pepinvent_rl.chkpt has valid hash:
+{ 'comments': ['RL', 'RL'],
+  'creation_date': 1725541195.743921,
+  'date_format': 'UNIX epoch',
+  'hash_id': '852169c77d525bb581ec90754d51dc7a',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': 'c2e219b2fd5646a082c919d1cca8b2a3',
+  'model_id_format': 'uuid.uuid4 3.10.11',
+  'origina_data_source': 'synthetic pilot',
+  'updates': [1773592790.8821886, 1773592791.0238094]}
+12:40:39 <INFO> Number of network parameters: 17,397,035
+12:40:39 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(43, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(43, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=43, bias=True)
+  )
+)
+12:40:39 <INFO> Using generator Pepinvent
+12:40:39 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/pepinvent_rl/samples.csv
+12:40:39 <WARN> randomize_smiles was set to True but the model was not trained with randomized SMILES.  Setting randomize_smiles to False.
+12:40:39 <INFO> Sampling 160 SMILES from model reinvent_integration/results/pepinvent_rl_adme/pepinvent_rl.chkpt
+12:40:40 <INFO> Peak main memory usage: 1737.449 MiB
+12:40:40 <INFO> Finished REINVENT on 2026-03-15

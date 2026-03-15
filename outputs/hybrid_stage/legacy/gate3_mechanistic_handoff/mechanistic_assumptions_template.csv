@@ -1,0 +1,9 @@
+parameter,value,notes
+species,human,set model species assumptions
+route,oral,set route scenario
+dose_mg,,program-specific planned dose
+fraction_unbound_plasma,,"enter measured or estimated Fu,p"
+blood_to_plasma_ratio,,enter measured or estimated B/P
+effective_permeability,,enter experimental or modeled permeability
+hepatic_clearance_anchor,,connect to in vitro clearance anchors
+safety_margin_target,,define acceptable exposure/toxicity margins

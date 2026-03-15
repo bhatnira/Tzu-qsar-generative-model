@@ -25,14 +25,15 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error
 
-from data_loader import load_excel_sheets, apply_smiles_cleaning, combine_and_deduplicate, filter_numeric_ic50
-from descriptors import compute_descriptors
-from model import model_factories, scaled_models
+from qsar_core.data_loader import load_excel_sheets, apply_smiles_cleaning, combine_and_deduplicate, filter_numeric_ic50
+from qsar_core.descriptors import compute_descriptors
+from qsar_core.model import model_factories, scaled_models
+from qsar_core.paths import DATASET_XLSX
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 1. Load data
 # ─────────────────────────────────────────────────────────────────────────────
-EXCEL = ROOT / "TB Project QSAR.xlsx"
+EXCEL = DATASET_XLSX
 if not EXCEL.exists():
     raise FileNotFoundError(f"Cannot find {EXCEL}")
 
@@ -88,7 +89,9 @@ X_test_raw  = compute_descriptors(smiles_test)
 print("[3/5] Training models across all descriptor sets...")
 best_r2 = -np.inf
 best_bundle = None
+best_model_name = None
 results = []
+model_store = {}
 
 for desc_name, X_tr_raw in X_train_raw.items():
     imp = SimpleImputer(strategy="mean")
@@ -113,9 +116,19 @@ for desc_name, X_tr_raw in X_train_raw.items():
             continue
 
         results.append({"Descriptor": desc_name, "Model": model_name, "R2": r2, "MAE": mae})
+        model_store[(desc_name, model_name)] = {
+            "descriptor_name": desc_name,
+            "model_name": model_name,
+            "imputer": imp,
+            "scaler": sc,
+            "model": model,
+            "r2": float(r2),
+            "mae": float(mae),
+        }
 
         if r2 > best_r2:
             best_r2 = r2
+            best_model_name = model_name
             best_bundle = {
                 "descriptor_name": desc_name,
                 "imputer": imp,
@@ -127,6 +140,24 @@ for desc_name, X_tr_raw in X_train_raw.items():
 results_df = pd.DataFrame(results).sort_values("R2", ascending=False)
 print(f"\n[4/5] Top 10 models by R²:")
 print(results_df.head(10).to_string(index=False))
+
+positive_top = results_df[results_df["R2"] > 0].head(5)
+ensemble_models = []
+for _, row in positive_top.iterrows():
+    desc_name = str(row["Descriptor"])
+    model_name = str(row["Model"])
+    if desc_name == best_bundle["descriptor_name"] and model_name == best_model_name:
+        continue
+    entry = model_store.get((desc_name, model_name))
+    if entry is not None and not (
+        entry["descriptor_name"] == best_bundle["descriptor_name"]
+        and entry["model_name"] == best_model_name
+    ):
+        ensemble_models.append(entry)
+
+best_bundle["model_name"] = best_model_name if best_model_name is not None else type(best_bundle["model"]).__name__
+best_bundle["best_r2"] = float(best_r2)
+best_bundle["ensemble_models"] = ensemble_models
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 4. Save artifact

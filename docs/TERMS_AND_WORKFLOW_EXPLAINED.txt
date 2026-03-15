@@ -1,0 +1,882 @@
+================================================================================
+  QSAR DRUG DISCOVERY PIPELINE — COMPLETE TERMS AND WORKFLOW EXPLANATION
+  (Comprehensive Report .txt)
+  Project: REINVENT + QSAR Hybrid Stage-Gated Pipeline
+  Prepared: March 2026
+================================================================================
+
+This document explains every key term, concept, abbreviation, and workflow step
+used in this project, written in plain English for anyone unfamiliar with
+computational drug discovery or cheminformatics.
+
+
+================================================================================
+PART 1 — FOUNDATIONAL CONCEPTS
+================================================================================
+
+------------------------------------------------------------------------
+1.1  SMILES  (Simplified Molecular Input Line Entry System)
+------------------------------------------------------------------------
+A SMILES string is a way of writing a chemical molecule as a line of text.
+Instead of drawing a 2D structure on paper, you encode all the atoms and bonds
+in a compact string format.
+
+Example:
+  Aspirin = CC(=O)Oc1ccccc1C(=O)O
+
+Rules:
+  - Atoms written as element symbols (C, N, O, S, F, Cl, Br, etc.)
+  - Bonds: single (default), = double, # triple
+  - Ring closures numbered: c1ccccc1 means a benzene ring
+  - Branches in parentheses
+
+Canonical SMILES: a standardized, unique form of SMILES so that the same
+molecule always produces the same string, regardless of how you drew it.
+This project uses "canonical_smiles" as the unique identifier for each molecule.
+
+
+------------------------------------------------------------------------
+1.2  QSAR  (Quantitative Structure-Activity Relationship)
+------------------------------------------------------------------------
+QSAR is the science of using the structure of a molecule to predict how active
+or potent it will be in a biological test (assay).
+
+The logic is:
+  "Similar molecules tend to have similar biological activity."
+
+What a QSAR model does:
+  1. Takes a molecule's structure (SMILES)
+  2. Converts it to a vector of numbers called molecular descriptors
+  3. Runs those numbers through a trained machine learning model
+  4. Outputs a predicted activity value (e.g., IC50 in micromolar)
+
+Why it matters:
+  Without QSAR, you must physically synthesize and test every new molecule
+  in a lab, which takes weeks and costs thousands of dollars per compound.
+  QSAR lets you pre-screen millions of virtual molecules in minutes.
+
+
+------------------------------------------------------------------------
+1.3  IC50  (Half-Maximal Inhibitory Concentration)
+------------------------------------------------------------------------
+IC50 is the most common drug potency measurement.
+It represents the concentration of a drug needed to inhibit a biological
+target by 50% in a test tube experiment.
+
+Units: micromolar (uM) or nanomolar (nM)
+  - Lower IC50 = more potent (less drug needed)
+  - Higher IC50 = less potent (more drug needed)
+
+Example: IC50 = 1 uM means 1 millionth of a mole per litre achieves 50% inhibition.
+
+Conversions:
+  pIC50 = -log10(IC50 in molar)
+  Higher pIC50 = better (it is a log scale flipping the direction)
+  pIC50 = 6 means IC50 = 1 uM
+  pIC50 = 9 means IC50 = 1 nM (very potent)
+
+Project threshold: IC50 <= 5 uM (pIC50 >= 5.3) is the minimum potency cutoff.
+
+
+------------------------------------------------------------------------
+1.4  ADME Properties
+------------------------------------------------------------------------
+ADME stands for:
+  A = Absorption  (how well does the drug get into the bloodstream?)
+  D = Distribution (does it reach the right tissues?)
+  M = Metabolism   (how fast does the body break it down?)
+  E = Excretion    (how does the body remove it?)
+
+For oral drugs to work, they must pass ADME tests. This project predicts
+ADME properties using computational models rather than experiments.
+
+Key ADME properties used here:
+
+  cLogP  (calculated LogP, lipophilicity)
+    - LogP = log of the ratio of drug in oil vs water
+    - Measures how "fat-soluble" vs "water-soluble" a molecule is
+    - Too low (<0) = too water-soluble, may not cross cell membranes
+    - Too high (>5) = too fat-soluble, may accumulate in fat, be toxic
+    - Optimal range for this project: 1.0 to 3.5
+
+  logS  (aqueous solubility, ESOL model)
+    - Measures how well the drug dissolves in water
+    - Units: log(mol/L)
+    - More negative = less soluble
+    - Poorly soluble drugs cannot be absorbed well
+    - Threshold: logS >= -6.0 (anything more negative is too insoluble)
+
+  Microsomal Clearance  (pred_MetStab_Clearance_Microsome_AZ)
+    - Measures how fast liver microsomes (enzymes in test tubes) break down
+      the drug
+    - Units: uL/min/mg protein
+    - Higher clearance = drug breaks down faster = shorter duration of action
+    - Threshold: <= 70 uL/min/mg (any higher means the drug disappears too fast)
+
+  Hepatocyte Clearance  (pred_MetStab_Clearance_Hepatocyte_AZ)
+    - Same concept as microsomal but using whole liver cells (hepatocytes),
+      which is closer to what happens in the body
+    - Units: uL/min/10^6 cells
+    - Threshold: <= 80 uL/min/10^6 cells
+
+  Half-Life  (pred_MetStab_Half_Life_Obach)
+    - The time for 50% of the drug to leave the body
+    - Predicted using the Obach regression model
+    - Units: hours
+    - Longer half-life = less frequent dosing needed, better patient compliance
+    - Threshold: >= 40 hours (once-daily dosing viability)
+
+  Lipinski's Rule of Five  (Ro5)
+    - A classic quick filter for oral drug-likeness:
+      MW <= 500 daltons
+      cLogP <= 5
+      H-bond donors <= 5
+      H-bond acceptors <= 10
+    - Molecules passing all four are likely orally bioavailable
+    - Named "rule of five" because all cutoffs are multiples of 5
+
+
+------------------------------------------------------------------------
+1.5  Molecular Descriptors
+------------------------------------------------------------------------
+Molecular descriptors are numbers calculated from a molecule's structure that
+capture different chemical features:
+
+  - Morgan Fingerprints: circular fingerprints encoding local neighborhoods
+    around each atom; represented as bit vectors (0/1 for each possible
+    circular substructure)
+  - RDKit Descriptors: ~200 physicochemical properties (MW, logP, polar
+    surface area, rotatable bonds, ring counts, etc.)
+  - ECFP (Extended Connectivity Fingerprint): similar to Morgan, commonly used
+    in QSAR
+
+These descriptors are fed as input features to the machine learning model.
+
+
+========================================================================
+PART 2 — MACHINE LEARNING MODELS USED
+========================================================================
+
+------------------------------------------------------------------------
+2.1  CatBoost
+------------------------------------------------------------------------
+CatBoost is a gradient-boosting machine learning algorithm made by Yandex.
+It is an ensemble of decision trees built sequentially, where each new tree
+corrects the errors of all previous trees.
+
+Why it is good for QSAR:
+  - Handles mixed numeric/categorical data well
+  - Robust to overfitting on small datasets
+  - Built-in handling of missing values
+  - Often outperforms random forest and standard gradient boosting on
+    small chemistry datasets
+
+In this project: CatBoost is the primary regression model for predicting
+pIC50, cLogP, logS, microsomal clearance, hepatocyte clearance, and half-life.
+
+
+------------------------------------------------------------------------
+2.2  Random Forest
+------------------------------------------------------------------------
+An ensemble of many independent decision trees where each tree is trained
+on a random subset of the data and features. Final prediction is the average
+of all trees.
+
+Advantages: very robust, interpretable uncertainty (standard deviation of
+tree predictions can estimate confidence).
+
+
+------------------------------------------------------------------------
+2.3  Low-Data QSAR (Problem-Specific Approach)
+------------------------------------------------------------------------
+Standard QSAR assumes you have hundreds or thousands of data points.
+Low-data QSAR deals with situations where you have fewer than 100
+experimental measurements.
+
+Techniques used:
+  - Data augmentation (SMILES enumeration: same molecule, different valid SMILES)
+  - Transfer learning from larger public datasets (ChEMBL, PubChem bioassays)
+  - Scaffold-stratified cross-validation to avoid data leakage
+  - Conformal prediction for uncertainty quantification
+
+
+========================================================================
+PART 3 — REINVENT: THE MOLECULE GENERATION ENGINE
+========================================================================
+
+------------------------------------------------------------------------
+3.1  What is REINVENT?
+------------------------------------------------------------------------
+REINVENT is an open-source molecular generation library developed by
+AstraZeneca. It uses deep learning (recurrent neural networks and transformers)
+to generate new drug-like molecules.
+
+Core idea: A language model is trained on millions of known drug-like SMILES.
+After training it can generate new, valid SMILES it hasn't seen before — like
+a language model generating grammatically correct new sentences.
+
+Four generation modes are used in this project:
+
+  REINVENT (plain)
+    The base generative model creating molecules from scratch, sampling
+    from the learned SMILES distribution.
+
+  Mol2Mol
+    Molecule-to-molecule model. You provide a seed molecule and it generates
+    analogues — new molecules that are structurally similar to the seed.
+    Good for lead optimization (take an active compound, explore nearby
+    chemical space).
+
+  PepINVENT
+    A variant specialized for peptidic / macrocyclic molecules.
+    Generates SMILES with peptide-like backbones.
+
+  LibINVENT
+    Scaffold decoration model. You provide a scaffold (fixed core ring system)
+    and it decorates it with different substituents (R-groups) at defined
+    attachment points.
+
+  LinkINVENT / LinkINVENT-Transformer
+    Fragment linker model. Given two molecular fragments, it designs a linker
+    that connects them into a full drug candidate.
+
+
+------------------------------------------------------------------------
+3.2  Training Modes
+------------------------------------------------------------------------
+
+  Plain (Prior Sampling)
+    No optimization — just sample new molecules from the pre-trained
+    distribution. Good for exploring broad chemical space.
+
+  RL  (Reinforcement Learning)
+    The model is rewarded for generating molecules with desired properties
+    (e.g., high predicted pIC50, good ADME) and penalized for undesirable
+    properties. Over many steps it learns to generate better compounds.
+    Analogous to training a dog with treats.
+
+  CL  (Curriculum Learning)
+    A training strategy where the model is first trained on easier, more
+    drug-like samples and gradually exposed to harder optimization targets.
+    Like teaching with progressively harder exercises — improves convergence
+    and produces more valid SMILES.
+
+
+------------------------------------------------------------------------
+3.3  Prior vs. Agent
+------------------------------------------------------------------------
+Prior: the original pre-trained REINVENT model (trained on millions of
+drug-like molecules from ChEMBL). It defines the "grammar" of valid SMILES.
+
+Agent: a fine-tuned version of the prior, optimized toward a specific
+scoring objective (your QSAR model outputs). The agent is what generates
+the candidate molecules during RL/CL training.
+
+The Prior acts as a regularizer — the agent is penalized for drifting too
+far from the prior to prevent it from generating nonsensical SMILES while
+still exploring new chemistry.
+
+
+------------------------------------------------------------------------
+3.4  TOML Configuration Files
+------------------------------------------------------------------------
+TOML (Tom's Obvious Minimal Language) is the configuration file format
+used by REINVENT. Each run is specified in a .toml file that defines:
+  - Which model to use (prior path, agent path)
+  - Number of training steps (epochs)
+  - Batch size (molecules generated per step)
+  - Scoring function components (which QSAR predictions to optimize)
+  - Diversity filters (to prevent mode collapse)
+  - Output directories and log locations
+
+
+------------------------------------------------------------------------
+3.5  Diversity Filters
+------------------------------------------------------------------------
+During RL training, the model tends to collapse — generating the same
+high-scoring molecule over and over instead of exploring new structures.
+Diversity filters penalize repeated molecules or molecules from already-seen
+scaffolds, forcing the model to keep exploring.
+
+Types:
+  IdenticalMurckoScaffold: penalize molecules sharing the same Murcko scaffold
+  IdenticalTopologicalScaffold: stricter version
+  ScaffoldSimilarity: gradual penalty based on scaffold similarity
+
+
+========================================================================
+PART 4 — SCORING AND ADME FILTERING
+========================================================================
+
+------------------------------------------------------------------------
+4.1  Score Generated SMILES (score_generated_smiles_adme.py)
+------------------------------------------------------------------------
+After REINVENT generates a batch of SMILES, this script runs them through
+the production scoring stack in this order:
+
+  Step 1: SMILES validation and canonicalization
+    RDKit parses each SMILES and canonicalizes valid molecules.
+    Invalid molecules are removed immediately.
+
+  Step 2: Descriptor calculation
+    RDKit/ECFP-style descriptors are computed for each valid molecule.
+
+  Step 3: QSAR potency prediction with uncertainty
+    The best IC50 model produces the primary prediction (pred_pIC50,
+    pred_ic50_uM).
+    Up to five positive-R² models are also evaluated to estimate
+    prediction disagreement (uncertainty columns).
+
+  Step 4: ADMET and developability enrichment
+    ADMET-AI endpoints and chemistry developability signals are added
+    (for example toxicity risk proxies, DDI/CYP signals, absorption support,
+    and synthetic accessibility where needed downstream).
+
+  Step 5: Pass/fail and ranking-ready fields
+    Molecules are labeled with pass flags and normalized fields required
+    by Gate 1 / Gate 2 / Gate 3 ranking logic.
+
+  Step 6: Human-readable outputs
+    CSV and Excel outputs are written, including embedded 2D structures
+    to support medicinal-chemistry review.
+
+  Output: *_generated_scored.csv and *_generated_scored.xlsx
+
+
+------------------------------------------------------------------------
+4.2  ADME Cutoffs Applied
+------------------------------------------------------------------------
+These are the precise thresholds a molecule must pass to be labeled ADME-clean:
+
+  pred_ic50_uM           <= 5.0   (potent inhibitor)
+  pred_cLogP             1.0–3.5  (balanced lipophilicity window)
+  pred_logS_ESOL         >= -6.0  (adequately soluble)
+  pred_MetStab_Clearance_Microsome_AZ  <= 70.0   uL/min/mg
+  pred_MetStab_Clearance_Hepatocyte_AZ <= 80.0   uL/min/10^6 cells
+  pred_MetStab_Half_Life_Obach         >= 40.0   hours
+
+
+  ------------------------------------------------------------------------
+  4.3  Why This Scoring Order (Rationale)
+  ------------------------------------------------------------------------
+  The sequence above is intentional and cost-aware:
+
+    1) Validity first
+      Do not spend compute on molecules that are chemically invalid.
+
+    2) Potency and ADME second
+      These are the strongest early indicators of whether a molecule is worth
+      considering at all.
+
+    3) Uncertainty before prioritization
+      A high predicted potency with high model disagreement is risky.
+      Uncertainty-aware ranking reduces false confidence and improves
+      shortlist reliability.
+
+    4) Translational risk later
+      Tox/DDI/absorption are critical, but they are used after core potency
+      and developability filtering to avoid over-penalizing broad exploration.
+
+    5) Human-readable exports at every major handoff
+      CSV supports automation; Excel with structures supports scientist review.
+
+
+========================================================================
+PART 5 — SCAFFOLD ANALYSIS
+========================================================================
+
+------------------------------------------------------------------------
+5.1  Murcko Scaffold
+------------------------------------------------------------------------
+A Murcko scaffold is the core ring system of a molecule with all chains
+stripped off. It captures the structural "skeleton" that defines a compound
+series.
+
+Example:
+  Full molecule: ethyl 4-aminobenzoate (procaine precursor)
+  Murcko scaffold: just the benzene ring
+
+Why it matters:
+  Molecules from the same scaffold behave similarly in terms of binding pose
+  and selectivity. By grouping molecules by their Murcko scaffold, you can:
+    - Measure chemical diversity (how many different scaffolds were explored?)
+    - Avoid submitting near-identical analogues for synthesis (saves cost)
+    - Identify which scaffold series are most promising
+
+  scaffold_bucket column: the canonical SMILES of the Murcko scaffold, or
+  "acyclic_or_none" for molecules with no rings.
+
+
+------------------------------------------------------------------------
+5.2  Scaffold Diversity
+------------------------------------------------------------------------
+Scaffold diversity = the number of unique Murcko scaffolds in a set.
+
+High diversity means the model explored many different chemical series.
+Low diversity means the model converged on one scaffold family.
+
+In the shortlist, the max-per-scaffold cap limits how many molecules from
+the same scaffold can be selected, enforcing breadth of chemical space coverage.
+
+
+========================================================================
+PART 6 — THE HYBRID STAGE-GATED PIPELINE
+========================================================================
+
+The Hybrid Stage-Gated Pipeline is the main decision framework implemented
+in reinvent_integration/run_hybrid_stage_gates.py.
+
+The core idea: start with cheap fast computational filters and only escalate
+the most promising candidates to expensive experimental or physics-based
+methods. This mirrors how real drug discovery programs operate.
+
+------------------------------------------------------------------------
+6.1  Triage Score
+------------------------------------------------------------------------
+The triage score is a multi-objective composite score that converts all
+individual ADME and potency predictions into a single 0–1 number for ranking.
+
+Formula:
+  triage_score = (
+      0.35 × normalized_potency        +   (most important: IC50)
+      0.15 × normalized_logS           +   (solubility)
+      0.15 × clogp_window              +   (lipophilicity in sweet spot)
+      0.10 × normalized_microsome      +   (metabolic stability, microsomes)
+      0.10 × normalized_hepatocyte     +   (metabolic stability, hepatocytes)
+      0.15 × normalized_half_life           (duration of action)
+  )
+
+Each component is min-max normalized to 0–1 before combining, so no single
+property dominates unfairly.
+
+cLogP window score: 1.0 if cLogP is between 1 and 3.5 (ideal), decays to 0
+  as cLogP moves away from this window.
+
+Higher triage score = better overall candidate.
+
+Weight rationale (why these coefficients):
+  - 0.35 potency: strongest objective because activity is non-negotiable.
+  - 0.30 absorption-related balance (logS + cLogP window): compounds must be
+    soluble and permeability-compatible to be useful in vivo.
+  - 0.20 metabolic stability (microsome + hepatocyte): avoids fast-clearance
+    liabilities that often fail in progression.
+  - 0.15 half-life: rewards exposure duration, but not enough to overpower
+    potency and developability.
+
+Design principle:
+  The score is not meant to be a mechanistic truth; it is a triage utility
+  function to rank many candidates consistently before deeper filtering.
+
+
+------------------------------------------------------------------------
+6.2  Normalization
+------------------------------------------------------------------------
+Min-max normalization rescales a property to 0–1:
+  normalized = (value - min_value) / (max_value - min_value)
+
+"Higher is better" (pIC50, logS, half-life): normalized directly.
+"Lower is better" (IC50, clearance): inverted so normalized value is high
+  when raw value is low.
+
+
+------------------------------------------------------------------------
+6.3  Gate 1 — Computational Triage (REINVENT + QSAR)
+------------------------------------------------------------------------
+What happens:
+  1. All REINVENT-generated molecules from all families and modes are pooled
+     into a single master table.
+  2. Each molecule is scored with the triage formula.
+  3. Molecules are ranked highest-to-lowest by triage score.
+  4. A scaffold-diverse shortlist is selected (default 200 compounds,
+     maximum 3 per Murcko scaffold).
+
+Output files:
+  gate1_master_ranked.csv    — all candidates with ranks and triage scores
+  gate1_shortlist.csv        — the top 200 diverse candidates
+  gate1_shortlist.xlsx       — Excel with 2D images + analysis
+  gate1_summary.json         — statistics (total candidates, unique scaffolds,
+                               ADME pass rate)
+  gate1_README.txt           — human-readable summary
+
+Purpose: Rapidly select the most promising and diverse subset for deeper
+analysis, discarding obvious weak candidates.
+
+
+------------------------------------------------------------------------
+6.4  Gate 2 — Target-Free Refinement
+------------------------------------------------------------------------
+What happens:
+  The Gate 1 shortlist is re-ranked using target-free confidence and
+  chemistry quality filters. This is the current production Gate 2 in the
+  repository.
+
+  Implemented components:
+
+  QSAR Uncertainty Filter
+    The project keeps the best IC50 model as the primary prediction, but also
+    uses up to five models with positive R² to estimate uncertainty.
+    Molecules with lower prediction spread are preferred over molecules whose
+    potency estimate depends on strong model disagreement.
+
+  Synthetic Accessibility  (SA score)
+    Estimates how hard a compound may be to synthesize.
+    Lower SA score = easier chemistry.
+
+  Liability Filters
+    Flags PAINS, BRENK, and NIH alerts.
+    Molecules with fewer structural liabilities are preferred.
+
+  Ligand-Based 2D Similarity
+    Computes Tanimoto similarity to known active project molecules.
+    This helps keep the shortlist chemically credible without needing a target.
+
+  Ligand-Based 3D Shape Similarity
+    Compares 3D conformational shape to known actives.
+    This acts as a target-free pharmacophore/shape support signal.
+
+Output files:
+  gate2_target_free_refinement/target_free_candidates.csv
+  gate2_target_free_refinement/target_free_candidates.xlsx
+  gate2_target_free_refinement/README_GATE2.txt
+
+Purpose: remove high-uncertainty, high-liability, and hard-to-make compounds
+before translational prioritization.
+
+
+------------------------------------------------------------------------
+6.5  Gate 3 — Target-Free Translational Prioritization
+------------------------------------------------------------------------
+What happens:
+  The Gate 2-refined molecules are ranked using target-free translational risk
+  signals that help decide which compounds should move to experiments first.
+
+  Implemented components:
+
+  Tox Risk
+    Uses ADMET-AI outputs such as hERG, DILI, ClinTox, AMES, and
+    carcinogenicity to estimate safety risk.
+
+  DDI Risk
+    Uses CYP1A2, CYP2C19, CYP2C9, CYP2D6, and CYP3A4 inhibition predictions
+    to estimate drug-drug interaction liability.
+
+  Absorption Support
+    Uses HIA, bioavailability, PAMPA, and Caco2-related signals to favor
+    compounds more likely to translate into useful exposure.
+
+  Experimental Priority Score
+    Combines Gate 2 quality with translational signals to create the final
+    ranking used for wet-lab planning.
+
+Output files:
+  gate3_target_free_translational/translational_candidates.csv
+  gate3_target_free_translational/translational_candidates.xlsx
+  gate3_target_free_translational/experimental_shortlist_template.csv
+  gate3_target_free_translational/README_GATE3.txt
+
+Purpose: build the final experimental shortlist in a no-target setting.
+
+
+------------------------------------------------------------------------
+6.6  Scaffold-Diverse Shortlist Selection
+------------------------------------------------------------------------
+Algorithm (select_diverse_shortlist function):
+  1. Sort all candidates descending by triage score.
+  2. Iterate through the sorted list.
+  3. Track how many molecules from each scaffold have been selected.
+  4. Accept a molecule if it:
+       a. Has not reached the max-per-scaffold cap, AND
+       b. The shortlist total has not reached top_k
+  5. Reject the molecule if its scaffold is already at the cap.
+  6. Continue until top_k molecules are collected or list is exhausted.
+
+Effect: guarantees that no single scaffold family dominates the shortlist,
+ensuring breadth in chemical space coverage.
+
+
+========================================================================
+PART 7 — EXCEL OUTPUT FORMAT
+========================================================================
+
+------------------------------------------------------------------------
+7.1  Sheet 1: Compounds
+------------------------------------------------------------------------
+Each row is one molecule. Columns:
+  rank                      Rank by triage score (1 = best)
+  Structure                 2D drawing of the molecule (embedded PNG image)
+  canonical_smiles          The unique SMILES string for the molecule
+  triage_score              Composite score (0–1, higher is better)
+  pred_pIC50                Predicted potency in pIC50 units
+  pred_ic50_uM              Predicted IC50 in micromolar (lower is better)
+  pred_cLogP                Predicted lipophilicity
+  pred_logS_ESOL            Predicted aqueous solubility
+  pred_MetStab_Clearance_Microsome_AZ    Microsomal clearance
+  pred_MetStab_Clearance_Hepatocyte_AZ   Hepatocyte clearance
+  pred_MetStab_Half_Life_Obach           Plasma half-life
+  mol_weight                Molecular weight (daltons)
+  passes_adme               1 = passes all 6 ADME cutoffs; 0 = fails one+
+  source_family             Which REINVENT family generated this molecule
+                              (reinvent, mol2mol, pepinvent, libinvent,
+                               linkinvent, linkinvent_transformer)
+  source_mode               Which training mode (plain, reinforcement_learning,
+                               curriculum_learning)
+  scaffold_bucket           Murcko scaffold of the molecule
+
+Color coding:
+  Green cells: good values (high pIC50, long half-life, passes ADME)
+  Red cells:   bad values (high IC50, high clearance)
+
+
+------------------------------------------------------------------------
+7.2  Sheet 2: Analysis
+------------------------------------------------------------------------
+Five sections of summary statistics:
+
+  Section 1 — Overall Summary Statistics
+    Total candidates in shortlist
+    ADME pass count and percentage
+    Mean and standard deviation of triage score
+    Unique Murcko scaffold count
+    Mean molecular weight
+
+  Section 2 — Breakdown by Source Family
+    Table: for each REINVENT family (reinvent, mol2mol, pepinvent, etc.)
+      Number of compounds
+      Percentage of shortlist
+      Mean triage score
+
+  Section 3 — Breakdown by Training Mode
+    Same table but split by plain / RL / CL
+
+  Section 4 — Top 15 Scaffold Clusters
+    The 15 Murcko scaffolds most represented in the shortlist:
+      Scaffold SMILES
+      Compound count
+      Mean triage score for that cluster
+
+  Section 5 — ADME Property Percentiles
+    For each of the 7 ADME properties:
+      10th percentile, 25th, 50th (median), 75th, 90th
+    Lets scientists quickly see the distribution and whether the shortlist
+    is collectively meeting targets.
+
+
+========================================================================
+PART 8 — FULL PIPELINE WORKFLOW (END TO END)
+========================================================================
+
+Step 1: QSAR Model Training (scripts/main.py / scripts/run_pipeline.py)
+  Input:  experimental assay data (IC50 measurements + structures)
+  Output: trained models and metadata used to build artifact bundles.
+
+Step 2: Export QSAR Artifact (reinvent_integration/export_qsar_model.py)
+  Packages the trained model + descriptor configuration into a single
+  artifact file that scoring scripts can load.
+
+Step 3: Configure REINVENT runs (configs/)
+  Create TOML config files for each family × mode combination.
+  Six families × three modes = up to 18 generation campaigns.
+
+Step 4: Run REINVENT Generation (reinvent_integration/run_all_generation.py)
+  For each config:
+    a. Run REINVENT prior sampling or RL/CL training
+    b. Sample final molecules at end of training
+    c. Save sampled SMILES to results/{family}_{mode}/samples.csv
+
+Step 5: Score All Generated Molecules (score_generated_smiles_adme.py)
+  For each samples.csv:
+    a. Validate SMILES with RDKit
+    b. Compute descriptors
+    c. Predict all 7 ADME/potency properties with QSAR models
+    d. Label each molecule as ADME pass/fail
+    e. Embed 2D structure images
+    f. Save to outputs/generated/{family}/{mode}/*_generated_scored.csv
+
+Step 6: Hybrid Stage Gates (run_hybrid_stage_gates.py)
+  Gate 1: Pool all scored CSVs → compute triage score →
+          rank → scaffold-diverse top-200 shortlist → Excel output
+
+  Gate 2: Target-free refinement with uncertainty, synthetic accessibility,
+    structural alert filters, and ligand-based similarity
+
+  Gate 3: Target-free translational prioritization with tox, DDI, absorption,
+    and final experimental priority score
+
+Step 7: Human Review
+  Scientists open the Gate 1 Excel, visually inspect structures, check
+  the Analysis sheet for distribution summaries, and select which molecules
+  to progress to Gate 2 computational validation.
+
+Step 8: Gate 2 Validation (Target-Free)
+  The shortlist is filtered and re-ranked using uncertainty-aware QSAR,
+  chemistry developability, and ligand-based support.
+
+Step 9: Gate 3 Translational Prioritization
+  Tox, CYP/DDI, and absorption signals are combined into a final
+  experimental priority score. The best compounds become the lab shortlist.
+
+Step 10: Wet Lab Synthesis and Testing
+  Remaining molecules are synthesized and tested experimentally.
+  Results feed back into QSAR model retraining (active learning cycle).
+
+Overall rationale for the 3-gate design:
+  Gate 1 maximizes breadth and speed,
+  Gate 2 maximizes confidence and chemistry practicality,
+  Gate 3 maximizes translational success probability.
+This staged structure reduces costly false positives while preserving
+chemical diversity.
+
+
+========================================================================
+PART 9 — KEY FILES AND WHAT THEY DO
+========================================================================
+
+  scripts/main.py
+    Trains the QSAR model from scratch. Handles cross-validation, feature
+    selection, model comparison (CatBoost vs Random Forest vs others).
+    Used for full, explicit training workflows.
+
+  qsar_core/model.py
+    Defines the machine learning model classes, hyperparameter grids,
+    training loops, and evaluation metrics (R2, RMSE, MAE).
+
+  qsar_core/descriptors.py
+    Converts a SMILES string into a vector of RDKit molecular descriptors.
+    Also generates Morgan fingerprints for QSAR input.
+
+  qsar_core/data_loader.py
+    Reads experimental data from CSV/Excel, standardizes SMILES with RDKit,
+    handles duplicates, splits data into train/validation/test sets.
+
+  qsar_core/clustering.py
+    Performs scaffold-based clustering to ensure molecules in train and test
+    sets come from different scaffolds (avoids optimistic evaluation).
+
+  qsar_core/visualization.py
+    Generates plots: actual vs predicted scatter plots, residuals, feature
+    importance, ADME distribution histograms.
+
+  scripts/run_pipeline.py
+    High-level orchestrator for the QSAR pipeline. Also contains
+    generation preset dispatcher (fast/balanced/diverse modes).
+
+  reinvent_integration/run_hybrid_stage_gates.py
+    The core hybrid pipeline script. Discovers scored CSVs, computes triage
+    scores, selects scaffold-diverse shortlist, writes gate artifacts.
+
+  reinvent_integration/run_all_generation.py
+    Orchestrates all REINVENT generation + scoring campaigns. Calls the
+    hybrid stage gate script at the end.
+
+  reinvent_integration/score_generated_smiles_adme.py
+    Scores a batch of SMILES with QSAR models and writes Excel output.
+
+  reinvent_integration/export_qsar_model.py
+    Packages trained model for use by the scoring script.
+
+  reinvent_integration/build_qsar_artifact.py
+    Builds the artifact bundle: model + descriptor scaler + config.
+
+  reinvent_integration/post_screen.py
+    Post-processing filter applied after scoring to apply additional
+    physicochemical rules before shortlisting.
+
+  reinvent_integration/scaffold_all_configs.py
+    Auto-generates all TOML config files for each family × mode combination.
+
+
+========================================================================
+PART 10 — CLI ARGUMENTS REFERENCE
+========================================================================
+
+run_all_generation.py
+  --hybrid-top-k N           How many compounds to include in the shortlist
+                              (default: 200)
+  --hybrid-max-per-scaffold N Max compounds from any one Murcko scaffold
+                              (default: 3)
+
+run_hybrid_stage_gates.py
+  --input-root PATH          Root directory containing scored .csv files
+  --output-root PATH         Where to write gate artifacts
+  --top-k N                  Shortlist size (default: 200)
+  --max-per-scaffold N       Scaffold cap (default: 3)
+
+scripts/run_pipeline.py
+  --generation-preset fast       top-k=80,  max-per-scaffold=4
+  --generation-preset balanced   top-k=120, max-per-scaffold=3
+  --generation-preset diverse    top-k=200, max-per-scaffold=1
+
+
+========================================================================
+PART 11 — COMPARISON: THIS APPROACH vs SIMULATION PLUS
+========================================================================
+
+This Project (REINVENT + QSAR + Hybrid Gates)
+  Pros:
+    Full generative chemistry: creates entirely new molecules, not just
+      property predictions on existing compounds.
+    Scaffold diversity built in via Murcko-diversity filter.
+    RL/CL optimization actively drives molecules toward ADME targets.
+    Modular: new ADME endpoints can be added without retraining REINVENT.
+    Open source (REINVENT, RDKit, CatBoost) — no per-query cost.
+    Explainable QSAR with feature importances.
+    Now supports uncertainty-aware ranking using up to five positive-R² models.
+  Cons:
+    Requires training data for each ADME endpoint.
+    Still depends on ligand-based evidence rather than target-resolved physics.
+    Uncertainty is estimated from model disagreement, not from a real protein-ligand simulation.
+
+Simulation Plus (GastroPlus / ADMET Predictor)
+  Pros:
+    Industry-standard PBPK platform; accepted by regulatory agencies (FDA).
+    Models include gut absorption, first-pass metabolism, tissue distribution.
+    Validated against large clinical datasets.
+    Provides human PK predictions with confidence intervals.
+  Cons:
+    Does not generate new molecules — only predicts properties of molecules
+      you already have.
+    Black-box machine learning in newer models (limited interpretability).
+    Expensive commercial license.
+    Cannot optimize toward multiple objectives simultaneously.
+
+Combined Strategy (current no-target production architecture):
+  Use REINVENT + QSAR for broad generative exploration (Gate 1).
+  Use uncertainty-aware, ligand-based refinement for target-free Gate 2.
+  Use translational tox/DDI/absorption prioritization for target-free Gate 3.
+  Preserve structure-based and PBPK folders only as legacy references when a
+  real target or external platform becomes available in the future.
+
+
+========================================================================
+PART 12 — GLOSSARY OF ABBREVIATIONS
+========================================================================
+
+ADME      Absorption, Distribution, Metabolism, Excretion
+ADMET     ADME + Toxicity
+AZ        AstraZeneca (the company whose clearance assay model is used)
+CL        Curriculum Learning
+cLogP     Calculated Lipophilicity (log partition coefficient)
+CYP       Cytochrome P450 (family of liver metabolizing enzymes)
+DDI       Drug-Drug Interaction
+ECFP      Extended Connectivity Fingerprint (circular fingerprint)
+ESOL      Estimated SOLubility (a specific logS prediction model)
+FEP+      Free Energy Perturbation Plus (Schrödinger physics simulation)
+GBM       Gradient Boosting Machine
+IC50      Half-maximal Inhibitory Concentration
+MW        Molecular Weight (daltons, Da)
+PBPK      Physiologically Based Pharmacokinetic model
+pIC50     Negative log of IC50 in molar (higher = more potent)
+PK        Pharmacokinetics
+QSAR      Quantitative Structure-Activity Relationship
+REINVENT  AstraZeneca's deep-learning molecular generation library
+RL        Reinforcement Learning
+Ro5       Lipinski's Rule of Five
+SMILES    Simplified Molecular Input Line Entry System
+TOML      Tom's Obvious Minimal Language (config file format)
+uM        Micromolar (10^-6 mol/L)
+nM        Nanomolar (10^-9 mol/L)
+
+
+================================================================================
+END OF DOCUMENT
+================================================================================

@@ -1,0 +1,207 @@
+12:54:56 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+12:54:56 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/libinvent_rl_train_manual_small.log /tmp/libinvent_rl_manual_small.toml
+12:54:56 <INFO> Reading run configuration from /tmp/libinvent_rl_manual_small.toml using format toml
+12:54:56 <INFO> User nbhatta1 on host panacea
+12:54:56 <INFO> Python version 3.11.13
+12:54:56 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+12:54:56 <INFO> PyTorch compiled with CUDA version 12.8
+12:54:56 <INFO> RDKit version 2025.09.6
+12:54:56 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+12:54:56 <INFO> CUDA driver version 590.48.01
+12:54:56 <INFO> Number of PyTorch CUDA devices 1
+12:54:56 <WARN> 'use_cuda' is deprecated, use 'device' instead
+12:54:57 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+12:54:57 <INFO> GPU memory: 46019 MiB free, 48400 MiB total
+12:54:57 <INFO> Starting 1 stage of Reinforcement Learning
+12:54:57 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+12:54:57 <INFO> Number of network parameters: 23,686,692
+12:54:57 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+12:54:57 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+12:54:57 <INFO> Number of network parameters: 23,686,692
+12:54:57 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+12:54:57 <INFO> Using generator Libinvent
+12:54:57 <INFO> Prior read from reinvent_integration/priors/libinvent.prior
+12:54:57 <INFO> Agent read from reinvent_integration/priors/libinvent.prior
+12:54:57 <INFO> Input molecules/fragments read from file reinvent_integration/data/scaffolds.smi
+12:54:57 <INFO> Using reward strategy dap
+12:54:57 <INFO> Using diversity filter IdenticalMurckoScaffold
+12:54:57 <INFO> Purging diversity filter memories after each stage
+12:54:57 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+12:54:57 <INFO> Registered scoring component GroupCount
+12:54:57 <INFO> Registered scoring component FragmentQed
+12:54:57 <INFO> Registered scoring component FragmentSlogP
+12:54:57 <INFO> Registered scoring component FragmentMolecularWeight
+12:54:57 <INFO> Registered scoring component FragmentTPSA
+12:54:57 <INFO> Registered scoring component FragmentDistanceMatrix
+12:54:57 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+12:54:57 <INFO> Registered scoring component FragmentHBondAcceptors
+12:54:57 <INFO> Registered scoring component FragmentHBondDonors
+12:54:57 <INFO> Registered scoring component FragmentNumRotBond
+12:54:57 <INFO> Registered scoring component FragmentCsp3
+12:54:57 <INFO> Registered scoring component Fragmentnumsp
+12:54:57 <INFO> Registered scoring component Fragmentnumsp2
+12:54:57 <INFO> Registered scoring component Fragmentnumsp3
+12:54:57 <INFO> Registered scoring component FragmentEffectiveLength
+12:54:57 <INFO> Registered scoring component FragmentGraphLength
+12:54:57 <INFO> Registered scoring component FragmentLengthRatio
+12:54:57 <INFO> Registered scoring component FragmentNumHeavyAtoms
+12:54:57 <INFO> Registered scoring component FragmentNumHeteroAtoms
+12:54:57 <INFO> Registered scoring component FragmentNumRings
+12:54:57 <INFO> Registered scoring component FragmentNumAromaticRings
+12:54:57 <INFO> Registered scoring component FragmentNumAliphaticRings
+12:54:57 <INFO> Registered scoring component FragmentSlogP
+12:54:57 <INFO> Registered scoring component MatchingSubstructure
+12:54:57 <INFO> Registered scoring component MolVolume
+12:54:57 <INFO> Registered scoring component Qed
+12:54:57 <INFO> Registered scoring component LargestRingSize
+12:54:57 <INFO> Registered scoring component MolecularWeight
+12:54:57 <INFO> Registered scoring component GraphLength
+12:54:57 <INFO> Registered scoring component NumAtomStereoCenters
+12:54:57 <INFO> Registered scoring component HBondAcceptors
+12:54:57 <INFO> Registered scoring component HBondDonors
+12:54:57 <INFO> Registered scoring component NumRotBond
+12:54:57 <INFO> Registered scoring component Csp3
+12:54:57 <INFO> Registered scoring component numsp
+12:54:57 <INFO> Registered scoring component numsp2
+12:54:57 <INFO> Registered scoring component numsp3
+12:54:57 <INFO> Registered scoring component NumHeavyAtoms
+12:54:57 <INFO> Registered scoring component NumHeteroAtoms
+12:54:57 <INFO> Registered scoring component NumRings
+12:54:57 <INFO> Registered scoring component NumAromaticRings
+12:54:57 <INFO> Registered scoring component NumAliphaticRings
+12:54:57 <INFO> Registered scoring component SlogP
+12:54:57 <INFO> Registered scoring component LargestRingSize
+12:54:57 <INFO> Registered scoring component PMI
+12:54:57 <INFO> Registered scoring component RDKitDescriptors
+12:54:57 <INFO> Registered scoring component TanimotoSimilarity
+12:54:57 <INFO> Registered scoring component TanimotoDistance
+12:54:57 <INFO> Registered scoring component TPSA
+12:54:57 <INFO> Registered scoring component SAScore
+12:54:57 <INFO> Registered scoring component ChemProp
+12:54:57 <INFO> Registered scoring component CustomAlerts
+12:54:57 <INFO> Registered scoring component DockStream
+12:54:57 <INFO> Registered scoring component ExternalProcess
+12:54:57 <INFO> Registered scoring component REST
+12:54:57 <INFO> Registered scoring component Icolos
+12:54:57 <INFO> Registered scoring component MMP
+12:54:57 <INFO> Registered scoring component Qptuna
+12:54:57 <INFO> Registered scoring component ReactionFilter
+12:54:57 <INFO> Registered scoring component RingPrecedence
+12:54:57 <INFO> Registered scoring component Maize
+12:54:57 <INFO> Registered scoring component SynthSense
+12:54:57 <INFO> Registered scoring component CAZP
+12:54:57 <INFO> Creating scoring component ExternalProcess
+12:54:57 <INFO> Writing tabular data for stage to libinvent_rl_adme_1.csv
+12:54:57 <INFO> Starting stage 1 <<<
+12:54:57 <INFO> Current GPU memory usage: 2868 MiB used, 45532 MiB free
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1Nc1nc2n(C3OC(CO)C(O)C(O)C3)cnc2c(N)n1CCCCNC(CC(*)C(=O)O)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1O1CCN(c2ncc(C(=O)NC3CC3)cc2-c2cc(NC(=O)C)ncc2C(=O)NCCO)CC1COc1cc(C(F)(F)F)cc(CS(C(C)C)(=O)=O)c1CCCN1CCC(CCC(=O)OCC)CC1CCOc1c(OC)cc(NC(CCC(=O)O)=O)cc1C(NC1CC2N(C)C(CC2)C1)=O)CC#C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1O=C(N)c1cc(Cl)c(-c2ccc(C(CC)C3CCS(=O)(=O)CC3=O)cc2)nc1NCCCCC(C(=O)N)NC(=O)CCC1CCC(CNC(=O)C)C(C(=O)OC)C1C(=O)NCC(=O)NCc1ccc(CCCC(=O)N2C(C(=O)NC(C(=O)O)CC(C)C)CC2C(O)=O)cc1 could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1C(c1ccccc1)Oc1ncccc1C(N)=O)CC(C(O)=O)NC(C1CCN(C(COC(=O)c2ccc(CC(C(N)=O)NC(CCCCn3cc(C(O)=O)nc3)=O)cc2CCCC(C)C(O)=O)=O)CC1)C(=O)OCCCCN(CC)CC could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1O=C(CCC(=O)OCC)N1CCCC1C(N1C(C(c2cc3c(cc(OC)c(OC)c3)[nH]2)CC(C(=O)N)=O)CC=CC1)=O)CCC=CCC#CCCCC(=O)CCCCC(=O)NCCCCC(C(=O)N)* could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1n1(C)c(C)c(C(=O)Nc2cc(C(N)=O)ccc2CC(*)(C=O)C)cc1 could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(-c4ccc(F)cc4)c3)C2)C1C1COCCN1CCNc1c2c(c(F)c(F)c1)nc(-c1oc(C(F)(F)F)nc1)cc2C(CCCCC)C(CNC(=O)CCCC(O)=O)C(=O)NCCCCC(NC(=O)CCCC(C(N)=O)NC(=O)c1oc(Br)cc1)C(CCCC)NCC(C(N)CCCC)=O)OCCN(C(=O)CCCC1C2C(CS1)NC(=O)N2)C(O)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(Br)c3)C2)C1O=S(C)(Nc1c(C)ccc(C(N2c3n(ccc(NCCN(C)C)n3)C(C)C2)=O)c1)=O)C(C(C)C)NC(=O)CCC(=O)NCCCC(C(N)=O)NC(=O)OC(C)(C)C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(Br)c3)C2)C1c1ccc(-c2ncnn2C(C)(C)C)c(C(c2cc(F)cc(F)c2)(CN2C(C(=O)N)CCC2)=O)c1C(CC)CCOc1ccc(-c2ncc(C(=O)OCC(N3C(C(N)=O)=NC(C)=C3C(=O)O)=O)cc2C(=O)OCC)c(CC=C)c1C(=O)NCC(=O)N(Cc1ccccc1)CCC(C)C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(Br)c3)C2)C1c1ccnc(N2CCN(C(OC(C)(C)C)=O)C(C(N3CCOCC3)=O)C2)c1-c1ccc(C=C)cc1CCC(C(=O)N)NC(=O)c1cnc2cc(C#CCCCCC#N)cc3ncnc321C=CCCC(=O)NCCC(C)C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1O=C(C)CCS(=O)(=O)CC1CN(C2(C(=O)N)CC2)CCC1C(N)C(C)C(=O)NC(C(C)C)C(NCC(O)C(C(CO)C)N)=O)Cc1cncn1CCCCn1ncnc1C(OC(C)C)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(N4CC(OCCCc5ccccc5)C4)c3)C2)C1C(F)(F)(CCC(C(=O)OC)NC(=O)C1CCCN1C(CCC(C)C)C(=O)NC1C(CC(C)C)CCC(C(=O)NCCCCC(C(=O)N)NC(=O)CCCCC(=O)NCCCC(NC(CCC(=O)O)=O)C(C(CC)C)NC(=O)CCC(C)C)c1)C(C)CCCC#CC#CCC(C)(C)CCC(=O)N1CCC(CCC(C)C)(CN(C)CCCC(C)C)CC1C(=O)NC(CC(C)C)C(=O)NCC(NCC(=O)O)C(=O)NCC(=O)OC(C) could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(N4CC(OCCCc5ccccc5)C4)c3)C2)C1C1(Cc2onc(C)c2)CCN1C(CCC(C)C)C(N1CCC(CCC(CC(C(N)=O)CCCC)=O)N(C(=O)CCCOCCC(C)C)C1)CC)C(=O)CCCC(NC(=O)CCCC1CCCCC1)C(=O)NC(CCCCN)C(=O)NCC(O)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(N4CC(OCCCc5ccccc5)C4)c3)C2)C1C1CC1CC(=O)N1CC2C(C2C2CC2C(=O)NCCC#C)C1C(=O)OCC(O)C(C(O)C(O)CO)O)OCCNC(OC(C)(C)C)=O)CCCC#CC#CC#CCC(C)CC(C)(C)CO could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)CCc4c[nH]c5ccccc45)C3)C2)c1N1(CCc2ncc(F)cc2)CCCN(C(=O)C)CC1CC(c1ccccc1)COc1ccc(CCC(=O)O)c(C2CC2C(=O)O)c1CCCN(C)CCCCOCCOCCOCCOCCN(C)CC#Cc1cc(F)c(CCOCC#CCOCCNC(=O)c2cc(O)c(C=CC(=O)O)cc2)cc1CCCOc1ccc(N(C)C(=O)CC2CC2)cc1C=CC(O)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1O=C(N(Cc1c(F)cc(F)cc1)C)CCC#CC#CCCCC(N1C(C(O)=O)CCC1)=O)C#N could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1c1nccc(CNC(C(C)C)=O)c1C(Nc1cc(OC)c(OC)c(OC)c1)=O)OCCNC(=O)CCCCC#CCC#CCC#CCCCCC(=O)N1CCC2(OC(=O)N(CCCCC#CCC(C)C(O)=O)C(C)C2)C(=O)C1 could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc5c(cc4[N+](=O)[O-])OCO5)C3)C2)c1C(C)(CCC#N)(C(=O)N)C#CCCCC(N1CCCCC1)CCOc1c(OCC=C)ccc(CCCC(=O)O)c1CCCC#Cc1ccc(CCCCOC(CCCCOc2ccc(CC(C(=O)O)NC(=O)C)cc2)=O)c1CCCOCCCOCCC#CC#CC#CC#CCC1CCC(COC(=O)C(C(O)C(O)CO)O)C(O)C1OCCOCCOCCNC(=O)c1c(O)c(O)cc(CCCNCCN(C)CC#CC#CC#CC#CCOCCOCCOCCOCCN(C)C(=O)CCC could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc5c(cc4[N+](=O)[O-])OCO5)C3)C2)c1C1COCCN1c1ccc(NC(CCCC#C)=O)c(OCCOCCOCCOCCOCC#C)c1C#CCCCOCCOCCOc1c(OC)cc(C#CCNC(=O)C(C)(C)CO)c([N+]([O-])=O)c1CN1CCCC1CC(O)CCN(C)CCOCCOCCN(C)C(C)=O)c1cc(C#N)cc(CCC)c1OCC(=O)O)C(NC1CCCC1C(=O)NCCCCC#Cc1ccc(OCCCCO)c(N(C)C(C)C(O)=O)c1C#CCNC(=O)OCC(C(=O)O)(C)C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc5c(cc4[N+](=O)[O-])OCO5)C3)C2)c1s1nc2c(c(S(=O)(=O)N(C)C3CC3)c1)nnc2OCCCCC(C(N)=O)NC(=O)OC1CC2C(N(CC(O)CCC#C)C(F)CO2)OC1COC(CC#N)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4ccc5c(c4)OCO5)C3)C2)c1C(C)(=O)N1CCN(c2c(C#N)c(C)nc3cc(OC)c(OCCCN(C)C)c(C(O)=O)c23)CC1CNC(=O)C(NC(=O)CN)C* could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4ccc5c(c4)OCO5)C3)C2)c1N(C(=O)C1CC(F)(F)CN1)CCC#CC(N1CC(CNC(C)=O)CCC1)=O)Oc1ccc(F)cc1CC1N(OC(=O)C)CC(n2cc(C#N)c(C(F)(F)F)n2)C1CCCOc1ccc(OC(C)C(=O)NCC#CC#CC#CC#Cc2cn(CCNC(=O)C)cc2)cc1C(OCC#CCCCC#Cc1cc(C#CCNC(=O)C)oc1CCCOc1ccc(C#CCOC(=O)CCC)c(Cl)c1)COC(=O)CCC(=O)OC could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(Cc4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1CCCCS(=O)(=O)Nc1ccc2n(C)c(=O)c(C#N)c(OCCCC#Cc3ccc(CCCC#C)cc3)c2c1NCCNC(CCC(N)C(O)=O)=O)CC#CC#CC#CC(C)(C)CCC* could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(Cc4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1N(C(c1ccc(OC)c(OC)c1OC)=O)CCCC(=O)N1CC(C(O)=O)CC(C(C=C)C(C)C)C1=O)NC(=O)C(C)(C)C(=O)NCCN(C)C(=O)CCC(C(=O)O)(C)C(=O)NCC#C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCC#Cc1cncc(N2CCC3(CN(Cc4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1O=C(C(C(C)C)NC(=O)c1ccc(C#N)cc1)OCC#CCCCC(=O)NCC* could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCOC1CN(c2cncc(N3CCC4(CN(C(=O)OC(C)(C)C)C4)C3)c2)C1C(OC(C)(C)C)(C(C)C)C(C(=O)OCC)NC(=O)CC1CCCCC1C(OCCC#Cc1ccc(CC(OC(C)(C)C)=O)c(CCC)c1OCCOC(CCC(=O)OC(C)(C)C)C(=O)N1CC2(CCC1)C(=O)CC(C(C)(C)C)CC2)(O)C#Cc1ccc(OCCCC(O)=O)c(C=CC(=O)OCC(=O)NCC(C(O)=O)(C)C)c1CCCC(=O)OCCOCCOCCOCCOCCN(C(C)C)C(=O)COC(=O)CC#CC#CCC(C could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCOC1CN(c2cncc(N3CCC4(CN(C(=O)OC(C)(C)C)C4)C3)c2)C1FC(F)(F)Oc1ccc(CCCC(O)C(C)(C)C)cc1C(CCC#C)C(NCCCC(C#N)(CC)O)=O)* could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: CCCCCCOC1CN(c2cncc(N3CCC4(CN(C(=O)OC(C)(C)C)C4)C3)c2)C1FC(F)(F)c1c(C#N)ccc(OCC(C)(C)C(C)(C(C)C)C)c1OCCOC(CCCCC(C#N)C(C)C)=O could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1C(#CC(N)C(C)C)(CC)CSCC(O)C(CCCC)OC(=O)c1ccc(C(=O)OC)c(-c2cc(C#N)ccc2C(CCCCC)CCN2CC(N(C=O)C)C(CCCC)C2C(C)CNC(CCCOC(CC#CC#CC#CCCCCC(=O)NC(C)CCCC)=O)CCCCNC(=O)CCCCC#CC#CC(C)C(=CC(=O)OC)C)c1CC#N could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1C(C)(C)C(N)C(OC(C(=O)NC(C(C)CC)C(=O)NCCCC)C(O)=O)=O)CCCC#CCC(C(N)=O)NC(=O)CCC(C(=O)O)NC(CC(C)C)C(=O)NC(CC(C)C)C(CCCC(C)C)n1nnc(C(O)C(CC)C(=O)NCCC(C)C)c1CCCN(C)CC#C)C#CCCCC1CCC1 could not be converted
+12:54:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1CC(C)(OC(=O)N(CC)C1CCC(CNC(=O)C(C(CC)C)N)CC1)C(NC(CCC(=O)O)C(O)=O)=O)C#CCCC(C)C(NCC#C)=O could not be converted
+12:54:58 <INFO> Score: 0.00 Agent NLL: 84.13 Valid:   0% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold LIBINVENT_RL_ADME LIBINVENT_RL_ADME (raw)
+ | 142.5146 138.7678 -138.7678 0.0000000 C#CCCNC(=O)c1c(Cl)c(-c2cc(NC(=O)N3CCCC3C(=O)NCCCCC(=Cc3ccc([N+](=O)[O-])cc3)C(N)=O)c(C(C)NC(N)(C(=O)NCCCCC(C(=O)NCC(=O)OCCCCC(NC(=O)CC3CC(C(=O)NCC(O)C(NC(C)=O)C(C)C)C(O)C(O)C3N)C(C)=O)C(=O)OCC)c3ccccc3C#Cc3cncc(N4CCC5(CNC5)C4)c3)cc2OC)cn1C 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(N)(NC(C)c1cc(OC)c(-c2c(Cl)c(C(NCCC#C)=O)n(C)c2)cc1NC(N1CCCC1C(=O)NCCCCC(C(=O)N)=Cc1ccc([N+](=O)[O-])cc1)=O)C(=O)NCCCCC(C(=O)OCC)C(=O)NCC(=O)OCCCCC(C(C)=O)NC(CC1C(N)C(O)C(O)C(C(NCC(O)C(NC(=O)C)C(C)C)=O)C1)=O -- 0.0000000 0.0000
+ | 48.4385 46.9891 -46.9891 0.0000000 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1Nc1nc2n(C3OC(CO)C(O)C(O)C3)cnc2c(N)n1CCCCNC(CC(*)C(=O)O)=O 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 Nc1nc2n(C3OC(CO)C(O)C(O)C3)cnc2c(N)n1CCCCNC(CC(*)C(=O)O)=O -- 0.0000000 0.0000
+ | 108.0846 105.1161 -105.1161 0.0000000 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1O1CCN(c2ncc(C(=O)NC3CC3)cc2-c2cc(NC(=O)C)ncc2C(=O)NCCO)CC1COc1cc(C(F)(F)F)cc(CS(C(C)C)(=O)=O)c1CCCN1CCC(CCC(=O)OCC)CC1CCOc1c(OC)cc(NC(CCC(=O)O)=O)cc1C(NC1CC2N(C)C(CC2)C1)=O)CC#C 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 O1CCN(c2ncc(C(=O)NC3CC3)cc2-c2cc(NC(=O)C)ncc2C(=O)NCCO)CC1COc1cc(C(F)(F)F)cc(CS(C(C)C)(=O)=O)c1CCCN1CCC(CCC(=O)OCC)CC1CCOc1c(OC)cc(NC(CCC(=O)O)=O)cc1C(NC1CC2N(C)C(CC2)C1)=O)CC#C -- 0.0000000 0.0000
+ | 110.6026 106.5195 -106.5195 0.0000000 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1O=C(N)c1cc(Cl)c(-c2ccc(C(CC)C3CCS(=O)(=O)CC3=O)cc2)nc1NCCCCC(C(=O)N)NC(=O)CCC1CCC(CNC(=O)C)C(C(=O)OC)C1C(=O)NCC(=O)NCc1ccc(CCCC(=O)N2C(C(=O)NC(C(=O)O)CC(C)C)CC2C(O)=O)cc1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 O=C(N)c1cc(Cl)c(-c2ccc(C(CC)C3CCS(=O)(=O)CC3=O)cc2)nc1NCCCCC(C(=O)N)NC(=O)CCC1CCC(CNC(=O)C)C(C(=O)OC)C1C(=O)NCC(=O)NCc1ccc(CCCC(=O)N2C(C(=O)NC(C(=O)O)CC(C)C)CC2C(O)=O)cc1 -- 0.0000000 0.0000
+ | 92.3716 93.1657 -93.1657 0.0000000 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1C(c1ccccc1)Oc1ncccc1C(N)=O)CC(C(O)=O)NC(C1CCN(C(COC(=O)c2ccc(CC(C(N)=O)NC(CCCCn3cc(C(O)=O)nc3)=O)cc2CCCC(C)C(O)=O)=O)CC1)C(=O)OCCCCN(CC)CC 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1 C(c1ccccc1)Oc1ncccc1C(N)=O)CC(C(O)=O)NC(C1CCN(C(COC(=O)c2ccc(CC(C(N)=O)NC(CCCCn3cc(C(O)=O)nc3)=O)cc2CCCC(C)C(O)=O)=O)CC1)C(=O)OCCCCN(CC)CC -- 0.0000000 0.0000
+ | 127.1517 121.0959 -121.0959 0.0000000 CCCNC(=O)C(N)CCC(=O)C(CCC(=O)O)N(CCNC(=O)C(CC)Nc1c(CC(CC(C)C(=O)N2CCC3C(O)C(C(N)=O)C32)C(N)=O)cccc1OCC1CN(c2ccc(F)cc2CCC(CC(O)C(=O)N(C(C)C)C(C)C)c2ccncc2)CCN1C(=O)CC1N(C(=O)OC(C)(C)C)CC12CCN(c1cccc(Br)n1)C2)C(=O)CCC(=O)O 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1 CC(=O)N1CCN(c2ccc(F)cc2CCC(c2ccncc2)CC(O)C(N(C(C)C)C(C)C)=O)CC1COc1cccc(CC(C(N)=O)CC(C)C(=O)N2C3C(C(O)C3C(=O)N)CC2)c1NC(CC)C(=O)NCCN(C(=O)CCC(O)=O)C(CCC(O)=O)C(CCC(C(NCCC)=O)N)=O -- 0.0000000 0.0000
+ | 86.7192 81.2175 -81.2175 0.0000000 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1O=C(CCC(=O)OCC)N1CCCC1C(N1C(C(c2cc3c(cc(OC)c(OC)c3)[nH]2)CC(C(=O)N)=O)CC=CC1)=O)CCC=CCC#CCCCC(=O)CCCCC(=O)NCCCCC(C(=O)N)* 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1 O=C(CCC(=O)OCC)N1CCCC1C(N1C(C(c2cc3c(cc(OC)c(OC)c3)[nH]2)CC(C(=O)N)=O)CC=CC1)=O)CCC=CCC#CCCCC(=O)CCCCC(=O)NCCCCC(C(=O)N)* -- 0.0000000 0.0000
+ | 38.5837 39.3802 -39.3802 0.0000000 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1n1(C)c(C)c(C(=O)Nc2cc(C(N)=O)ccc2CC(*)(C=O)C)cc1 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cccc(Br)n3)C2)C1 n1(C)c(C)c(C(=O)Nc2cc(C(N)=O)ccc2CC(*)(C=O)C)cc1 -- 0.0000000 0.0000
+ | 28.4824 27.7519 -27.7519 0.0000000 *CCCC(=O)NCC1CCN(C(=O)C2CCC(C(C(=O)OC(C)(C)C)C3N(C(=O)OC(C)(C)C)CC34CCN(c3cncc(-c5ccc(F)cc5)c3)C4)CC2)CC1 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(-c4ccc(F)cc4)c3)C2)C1 C(C(=O)OC(C)(C)C)C1CCC(C(=O)N2CCC(CNC(=O)CCC*)CC2)CC1 -- 0.0000000 0.0000
+ | 71.4469 67.3127 -67.3127 0.0000000 CC(=O)N1C(=O)OCC1C(CCCCS(=O)(=O)NCCCNC(=O)CCC(=O)OCC(C)(C)C(=O)NCC(F)(F)F)(NC(=O)c1ncc(F)c(-n2cccn2)n1)C1N(C(=O)OC(C)(C)C)CC12CCN(c1cncc(-c3ccc(F)cc3)c1)C2 0 CC(C)(C)OC(=O)N1CC2(CCN(c3cncc(-c4ccc(F)cc4)c3)C2)C1 C(C1COC(=O)N1C(C)=O)(NC(=O)c1ncc(F)c(-n2nccc2)n1)CCCCS(=O)(=O)NCCCNC(=O)CCC(OCC(C(=O)NCC(F)(F)F)(C)C)=O -- 0.0000000 0.0000
+12:54:58 <INFO> Purging diversity filter memories in stage 1
+12:54:58 <WARN> Maximum number of steps of 1 reached in stage 1. Terminating all stages.
+12:54:58 <INFO> Peak main memory usage: 2461.574 MiB
+12:54:58 <INFO> Finished REINVENT on 2026-03-15

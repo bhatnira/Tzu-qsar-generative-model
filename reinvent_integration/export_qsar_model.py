@@ -20,14 +20,15 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from data_loader import (
+from qsar_core.data_loader import (
     load_excel_sheets,
     apply_smiles_cleaning,
     combine_and_deduplicate,
     filter_numeric_ic50,
 )
-from descriptors import compute_descriptors
-from model import train_and_select
+from qsar_core.descriptors import compute_descriptors
+from qsar_core.model import train_and_select
+from qsar_core.paths import DATASET_XLSX
 
 
 def main() -> None:
@@ -35,7 +36,7 @@ def main() -> None:
     artifacts_dir = project_root / "reinvent_integration" / "artifacts"
     artifacts_dir.mkdir(parents=True, exist_ok=True)
 
-    excel_path = project_root / "TB Project QSAR.xlsx"
+    excel_path = DATASET_XLSX
     if not excel_path.exists():
         raise FileNotFoundError(f"Missing dataset: {excel_path}")
 
@@ -64,12 +65,33 @@ def main() -> None:
     imputer_obj = imputers[best_desc]
     scaler_obj = scalers.get((best_desc, best_model_name), None)
 
+    ranked_results = results_df.sort_values("R2", ascending=False).reset_index(drop=True)
+    positive_top = ranked_results[ranked_results["R2"] > 0].head(5)
+    ensemble_models = []
+    for _, row in positive_top.iterrows():
+        desc_name = str(row["Descriptor"])
+        model_name = str(row["Model"])
+        if desc_name == best_desc and model_name == best_model_name:
+            continue
+        ensemble_models.append(
+            {
+                "descriptor_name": desc_name,
+                "model_name": model_name,
+                "r2": float(row["R2"]),
+                "imputer": imputers[desc_name],
+                "scaler": scalers.get((desc_name, model_name), None),
+                "model": trained_models[(desc_name, model_name)],
+            }
+        )
+
     model_bundle = {
         "model": model_obj,
         "imputer": imputer_obj,
         "scaler": scaler_obj,
         "descriptor_name": best_desc,
         "model_name": best_model_name,
+        "best_r2": float(ranked_results["R2"].max()),
+        "ensemble_models": ensemble_models,
         "created_at": datetime.utcnow().isoformat() + "Z",
         "notes": "Predicts log10(IC50_uM)",
     }
@@ -88,6 +110,14 @@ def main() -> None:
                 "descriptor_name": best_desc,
                 "model_name": best_model_name,
                 "best_r2": float(results_df["R2"].max()),
+                "ensemble_models": [
+                    {
+                        "descriptor_name": str(x["Descriptor"]),
+                        "model_name": str(x["Model"]),
+                        "r2": float(x["R2"]),
+                    }
+                    for _, x in positive_top.iterrows()
+                ],
                 "n_train": int(len(train_df)),
                 "n_test": int(len(test_df)),
             },

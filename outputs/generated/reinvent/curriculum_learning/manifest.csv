@@ -1,0 +1,6 @@
+file,rows,cutoff
+reinvent_cl_generated_scored.csv,1974.0,
+reinvent_cl_generated_optimal.csv,1.0,
+reinvent_cl_generated_scored.xlsx,1974.0,
+reinvent_cl_generated_optimal.xlsx,1.0,
+,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40

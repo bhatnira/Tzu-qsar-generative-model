@@ -1,0 +1,72 @@
+22:50:52 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-14
+22:50:52 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_rl_sample_strict.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_strict/sample_reinvent_rl.toml
+22:50:52 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_strict/sample_reinvent_rl.toml using format toml
+22:50:52 <INFO> User nbhatta1 on host panacea
+22:50:52 <INFO> Python version 3.11.13
+22:50:52 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+22:50:52 <INFO> PyTorch compiled with CUDA version 12.8
+22:50:52 <INFO> RDKit version 2025.09.6
+22:50:52 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+22:50:52 <INFO> CUDA driver version 590.48.01
+22:50:52 <INFO> Number of PyTorch CUDA devices 1
+22:50:52 <WARN> 'use_cuda' is deprecated, use 'device' instead
+22:50:52 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+22:50:52 <INFO> GPU memory: 46921 MiB free, 48400 MiB total
+22:50:52 <INFO> Starting Sampling
+22:50:52 <INFO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_rl_adme/reinvent_rl.chkpt has valid hash:
+{ 'comments': ['RL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'fd79dd2a5fc8edee0ecfb44d168e3da6',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.6.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1773543049.9651752]}
+22:50:52 <INFO> Number of network parameters: 5,805,602
+22:50:52 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+22:50:52 <INFO> Using generator Reinvent
+22:50:52 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/reinvent_rl/samples.csv
+22:50:52 <INFO> Sampling 2000 SMILES from model reinvent_integration/results/reinvent_rl_adme/reinvent_rl.chkpt
+22:50:53 <INFO> Sampled SMILES n1(-c2ccc(OC)cc2)[nH]c2c3cnnc3ccc2c1=O failed to sanitize.
+22:50:53 <INFO> Sampled SMILES o1c(-c2cn3c(=O)c4c([nH]c23)nccc4)n[nH]c1=S failed to sanitize.
+22:50:53 <INFO> Sampled SMILES O1COc2cc3c(cc21)N=CC(CC1(C)CCC(C(C)(OC1C(C)C)=O)O)C3=O failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1(=NCC2OCCC2)nc2c(cc(S(=O)(=O)N3CCCCC3)cc2)[nH]c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c12c(O)ccc(-c3oc4c(F)c(=O)ccc-4c3-c3ccccc3)c1OC(C)(C)C1C2CC(C=O)=CC1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C(N)(N)=Nc1c(O)cc(N=C(c2occc2)N)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES CCN=C1c2c(=NCc3cc(Cl)c(OC)cc3)nc[nH]c2=NC(CO)C1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES [nH]1c(=O)[nH]c2n(c1=O)N=C(c1sccc1)CC2c1ccc(Cl)cc1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1cncc(CNC(=c2c(=C(O)NO)c(O)c(=C)n2C(C(N2C(C(=O)N)CCC2)=O)C(C)C)C(=O)OC)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1cccc(-c2nc3c(cccc3)n2C(=O)C)o1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES n1(N=Cc2cccc([N+]([O-])=O)c2)c(C)c(C(O)N2CCOCC2)cc(C(C)(C)C)n1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1c2c(c(CCNC(C)=O)cn2C)cc(N=c2nc(-c3[nH]c(C(C)(C)C)cc3)c(CC)[nH]c2=N)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C(Oc1cc2c3nc(=O)c(C)nn3c(OCCC)n2c(C)n1)C failed to sanitize.
+22:50:53 <INFO> Sampled SMILES n12c3c(c(SCc4ccc([N+](=O)[O-])cc4)nc1n(C)c(=O)n(C)c2=O)CCCC3 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES n1[n+]([O-])c2c([n+]([O-])[nH]1)ccc(OCC)c2 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES CN1C2=c3cc(O)c(OC)cc3=NCC(=O)N=2C1=C failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C1CN(C2CN(c3ccc(N=c4nc5c(ccn6c(-c7c[nH]nc7)ccc6)c4c[nH]5)cc3)C2)CCC1=O failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1cc(C(=N)Nc2ccc3c(c2)=NCC3)cc(C(=O)N)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES Oc1c2c(cccn2)c(=Cc2c(OCc3ccccc3)ccc(Cl)c2)[nH]1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1(Br)cc2c(=O)c3c(oc2cc1OC)cc1c(c3O)c(=O)ccc1O failed to sanitize.
+22:50:53 <INFO> Sampled SMILES N=c1[nH]c(SCc2c(OC)ccc(C3CC(=O)N=C(SC)C3)c2)n(C)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1c([N+]([O-])=O)cc([N+]([O-])=O)cc1-c1nc(=NNC(C)=O)sn1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES O1C(=O)C(NC(C(C)(C(c2cc(Cl)c(Cl)cc2)CC(=O)c2sccn2)=O)C)C1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1(=Nc2ccc(OC)cc2)n2c3c([nH]c2c(C#N)c1C)cccc3 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C1CCC2(CCN(CC(=O)=NO)CC2)CN1C(C)C failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1c(OC)ccc(-c2c(-c3cc(OC)c(OC)c(OC)c3)c(=O)n3c2CCC3)c1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1(C)n[n+]2ccc3c(C)c4[nH]c5c(cc(OC)cc5)c4[nH]c3c2c(C)c1C failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1(C2c3nc(-c4ccc([N+](=O)[O-])cc4)cc(C(F)(F)F)n3N=C(c3ccc(OC)cc3)C2)ccc(Cl)cc1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c1c(-c2nn(C)c(OCc3c(N4CCSCC4)nc(C)cc3)c2)nc(=O)o[nH]1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C1N(C(N)=N)CCC(NCc2c(N3CCN(C(=O)C4CN(C(C5(C)CC5)=O)CCC4)CC3)ccc2)C1 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES N(C)(C)Cc1n2c(=O)c(C(=O)OC)ccc2c2c3c(cccc3)[nH]c21 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES C1CC(=O)N(C)c2c(CCN3CCN(c4c5c(c6ccccc6s5)cccc4OC)CC3)cccc21 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES NC(=O)CSc1n2c(c3c(o1)cccc3)nnc2CCC(N1CCN(c2ccc(F)cc2)CC1)=O failed to sanitize.
+22:50:53 <INFO> Sampled SMILES c12c(n(C)c(=O)cc1C(F)(F)F)cc1[nH]cccc1c2 failed to sanitize.
+22:50:53 <INFO> Sampled SMILES n1c(SC)nnc2sc(C)nn12 failed to sanitize.
+22:50:53 <INFO> Peak main memory usage: 1516.469 MiB
+22:50:53 <INFO> Finished REINVENT on 2026-03-14

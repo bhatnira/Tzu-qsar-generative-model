@@ -1,0 +1,341 @@
+21:39:52 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-14
+21:39:52 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_similarity.toml
+21:39:52 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_similarity.toml using format toml
+21:39:52 <INFO> User nbhatta1 on host panacea
+21:39:52 <INFO> Python version 3.11.13
+21:39:52 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+21:39:52 <INFO> PyTorch compiled with CUDA version 12.8
+21:39:52 <INFO> RDKit version 2025.09.6
+21:39:52 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+21:39:52 <INFO> CUDA driver version 590.48.01
+21:39:52 <INFO> Number of PyTorch CUDA devices 1
+21:39:52 <WARN> 'use_cuda' is deprecated, use 'device' instead
+21:39:52 <INFO> Using CPU x86_64
+21:39:52 <INFO> Starting 2 stages of Reinforcement Learning
+21:39:52 <ERRO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/mol2mol_similarity.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '3c6a77904318ad22c299806d686463f5',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '595a7122492447e0b10b11b6cf47b2ae',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': []}
+21:39:52 <INFO> Number of network parameters: 17,462,400
+21:39:52 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=128, bias=True)
+  )
+)
+21:39:52 <ERRO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/mol2mol_similarity.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '3c6a77904318ad22c299806d686463f5',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '595a7122492447e0b10b11b6cf47b2ae',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': []}
+21:39:52 <INFO> Number of network parameters: 17,462,400
+21:39:52 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=128, bias=True)
+  )
+)
+21:39:52 <INFO> Using generator Mol2Mol
+21:39:52 <INFO> Prior read from reinvent_integration/priors/mol2mol_similarity.prior
+21:39:52 <INFO> Agent read from reinvent_integration/priors/mol2mol_similarity.prior
+21:39:52 <INFO> Input molecules/fragments read from file reinvent_integration/data/series_ce_unique.smi
+21:39:52 <INFO> Using reward strategy dap
+21:39:52 <INFO> Using diversity filter IdenticalMurckoScaffold
+21:39:52 <INFO> Purging diversity filter memories after each stage
+21:39:52 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+21:39:52 <INFO> Registered scoring component GroupCount
+21:39:52 <INFO> Registered scoring component FragmentQed
+21:39:52 <INFO> Registered scoring component FragmentSlogP
+21:39:52 <INFO> Registered scoring component FragmentMolecularWeight
+21:39:52 <INFO> Registered scoring component FragmentTPSA
+21:39:52 <INFO> Registered scoring component FragmentDistanceMatrix
+21:39:52 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+21:39:52 <INFO> Registered scoring component FragmentHBondAcceptors
+21:39:52 <INFO> Registered scoring component FragmentHBondDonors
+21:39:52 <INFO> Registered scoring component FragmentNumRotBond
+21:39:52 <INFO> Registered scoring component FragmentCsp3
+21:39:52 <INFO> Registered scoring component Fragmentnumsp
+21:39:52 <INFO> Registered scoring component Fragmentnumsp2
+21:39:52 <INFO> Registered scoring component Fragmentnumsp3
+21:39:52 <INFO> Registered scoring component FragmentEffectiveLength
+21:39:52 <INFO> Registered scoring component FragmentGraphLength
+21:39:52 <INFO> Registered scoring component FragmentLengthRatio
+21:39:52 <INFO> Registered scoring component FragmentNumHeavyAtoms
+21:39:52 <INFO> Registered scoring component FragmentNumHeteroAtoms
+21:39:52 <INFO> Registered scoring component FragmentNumRings
+21:39:52 <INFO> Registered scoring component FragmentNumAromaticRings
+21:39:52 <INFO> Registered scoring component FragmentNumAliphaticRings
+21:39:52 <INFO> Registered scoring component FragmentSlogP
+21:39:52 <INFO> Registered scoring component MatchingSubstructure
+21:39:52 <INFO> Registered scoring component MolVolume
+21:39:52 <INFO> Registered scoring component Qed
+21:39:52 <INFO> Registered scoring component LargestRingSize
+21:39:52 <INFO> Registered scoring component MolecularWeight
+21:39:52 <INFO> Registered scoring component GraphLength
+21:39:52 <INFO> Registered scoring component NumAtomStereoCenters
+21:39:52 <INFO> Registered scoring component HBondAcceptors
+21:39:52 <INFO> Registered scoring component HBondDonors
+21:39:52 <INFO> Registered scoring component NumRotBond
+21:39:52 <INFO> Registered scoring component Csp3
+21:39:52 <INFO> Registered scoring component numsp
+21:39:52 <INFO> Registered scoring component numsp2
+21:39:52 <INFO> Registered scoring component numsp3
+21:39:52 <INFO> Registered scoring component NumHeavyAtoms
+21:39:52 <INFO> Registered scoring component NumHeteroAtoms
+21:39:52 <INFO> Registered scoring component NumRings
+21:39:52 <INFO> Registered scoring component NumAromaticRings
+21:39:52 <INFO> Registered scoring component NumAliphaticRings
+21:39:52 <INFO> Registered scoring component SlogP
+21:39:52 <INFO> Registered scoring component LargestRingSize
+21:39:52 <INFO> Registered scoring component PMI
+21:39:52 <INFO> Registered scoring component RDKitDescriptors
+21:39:52 <INFO> Registered scoring component TanimotoSimilarity
+21:39:52 <INFO> Registered scoring component TanimotoDistance
+21:39:52 <INFO> Registered scoring component TPSA
+21:39:52 <INFO> Registered scoring component SAScore
+21:39:53 <INFO> Registered scoring component ChemProp
+21:39:53 <INFO> Registered scoring component CustomAlerts
+21:39:53 <INFO> Registered scoring component DockStream
+21:39:53 <INFO> Registered scoring component ExternalProcess
+21:39:53 <INFO> Registered scoring component REST
+21:39:53 <INFO> Registered scoring component Icolos
+21:39:53 <INFO> Registered scoring component MMP
+21:39:53 <INFO> Registered scoring component Qptuna
+21:39:53 <INFO> Registered scoring component ReactionFilter
+21:39:53 <INFO> Registered scoring component RingPrecedence
+21:39:53 <INFO> Registered scoring component Maize
+21:39:53 <INFO> Registered scoring component SynthSense
+21:39:53 <INFO> Registered scoring component CAZP
+21:39:53 <INFO> Creating scoring component ExternalProcess
+21:39:53 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+21:39:53 <INFO> Registered scoring component GroupCount
+21:39:53 <INFO> Registered scoring component FragmentQed
+21:39:53 <INFO> Registered scoring component FragmentSlogP
+21:39:53 <INFO> Registered scoring component FragmentMolecularWeight
+21:39:53 <INFO> Registered scoring component FragmentTPSA
+21:39:53 <INFO> Registered scoring component FragmentDistanceMatrix
+21:39:53 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+21:39:53 <INFO> Registered scoring component FragmentHBondAcceptors
+21:39:53 <INFO> Registered scoring component FragmentHBondDonors
+21:39:53 <INFO> Registered scoring component FragmentNumRotBond
+21:39:53 <INFO> Registered scoring component FragmentCsp3
+21:39:53 <INFO> Registered scoring component Fragmentnumsp
+21:39:53 <INFO> Registered scoring component Fragmentnumsp2
+21:39:53 <INFO> Registered scoring component Fragmentnumsp3
+21:39:53 <INFO> Registered scoring component FragmentEffectiveLength
+21:39:53 <INFO> Registered scoring component FragmentGraphLength
+21:39:53 <INFO> Registered scoring component FragmentLengthRatio
+21:39:53 <INFO> Registered scoring component FragmentNumHeavyAtoms
+21:39:53 <INFO> Registered scoring component FragmentNumHeteroAtoms
+21:39:53 <INFO> Registered scoring component FragmentNumRings
+21:39:53 <INFO> Registered scoring component FragmentNumAromaticRings
+21:39:53 <INFO> Registered scoring component FragmentNumAliphaticRings
+21:39:53 <INFO> Registered scoring component FragmentSlogP
+21:39:53 <INFO> Registered scoring component MatchingSubstructure
+21:39:53 <INFO> Registered scoring component MolVolume
+21:39:53 <INFO> Registered scoring component Qed
+21:39:53 <INFO> Registered scoring component LargestRingSize
+21:39:53 <INFO> Registered scoring component MolecularWeight
+21:39:53 <INFO> Registered scoring component GraphLength
+21:39:53 <INFO> Registered scoring component NumAtomStereoCenters
+21:39:53 <INFO> Registered scoring component HBondAcceptors
+21:39:53 <INFO> Registered scoring component HBondDonors
+21:39:53 <INFO> Registered scoring component NumRotBond
+21:39:53 <INFO> Registered scoring component Csp3
+21:39:53 <INFO> Registered scoring component numsp
+21:39:53 <INFO> Registered scoring component numsp2
+21:39:53 <INFO> Registered scoring component numsp3
+21:39:53 <INFO> Registered scoring component NumHeavyAtoms
+21:39:53 <INFO> Registered scoring component NumHeteroAtoms
+21:39:53 <INFO> Registered scoring component NumRings
+21:39:53 <INFO> Registered scoring component NumAromaticRings
+21:39:53 <INFO> Registered scoring component NumAliphaticRings
+21:39:53 <INFO> Registered scoring component SlogP
+21:39:53 <INFO> Registered scoring component LargestRingSize
+21:39:53 <INFO> Registered scoring component PMI
+21:39:53 <INFO> Registered scoring component RDKitDescriptors
+21:39:53 <INFO> Registered scoring component TanimotoSimilarity
+21:39:53 <INFO> Registered scoring component TanimotoDistance
+21:39:53 <INFO> Registered scoring component TPSA
+21:39:53 <INFO> Registered scoring component SAScore
+21:39:53 <INFO> Registered scoring component ChemProp
+21:39:53 <INFO> Registered scoring component CustomAlerts
+21:39:53 <INFO> Registered scoring component DockStream
+21:39:53 <INFO> Registered scoring component ExternalProcess
+21:39:53 <INFO> Registered scoring component REST
+21:39:53 <INFO> Registered scoring component Icolos
+21:39:53 <INFO> Registered scoring component MMP
+21:39:53 <INFO> Registered scoring component Qptuna
+21:39:53 <INFO> Registered scoring component ReactionFilter
+21:39:53 <INFO> Registered scoring component RingPrecedence
+21:39:53 <INFO> Registered scoring component Maize
+21:39:53 <INFO> Registered scoring component SynthSense
+21:39:53 <INFO> Registered scoring component CAZP
+21:39:53 <INFO> Creating scoring component ExternalProcess
+21:39:53 <INFO> Writing tabular data for stage to mol2mol_similarity_cl_adme_1.csv
+21:39:53 <INFO> Starting stage 1 <<<
+21:40:53 <INFO> Sampled SMILES CC(#Cc1ccccc1)c1cncc(N2CCC3(CC2)CN(C(=O)c2cc(N)cc(C(F)(F)F)c2)C3)c1 failed to sanitize.
+21:40:53 <INFO> Sampled SMILES n1cc(C#Cc2cncc(N3CCC4(CC3)COC4)c2)c2ccccc21 failed to sanitize.
+21:41:22 <INFO> Score: 0.60 Agent NLL: 7.96 Valid:  99% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_SMILES Scaffold MOL2MOL SIMILARITY_CL_Stage1 MOL2MOL SIMILARITY_CL_Stage1 (raw) microsome_score (MOL2MOL SIMILARITY_CL_Stage1) pred_MetStab_Clearance_Microsome_AZ (MOL2MOL SIMILARITY_CL_Stage1) qsar_score (MOL2MOL SIMILARITY_CL_Stage1) clogp_score (MOL2MOL SIMILARITY_CL_Stage1) pred_MetStab_Clearance_Hepatocyte_AZ (MOL2MOL SIMILARITY_CL_Stage1) pred_logS_ESOL (MOL2MOL SIMILARITY_CL_Stage1) pred_Solubility_ESOL_mol_per_L (MOL2MOL SIMILARITY_CL_Stage1) pred_pic50 (MOL2MOL SIMILARITY_CL_Stage1) half_life_score (MOL2MOL SIMILARITY_CL_Stage1) pred_MetStab_Half_Life_Obach (MOL2MOL SIMILARITY_CL_Stage1) pred_log_ic50_uM (MOL2MOL SIMILARITY_CL_Stage1) solubility_score (MOL2MOL SIMILARITY_CL_Stage1) hepatocyte_score (MOL2MOL SIMILARITY_CL_Stage1) pred_cLogP (MOL2MOL SIMILARITY_CL_Stage1)
+ | 10.2708 10.2708 18.0546 0.4425842 C(#Cc1cccc(N2CCC3(CC2)CN(c2ccc4ncccc4c2)C3)c1)c1ccccc1 1 O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1 C(#Cc1cccc(N2CCC3(CC2)CN(c2ccc4ncccc4c2)C3)c1)c1ccccc1 0.4425842 0.4426 0.9591462429382251 53.439552307128906 0.23642715035813403 0.006858190111199554 40.08704376220703 -7.115405321057827 7.666456555445984e-08 4.706907898170508 0.9999891103895788 126.42152404785156 1.2930921018294925 0.08869052476402386 0.9958944257236447 5.741400000000006
+ | 10.7724 10.7724 17.5509 0.4425518 C(#Cc1cccc(N2CCC3(CC2)CN(c2cncc(-c4ccccc4)c2)C3)c1)c1cccnc1 1 O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1)N1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1 C(#Cc1cccc(N2CCC3(CC2)CN(c2cncc(-c4ccccc4)c2)C3)c1)c1cccnc1 0.4425518 0.4426 0.9881778307595078 40.74113845825195 0.23642715035813403 0.008881542129653735 27.550586700439453 -7.231178978163819 5.872472907339587e-08 4.706907898170508 0.9997878888632249 102.6655044555664 1.2930921018294925 0.0653440951797799 0.9988245655508535 5.650200000000006
+ | 12.0337 12.0337 35.2056 0.7381141 C(#Cc1ccnc(N2CCC3(CCNC3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1ccnc(N2CCC3(CCNC3)C2)c1)c1ccccc1 0.7381141 0.7381 0.9999356830086079 -11.516223907470703 0.2827004416932904 0.9698602967849741 10.739583015441895 -3.9455998917709025 0.00011334441054328714 4.767223569937029 0.9593182135217214 60.283538818359375 1.232776430062971 0.9988031414471612 0.9997809609999206 2.6712000000000007
+ | 13.0020 13.0020 27.2783 0.6293795 C(#Cc1cncc(-c2cncnc2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(-c2cncnc2)c1)c1ccccc1 0.6293795 0.6294 0.9990371466910318 15.55353832244873 0.09337248721022826 0.9503113254829979 52.23957061767578 -4.000022195363187 9.999488945935169e-05 4.431716261772658 0.7055274203651217 41.99007797241211 1.568283738227342 0.9986020718931736 0.9862929475292155 2.9384000000000015
+ | 5.2414 5.2414 35.4886 0.6364062 C(#Cc1cncc(N2CC3(CNC3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CC3(CNC3)C2)c1)c1ccccc1 0.6364062 0.6364 0.9999181365496782 -9.103760719299316 0.2827004416932904 0.9250503084205725 15.093655586242676 -3.20257999564826 0.0006272201534059623 4.767223569937029 0.325113476594368 29.15703773498535 1.2327764300629709 0.9998566060535656 0.9996614954429559 1.891
+ | 13.9187 13.9187 -13.9187 0.0000000 C(#Cc1cncc(N2CCC(3(CNC3)CC2)c1)c1ccccc1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 -- 0.0000000 0.0000 None None None None None None None None None None None None None None
+ | 5.0310 5.0310 40.4260 0.7102661 NC1CCN(c2cncc(C#Cc3ccccc3)c2)CC1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCCCC2)c1)c1ccccc1 0.7102661 0.7103 0.9999703160308736 -19.248737335205078 0.2672473169822237 0.9721434532157514 18.678260803222656 -3.600026527269728 0.0002511733006917091 4.747841567335418 0.8068427364216353 46.43699264526367 1.2521584326645823 0.9995537611720137 0.9995156285120232 2.4089
+ | 5.5178 5.5178 42.8669 0.7560112 C(#Cc1ccc2ccccc2c1)c1cncc(N2CCC3(CC2)CNC3)c1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1ccc2ccccc2c1)c1cncc(N2CCC3(CC2)CNC3)c1 0.7560112 0.7560 0.9998778000857133 -5.097300052642822 0.48487535449620767 0.6226672944813447 4.561814308166504 -5.162190540582113 6.883502261258794e-06 4.984870738846171 0.990153365959204 71.8858413696289 1.0151292611538292 0.9627048710565945 0.9998818950215521 3.8244000000000025
+ | 4.3734 4.3734 41.1766 0.7117182 C(#Cc1cncc(N2CCC3(CC2)CNC3)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC2)CNC3)c1)c1ccccc1 0.7117182 0.7117 0.9999449886108654 -13.079153060913086 0.2827004416932904 0.9698602967849741 8.620939254760742 -3.945599891770902 0.00011334441054328725 4.767223569937029 0.7833117996866568 45.28057098388672 1.2327764300629709 0.9988031414471612 0.9998227737364292 2.6712000000000007
+ | 8.6009 8.6009 36.9879 0.7123262 C(#Cc1cncc(N2CCC3(CC2)NCCO3)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC2)NCCO3)c1)c1ccccc1 0.7123262 0.7123 0.9999181945077905 -9.110843658447266 0.2827004416932904 0.9719105568257498 30.9208927154541 -3.839301338641604 0.00014477669604676907 4.767223569937029 0.7859986012615073 45.407779693603516 1.2327764300629709 0.9991163518921645 0.9983542479668539 2.3977000000000004

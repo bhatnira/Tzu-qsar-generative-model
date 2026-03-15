@@ -1,0 +1,16 @@
+23:25:37 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-14
+23:25:37 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_rl_sample_nitro.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_scaffold_generic_rl.toml
+23:25:37 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_scaffold_generic_rl.toml using format toml
+23:25:37 <INFO> User nbhatta1 on host panacea
+23:25:37 <INFO> Python version 3.11.13
+23:25:37 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+23:25:37 <INFO> PyTorch compiled with CUDA version 12.8
+23:25:37 <INFO> RDKit version 2025.09.6
+23:25:37 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+23:25:37 <INFO> CUDA driver version 590.48.01
+23:25:37 <INFO> Number of PyTorch CUDA devices 1
+23:25:37 <WARN> 'use_cuda' is deprecated, use 'device' instead
+23:25:37 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+23:25:37 <INFO> GPU memory: 46493 MiB free, 48400 MiB total
+23:25:37 <INFO> Starting Sampling
+23:25:37 <CRIT> model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_rl_adme/mol2mol_scaffold_generic_rl.chkpt is not accessible

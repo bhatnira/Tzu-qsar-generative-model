@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 import io
+from importlib import import_module
 from pathlib import Path
 import sys
 
@@ -19,7 +21,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from descriptors import rdkit_desc
+from qsar_core.descriptors import rdkit_desc
+from reinvent_integration.qsar_ensemble import summarize_predictions
 
 RDLogger.DisableLog('rdApp.*')
 
@@ -36,6 +39,15 @@ CUTS = {
     'pred_MetStab_Clearance_Hepatocyte_AZ_max': 80.0,
     'pred_MetStab_Half_Life_Obach_min': 40.0,
 }
+
+TARGET_FREE_ADMET_COLUMNS = [
+    'PAINS_alert', 'BRENK_alert', 'NIH_alert',
+    'AMES', 'ClinTox', 'DILI', 'Carcinogens_Lagunin', 'hERG',
+    'CYP1A2_Veith', 'CYP2C19_Veith', 'CYP2C9_Veith', 'CYP2D6_Veith', 'CYP3A4_Veith',
+    'HIA_Hou', 'Bioavailability_Ma', 'PAMPA_NCATS', 'Pgp_Broccatelli',
+    'Caco2_Wang', 'PPBR_AZ', 'VDss_Lombardo',
+    'molecular_weight', 'logP', 'QED', 'Lipinski'
+]
 
 
 def mol_png(smiles: str):
@@ -106,20 +118,55 @@ def load_generated(path: Path) -> pd.DataFrame:
     return pd.DataFrame(rows).drop_duplicates(subset=dedup_cols).copy()
 
 
+def filter_excluded_smarts(df: pd.DataFrame, exclude_smarts: list[str]) -> pd.DataFrame:
+    if df.empty or not exclude_smarts:
+        return df
+    patterns = []
+    for smarts in exclude_smarts:
+        patt = Chem.MolFromSmarts(smarts)
+        if patt is not None:
+            patterns.append(patt)
+    if not patterns:
+        return df
+
+    keep = []
+    for smi in df['canonical_smiles'].tolist():
+        mol = Chem.MolFromSmiles(str(smi))
+        if mol is None:
+            keep.append(False)
+            continue
+        is_excluded = any(mol.HasSubstructMatch(patt) for patt in patterns)
+        keep.append(not is_excluded)
+    return df.loc[keep].reset_index(drop=True)
+
+
+def _sa_score(smiles: str) -> float:
+    mol = Chem.MolFromSmiles(str(smiles))
+    if mol is None:
+        return float('nan')
+    try:
+        sascorer = import_module('rdkit.Contrib.SA_Score.sascorer')
+        return float(sascorer.calculateScore(mol))
+    except Exception:
+        return float('nan')
+
+
 def score_df(df: pd.DataFrame, qsar_model_path: Path) -> pd.DataFrame:
     bundle = joblib.load(qsar_model_path)
-    imputer = bundle['imputer']
-    scaler = bundle['scaler']
-    model = bundle['model']
     admet = ADMETModel()
+    smiles_list = df['canonical_smiles'].astype(str).tolist()
 
-    X = np.array([rdkit_desc(s) for s in df['canonical_smiles']], dtype=float)
-    X = imputer.transform(X)
-    X = scaler.transform(X)
-    pred_log_ic50 = model.predict(X).astype(float)
-    df['pred_logIC50_uM'] = pred_log_ic50
-    df['pred_ic50_uM'] = 10 ** pred_log_ic50
-    df['pred_pIC50'] = 6.0 - pred_log_ic50
+    qsar_summary = summarize_predictions(smiles_list, bundle, max_models=5)
+    for col, values in qsar_summary.items():
+        if col == 'qsar_model_names':
+            df['qsar_models_used'] = ' | '.join(values)
+        elif np.isscalar(values):
+            df[col] = values
+        else:
+            df[col] = np.asarray(values)
+
+    if 'qsar_model_count' in qsar_summary:
+        df['qsar_model_count'] = int(qsar_summary['qsar_model_count'])
 
     adme_rows = []
     for s in df['canonical_smiles']:
@@ -132,10 +179,23 @@ def score_df(df: pd.DataFrame, qsar_model_path: Path) -> pd.DataFrame:
         })
     df = pd.concat([df.reset_index(drop=True), pd.DataFrame(adme_rows)], axis=1)
 
-    admet_df = admet.predict(smiles=df['canonical_smiles'].tolist()).reset_index(drop=True)
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+        admet_df = admet.predict(smiles=smiles_list).reset_index(drop=True)
     df['pred_MetStab_Clearance_Microsome_AZ'] = admet_df['Clearance_Microsome_AZ']
     df['pred_MetStab_Clearance_Hepatocyte_AZ'] = admet_df['Clearance_Hepatocyte_AZ']
     df['pred_MetStab_Half_Life_Obach'] = admet_df['Half_Life_Obach']
+    for col in TARGET_FREE_ADMET_COLUMNS:
+        if col in admet_df.columns and col not in df.columns:
+            df[col] = admet_df[col]
+
+    df['sa_score'] = df['canonical_smiles'].map(_sa_score)
+    df['sa_accessibility'] = 1.0 - ((pd.to_numeric(df['sa_score'], errors='coerce') - 1.0) / 9.0).clip(lower=0.0, upper=1.0)
+    alert_cols = [c for c in ['PAINS_alert', 'BRENK_alert', 'NIH_alert'] if c in df.columns]
+    if alert_cols:
+        df['liability_alert_count'] = df[alert_cols].fillna(0).sum(axis=1)
+    else:
+        df['liability_alert_count'] = 0.0
+    df['passes_qsar_uncertainty'] = (pd.to_numeric(df['pred_ic50_uM_upper95'], errors='coerce') <= CUTS['pred_ic50_uM_max']).astype(int)
 
     df['passes_optimal'] = (
         (df['pred_ic50_uM'] <= CUTS['pred_ic50_uM_max'])
@@ -147,7 +207,10 @@ def score_df(df: pd.DataFrame, qsar_model_path: Path) -> pd.DataFrame:
         & (df['pred_MetStab_Half_Life_Obach'] >= CUTS['pred_MetStab_Half_Life_Obach_min'])
     ).astype(int)
 
-    return df.sort_values(['passes_optimal', 'pred_ic50_uM'], ascending=[False, True]).reset_index(drop=True)
+    return df.sort_values(
+        ['passes_optimal', 'passes_qsar_uncertainty', 'pred_ic50_uM', 'pred_pIC50_uncertainty'],
+        ascending=[False, False, True, True],
+    ).reset_index(drop=True)
 
 
 def export_results(df: pd.DataFrame, outdir: Path, label: str) -> None:
@@ -168,7 +231,7 @@ def export_results(df: pd.DataFrame, outdir: Path, label: str) -> None:
         {'file': hits_csv.name, 'rows': len(hits)},
         {'file': all_xlsx.name, 'rows': len(df)},
         {'file': hits_xlsx.name, 'rows': len(hits)},
-        {'cutoff': 'IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40'},
+        {'cutoff': 'IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40; QSAR uncertainty via up to 5 positive-R2 models'},
     ]).to_csv(manifest, index=False)
 
 
@@ -178,9 +241,11 @@ def main() -> int:
     parser.add_argument('--output-dir', required=True)
     parser.add_argument('--label', required=True)
     parser.add_argument('--qsar-model', default='reinvent_integration/artifacts/qsar_best_model.joblib')
+    parser.add_argument('--exclude-smarts', action='append', default=[])
     args = parser.parse_args()
 
     df = load_generated(Path(args.input_csv))
+    df = filter_excluded_smarts(df, args.exclude_smarts)
     if df.empty:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
         pd.DataFrame([{'file': f'{args.label}_generated_scored.csv', 'rows': 0}]).to_csv(Path(args.output_dir) / 'manifest.csv', index=False)

@@ -1,0 +1,30 @@
+{
+  "master_candidates": 37451,
+  "shortlist_candidates": 200,
+  "unique_scaffolds_master": 14287,
+  "unique_scaffolds_shortlist": 145,
+  "source_families": [
+    "libinvent",
+    "libinvent_transformer_pubchem",
+    "linkinvent",
+    "linkinvent_transformer_pubchem",
+    "nitro_bioisostere_campaign",
+    "pepinvent",
+    "reinvent",
+    "reinvent_pubchem"
+  ],
+  "source_modes": [
+    "curriculum_learning",
+    "mol2mol_mmp",
+    "mol2mol_scaffold",
+    "mol2mol_scaffold_generic",
+    "mol2mol_similarity",
+    "plain",
+    "reinforcement_learning"
+  ],
+  "artifacts": {
+    "master_ranked_csv": "outputs/hybrid_stage/gate1/gate1_master_ranked.csv",
+    "shortlist_csv": "outputs/hybrid_stage/gate1/gate1_shortlist.csv",
+    "shortlist_xlsx": "outputs/hybrid_stage/gate1/gate1_shortlist.xlsx"
+  }
+}

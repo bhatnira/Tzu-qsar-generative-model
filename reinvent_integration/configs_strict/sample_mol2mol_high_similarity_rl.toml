@@ -1,0 +1,11 @@
+run_type = "sampling"
+device = "cuda"
+[parameters]
+model_file = "reinvent_integration/results/mol2mol_high_similarity_rl_adme/mol2mol_high_similarity_rl.chkpt"
+smiles_file = "reinvent_integration/data/series_ce_unique.smi"
+sample_strategy = "beamsearch"
+temperature = 1.0
+output_file = "reinvent_integration/results/mol2mol_high_similarity_rl/samples.csv"
+num_smiles = 2000
+unique_molecules = false
+randomize_smiles = true

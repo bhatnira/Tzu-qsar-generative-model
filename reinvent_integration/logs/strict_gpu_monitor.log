@@ -1,0 +1,793 @@
+=== 2026-03-14 22:50:05 ===
+5 %, 4330 MiB, 48935 MiB
+2505837, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2784 MiB
+2530367, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:49:59 <INFO> Sampled SMILES C(=O)(CC1Oc2cc3c(c(O)c2c(=O)c1)c(O)c1c(c3O)cc(C=NC)nc1-c1cc(O)c(O)cc1)O failed to sanitize.
+22:49:59 <INFO> Sampled SMILES n1c(=NC(OCCC)=O)[nH]c2[nH]cnc(=N)c12 failed to sanitize.
+
+=== 2026-03-14 22:50:35 ===
+31 %, 3874 MiB, 48935 MiB
+2505837, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2784 MiB
+22:50:35 <INFO> Sampled SMILES C1CCn2c(C(Nc3ccc(C)c(Cl)c3)=O)cc(C(=O)NCC3CC3)c(=N)c21 failed to sanitize.
+22:50:35 <INFO> Sampled SMILES Oc1c2c(c(CCNCC(O)C)c1C1OC(C)(C)C(C)CC1)OC1(C)CCC(O)C(C)(C)C1C2 failed to sanitize.
+
+=== 2026-03-14 22:51:05 ===
+3 %, 1084 MiB, 48935 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:51:35 ===
+23 %, 1492 MiB, 48935 MiB
+2532904, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:52:05 ===
+9 %, 2917 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1418 MiB
+2534467, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:52:35 ===
+9 %, 3381 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1822 MiB
+2535745, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 408 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:53:05 ===
+2 %, 3323 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1822 MiB
+2537008, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 400 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:53:35 ===
+1 %, 3342 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1822 MiB
+2538592, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 432 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:54:05 ===
+1 %, 4268 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2539934, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:54:35 ===
+10 %, 4274 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2541219, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:55:05 ===
+10 %, 4288 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2542543, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:55:35 ===
+3 %, 4284 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2543897, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:56:05 ===
+1 %, 4321 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2545246, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 408 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:56:35 ===
+8 %, 3863 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:57:06 ===
+10 %, 3878 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:57:36 ===
+9 %, 3902 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:58:06 ===
+8 %, 4287 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2550969, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 408 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:58:36 ===
+9 %, 4304 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:59:06 ===
+6 %, 3907 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 22:59:36 ===
+0 %, 3917 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:00:06 ===
+1 %, 4307 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2556658, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:00:36 ===
+8 %, 4853 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2558302, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 408 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:01:06 ===
+0 %, 4436 MiB, 48935 MiB
+2533647, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 2776 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:01:36 ===
+2 %, 1647 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:02:06 ===
+95 %, 6165 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 4544 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:02:36 ===
+96 %, 7780 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 6150 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:03:06 ===
+98 %, 8673 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 7046 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:03:36 ===
+97 %, 9766 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 8118 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:04:06 ===
+98 %, 10951 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 9278 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:04:36 ===
+98 %, 11914 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561248, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 10278 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:05:06 ===
+0 %, 1626 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:05:36 ===
+16 %, 1629 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:06:06 ===
+0 %, 1578 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:06:36 ===
+10 %, 1587 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:07:07 ===
+0 %, 1590 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:07:37 ===
+11 %, 1581 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:08:07 ===
+0 %, 1579 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:08:37 ===
+0 %, 1579 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:09:07 ===
+12 %, 1582 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:09:37 ===
+1 %, 1587 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:10:07 ===
+0 %, 1600 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:10:37 ===
+2 %, 1631 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:11:07 ===
+0 %, 1574 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:11:37 ===
+1 %, 1572 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:12:07 ===
+1 %, 1551 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:12:37 ===
+0 %, 1967 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561923, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:13:07 ===
+1 %, 1967 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561923, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:13:37 ===
+1 %, 1986 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2561923, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:14:07 ===
+91 %, 2929 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1354 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:14:37 ===
+2 %, 3017 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1446 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:15:07 ===
+0 %, 37887 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 36316 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:15:37 ===
+7 %, 38127 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 36534 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:16:08 ===
+7 %, 38523 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 36534 MiB
+2564083, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 410 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:16:38 ===
+8 %, 40681 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 39106 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:17:08 ===
+85 %, 41775 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 40196 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:17:38 ===
+12 %, 41772 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2563051, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 40196 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:18:08 ===
+96 %, 3000 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2565660, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1430 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:18:38 ===
+0 %, 1550 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:19:08 ===
+91 %, 2712 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2566615, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1150 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:19:38 ===
+0 %, 1559 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:20:08 ===
+17 %, 1577 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:20:38 ===
+92 %, 2792 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2567416, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1214 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:21:08 ===
+10 %, 1578 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:21:38 ===
+0 %, 1586 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:22:08 ===
+87 %, 2637 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2568162, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 1058 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:22:38 ===
+10 %, 1589 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:23:08 ===
+1 %, 1567 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:23:38 ===
+1 %, 1566 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:24:08 ===
+9 %, 1576 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:24:38 ===
+97 %, 5824 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+2569058, /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python, 4230 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:25:08 ===
+0 %, 1563 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:25:38 ===
+0 %, 1568 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:26:08 ===
+18 %, 1626 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:26:39 ===
+0 %, 1608 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:27:09 ===
+0 %, 1578 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:27:39 ===
+0 %, 1578 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:28:09 ===
+3 %, 1586 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:28:39 ===
+1 %, 1596 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:29:09 ===
+1 %, 1591 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:29:39 ===
+15 %, 1639 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:30:09 ===
+10 %, 1584 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:30:39 ===
+0 %, 1575 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:31:09 ===
+0 %, 1575 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:31:39 ===
+0 %, 1575 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:32:09 ===
+0 %, 1575 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:32:39 ===
+0 %, 1593 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:33:09 ===
+0 %, 1574 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:33:39 ===
+0 %, 1573 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:34:09 ===
+23 %, 1636 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:34:40 ===
+0 %, 1594 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:35:10 ===
+0 %, 1588 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:35:40 ===
+0 %, 1580 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:36:10 ===
+0 %, 1580 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:36:40 ===
+0 %, 1579 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:37:10 ===
+0 %, 1579 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:37:40 ===
+0 %, 1579 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:38:10 ===
+0 %, 1575 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:38:40 ===
+0 %, 1571 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:39:10 ===
+0 %, 1595 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:39:40 ===
+0 %, 1624 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:40:10 ===
+0 %, 1619 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:40:40 ===
+1 %, 1654 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:41:10 ===
+11 %, 1724 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:41:40 ===
+1 %, 1634 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:42:10 ===
+0 %, 1598 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:42:40 ===
+11 %, 1641 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:43:10 ===
+1 %, 1645 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:43:41 ===
+10 %, 1701 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:44:11 ===
+0 %, 1615 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:44:41 ===
+3 %, 1636 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:45:11 ===
+0 %, 1616 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:45:41 ===
+0 %, 1608 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:46:11 ===
+0 %, 1646 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:46:41 ===
+1 %, 1627 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:47:11 ===
+0 %, 1617 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:47:41 ===
+1 %, 1665 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:48:11 ===
+1 %, 1645 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:48:41 ===
+2 %, 1623 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:49:11 ===
+0 %, 1594 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:49:41 ===
+0 %, 1602 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:50:11 ===
+0 %, 1597 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:50:41 ===
+0 %, 1632 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:51:11 ===
+0 %, 1602 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:51:41 ===
+0 %, 1622 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:52:12 ===
+0 %, 1606 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
+=== 2026-03-14 23:52:42 ===
+0 %, 1605 MiB, 48935 MiB
+2557433, /home/nbhatta1/Desktop/AChE-Project/.venv/bin/python, 536 MiB
+22:50:49 <INFO> Peak main memory usage: 2125.605 MiB
+22:50:49 <INFO> Finished REINVENT on 2026-03-14
+
