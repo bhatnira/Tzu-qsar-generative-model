@@ -2,7 +2,7 @@
   "master_candidates": 37451,
   "shortlist_candidates": 200,
   "unique_scaffolds_master": 14287,
-  "unique_scaffolds_shortlist": 145,
+  "unique_scaffolds_shortlist": 155,
   "source_families": [
     "libinvent",
     "libinvent_transformer_pubchem",

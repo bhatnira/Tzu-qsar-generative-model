@@ -1,309 +1,625 @@
-[2026-03-14 21:29:09] === FAST GENERATION START ===
-[2026-03-14 21:29:09] ---- MODEL reinvent ----
-[2026-03-14 21:29:09] SKIP plain pipeline for reinvent: outputs already exist
-[2026-03-14 21:29:09] SKIP RL pipeline for reinvent: outputs already exist
-[2026-03-14 21:29:09] START train_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_reinvent.toml
-[2026-03-14 21:29:25] DONE train_reinvent_cl
-[2026-03-14 21:29:25] START sample_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_cl.toml
-[2026-03-14 21:29:27] sample_reinvent_cl | Traceback (most recent call last):
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:29:27] sample_reinvent_cl |     sys.exit(main_script())
-[2026-03-14 21:29:27] sample_reinvent_cl |              ^^^^^^^^^^^^^
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:29:27] sample_reinvent_cl |     main(args)
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:29:27] sample_reinvent_cl |     runner(
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
-[2026-03-14 21:29:27] sample_reinvent_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
-[2026-03-14 21:29:27] sample_reinvent_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
-[2026-03-14 21:29:27] sample_reinvent_cl |     dict_filename = resolve_model_filename(dict_filename)
-[2026-03-14 21:29:27] sample_reinvent_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:29:27] sample_reinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
-[2026-03-14 21:29:27] sample_reinvent_cl |     raise RuntimeError(msg)
-[2026-03-14 21:29:27] sample_reinvent_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_cl_adme/reinvent_cl_stage2.chkpt is not accessible
-[2026-03-14 21:29:27] FAIL sample_reinvent_cl (exit=1)
-[2026-03-14 21:29:27] FALLBACK score_reinvent_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_plain/samples.csv
-[2026-03-14 21:29:27] START score_reinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent/curriculum_learning --label reinvent_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 175.93it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 972.38it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 1030.53it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 1044.37it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 925.54it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 832.95it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 850.09it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 800.42it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 776.40it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 0:00:00 • 0:00:00 704.44it/s 
-[2026-03-14 21:29:34] score_reinvent_cl | reinvent_cl valid_unique=97 optimal=0
-[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
-[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
-[2026-03-14 21:29:34] score_reinvent_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:29:34] score_reinvent_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:29:34] score_reinvent_cl |   warnings.warn(
-[2026-03-14 21:29:34] score_reinvent_cl | 
-[2026-03-14 21:29:34] score_reinvent_cl | SMILES to Mol:   0%|          | 0/97 [00:00<?, ?it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | SMILES to Mol: 100%|██████████| 97/97 [00:00<00:00, 16547.26it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | 
-[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:   0%|          | 0/97 [00:00<?, ?it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:  46%|████▋     | 45/97 [00:00<00:00, 437.71it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties:  94%|█████████▍| 91/97 [00:00<00:00, 449.53it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | Computing physchem properties: 100%|██████████| 97/97 [00:00<00:00, 449.90it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | 
-[2026-03-14 21:29:34] score_reinvent_cl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
-[2026-03-14 21:29:34] score_reinvent_cl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:29:34] score_reinvent_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:29:34] score_reinvent_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | 
-[2026-03-14 21:29:34] score_reinvent_cl | model ensembles:  50%|█████     | 1/2 [00:01<00:01,  1.06s/it]GPU available: True (cuda), used: True
-[2026-03-14 21:29:34] score_reinvent_cl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:29:34] score_reinvent_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:29:34] score_reinvent_cl | 
-[2026-03-14 21:29:34] score_reinvent_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.14it/s]
-[2026-03-14 21:29:34] score_reinvent_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.10it/s]
-[2026-03-14 21:29:34] DONE score_reinvent_cl
-[2026-03-14 21:29:34] ---- MODEL reinvent_pubchem ----
-[2026-03-14 21:29:34] SKIP plain pipeline for reinvent_pubchem: outputs already exist
-[2026-03-14 21:29:34] START train_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_reinvent_pubchem.toml
-[2026-03-14 21:35:43] DONE train_reinvent_pubchem_rl
-[2026-03-14 21:35:43] START sample_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_pubchem_rl.toml
-[2026-03-14 21:35:47] DONE sample_reinvent_pubchem_rl
-[2026-03-14 21:35:47] START score_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent_pubchem/reinforcement_learning --label reinvent_pubchem_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | reinvent_pubchem_rl valid_unique=13 optimal=0
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl |   warnings.warn(
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | SMILES to Mol:   0%|          | 0/13 [00:00<?, ?it/s]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | SMILES to Mol: 100%|██████████| 13/13 [00:00<00:00, 14390.59it/s]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Computing physchem properties:   0%|          | 0/13 [00:00<?, ?it/s]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | Computing physchem properties: 100%|██████████| 13/13 [00:00<00:00, 445.94it/s]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles:  50%|█████     | 1/2 [00:00<00:00,  1.03it/s]GPU available: True (cuda), used: True
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | 
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.23it/s]
-[2026-03-14 21:35:52] score_reinvent_pubchem_rl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.20it/s]
-[2026-03-14 21:35:52] DONE score_reinvent_pubchem_rl
-[2026-03-14 21:35:52] START train_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_reinvent_pubchem.toml
-[2026-03-14 21:39:33] DONE train_reinvent_pubchem_cl
-[2026-03-14 21:39:33] START sample_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_pubchem_cl.toml
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl | Traceback (most recent call last):
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     sys.exit(main_script())
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     main(args)
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     runner(
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     dict_filename = resolve_model_filename(dict_filename)
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl |     raise RuntimeError(msg)
-[2026-03-14 21:39:35] sample_reinvent_pubchem_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_cl_adme/reinvent_pubchem_cl_stage2.chkpt is not accessible
-[2026-03-14 21:39:35] FAIL sample_reinvent_pubchem_cl (exit=1)
-[2026-03-14 21:39:35] FALLBACK score_reinvent_pubchem_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_plain/samples.csv
-[2026-03-14 21:39:35] START score_reinvent_pubchem_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent_pubchem/curriculum_learning --label reinvent_pubchem_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Predicting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 • 0:00:00 0.00it/s 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | reinvent_pubchem_cl valid_unique=13 optimal=0
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator KNeighborsRegressor from version 1.8.0 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl |   warnings.warn(
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | SMILES to Mol:   0%|          | 0/13 [00:00<?, ?it/s]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | SMILES to Mol: 100%|██████████| 13/13 [00:00<00:00, 13060.11it/s]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Computing physchem properties:   0%|          | 0/13 [00:00<?, ?it/s]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | Computing physchem properties: 100%|██████████| 13/13 [00:00<00:00, 422.15it/s]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles:   0%|          | 0/2 [00:00<?, ?it/s]GPU available: True (cuda), used: True
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles:  50%|█████     | 1/2 [00:00<00:00,  1.00it/s]GPU available: True (cuda), used: True
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | TPU available: False, using: 0 TPU cores
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | 
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.26it/s]
-[2026-03-14 21:39:39] score_reinvent_pubchem_cl | model ensembles: 100%|██████████| 2/2 [00:01<00:00,  1.21it/s]
-[2026-03-14 21:39:39] DONE score_reinvent_pubchem_cl
-[2026-03-14 21:39:39] ---- MODEL pepinvent ----
-[2026-03-14 21:39:39] START sample_pepinvent_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_plain.toml
-[2026-03-14 21:39:42] sample_pepinvent_plain | Traceback (most recent call last):
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:42] sample_pepinvent_plain |     sys.exit(main_script())
-[2026-03-14 21:39:42] sample_pepinvent_plain |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:42] sample_pepinvent_plain |     main(args)
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:42] sample_pepinvent_plain |     runner(
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 84, in run_sampling
-[2026-03-14 21:39:42] sample_pepinvent_plain |     input_smilies = read_smiles_csv_file(smiles_input_filename, 0, allowed_tokens)
-[2026-03-14 21:39:42] sample_pepinvent_plain |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
-[2026-03-14 21:39:42] sample_pepinvent_plain |     validate_tokens(smiles, allowed_tokens)
-[2026-03-14 21:39:42] sample_pepinvent_plain |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
-[2026-03-14 21:39:42] sample_pepinvent_plain |     raise ValueError(
-[2026-03-14 21:39:42] sample_pepinvent_plain | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
-[2026-03-14 21:39:42] sample_pepinvent_plain | Allowed tokens are: ({'Br', '[N@@]', '|', '[C@]', '-', '?', '3', 'c', 'O', '*', '^', '4', '[N@@+]', '[N@+]', '\\', '/', 'Cl', '[N@]', 'S', 'F', '[N+]', '[C@H]', '[C@@H]', '1', '(', 'n', 's', '[n+]', '2', '6', 'N', '$', 'o', '8', '[S@@]', '#', '5', '=', '[C@@]', ')', 'C', '[nH]', '[S@]'}, set())
-[2026-03-14 21:39:42] FAIL sample_pepinvent_plain (exit=1)
-[2026-03-14 21:39:42] SKIP score_pepinvent_plain: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_plain/samples.csv and no plain fallback
-[2026-03-14 21:39:42] START train_pepinvent_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_pepinvent.toml
-[2026-03-14 21:39:44] train_pepinvent_rl | Traceback (most recent call last):
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:44] train_pepinvent_rl |     sys.exit(main_script())
-[2026-03-14 21:39:44] train_pepinvent_rl |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:44] train_pepinvent_rl |     main(args)
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:44] train_pepinvent_rl |     runner(
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/RL/run_staged_learning.py", line 97, in run_staged_learning
-[2026-03-14 21:39:44] train_pepinvent_rl |     smilies = config_parse.read_smiles_csv_file(parameters.smiles_file, 0, allowed_tokens)
-[2026-03-14 21:39:44] train_pepinvent_rl |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
-[2026-03-14 21:39:44] train_pepinvent_rl |     validate_tokens(smiles, allowed_tokens)
-[2026-03-14 21:39:44] train_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
-[2026-03-14 21:39:44] train_pepinvent_rl |     raise ValueError(
-[2026-03-14 21:39:44] train_pepinvent_rl | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
-[2026-03-14 21:39:44] train_pepinvent_rl | Allowed tokens are: ({'8', ')', '[C@]', '[C@@H]', 's', '(', 'F', '[S@@]', '/', '?', '5', '#', 'Cl', 'c', '$', '[nH]', 'Br', '4', '6', '^', '[N@+]', '3', '-', '2', '=', '[n+]', 'o', '[C@@]', '1', 'O', '*', 'S', '[N+]', '[N@]', '|', 'C', '[S@]', '[C@H]', '[N@@+]', 'n', '[N@@]', '\\', 'N'}, set())
-[2026-03-14 21:39:44] FAIL train_pepinvent_rl (exit=1)
-[2026-03-14 21:39:44] START sample_pepinvent_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_rl.toml
-[2026-03-14 21:39:46] sample_pepinvent_rl | Traceback (most recent call last):
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:46] sample_pepinvent_rl |     sys.exit(main_script())
-[2026-03-14 21:39:46] sample_pepinvent_rl |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:46] sample_pepinvent_rl |     main(args)
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:46] sample_pepinvent_rl |     runner(
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
-[2026-03-14 21:39:46] sample_pepinvent_rl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
-[2026-03-14 21:39:46] sample_pepinvent_rl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
-[2026-03-14 21:39:46] sample_pepinvent_rl |     dict_filename = resolve_model_filename(dict_filename)
-[2026-03-14 21:39:46] sample_pepinvent_rl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:46] sample_pepinvent_rl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
-[2026-03-14 21:39:46] sample_pepinvent_rl |     raise RuntimeError(msg)
-[2026-03-14 21:39:46] sample_pepinvent_rl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_rl_adme/pepinvent_rl.chkpt is not accessible
-[2026-03-14 21:39:46] FAIL sample_pepinvent_rl (exit=1)
-[2026-03-14 21:39:46] SKIP score_pepinvent_rl: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_rl/samples.csv and no plain fallback
-[2026-03-14 21:39:46] START train_pepinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_pepinvent.toml
-[2026-03-14 21:39:48] train_pepinvent_cl | Traceback (most recent call last):
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:48] train_pepinvent_cl |     sys.exit(main_script())
-[2026-03-14 21:39:48] train_pepinvent_cl |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:48] train_pepinvent_cl |     main(args)
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:48] train_pepinvent_cl |     runner(
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/RL/run_staged_learning.py", line 97, in run_staged_learning
-[2026-03-14 21:39:48] train_pepinvent_cl |     smilies = config_parse.read_smiles_csv_file(parameters.smiles_file, 0, allowed_tokens)
-[2026-03-14 21:39:48] train_pepinvent_cl |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 147, in read_smiles_csv_file
-[2026-03-14 21:39:48] train_pepinvent_cl |     validate_tokens(smiles, allowed_tokens)
-[2026-03-14 21:39:48] train_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/utils/config_parse.py", line 203, in validate_tokens
-[2026-03-14 21:39:48] train_pepinvent_cl |     raise ValueError(
-[2026-03-14 21:39:48] train_pepinvent_cl | ValueError: Tokens {'[O-]'} in CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 are not supported by the model
-[2026-03-14 21:39:48] train_pepinvent_cl | Allowed tokens are: ({'N', ')', '[S@]', '(', 'n', '=', '6', '|', '[S@@]', '[N@+]', '[C@]', 'Cl', '[C@H]', 'C', 'O', 'o', '$', '*', '?', 'Br', '[N+]', '^', '5', '[N@@]', '[C@@H]', 's', 'F', '[nH]', '#', '[N@]', '8', '3', 'S', '-', '[C@@]', '2', '1', '[N@@+]', '/', '[n+]', '\\', 'c', '4'}, set())
-[2026-03-14 21:39:48] FAIL train_pepinvent_cl (exit=1)
-[2026-03-14 21:39:48] START sample_pepinvent_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/pepinvent_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_pepinvent_cl.toml
-[2026-03-14 21:39:50] sample_pepinvent_cl | Traceback (most recent call last):
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
-[2026-03-14 21:39:50] sample_pepinvent_cl |     sys.exit(main_script())
-[2026-03-14 21:39:50] sample_pepinvent_cl |              ^^^^^^^^^^^^^
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
-[2026-03-14 21:39:50] sample_pepinvent_cl |     main(args)
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
-[2026-03-14 21:39:50] sample_pepinvent_cl |     runner(
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
-[2026-03-14 21:39:50] sample_pepinvent_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
-[2026-03-14 21:39:50] sample_pepinvent_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
-[2026-03-14 21:39:50] sample_pepinvent_cl |     dict_filename = resolve_model_filename(dict_filename)
-[2026-03-14 21:39:50] sample_pepinvent_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2026-03-14 21:39:50] sample_pepinvent_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
-[2026-03-14 21:39:50] sample_pepinvent_cl |     raise RuntimeError(msg)
-[2026-03-14 21:39:50] sample_pepinvent_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_cl_adme/pepinvent_cl_stage2.chkpt is not accessible
-[2026-03-14 21:39:50] FAIL sample_pepinvent_cl (exit=1)
-[2026-03-14 21:39:50] SKIP score_pepinvent_cl: missing /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/pepinvent_cl/samples.csv and no plain fallback
-[2026-03-14 21:39:50] ---- MODEL mol2mol_similarity ----
-[2026-03-14 21:39:50] SKIP plain pipeline for mol2mol_similarity: outputs already exist
-[2026-03-14 21:39:50] SKIP RL pipeline for mol2mol_similarity: outputs already exist
-[2026-03-14 21:39:50] START train_mol2mol_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_similarity.toml
+[2026-03-15 19:07:32] === FAST GENERATION START ===
+[2026-03-15 19:07:32] ---- MODEL reinvent ----
+[2026-03-15 19:07:32] SKIP plain pipeline for reinvent: outputs already exist
+[2026-03-15 19:07:32] SKIP RL pipeline for reinvent: outputs already exist
+[2026-03-15 19:07:32] SKIP CL pipeline for reinvent: outputs already exist
+[2026-03-15 19:07:32] ---- MODEL reinvent_pubchem ----
+[2026-03-15 19:07:32] SKIP plain pipeline for reinvent_pubchem: outputs already exist
+[2026-03-15 19:07:32] START train_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_reinvent_pubchem.toml
+[2026-03-15 19:12:26] DONE train_reinvent_pubchem_rl
+[2026-03-15 19:12:26] START sample_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/reinvent_pubchem_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_reinvent_pubchem_rl.toml
+[2026-03-15 19:12:30] DONE sample_reinvent_pubchem_rl
+[2026-03-15 19:12:30] START score_reinvent_pubchem_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/reinvent_pubchem_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/reinvent_pubchem/reinforcement_learning --label reinvent_pubchem_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | reinvent_pubchem_rl valid_unique=13 optimal=0
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl |   warnings.warn(
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] score_reinvent_pubchem_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:35] DONE score_reinvent_pubchem_rl
+[2026-03-15 19:12:35] SKIP CL pipeline for reinvent_pubchem: outputs already exist
+[2026-03-15 19:12:35] ---- MODEL pepinvent ----
+[2026-03-15 19:12:35] SKIP plain pipeline for pepinvent: outputs already exist
+[2026-03-15 19:12:35] SKIP RL pipeline for pepinvent: outputs already exist
+[2026-03-15 19:12:35] SKIP CL pipeline for pepinvent: outputs already exist
+[2026-03-15 19:12:35] ---- MODEL mol2mol_similarity ----
+[2026-03-15 19:12:35] START sample_mol2mol_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_similarity_plain.toml
+[2026-03-15 19:12:38] DONE sample_mol2mol_similarity_plain
+[2026-03-15 19:12:38] START score_mol2mol_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/similarity/plain --label mol2mol_similarity_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | mol2mol_similarity_plain valid_unique=11 optimal=0
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain |   warnings.warn(
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] score_mol2mol_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:12:43] DONE score_mol2mol_similarity_plain
+[2026-03-15 19:12:43] START train_mol2mol_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_similarity.toml
+[2026-03-15 19:14:31] DONE train_mol2mol_similarity_rl
+[2026-03-15 19:14:31] START sample_mol2mol_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_similarity_rl.toml
+[2026-03-15 19:14:34] DONE sample_mol2mol_similarity_rl
+[2026-03-15 19:14:34] START score_mol2mol_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_similarity_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/similarity/reinforcement_learning --label mol2mol_similarity_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | mol2mol_similarity_rl valid_unique=13 optimal=0
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl |   warnings.warn(
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] score_mol2mol_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:14:40] DONE score_mol2mol_similarity_rl
+[2026-03-15 19:14:40] START train_mol2mol_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_similarity.toml
+[2026-03-15 19:18:14] DONE train_mol2mol_similarity_cl
+[2026-03-15 19:18:14] START sample_mol2mol_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_similarity_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_similarity_cl.toml
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl | Traceback (most recent call last):
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     sys.exit(main_script())
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     main(args)
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     runner(
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl |     raise RuntimeError(msg)
+[2026-03-15 19:18:17] sample_mol2mol_similarity_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_similarity_cl_adme/mol2mol_similarity_cl_stage2.chkpt is not accessible
+[2026-03-15 19:18:17] FAIL sample_mol2mol_similarity_cl (exit=1)
+[2026-03-15 19:18:17] FALLBACK score_mol2mol_similarity_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_similarity_plain/samples.csv
+[2026-03-15 19:18:17] START score_mol2mol_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/similarity/curriculum_learning --label mol2mol_similarity_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | mol2mol_similarity_cl valid_unique=11 optimal=0
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl |   warnings.warn(
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] score_mol2mol_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:22] DONE score_mol2mol_similarity_cl
+[2026-03-15 19:18:22] ---- MODEL mol2mol_high_similarity ----
+[2026-03-15 19:18:22] START sample_mol2mol_high_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_high_similarity_plain.toml
+[2026-03-15 19:18:25] DONE sample_mol2mol_high_similarity_plain
+[2026-03-15 19:18:25] START score_mol2mol_high_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_high_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/high_similarity/plain --label mol2mol_high_similarity_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | mol2mol_high_similarity_plain valid_unique=13 optimal=0
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain |   warnings.warn(
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] score_mol2mol_high_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:18:30] DONE score_mol2mol_high_similarity_plain
+[2026-03-15 19:18:30] START train_mol2mol_high_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_high_similarity.toml
+[2026-03-15 19:20:21] DONE train_mol2mol_high_similarity_rl
+[2026-03-15 19:20:21] START sample_mol2mol_high_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_high_similarity_rl.toml
+[2026-03-15 19:20:24] DONE sample_mol2mol_high_similarity_rl
+[2026-03-15 19:20:24] START score_mol2mol_high_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_high_similarity_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/high_similarity/reinforcement_learning --label mol2mol_high_similarity_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | mol2mol_high_similarity_rl valid_unique=13 optimal=1
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl |   warnings.warn(
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] score_mol2mol_high_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:20:30] DONE score_mol2mol_high_similarity_rl
+[2026-03-15 19:20:30] START train_mol2mol_high_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_high_similarity.toml
+[2026-03-15 19:23:24] DONE train_mol2mol_high_similarity_cl
+[2026-03-15 19:23:24] START sample_mol2mol_high_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_high_similarity_cl.toml
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl | Traceback (most recent call last):
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     sys.exit(main_script())
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     main(args)
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     runner(
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl |     raise RuntimeError(msg)
+[2026-03-15 19:23:26] sample_mol2mol_high_similarity_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_high_similarity_cl_adme/mol2mol_high_similarity_cl_stage2.chkpt is not accessible
+[2026-03-15 19:23:26] FAIL sample_mol2mol_high_similarity_cl (exit=1)
+[2026-03-15 19:23:26] FALLBACK score_mol2mol_high_similarity_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_high_similarity_plain/samples.csv
+[2026-03-15 19:23:26] START score_mol2mol_high_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_high_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/high_similarity/curriculum_learning --label mol2mol_high_similarity_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | mol2mol_high_similarity_cl valid_unique=13 optimal=0
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl |   warnings.warn(
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] score_mol2mol_high_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:32] DONE score_mol2mol_high_similarity_cl
+[2026-03-15 19:23:32] ---- MODEL mol2mol_medium_similarity ----
+[2026-03-15 19:23:32] START sample_mol2mol_medium_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_medium_similarity_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_medium_similarity_plain.toml
+[2026-03-15 19:23:35] DONE sample_mol2mol_medium_similarity_plain
+[2026-03-15 19:23:35] START score_mol2mol_medium_similarity_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_medium_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/medium_similarity/plain --label mol2mol_medium_similarity_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | mol2mol_medium_similarity_plain valid_unique=13 optimal=0
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain |   warnings.warn(
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] score_mol2mol_medium_similarity_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:23:41] DONE score_mol2mol_medium_similarity_plain
+[2026-03-15 19:23:41] START train_mol2mol_medium_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_medium_similarity_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_medium_similarity.toml
+[2026-03-15 19:26:06] DONE train_mol2mol_medium_similarity_rl
+[2026-03-15 19:26:06] START sample_mol2mol_medium_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_medium_similarity_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_medium_similarity_rl.toml
+[2026-03-15 19:26:09] DONE sample_mol2mol_medium_similarity_rl
+[2026-03-15 19:26:09] START score_mol2mol_medium_similarity_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_medium_similarity_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/medium_similarity/reinforcement_learning --label mol2mol_medium_similarity_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | mol2mol_medium_similarity_rl valid_unique=13 optimal=0
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl |   warnings.warn(
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] score_mol2mol_medium_similarity_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:26:14] DONE score_mol2mol_medium_similarity_rl
+[2026-03-15 19:26:14] START train_mol2mol_medium_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_medium_similarity_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_medium_similarity.toml
+[2026-03-15 19:30:04] DONE train_mol2mol_medium_similarity_cl
+[2026-03-15 19:30:04] START sample_mol2mol_medium_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_medium_similarity_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_medium_similarity_cl.toml
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl | Traceback (most recent call last):
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     sys.exit(main_script())
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     main(args)
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     runner(
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl |     raise RuntimeError(msg)
+[2026-03-15 19:30:07] sample_mol2mol_medium_similarity_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_medium_similarity_cl_adme/mol2mol_medium_similarity_cl_stage2.chkpt is not accessible
+[2026-03-15 19:30:07] FAIL sample_mol2mol_medium_similarity_cl (exit=1)
+[2026-03-15 19:30:07] FALLBACK score_mol2mol_medium_similarity_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_medium_similarity_plain/samples.csv
+[2026-03-15 19:30:07] START score_mol2mol_medium_similarity_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_medium_similarity_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/medium_similarity/curriculum_learning --label mol2mol_medium_similarity_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | mol2mol_medium_similarity_cl valid_unique=13 optimal=0
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl |   warnings.warn(
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] score_mol2mol_medium_similarity_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:12] DONE score_mol2mol_medium_similarity_cl
+[2026-03-15 19:30:12] ---- MODEL mol2mol_scaffold ----
+[2026-03-15 19:30:12] START sample_mol2mol_scaffold_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_plain.toml
+[2026-03-15 19:30:16] DONE sample_mol2mol_scaffold_plain
+[2026-03-15 19:30:16] START score_mol2mol_scaffold_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold/plain --label mol2mol_scaffold_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | mol2mol_scaffold_plain valid_unique=13 optimal=0
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain |   warnings.warn(
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] score_mol2mol_scaffold_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:30:21] DONE score_mol2mol_scaffold_plain
+[2026-03-15 19:30:21] START train_mol2mol_scaffold_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_scaffold.toml
+[2026-03-15 19:31:43] DONE train_mol2mol_scaffold_rl
+[2026-03-15 19:31:43] START sample_mol2mol_scaffold_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_rl.toml
+[2026-03-15 19:31:46] DONE sample_mol2mol_scaffold_rl
+[2026-03-15 19:31:46] START score_mol2mol_scaffold_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold/reinforcement_learning --label mol2mol_scaffold_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | mol2mol_scaffold_rl valid_unique=13 optimal=0
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl |   warnings.warn(
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] score_mol2mol_scaffold_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:31:52] DONE score_mol2mol_scaffold_rl
+[2026-03-15 19:31:52] START train_mol2mol_scaffold_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_scaffold.toml
+[2026-03-15 19:33:44] DONE train_mol2mol_scaffold_cl
+[2026-03-15 19:33:44] START sample_mol2mol_scaffold_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_cl.toml
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl | Traceback (most recent call last):
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     sys.exit(main_script())
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     main(args)
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     runner(
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl |     raise RuntimeError(msg)
+[2026-03-15 19:33:47] sample_mol2mol_scaffold_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_cl_adme/mol2mol_scaffold_cl_stage2.chkpt is not accessible
+[2026-03-15 19:33:47] FAIL sample_mol2mol_scaffold_cl (exit=1)
+[2026-03-15 19:33:47] FALLBACK score_mol2mol_scaffold_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_plain/samples.csv
+[2026-03-15 19:33:47] START score_mol2mol_scaffold_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold/curriculum_learning --label mol2mol_scaffold_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | mol2mol_scaffold_cl valid_unique=13 optimal=0
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl |   warnings.warn(
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] score_mol2mol_scaffold_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:33:52] DONE score_mol2mol_scaffold_cl
+[2026-03-15 19:33:52] ---- MODEL mol2mol_scaffold_generic ----
+[2026-03-15 19:33:52] START sample_mol2mol_scaffold_generic_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_generic_plain.toml
+[2026-03-15 19:33:55] DONE sample_mol2mol_scaffold_generic_plain
+[2026-03-15 19:33:55] START score_mol2mol_scaffold_generic_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold_generic/plain --label mol2mol_scaffold_generic_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | mol2mol_scaffold_generic_plain valid_unique=11 optimal=1
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain |   warnings.warn(
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] score_mol2mol_scaffold_generic_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:34:01] DONE score_mol2mol_scaffold_generic_plain
+[2026-03-15 19:34:01] START train_mol2mol_scaffold_generic_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_scaffold_generic.toml
+[2026-03-15 19:35:17] DONE train_mol2mol_scaffold_generic_rl
+[2026-03-15 19:35:17] START sample_mol2mol_scaffold_generic_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_generic_rl.toml
+[2026-03-15 19:35:21] DONE sample_mol2mol_scaffold_generic_rl
+[2026-03-15 19:35:21] START score_mol2mol_scaffold_generic_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold_generic/reinforcement_learning --label mol2mol_scaffold_generic_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | mol2mol_scaffold_generic_rl valid_unique=13 optimal=2
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl |   warnings.warn(
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] score_mol2mol_scaffold_generic_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:35:27] DONE score_mol2mol_scaffold_generic_rl
+[2026-03-15 19:35:27] START train_mol2mol_scaffold_generic_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_scaffold_generic.toml
+[2026-03-15 19:37:32] DONE train_mol2mol_scaffold_generic_cl
+[2026-03-15 19:37:32] START sample_mol2mol_scaffold_generic_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_scaffold_generic_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_scaffold_generic_cl.toml
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl | Traceback (most recent call last):
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     sys.exit(main_script())
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     main(args)
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     runner(
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl |     raise RuntimeError(msg)
+[2026-03-15 19:37:34] sample_mol2mol_scaffold_generic_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_cl_adme/mol2mol_scaffold_generic_cl_stage2.chkpt is not accessible
+[2026-03-15 19:37:34] FAIL sample_mol2mol_scaffold_generic_cl (exit=1)
+[2026-03-15 19:37:34] FALLBACK score_mol2mol_scaffold_generic_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_plain/samples.csv
+[2026-03-15 19:37:34] START score_mol2mol_scaffold_generic_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_scaffold_generic_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/scaffold_generic/curriculum_learning --label mol2mol_scaffold_generic_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | mol2mol_scaffold_generic_cl valid_unique=11 optimal=1
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl |   warnings.warn(
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] score_mol2mol_scaffold_generic_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:40] DONE score_mol2mol_scaffold_generic_cl
+[2026-03-15 19:37:40] ---- MODEL mol2mol_mmp ----
+[2026-03-15 19:37:40] START sample_mol2mol_mmp_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_mmp_plain.toml
+[2026-03-15 19:37:43] DONE sample_mol2mol_mmp_plain
+[2026-03-15 19:37:43] START score_mol2mol_mmp_plain: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/mmp/plain --label mol2mol_mmp_plain --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | mol2mol_mmp_plain valid_unique=12 optimal=0
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain |   warnings.warn(
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | GPU available: True (cuda), used: True
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] score_mol2mol_mmp_plain | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:37:48] DONE score_mol2mol_mmp_plain
+[2026-03-15 19:37:48] START train_mol2mol_mmp_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_mmp.toml
+[2026-03-15 19:39:09] DONE train_mol2mol_mmp_rl
+[2026-03-15 19:39:09] START sample_mol2mol_mmp_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_rl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_mmp_rl.toml
+[2026-03-15 19:39:12] DONE sample_mol2mol_mmp_rl
+[2026-03-15 19:39:12] START score_mol2mol_mmp_rl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_rl/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/mmp/reinforcement_learning --label mol2mol_mmp_rl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | mol2mol_mmp_rl valid_unique=13 optimal=0
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl |   warnings.warn(
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | GPU available: True (cuda), used: True
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] score_mol2mol_mmp_rl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:39:17] DONE score_mol2mol_mmp_rl
+[2026-03-15 19:39:17] START train_mol2mol_mmp_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_cl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/cl_mol2mol_mmp.toml
+[2026-03-15 19:41:27] DONE train_mol2mol_mmp_cl
+[2026-03-15 19:41:27] START sample_mol2mol_mmp_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_cl_sample.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_mmp_cl.toml
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl | Traceback (most recent call last):
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent", line 6, in <module>
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     sys.exit(main_script())
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |              ^^^^^^^^^^^^^
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 196, in main_script
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     main(args)
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/Reinvent.py", line 165, in main
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     runner(
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/samplers/run_sampling.py", line 62, in run_sampling
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     adapter, _, model_type = create_adapter(agent_model_filename, "inference", device)
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 30, in create_adapter
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     dict_filename = resolve_model_filename(dict_filename)
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |   File "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/reinvent/runmodes/create_adapter.py", line 81, in resolve_model_filename
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl |     raise RuntimeError(msg)
+[2026-03-15 19:41:29] sample_mol2mol_mmp_cl | RuntimeError: model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_cl_adme/mol2mol_mmp_cl_stage2.chkpt is not accessible
+[2026-03-15 19:41:29] FAIL sample_mol2mol_mmp_cl (exit=1)
+[2026-03-15 19:41:29] FALLBACK score_mol2mol_mmp_cl: using plain samples from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_plain/samples.csv
+[2026-03-15 19:41:29] START score_mol2mol_mmp_cl: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python reinvent_integration/score_generated_smiles_adme.py --input-csv /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_plain/samples.csv --output-dir /home/nbhatta1/Desktop/qsar-project-Tzu/outputs/generated/mol2mol/mmp/curriculum_learning --label mol2mol_mmp_cl --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | mol2mol_mmp_cl valid_unique=12 optimal=0
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/lib64/python3.11/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl |   warnings.warn(
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | You are using a CUDA device ('NVIDIA RTX PRO 5000 Blackwell') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | GPU available: True (cuda), used: True
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | TPU available: False, using: 0 TPU cores
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] score_mol2mol_mmp_cl | LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-03-15 19:41:35] DONE score_mol2mol_mmp_cl
+[2026-03-15 19:41:35] ---- MODEL libinvent ----
+[2026-03-15 19:41:35] SKIP plain pipeline for libinvent: outputs already exist
+[2026-03-15 19:41:35] SKIP RL pipeline for libinvent: outputs already exist
+[2026-03-15 19:41:35] SKIP CL pipeline for libinvent: outputs already exist
+[2026-03-15 19:41:35] ---- MODEL libinvent_transformer_pubchem ----
+[2026-03-15 19:41:35] SKIP plain pipeline for libinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] SKIP RL pipeline for libinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] SKIP CL pipeline for libinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] ---- MODEL linkinvent ----
+[2026-03-15 19:41:35] SKIP plain pipeline for linkinvent: outputs already exist
+[2026-03-15 19:41:35] SKIP RL pipeline for linkinvent: outputs already exist
+[2026-03-15 19:41:35] SKIP CL pipeline for linkinvent: outputs already exist
+[2026-03-15 19:41:35] ---- MODEL linkinvent_transformer_pubchem ----
+[2026-03-15 19:41:35] SKIP plain pipeline for linkinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] SKIP RL pipeline for linkinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] SKIP CL pipeline for linkinvent_transformer_pubchem: outputs already exist
+[2026-03-15 19:41:35] === FAST GENERATION END: total=51 failed=6 ===

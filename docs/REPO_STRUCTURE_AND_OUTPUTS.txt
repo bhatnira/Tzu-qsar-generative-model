@@ -29,7 +29,7 @@ HOW TO RUN (from repo root)
 # Train QSAR and run the full pipeline:
   python scripts/run_pipeline.py
 
-# Rebuild Gate 1/2/3 ranked outputs:
+# Rebuild Gate 1 ranked outputs:
   python reinvent_integration/run_hybrid_stage_gates.py
 
 # Quick import smoke-test:
@@ -64,7 +64,7 @@ reinvent_integration/
   - score_generated_smiles_adme.py
       Adds potency, ADME, alerts, synthetic accessibility, and QSAR uncertainty.
   - run_hybrid_stage_gates.py
-      Produces the final ranked Gate 1, Gate 2, and Gate 3 outputs.
+      Produces the final ranked Gate 1 shortlist outputs.
 
 scripts/
   All standalone scripts that are run from the command line. Every script
@@ -114,17 +114,6 @@ outputs/hybrid_stage/
     gate1_master_ranked.csv
     gate1_summary.json
 
-  gate2_target_free_refinement/
-    target_free_candidates.csv
-    target_free_candidates.xlsx
-    README_GATE2.txt
-
-  gate3_target_free_translational/
-    translational_candidates.csv
-    translational_candidates.xlsx
-    experimental_shortlist_template.csv
-    README_GATE3.txt
-
   legacy/
     gate2_schrodinger_handoff/
     gate3_mechanistic_handoff/
@@ -134,20 +123,26 @@ outputs/hybrid_stage/
 If you want the original top 200 by triage:
   outputs/hybrid_stage/gate1/gate1_shortlist.xlsx
 
-If you want the final best 200 after target-free reranking:
-  outputs/hybrid_stage/gate3_target_free_translational/translational_candidates.xlsx
-
-If you want the intermediate uncertainty-aware refinement layer:
-  outputs/hybrid_stage/gate2_target_free_refinement/target_free_candidates.xlsx
-
 5. CURRENT PASS COUNTS
 ----------------------
 Gate 1 shortlist size: 200
 Unique scaffolds in Gate 1: 145
-Gate 2 target-free passes: 46
-Gate 3 translational passes: 34
 
-6. ORGANIZATION NOTES
+6. GENERATION COMPLETION STATUS
+-------------------------------
+Generation folders are populated for active campaigns.
+
+mol2mol subfamilies (all complete):
+  high_similarity, medium_similarity, mmp, scaffold,
+  scaffold_generic, similarity
+  each with plain / reinforcement_learning / curriculum_learning.
+
+nitro bioisostere campaign (all complete):
+  mol2mol_mmp, mol2mol_scaffold, mol2mol_scaffold_generic,
+  mol2mol_similarity
+  each with plain / reinforcement_learning / curriculum_learning.
+
+7. ORGANIZATION NOTES
 ---------------------
 - Temporary Excel lock files were removed.
 - Old target-based output folders were preserved under outputs/hybrid_stage/legacy/.

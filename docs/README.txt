@@ -53,7 +53,7 @@ HOW TO RUN (from repo root)
 # Run generation with a preset:
   python scripts/run_pipeline.py --generation-preset balanced
 
-# Rebuild Gate 1/2/3 ranked outputs:
+# Rebuild Gate 1 ranked outputs:
   python reinvent_integration/run_hybrid_stage_gates.py
 
 # Quick smoke-test:
@@ -67,19 +67,24 @@ MOST IMPORTANT OUTPUT FILES
 outputs/hybrid_stage/gate1/gate1_shortlist.xlsx
   Original top-200 scaffold-diverse shortlist.
 
-outputs/hybrid_stage/gate3_target_free_translational/translational_candidates.xlsx
-  Final target-free reranked 200-candidate workbook.
-
 CURRENT TARGET-FREE PIPELINE
 ----------------------------
 Gate 1:
   QSAR + ADME multi-parameter triage + scaffold diversity.
 
-Gate 2:
-  QSAR uncertainty + synthetic accessibility + liability filters + ligand-based similarity.
+GENERATION STATUS (CURRENT)
+---------------------------
+All planned generation branches are populated with scored outputs.
 
-Gate 3:
-  Translational prioritization with toxicity, DDI, absorption, and experimental priority score.
+Confirmed complete:
+  outputs/generated/mol2mol/{high_similarity,medium_similarity,mmp,
+                             scaffold,scaffold_generic,similarity}/
+  with plain/, reinforcement_learning/, and curriculum_learning/.
+
+  outputs/generated/nitro_bioisostere_campaign/{mol2mol_mmp,mol2mol_scaffold,
+                                                mol2mol_scaffold_generic,
+                                                mol2mol_similarity}/
+  with plain/, reinforcement_learning/, and curriculum_learning/.
 
 LEGACY OUTPUTS
 --------------
@@ -102,7 +107,7 @@ docs/REPO_STRUCTURE_AND_OUTPUTS.txt
   Practical map of all folders and where the current outputs live.
 
 outputs/hybrid_stage/README.txt
-  Output-specific guide for Gate 1 / Gate 2 / Gate 3 artifacts.
+  Output-specific guide for Gate 1 artifacts and legacy folders.
 
 archive/README.txt
   Explains what was moved out of the root and where to find it.

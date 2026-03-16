@@ -1,0 +1,6 @@
+file,rows,cutoff
+mol2mol_scaffold_cl_generated_scored.csv,4740.0,
+mol2mol_scaffold_cl_generated_optimal.csv,33.0,
+mol2mol_scaffold_cl_generated_scored.xlsx,4740.0,
+mol2mol_scaffold_cl_generated_optimal.xlsx,33.0,
+,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40; QSAR uncertainty via up to 5 positive-R2 models

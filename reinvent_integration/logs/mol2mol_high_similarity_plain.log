@@ -1,0 +1,108 @@
+19:18:24 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+19:18:24 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_high_similarity_plain.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_high_similarity_plain.toml
+19:18:24 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/sample_mol2mol_high_similarity_plain.toml using format toml
+19:18:24 <INFO> User nbhatta1 on host panacea
+19:18:24 <INFO> Python version 3.11.13
+19:18:24 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+19:18:24 <INFO> PyTorch compiled with CUDA version 12.8
+19:18:24 <INFO> RDKit version 2025.09.6
+19:18:24 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+19:18:24 <INFO> CUDA driver version 590.48.01
+19:18:24 <INFO> Number of PyTorch CUDA devices 1
+19:18:24 <WARN> 'use_cuda' is deprecated, use 'device' instead
+19:18:24 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+19:18:24 <INFO> GPU memory: 45758 MiB free, 48400 MiB total
+19:18:24 <INFO> Starting Sampling
+19:18:24 <ERRO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/mol2mol_high_similarity.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'a7da2fa1893a9f5a3a4a1deb84b4dd64',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': 'e7f383e586df44309c531b897666df9d',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': []}
+19:18:24 <INFO> Number of network parameters: 17,462,400
+19:18:24 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(128, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=128, bias=True)
+  )
+)
+19:18:24 <INFO> Using generator Mol2Mol
+19:18:24 <INFO> Writing sampled SMILES to CSV file reinvent_integration/results/mol2mol_high_similarity_plain/samples.csv
+19:18:24 <WARN> randomize_smiles was set to True but the model was not trained with randomized SMILES.  Setting randomize_smiles to False.
+19:18:24 <INFO> Sampling 13 SMILES from model reinvent_integration/priors/mol2mol_high_similarity.prior
+19:18:24 <INFO> Peak main memory usage: 1803.277 MiB
+19:18:24 <INFO> Finished REINVENT on 2026-03-15

@@ -67,22 +67,20 @@ Simple, Process-Focused Project Presentation}
       \node[pstep] (q)  {1. QSAR training\\and validation};
       \node[pstep,right=of q] (g)  {2. Generation optimization\\(plain / RL / CL)};
       \node[pstep,right=of g] (s)  {3. Scoring\\potency + ADME + uncertainty};
-      \node[pstep,below=of q] (g1) {4. Gate 1\\triage + diversity};
-      \node[pstep,right=of g1] (g2) {5. Gate 2\\uncertainty + chemistry quality};
-      \node[pstep,right=of g2] (g3) {6. Gate 3\\clinical translation priority};
+      \node[pstep,below=of q] (g1) {4. Gate 1\\triage + diversity shortlist};
+      \node[pstep,right=of g1] (w) {5. Scientist review\\and wet-lab planning};
 
       \draw[arrow] (q)--(g);
       \draw[arrow] (g)--(s);
       \draw[arrow] (s)--(g1);
-      \draw[arrow] (g1)--(g2);
-      \draw[arrow] (g2)--(g3);
+      \draw[arrow] (g1)--(w);
     \end{tikzpicture}
   \end{center}
 
   \vspace{4pt}
   \begin{block}{Why this ordering}
     Learn from known data first (QSAR), optimize generation next, then use
-    staged risk filters before selecting compounds for lab planning.
+    Gate 1 triage and diversity control before selecting compounds for lab planning.
   \end{block}
 \end{frame}
 
@@ -104,7 +102,7 @@ Simple, Process-Focused Project Presentation}
     \column{0.48\textwidth}
       \begin{block}{4) Testing (in-silico pipeline testing)}
         REINVENT generation campaigns, automated scoring, and
-        stage-gated filtering (Gate 1 \(\rightarrow\) 2 \(\rightarrow\) 3).
+        Gate 1 shortlist construction for downstream review.
       \end{block}
       \begin{block}{5) Deployment / operational use}
         Final ranked workbook is produced for chemistry/biology teams to
@@ -112,7 +110,7 @@ Simple, Process-Focused Project Presentation}
       \end{block}
       \begin{exampleblock}{Key current results}
         Series C: MAE \textbf{0.118}, \(R^2=\textbf{0.887}\)\\
-        Gate flow: \textbf{200} \(\rightarrow\) \textbf{46} \(\rightarrow\) \textbf{34}
+        Gate 1 shortlist: \textbf{200} candidates
       \end{exampleblock}
   \end{columns}
 \end{frame}
@@ -265,7 +263,7 @@ Simple, Process-Focused Project Presentation}
       \begin{block}{Control mechanism}
         \begin{itemize}
           \item Primary potency remains best model output.
-          \item Gate 2 penalizes high disagreement.
+          \item Uncertainty columns are retained for analysis and confidence review.
           \item Confidence columns are carried into final ranking.
         \end{itemize}
       \end{block}
@@ -277,27 +275,31 @@ Simple, Process-Focused Project Presentation}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Step 4: Clinical translation stage (Gate 3)}
+\begin{frame}{Step 4: Active shortlist output (Gate 1)}
   \begin{columns}[T]
     \column{0.50\textwidth}
-      \begin{block}{What Gate 3 optimizes}
+      \begin{block}{What Gate 1 optimizes}
         \begin{itemize}
-          \item Toxicity risk (e.g., hERG, DILI, AMES proxies)
-          \item DDI/CYP risk (interaction liability)
-          \item Absorption support (HIA/bioavailability proxies)
-          \item Final experimental priority score
+          \item Potency + ADME multi-objective triage
+          \item Scaffold-diverse shortlist selection
+      \begin{alertblock}{Current run note}
+        \texttt{pred\_pIC50\_uncertainty} = 0 in the current scored outputs,
+        indicating a single effective model is being used for potency prediction.
+        Ensemble uncertainty is available when multiple positive-\(R^2\) models
+        are active during scoring.
+      \end{alertblock}
+          \item Consistent ranking fields for review
+          \item Decision-ready workbook export
         \end{itemize}
       \end{block}
     \column{0.46\textwidth}
       \begin{block}{Current outputs}
         \texttt{outputs/hybrid\_stage/}\\
-        \texttt{gate3\_target\_free\_translational/}\\
-        \texttt{translational\_candidates.xlsx}
+        \texttt{gate1/}\\
+        \texttt{gate1\_shortlist.xlsx}
       \end{block}
-      \begin{exampleblock}{Current pass counts}
-        Gate 1: 200 shortlisted\\
-        Gate 2: 46 passes\\
-        Gate 3: 34 passes
+      \begin{exampleblock}{Current count}
+        Gate 1 shortlist: \textbf{200}
       \end{exampleblock}
   \end{columns}
 \end{frame}
@@ -308,14 +310,14 @@ Simple, Process-Focused Project Presentation}
     \item Built QSAR with best-performing potency model and ensemble uncertainty.
     \item Ran REINVENT generation campaigns across families and optimization modes.
     \item Scored all generated molecules with one consistent scoring pipeline.
-    \item Applied stage-gated ranking (Gate 1 \(\rightarrow\) Gate 2 \(\rightarrow\) Gate 3).
+    \item Applied Gate 1 triage ranking and scaffold-diverse shortlist selection.
     \item Produced ranked Excel outputs for medicinal-chemistry review and lab planning.
   \end{enumerate}
 
   \vspace{4pt}
   \begin{block}{Final narrative}
     \textbf{QSAR learns}, \textbf{REINVENT explores/optimizes},
-    \textbf{gates control risk}, and \textbf{Gate 3 translates to action}.
+    and \textbf{Gate 1 delivers an actionable shortlist}.
   \end{block}
 \end{frame}
 
@@ -465,12 +467,13 @@ Simple, Process-Focused Project Presentation}
     mol2mol\_high\_similarity, mol2mol\_medium\_similarity,
     mol2mol\_scaffold, mol2mol\_scaffold\_generic, mol2mol\_mmp,
     libinvent, libinvent\_transformer\_pubchem, linkinvent,
-    linkinvent\_transformer\_pubchem.
+    linkinvent\_transformer\_pubchem, and the nitro\_bioisostere\_campaign.
   \end{block}
 
   \begin{exampleblock}{Operational implication}
     Each family was executed across plain/RL/CL flows with post-scoring, so
     the generation program is a \textbf{matrix of campaigns}, not a single run.
+    Current generation coverage is fully populated across the targeted branches.
   \end{exampleblock}
 \end{frame}
 
@@ -482,9 +485,10 @@ Simple, Process-Focused Project Presentation}
     \midrule
     REINVENT / REINVENT\_PubChem & \checkmark & \checkmark & \checkmark \\
     PepINVENT & \checkmark & \checkmark & \checkmark \\
-    Mol2Mol (sim/high/medium/scaffold/mmp) & \checkmark & \checkmark & \checkmark \\
+    Mol2Mol (sim/high/medium/scaffold/scaffold\_generic/mmp) & \checkmark & \checkmark & \checkmark \\
     LibINVENT (+ transformer prior) & \checkmark & \checkmark & \checkmark \\
     LinkINVENT (+ transformer prior) & \checkmark & \checkmark & \checkmark \\
+    Nitro bioisostere campaign & \checkmark & \checkmark & \checkmark \\
     \bottomrule
   \end{tabularx}
 
@@ -643,31 +647,6 @@ Simple, Process-Focused Project Presentation}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Generation config taxonomy used in repository}
-  \small
-  \begin{columns}[T]
-    \column{0.50\textwidth}
-      \begin{block}{Core config types}
-        \begin{itemize}
-          \item \texttt{sample\_<family>\_plain.toml}
-          \item \texttt{rl\_<family>.toml}
-          \item \texttt{sample\_<family>\_rl.toml}
-          \item \texttt{cl\_<family>.toml}
-          \item \texttt{sample\_<family>\_cl.toml}
-        \end{itemize}
-      \end{block}
-    \column{0.48\textwidth}
-      \begin{block}{Variant config sets}
-        \begin{itemize}
-          \item \texttt{reinvent\_integration/configs/}
-          \item \texttt{reinvent\_integration/configs\_fast/}
-          \item \texttt{reinvent\_integration/configs\_strict/}
-          \item Nitro campaign-specific configs
-        \end{itemize}
-      \end{block}
-  \end{columns}
-\end{frame}
-
 \begin{frame}{Generation execution lifecycle (per family)}
   \begin{center}
     \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
@@ -736,7 +715,7 @@ Simple, Process-Focused Project Presentation}
     Potency targeting & RL/CL shift sampled distribution toward higher QSAR-ranked molecules. \\
     ADME alignment & Objective shaping increases fraction within preferred ADME windows. \\
     Feasibility control & CL staging reduces abrupt jumps that produce unstable candidates. \\
-    Gate readiness & RL/CL outputs generally show better downstream Gate 1 and Gate 2 conversion. \\
+    Gate readiness & RL/CL outputs generally show better downstream Gate 1 shortlist quality. \\
     \bottomrule
   \end{tabularx}
 \end{frame}
@@ -799,23 +778,8 @@ Simple, Process-Focused Project Presentation}
   \vspace{3pt}
   \begin{exampleblock}{End-to-end linkage}
     Generation activity \(\rightarrow\) scoring normalization \(\rightarrow\)
-    Gate 1 ranking \(\rightarrow\) Gate 2 refinement \(\rightarrow\) Gate 3 translational shortlist.
+    Gate 1 ranking \(\rightarrow\) scientist review and wet-lab planning.
   \end{exampleblock}
-\end{frame}
-
-\begin{frame}{Generation coverage summary for presentation narrative}
-  \small
-  \begin{block}{Core message to stakeholders}
-    The project performed a \textbf{diversified generation program} spanning
-    de novo design, analoging, scaffold-conditioned transformation, linker design,
-    and library decoration, each optimized via plain/RL/CL and then evaluated in one
-    consistent scoring + gate framework.
-  \end{block}
-
-  \begin{alertblock}{Why this is stronger than a single-generator story}
-    It reduces model-family bias, increases chemical search breadth,
-    and produces more robust downstream candidates for translational prioritization.
-  \end{alertblock}
 \end{frame}
 
 \begin{frame}{REINVENT4 generation families: what each generates}
@@ -939,7 +903,7 @@ Simple, Process-Focused Project Presentation}
           \item Mean score trend increases over steps
           \item Valid SMILES fraction stays high
           \item Diversity does not collapse too early
-          \item Top candidates survive Gate 1 and Gate 2
+          \item Top candidates remain competitive in Gate 1 shortlist ranking
         \end{itemize}
       \end{block}
     \column{0.48\textwidth}
@@ -948,7 +912,7 @@ Simple, Process-Focused Project Presentation}
           \item Score spike with low diversity (mode collapse)
           \item Rising uncertainty in high-score molecules
           \item ADME out-of-window drift at later steps
-          \item Weak Gate 2/3 conversion ratio
+          \item Weak Gate 1 shortlist enrichment ratio
         \end{itemize}
       \end{block}
   \end{columns}
@@ -994,89 +958,64 @@ Simple, Process-Focused Project Presentation}
   \end{block}
 \end{frame}
 
+  \begin{frame}{Gate 1 shortlist: candidate pool composition (current)}
+    \small
+    \begin{columns}[T]
+      \column{0.50\textwidth}
+        \begin{block}{Source family breakdown (200 shortlisted)}
+          \begin{tabularx}{\textwidth}{lr}
+            \toprule
+            \textbf{Family} & \textbf{Count} \\
+            \midrule
+            reinvent\_pubchem & 137 \\
+            nitro\_bioisostere\_campaign & 53 \\
+            reinvent & 9 \\
+            linkinvent\_transformer\_pubchem & 1 \\
+            \bottomrule
+          \end{tabularx}
+        \end{block}
+      \column{0.48\textwidth}
+        \begin{block}{Source mode breakdown}
+          \begin{tabularx}{\textwidth}{lr}
+            \toprule
+            \textbf{Mode} & \textbf{Count} \\
+            \midrule
+            plain & 140 \\
+            mol2mol\_similarity & 28 \\
+            mol2mol\_scaffold\_generic & 22 \\
+            curriculum\_learning & 6 \\
+            mol2mol\_scaffold & 3 \\
+            reinforcement\_learning & 1 \\
+            \bottomrule
+          \end{tabularx}
+        \end{block}
+    \end{columns}
+    \vspace{3pt}
+    \begin{exampleblock}{Observation}
+      Plain-mode candidates dominate (70\%), with mol2mol analog variants
+      contributing a significant diversity-preserving portion (26.5\%).
+      Master ranked pool: \textbf{37,451} candidates from \textbf{14,287} unique scaffolds.
+    \end{exampleblock}
+  \end{frame}
+
 % ============================================================
-\section{Gate 2 (Detailed)}
+\section{Gate 2 / Gate 3 (Legacy, Inactive)}
 % ============================================================
 
-\begin{frame}{Gate 2 flowchart: uncertainty and chemistry refinement}
-  \begin{center}
-    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
-      \node[gatebox] (g2a) {Input Gate 1 shortlist};
-      \node[gatebox,right=of g2a] (g2b) {Compute uncertainty\\ensemble disagreement};
-      \node[gatebox,right=of g2b] (g2c) {Add chemistry filters\\SA + PAINS/BRENK/NIH};
-      \node[gatebox,below=of g2a] (g2d) {Ligand support\\2D Tanimoto + 3D shape};
-      \node[gatebox,right=of g2d] (g2e) {Gate 2 pass logic\\confidence + quality};
-      \node[gatebox,right=of g2e] (g2f) {Export refined set\\target-free candidates};
-
-      \draw[arrow] (g2a)--(g2b);
-      \draw[arrow] (g2b)--(g2c);
-      \draw[arrow] (g2c)--(g2d);
-      \draw[arrow] (g2d)--(g2e);
-      \draw[arrow] (g2e)--(g2f);
-    \end{tikzpicture}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Gate 2 details: uncertainty control and outputs}
+\begin{frame}{Gate 2 and Gate 3 status in current pipeline}
   \small
-  \begin{block}{Uncertainty control mechanism}
-    Primary potency stays the best model prediction; up to five positive-\(R^2\)
-    models are used to compute disagreement (\(\sigma\)).
-    High-\(\sigma\) molecules are deprioritized or filtered.
+  \begin{alertblock}{Inactive stages}
+    Gate 2 and Gate 3 are removed from the active implementation in
+    \texttt{run\_hybrid\_stage\_gates.py}. Gate 1 is the only production stage.
+  \end{alertblock}
+
+  \begin{block}{How to interpret old references}
+    \begin{itemize}
+      \item Existing Gate 2/3 descriptions in legacy notes are historical context.
+      \item Current ranked outputs are written only under \texttt{outputs/hybrid\_stage/gate1/}.
+      \item Legacy folders remain for provenance in \texttt{outputs/hybrid\_stage/legacy/}.
+    \end{itemize}
   \end{block}
-
-  \begin{block}{Gate 2 output files}
-    {\scriptsize\texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/target\_free\_candidates.csv}}\\
-    {\scriptsize\texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/target\_free\_candidates.xlsx}}
-  \end{block}
-
-  \begin{exampleblock}{Current count}
-    Gate 2 passes: \textbf{46}
-  \end{exampleblock}
-\end{frame}
-
-% ============================================================
-\section{Gate 3 (Detailed)}
-% ============================================================
-
-\begin{frame}{Gate 3 flowchart: translational prioritization}
-  \begin{center}
-    \begin{tikzpicture}[node distance=0.5cm and 0.35cm]
-      \node[gatebox] (g3a) {Input Gate 2 candidates};
-      \node[gatebox,right=of g3a] (g3b) {Toxicity risk layer\\hERG/DILI/AMES proxies};
-      \node[gatebox,right=of g3b] (g3c) {DDI risk layer\\CYP interaction liability};
-      \node[gatebox,below=of g3a] (g3d) {Absorption layer\\HIA/bioavailability support};
-      \node[gatebox,right=of g3d] (g3e) {Final priority score\\translational ranking};
-      \node[gatebox,right=of g3e] (g3f) {Export final shortlist\\for experiment planning};
-
-      \draw[arrow] (g3a)--(g3b);
-      \draw[arrow] (g3b)--(g3c);
-      \draw[arrow] (g3c)--(g3d);
-      \draw[arrow] (g3d)--(g3e);
-      \draw[arrow] (g3e)--(g3f);
-    \end{tikzpicture}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Gate 3 details: outputs and deployment handoff}
-  \small
-  \begin{block}{Final Gate 3 artifacts}
-    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/translational\_candidates.csv}}\\
-    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/translational\_candidates.xlsx}}\\
-    {\scriptsize\texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/experimental\_shortlist\_template.csv}}
-  \end{block}
-
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-      \begin{exampleblock}{Current count}
-        Gate 3 passes: \textbf{34}
-      \end{exampleblock}
-    \column{0.48\textwidth}
-      \begin{alertblock}{Deployment meaning in this project}
-        "Deployment" = operational delivery of ranked candidates to
-        medicinal chemistry / biology for wet-lab testing decisions.
-      \end{alertblock}
-  \end{columns}
 \end{frame}
 
 % ============================================================
@@ -1107,7 +1046,7 @@ Simple, Process-Focused Project Presentation}
   \begin{center}
     \Large
     Generate many molecules \(\rightarrow\) score quickly \(\rightarrow\)
-    refine confidently \(\rightarrow\) prioritize translationally
+    rank consistently \(\rightarrow\) prioritize for lab review
   \end{center}
 \end{frame}
 
@@ -1234,8 +1173,8 @@ Simple, Process-Focused Project Presentation}
     All scored runs are pooled and moved through:
     \begin{itemize}
       \item \textbf{Gate 1}: triage + scaffold-diverse top shortlist
-      \item \textbf{Gate 2}: confidence and chemistry refinement
-      \item \textbf{Gate 3}: translational ranking for experiment planning
+      \item \textbf{Active stage}: Gate 1 only in the current workflow
+      \item \textbf{Gate 2/3}: legacy reference only (inactive)
     \end{itemize}
   \end{block}
 
@@ -1257,24 +1196,20 @@ Simple, Process-Focused Project Presentation}
       \node[pstep,right=of s2] (s3) {3. Generate molecules\\with REINVENT modes};
       \node[pstep,below=of s1] (s4) {4. Score molecules\\potency + ADME + uncertainty};
       \node[pstep,right=of s4] (s5) {5. Gate 1\\triage + diversity shortlist};
-      \node[pstep,right=of s5] (s6) {6. Gate 2\\confidence + chemistry filters};
-      \node[pstep,below=of s5] (s7) {7. Gate 3\\tox/DDI/absorption priority};
-      \node[pstep,left=of s7] (s8) {8. Final shortlist\\for wet lab};
+      \node[pstep,right=of s5] (s8) {6. Final shortlist\\for wet lab};
 
       \draw[arrow] (s1)--(s2);
       \draw[arrow] (s2)--(s3);
       \draw[arrow] (s3)--(s4);
       \draw[arrow] (s4)--(s5);
-      \draw[arrow] (s5)--(s6);
-      \draw[arrow] (s6)--(s7);
-      \draw[arrow] (s7)--(s8);
+      \draw[arrow] (s5)--(s8);
     \end{tikzpicture}
   \end{center}
 \end{frame}
 
-\begin{frame}{What each gate does (simple view)}
+\begin{frame}{Active gate view (simple)}
   \begin{columns}[T]
-    \column{0.32\textwidth}
+    \column{0.60\textwidth}
       \begin{block}{Gate 1}
         \textbf{Fast triage}
         \begin{itemize}
@@ -1283,26 +1218,11 @@ Simple, Process-Focused Project Presentation}
           \item Scaffold-diverse top 200
         \end{itemize}
       \end{block}
-    \column{0.32\textwidth}
-      \begin{block}{Gate 2}
-        \textbf{Confidence \& quality}
-        \begin{itemize}
-          \item QSAR uncertainty
-          \item Synthetic accessibility
-          \item PAINS/BRENK/NIH alerts
-          \item 2D/3D ligand similarity
-        \end{itemize}
-      \end{block}
-    \column{0.32\textwidth}
-      \begin{block}{Gate 3}
-        \textbf{Translational priority}
-        \begin{itemize}
-          \item Toxicity risk
-          \item CYP/DDI risk
-          \item Absorption support
-          \item Final experiment rank
-        \end{itemize}
-      \end{block}
+    \column{0.36\textwidth}
+      \begin{alertblock}{Current status}
+        Gate 2 and Gate 3 are retained only as historical references in older
+        materials and are not active in the current production workflow.
+      \end{alertblock}
   \end{columns}
 \end{frame}
 
@@ -1394,7 +1314,7 @@ Simple, Process-Focused Project Presentation}
     \midrule
     REINVENT engine & Generates candidate SMILES across modes (plain/RL/CL). \\
     QSAR scoring script & Computes potency + ADME + uncertainty fields. \\
-    Gate script & Applies triage math, diversity selection, Gate 2/3 ranking. \\
+    Gate script & Applies triage math and diversity selection for Gate 1 shortlist generation. \\
     Medicinal chemist & Reviews computed outputs for structural quality and synthesis practicality. \\
     DMPK/safety scientist & Interprets computed tox/DDI/absorption risk outputs for go/no-go decisions. \\
     Project lead & Approves final shortlist for experiment. \\
@@ -1436,14 +1356,13 @@ Simple, Process-Focused Project Presentation}
     \texttt{gate1\_shortlist.xlsx}
   \end{block}
 
-  \begin{block}{2) Gate 2 refinement (confidence + chemistry quality)}
-    \texttt{outputs/hybrid\_stage/gate2\_target\_free\_refinement/}\
-    \texttt{target\_free\_candidates.xlsx}
+  \begin{block}{2) Gate 1 ranked table (full pool)}
+    \texttt{outputs/hybrid\_stage/gate1/}\
+    \texttt{gate1\_master\_ranked.csv}
   \end{block}
 
-  \begin{block}{3) Gate 3 final ranking (translational priority)}
-    \texttt{outputs/hybrid\_stage/gate3\_target\_free\_translational/}\
-    \texttt{translational\_candidates.xlsx}
+  \begin{block}{3) Legacy historical outputs (inactive stages)}
+    \texttt{outputs/hybrid\_stage/legacy/}
   \end{block}
 \end{frame}
 
@@ -1474,7 +1393,7 @@ Simple, Process-Focused Project Presentation}
     \item Score with potency + ADME + uncertainty.
     \item Keep diversity while ranking quality.
     \item Remove uncertain / high-liability / hard-to-make molecules.
-    \item Prioritize by translational risk and experiment value.
+    \item Prioritize by Gate 1 triage score, diversity, and experiment value.
   \end{enumerate}
 
   \vspace{6pt}
@@ -1484,15 +1403,214 @@ Simple, Process-Focused Project Presentation}
   \end{alertblock}
 \end{frame}
 
+% ============================================================
+\section{Excel field guide}
+% ============================================================
+
+\begin{frame}{How to read values in the Excel workbooks}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Binary / flag fields}
+        \begin{itemize}
+          \item \textbf{1} = passes / yes / valid / favorable
+          \item \textbf{0} = fails / no / invalid / unfavorable
+        \end{itemize}
+        Active: \texttt{passes\_adme\_individual}, \texttt{passes\_adme\_ensemble},
+        \texttt{passes\_optimal}, \texttt{passes\_metabolic\_stability}.\\
+        Legacy (inactive): \texttt{passes\_gate2\_target\_free},
+        \texttt{passes\_gate3\_translational}.
+      \end{block}
+      \begin{block}{Rank fields}
+        \begin{itemize}
+          \item Lower rank number = higher priority
+          \item \texttt{rank} = Gate 1 order
+          \item \texttt{gate2\_rank}, \texttt{gate3\_rank} = legacy inactive stages
+        \end{itemize}
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Continuous score fields}
+        \begin{itemize}
+          \item Usually \textbf{higher = better} for composite scores
+          \item Usually \textbf{lower = safer} for liabilities and uncertainty
+          \item Always interpret with field meaning, not number alone
+        \end{itemize}
+      \end{block}
+      \begin{exampleblock}{Key rule of thumb}
+        \textbf{Higher potency score, higher confidence, higher absorption support}
+        are good; \textbf{lower IC\(_{50}\), lower uncertainty, lower liability counts,
+        lower toxicity/DDI risk} are good.
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Gate 1 workbook fields: structure, potency, ADME, source}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Field} & \textbf{Meaning and value interpretation} \\
+    \midrule
+    \texttt{Structure} / \texttt{canonical\_smiles} & Molecule drawing / canonical text structure used for scoring and review. \\
+    \texttt{SMILES\_state} & Validity flag; 1 means structurally accepted, 0 means invalid/problematic. \\
+    \texttt{pred\_pIC50} & Predicted potency on log scale; higher means stronger predicted activity. \\
+    \texttt{pred\_ic50\_uM} & Predicted potency in \(\mu\)M; lower means stronger predicted activity. \\
+    \texttt{pred\_cLogP} & Predicted lipophilicity; mid-range is generally preferred over extreme low/high values. \\
+    \texttt{pred\_logS\_ESOL} & Predicted solubility log scale; less negative / higher means more soluble. \\
+    \texttt{pred\_MetStab\_Clearance\_Microsome\_AZ} & Microsomal clearance proxy; lower is generally better because slower clearance means better stability. \\
+    \texttt{pred\_MetStab\_Clearance\_Hepatocyte\_AZ} & Hepatocyte clearance proxy; lower is generally better. \\
+    \texttt{pred\_MetStab\_Half\_Life\_Obach} & Metabolic half-life proxy; higher means more stable / longer-lasting. \\
+    \texttt{passes\_optimal}, \texttt{passes\_adme\_individual}, \texttt{passes\_adme\_ensemble} & Binary gate flags; 1 means the molecule is within the preferred rule window. \\
+    \texttt{source\_family}, \texttt{source\_mode} & Which generator produced the compound and under which campaign mode. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Gate 1 workbook fields: ranking and similarity}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Field} & \textbf{Meaning and value interpretation} \\
+    \midrule
+    \texttt{rank} & Gate 1 shortlist order; smaller rank means better overall triage priority. \\
+    \texttt{triage\_score} & Main Gate 1 composite score; higher means better combined potency + ADME profile. \\
+    \texttt{pred\_pIC50\_uncertainty} & Potency model disagreement; lower means higher confidence. \\
+    \texttt{Input\_SMILES} & Original generator-provided structure string before normalization. \\
+    \texttt{Tanimoto} & 2D structural similarity to the reference/seed context; higher means more similar, lower means more novel. \\
+    \texttt{murcko\_scaffold} / \texttt{scaffold\_bucket} & Core chemotype grouping used to keep shortlist diversity. \\
+    \texttt{adme\_ensemble\_score} & Ensemble ADME quality score combining solubility, lipophilicity, and metabolic stability; higher is better. \\
+    \texttt{NLL} & Negative log-likelihood from generator; lower typically means the model finds the structure more probable. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{2pt}
+  \begin{exampleblock}{Observed Gate 1 behavior in current workbook}
+    \texttt{triage\_score}: 0.77--0.92; \texttt{Tanimoto}: 0.28--0.86;
+    \texttt{pred\_pIC50}: 4.94--6.11; \texttt{pred\_ic50\_uM}: 0.78--11.55\,\(\mu\)M.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Legacy Gate 2 workbook fields (inactive reference)}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Field} & \textbf{Meaning and value interpretation} \\
+    \midrule
+    \texttt{gate2\_target\_free\_score} & Gate 2 composite score; higher means stronger confidence + chemistry support. \\
+    \texttt{passes\_gate2\_target\_free} & Binary Gate 2 pass flag; 1 means the molecule survives this refinement stage. \\
+    \texttt{pred\_pIC50\_uncertainty} & Ensemble disagreement around potency; lower means more reliable prediction. \\
+    \texttt{pred\_pIC50\_lower95} & Conservative lower confidence bound on potency; higher is better because even the lower bound remains active. \\
+    \texttt{pred\_ic50\_uM\_upper95} & Conservative upper confidence bound in \(\mu\)M; lower is better. \\
+    \texttt{uncertainty\_confidence\_score} & Confidence derived from uncertainty; higher means more trust in the potency estimate. \\
+    \texttt{sa\_score} & Synthetic accessibility score; lower usually means easier to make. \\
+    \texttt{sa\_accessibility} & Rescaled synthetic accessibility; higher means easier / more accessible synthesis. \\
+    \texttt{liability\_alert\_count} & Count of chemistry alert motifs; lower is better. \\
+    \texttt{liability\_free} & Binary alert-free flag; 1 means no detected alert motifs. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Legacy Gate 2/3 workbook fields (inactive reference)}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Field} & \textbf{Meaning and value interpretation} \\
+    \midrule
+    \texttt{nearest\_active\_tanimoto}, \texttt{shape\_tanimoto\_max} & 2D/3D support from known actives; higher means stronger ligand-based support. \\
+    \texttt{ligand\_support\_score} & Combined ligand evidence score; higher is better. \\
+    \texttt{gate3\_translational\_score} / \texttt{experimental\_priority\_score} & Final experiment-priority scores; higher means better translational value. \\
+    \texttt{tox\_safety\_score} & Combined toxicity safety summary; higher means safer overall profile. \\
+    \texttt{ddi\_safety\_score} & Drug--drug interaction safety summary; higher means lower predicted DDI liability. \\
+    \texttt{absorption\_score} & Combined absorption/permeability support; higher means better oral/transport potential. \\
+    \texttt{hERG}, \texttt{DILI}, \texttt{ClinTox}, \texttt{AMES}, \texttt{Carcinogens\_Lagunin} & Risk probabilities/proxies; lower is safer because high values indicate more predicted toxicity concern. \\
+    \texttt{max\_cyp\_inhibition} & Maximum CYP inhibition risk across enzymes; lower is safer for DDI liability. \\
+    \texttt{HIA\_Hou}, \texttt{Bioavailability\_Ma}, \texttt{PAMPA\_NCATS} & Absorption-related probabilities/scores; higher is better. \\
+    \texttt{Caco2\_Wang} & Cell permeability proxy; less negative / higher means better permeability. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{2pt}
+  \begin{alertblock}{Simple reading rule for the final workbook}
+    Prefer molecules with \textbf{high} final priority / safety / absorption scores,
+    but \textbf{low} uncertainty, alert count, toxicity risk, CYP inhibition risk,
+    and predicted IC\(_{50}\).
+  \end{alertblock}
+\end{frame}
+
+% ============================================================
+\section{Tools used in this repository}
+% ============================================================
+
+\begin{frame}{Tools used in this repository: core modeling and generation}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Tool} & \textbf{Used for in this repo} \\
+    \midrule
+    \href{https://www.python.org/}{Python} & Main language for the full pipeline, orchestration scripts, QSAR training, scoring, and reporting. \\
+    \href{https://numpy.org/}{NumPy} & Numeric arrays, descriptor matrices, statistics, and score calculations. \\
+    \href{https://pandas.pydata.org/}{Pandas} & Reading Excel/CSV inputs, manipulating scored tables, exporting candidate workbooks. \\
+    \href{https://www.rdkit.org/}{RDKit} & SMILES parsing, canonicalization, descriptors, fingerprints, scaffolds, similarity, and structure rendering. \\
+    \href{https://github.com/mordred-descriptor/mordred}{Mordred} & Additional molecular descriptor generation for QSAR feature sets. \\
+    \href{https://scikit-learn.org/}{scikit-learn} & Core QSAR regression models, preprocessing, comparison, and evaluation. \\
+    \href{https://xgboost.readthedocs.io/}{XGBoost} / \href{https://lightgbm.readthedocs.io/}{LightGBM} / \href{https://catboost.ai/}{CatBoost} & Gradient-boosting model families benchmarked as candidate QSAR predictors. \\
+    \href{https://github.com/MolecularAI/REINVENT4}{REINVENT4} & Molecular generation engine for de novo, RL, CL, Mol2Mol, LibINVENT, LinkINVENT, and PepINVENT campaigns. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Tools used in this repository: scoring, visualization, and outputs}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Tool} & \textbf{Used for in this repo} \\
+    \midrule
+    \href{https://github.com/swansonk14/admet_ai}{ADMET-AI} & Predicted ADME/toxicity endpoints used in post-generation enrichment and shortlist annotations. \\
+    RDKit SA\_Score & Synthetic accessibility estimation available for chemistry assessment features. \\
+    \href{https://matplotlib.org/}{Matplotlib} / \href{https://seaborn.pydata.org/}{Seaborn} & Plots for QSAR distributions, cluster views, and reporting visuals. \\
+    \href{https://jupyter.org/}{Jupyter Notebooks} & Exploratory analysis, debugging, and reproducible workflow inspection notebooks in the repo. \\
+    Excel / workbook export & Final ranked candidate review tables with structures for chemistry/biology decision-making. \\
+    \href{https://ctan.org/pkg/beamer}{LaTeX Beamer} & This presentation deck and PDF reporting output. \\
+    External chemistry resources (for example \texttt{external\_tools/SwissMADE}) & Supporting reference/tooling assets stored alongside the workflow. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{2pt}
+  \begin{exampleblock}{Simple summary}
+    The repo combines \textbf{cheminformatics} (RDKit, Mordred),
+    \textbf{machine learning} (scikit-learn, boosting models),
+    \textbf{molecular generation} (REINVENT4), and
+    \textbf{developability scoring} (ADMET-AI + Gate 1 logic) into one pipeline.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{What tools are used in the active Gate 1 workflow?}
+  \small
+  \begin{block}{Gate 1 tools}
+    \begin{itemize}
+      \item \href{https://www.rdkit.org/}{RDKit}: molecule handling, descriptors, scaffold logic
+      \item \href{https://github.com/swansonk14/admet_ai}{ADMET-AI}: ADME/tox annotations used by scoring outputs
+      \item QSAR ensemble utilities: potency prediction and uncertainty columns
+      \item Pandas/NumPy: triage scoring, ranking, and shortlist selection
+      \item \texttt{run\_hybrid\_stage\_gates.py}: builds Gate 1 ranked outputs
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{exampleblock}{Implementation file}
+    Gate 1 is implemented in \texttt{reinvent\_integration/run\_hybrid\_stage\_gates.py}.
+  \end{exampleblock}
+
+  \begin{alertblock}{Important notes}
+    Gate 2 and Gate 3 are not active in the current pipeline; older references
+    remain only for provenance. Simulation Plus, GastroPlus, and ADMET Predictor
+    are \textbf{not used} in the codebase and appear only as comparison examples
+    in documentation.
+  \end{alertblock}
+\end{frame}
+
 \begin{frame}{Thank you}
   \begin{center}
     \Large Questions?
-
-    \vspace{8pt}
-    \normalsize
-    Reference docs used:\\
-    \texttt{docs/REPO\_STRUCTURE\_AND\_OUTPUTS.txt}\\
-    \texttt{docs/TERMS\_AND\_WORKFLOW\_EXPLAINED.txt}
   \end{center}
 \end{frame}
 

@@ -5,20 +5,26 @@ import argparse
 import contextlib
 import io
 import json
+import re
 from importlib import import_module
 from pathlib import Path
+from shutil import which
+import subprocess
 import sys
+import tempfile
 from typing import Iterable
 
 import joblib
 import numpy as np
 import pandas as pd
+from pandas.errors import ParserError
 import xlsxwriter
 from admet_ai import ADMETModel
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import rdShapeHelpers
 from rdkit.Chem import AllChem, Draw
+from rdkit.Chem import Crippen, Descriptors
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -41,10 +47,38 @@ TARGET_FREE_ADMET_COLUMNS = [
     "CYP1A2_Veith", "CYP2C19_Veith", "CYP2C9_Veith", "CYP2D6_Veith", "CYP3A4_Veith",
     "HIA_Hou", "Bioavailability_Ma", "PAMPA_NCATS", "Pgp_Broccatelli",
     "Caco2_Wang", "PPBR_AZ", "VDss_Lombardo",
+    "molecular_weight", "logP",
 ]
 
-_GREEN_COLS = {"passes_optimal", "pred_pIC50", "pred_MetStab_Half_Life_Obach", "triage_score", "gate2_target_free_score", "gate3_translational_score", "experimental_priority_score", "uncertainty_confidence_score", "liability_free"}
+_GREEN_COLS = {"passes_optimal", "pred_pIC50", "pred_MetStab_Half_Life_Obach", "triage_score", "experimental_priority_score", "uncertainty_confidence_score", "liability_free"}
 _RED_COLS   = {"pred_ic50_uM", "pred_MetStab_Clearance_Microsome_AZ", "pred_MetStab_Clearance_Hepatocyte_AZ", "pred_pIC50_uncertainty", "hERG", "DILI", "ClinTox", "AMES", "max_cyp_inhibition"}
+
+_GREEN_COLS.update({
+    "clogp_score_individual",
+    "clogp_score_qikprop",
+    "clogp_ensemble_score",
+    "solubility_score_individual",
+    "solubility_score_qikprop",
+    "solubility_ensemble_score",
+    "microsome_stability_score",
+    "hepatocyte_stability_score",
+    "half_life_stability_score",
+    "metabolic_stability_ensemble_score",
+    "adme_individual_score",
+    "adme_ensemble_score",
+    "passes_adme_individual",
+    "passes_adme_ensemble",
+    "passes_metabolic_stability",
+    "osp_translational_score",
+})
+_RED_COLS.update({
+    "qikprop_star_count",
+    "qikprop_metab_sites",
+    "clogp_uncertainty",
+    "solubility_uncertainty",
+    "metstab_uncertainty",
+    "adme_ensemble_uncertainty",
+})
 
 _ADME_CUTS = {
     "pred_ic50_uM":                           ("<=", 5.0),
@@ -53,8 +87,34 @@ _ADME_CUTS = {
     "pred_MetStab_Clearance_Microsome_AZ":    ("<=", 70.0),
     "pred_MetStab_Clearance_Hepatocyte_AZ":   ("<=", 80.0),
     "pred_MetStab_Half_Life_Obach":           (">=", 40.0),
+    "clogp_ensemble_value":                   ("1-3.5", None),
+    "solubility_ensemble_value":              (">=", -6.0),
 }
 
+QIKPROP_EXECUTABLE_CANDIDATES = [
+    "/opt/schrodinger/schrodinger2026-1/qikprop",
+    "qikprop",
+]
+
+QIKPROP_COLUMN_RENAME = {
+    "#stars": "qikprop_star_count",
+    "QPlogPo/w": "qikprop_clogp",
+    "QPlogS": "qikprop_logS",
+    "#metab": "qikprop_metab_sites",
+    "HumanOralAbsorption": "qikprop_human_oral_absorption_class",
+    "PercentHumanOralAbsorption": "qikprop_percent_human_oral_absorption",
+    "QPPCaco": "qikprop_caco2",
+}
+
+QIKPROP_COLUMN_ALIASES = {
+    "qikprop_star_count": ["#stars", "qikprop_star_count"],
+    "qikprop_clogp": ["QPlogPo/w", "qikprop_clogp"],
+    "qikprop_logS": ["QPlogS", "qikprop_logs"],
+    "qikprop_metab_sites": ["#metab", "qikprop_metab_sites"],
+    "qikprop_human_oral_absorption_class": ["HumanOralAbsorption", "qikprop_human_oral_absorption_class"],
+    "qikprop_percent_human_oral_absorption": ["PercentHumanOralAbsorption", "qikprop_percent_human_oral_absorption"],
+    "qikprop_caco2": ["QPPCaco", "qikprop_caco2"],
+}
 
 def _mol_weight(smi: str) -> float:
     from rdkit.Chem import Descriptors
@@ -382,6 +442,12 @@ def _safe_numeric(value: object, default: float = np.nan) -> float:
         return default
 
 
+def _series_for(df: pd.DataFrame, column: str, default: float = np.nan) -> pd.Series:
+    if column in df.columns:
+        return pd.to_numeric(df[column], errors="coerce")
+    return pd.Series(np.full(len(df), default), index=df.index, dtype=float)
+
+
 def _sa_score(smi: str) -> float:
     mol = Chem.MolFromSmiles(str(smi))
     if mol is None:
@@ -510,87 +576,6 @@ def _ensure_target_free_admet(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def build_target_free_gate2(shortlist: pd.DataFrame) -> pd.DataFrame:
-    out = _ensure_target_free_admet(_ensure_qsar_uncertainty(shortlist.copy()))
-    out["sa_score"] = out.get("sa_score", out["canonical_smiles"].map(_sa_score))
-    out["sa_accessibility"] = _sa_accessibility(out["sa_score"])
-    refs = _load_reference_actives(limit=12)
-    out["nearest_active_tanimoto"] = _max_tanimoto_to_refs(out["canonical_smiles"].astype(str).tolist(), refs)
-    out["shape_tanimoto_max"] = _max_shape_tanimoto_to_refs(out["canonical_smiles"].astype(str).tolist(), refs)
-    alert_cols = [c for c in ["PAINS_alert", "BRENK_alert", "NIH_alert"] if c in out.columns]
-    out["liability_alert_count"] = out[alert_cols].fillna(0).sum(axis=1) if alert_cols else 0.0
-    out["liability_free"] = (pd.to_numeric(out["liability_alert_count"], errors="coerce").fillna(0) <= 0).astype(int)
-    out["uncertainty_confidence_score"] = _normalize(out.get("pred_pIC50_uncertainty", pd.Series(np.zeros(len(out)))), higher_is_better=False)
-    out["ligand_support_score"] = (
-        0.65 * pd.to_numeric(out["nearest_active_tanimoto"], errors="coerce").fillna(0.0)
-        + 0.35 * pd.to_numeric(out["shape_tanimoto_max"], errors="coerce").fillna(0.0)
-    )
-    out["liability_score"] = (1.0 - (pd.to_numeric(out["liability_alert_count"], errors="coerce").fillna(0.0) / 3.0)).clip(lower=0.0, upper=1.0)
-    out["passes_qsar_uncertainty"] = (pd.to_numeric(out.get("pred_ic50_uM_upper95", np.nan), errors="coerce") <= 5.0).astype(int)
-    out["gate2_target_free_score"] = (
-        0.40 * pd.to_numeric(out.get("triage_score", 0.0), errors="coerce").fillna(0.0)
-        + 0.20 * pd.to_numeric(out["uncertainty_confidence_score"], errors="coerce").fillna(0.0)
-        + 0.15 * pd.to_numeric(out["sa_accessibility"], errors="coerce").fillna(0.0)
-        + 0.10 * pd.to_numeric(out["liability_score"], errors="coerce").fillna(0.0)
-        + 0.15 * pd.to_numeric(out["ligand_support_score"], errors="coerce").fillna(0.0)
-    )
-    out["passes_gate2_target_free"] = (
-        (pd.to_numeric(out["pred_pIC50_uncertainty"], errors="coerce").fillna(99.0) <= 0.50)
-        & (pd.to_numeric(out["liability_alert_count"], errors="coerce").fillna(99.0) <= 1.0)
-        & (pd.to_numeric(out["sa_score"], errors="coerce").fillna(99.0) <= 6.5)
-    ).astype(int)
-    out = out.sort_values(
-        ["passes_gate2_target_free", "gate2_target_free_score", "pred_pIC50_uncertainty", "rank"],
-        ascending=[False, False, True, True],
-    ).reset_index(drop=True)
-    out["gate2_rank"] = np.arange(1, len(out) + 1, dtype=int)
-    return out
-
-
-def build_target_free_gate3(refined: pd.DataFrame) -> pd.DataFrame:
-    out = _ensure_target_free_admet(refined.copy())
-    tox_cols = [c for c in ["hERG", "DILI", "ClinTox", "AMES", "Carcinogens_Lagunin"] if c in out.columns]
-    out["tox_risk_mean"] = out[tox_cols].apply(pd.to_numeric, errors="coerce").fillna(0.5).mean(axis=1) if tox_cols else 0.5
-    out["tox_safety_score"] = (1.0 - pd.to_numeric(out["tox_risk_mean"], errors="coerce").fillna(0.5)).clip(lower=0.0, upper=1.0)
-    cyp_cols = [c for c in ["CYP1A2_Veith", "CYP2C19_Veith", "CYP2C9_Veith", "CYP2D6_Veith", "CYP3A4_Veith"] if c in out.columns]
-    out["max_cyp_inhibition"] = out[cyp_cols].apply(pd.to_numeric, errors="coerce").fillna(0.5).max(axis=1) if cyp_cols else 0.5
-    out["ddi_safety_score"] = (1.0 - pd.to_numeric(out["max_cyp_inhibition"], errors="coerce").fillna(0.5)).clip(lower=0.0, upper=1.0)
-    absorption_terms = []
-    if "HIA_Hou" in out.columns:
-        absorption_terms.append(_normalize(out["HIA_Hou"], higher_is_better=True))
-    if "Bioavailability_Ma" in out.columns:
-        absorption_terms.append(_normalize(out["Bioavailability_Ma"], higher_is_better=True))
-    if "PAMPA_NCATS" in out.columns:
-        absorption_terms.append(_normalize(out["PAMPA_NCATS"], higher_is_better=True))
-    if "Caco2_Wang" in out.columns:
-        absorption_terms.append(_normalize(out["Caco2_Wang"], higher_is_better=True))
-    out["absorption_score"] = sum(absorption_terms) / len(absorption_terms) if absorption_terms else 0.5
-    out["gate3_translational_score"] = (
-        0.45 * pd.to_numeric(out.get("gate2_target_free_score", 0.0), errors="coerce").fillna(0.0)
-        + 0.25 * pd.to_numeric(out["tox_safety_score"], errors="coerce").fillna(0.0)
-        + 0.15 * pd.to_numeric(out["ddi_safety_score"], errors="coerce").fillna(0.0)
-        + 0.15 * pd.to_numeric(out["absorption_score"], errors="coerce").fillna(0.0)
-    )
-    tox_cut = max(0.45, float(pd.to_numeric(out["tox_safety_score"], errors="coerce").median()))
-    ddi_cut = max(0.10, float(pd.to_numeric(out["ddi_safety_score"], errors="coerce").median()))
-    abs_cut = max(0.70, float(pd.to_numeric(out["absorption_score"], errors="coerce").median()))
-    out["passes_gate3_translational"] = (
-        (pd.to_numeric(out["tox_safety_score"], errors="coerce").fillna(0.0) >= tox_cut)
-        & (pd.to_numeric(out["ddi_safety_score"], errors="coerce").fillna(0.0) >= ddi_cut)
-        & (pd.to_numeric(out["absorption_score"], errors="coerce").fillna(0.0) >= abs_cut)
-    ).astype(int)
-    out["experimental_priority_score"] = (
-        0.70 * pd.to_numeric(out["gate3_translational_score"], errors="coerce").fillna(0.0)
-        + 0.30 * pd.to_numeric(out.get("gate2_target_free_score", 0.0), errors="coerce").fillna(0.0)
-    )
-    out = out.sort_values(
-        ["passes_gate3_translational", "experimental_priority_score", "gate2_rank"],
-        ascending=[False, False, True],
-    ).reset_index(drop=True)
-    out["gate3_rank"] = np.arange(1, len(out) + 1, dtype=int)
-    return out
-
-
 def _to_numeric(series: pd.Series, default: float = 0.0) -> pd.Series:
     s = pd.to_numeric(series, errors="coerce")
     return s.fillna(default).astype(float)
@@ -614,6 +599,320 @@ def _clogp_window_score(series: pd.Series, low: float = 1.0, high: float = 3.5) 
     d = (s - center).abs()
     score = 1.0 - (d / max(half_width, 1e-6))
     return score.clip(lower=0.0, upper=1.0)
+
+
+def _high_better_score(series: pd.Series, threshold: float, scale: float) -> pd.Series:
+    s = _to_numeric(series)
+    score = 0.5 + ((s - threshold) / max(scale, 1e-6)) * 0.5
+    return score.clip(lower=0.0, upper=1.0)
+
+
+def _low_better_score(series: pd.Series, threshold: float, scale: float) -> pd.Series:
+    s = _to_numeric(series)
+    score = 0.5 + ((threshold - s) / max(scale, 1e-6)) * 0.5
+    return score.clip(lower=0.0, upper=1.0)
+
+
+def _mean_available(columns: list[pd.Series], index: pd.Index) -> pd.Series:
+    if not columns:
+        return pd.Series(np.full(len(index), np.nan), index=index, dtype=float)
+    frame = pd.concat(columns, axis=1)
+    return frame.apply(pd.to_numeric, errors="coerce").mean(axis=1, skipna=True)
+
+
+def _std_available(columns: list[pd.Series], index: pd.Index) -> pd.Series:
+    if not columns:
+        return pd.Series(np.full(len(index), 0.0), index=index, dtype=float)
+    frame = pd.concat(columns, axis=1).apply(pd.to_numeric, errors="coerce")
+    std = frame.std(axis=1, skipna=True, ddof=0).fillna(0.0)
+    return std.clip(lower=0.0, upper=1.0)
+
+
+def _rdkit_proxy_series(smiles: pd.Series) -> tuple[pd.Series, pd.Series, pd.Series]:
+    clogp, logs_proxy, metstab_proxy = [], [], []
+    for smi in smiles.astype(str).tolist():
+        mol = Chem.MolFromSmiles(str(smi))
+        if mol is None:
+            clogp.append(np.nan)
+            logs_proxy.append(np.nan)
+            metstab_proxy.append(np.nan)
+            continue
+        mw = float(Descriptors.MolWt(mol))
+        lp = float(Crippen.MolLogP(mol))
+        tpsa = float(Descriptors.TPSA(mol))
+        rot = float(Descriptors.NumRotatableBonds(mol))
+        logs_est = -0.012 * mw - 0.55 * lp + 0.003 * tpsa - 1.20
+        met_est = 70.0 - 7.5 * lp - 1.2 * rot + 0.12 * tpsa
+        clogp.append(lp)
+        logs_proxy.append(logs_est)
+        metstab_proxy.append(max(1.0, min(120.0, met_est)))
+    idx = smiles.index
+    return (
+        pd.Series(clogp, index=idx, dtype=float),
+        pd.Series(logs_proxy, index=idx, dtype=float),
+        pd.Series(metstab_proxy, index=idx, dtype=float),
+    )
+
+
+def _resolve_qikprop_executable() -> str | None:
+    if hasattr(_resolve_qikprop_executable, "_cached"):
+        return _resolve_qikprop_executable._cached
+    resolved = None
+    for candidate in QIKPROP_EXECUTABLE_CANDIDATES:
+        if "/" in candidate:
+            path = Path(candidate)
+            if path.exists() and path.is_file():
+                resolved = str(path)
+                break
+        else:
+            hit = which(candidate)
+            if hit:
+                resolved = hit
+                break
+    _resolve_qikprop_executable._cached = resolved
+    return resolved
+
+
+def _norm_qikprop_col(value: str) -> str:
+    return "".join(ch for ch in str(value).lower() if ch.isalnum())
+
+
+def _resolve_qikprop_columns(columns: list[str]) -> dict[str, str]:
+    norm_to_col = {_norm_qikprop_col(col): col for col in columns}
+    resolved: dict[str, str] = {}
+    for target_col, aliases in QIKPROP_COLUMN_ALIASES.items():
+        for alias in aliases:
+            hit = norm_to_col.get(_norm_qikprop_col(alias))
+            if hit is not None:
+                resolved[target_col] = hit
+                break
+    return resolved
+
+
+def _qikprop_row_index(row: pd.Series) -> int | None:
+    raw = row.get("molecule", row.get("title", row.get("_Name", "")))
+    if pd.isna(raw):
+        return None
+    match = re.search(r"(\d+)$", str(raw))
+    if not match:
+        return None
+    try:
+        return max(0, int(match.group(1)) - 1)
+    except Exception:
+        return None
+
+
+def _read_qikprop_csv(path: Path) -> pd.DataFrame:
+    try:
+        return pd.read_csv(path)
+    except ParserError:
+        return pd.read_csv(path, engine="python", on_bad_lines="skip")
+
+
+def _run_qikprop_predictions(smiles_list: list[str]) -> pd.DataFrame:
+    out = pd.DataFrame(index=np.arange(len(smiles_list), dtype=int))
+    for col in QIKPROP_COLUMN_RENAME.values():
+        out[col] = np.nan
+    out["qikprop_status"] = "not_run"
+
+    executable = _resolve_qikprop_executable()
+    if not executable or not smiles_list:
+        out["qikprop_status"] = "unavailable"
+        return out
+
+    try:
+        with tempfile.TemporaryDirectory(prefix="qikprop_gate_") as tmpdir_str:
+            tmpdir = Path(tmpdir_str)
+            sdf_path = tmpdir / "input.sdf"
+            kept_index: list[int] = []
+            writer = Chem.SDWriter(str(sdf_path))
+            for idx, smi in enumerate(smiles_list):
+                mol = Chem.MolFromSmiles(str(smi))
+                if mol is None:
+                    continue
+                mol.SetProp("_Name", f"Molecule_{idx + 1:05d}")
+                writer.write(mol)
+                kept_index.append(idx)
+            writer.close()
+
+            if not kept_index:
+                out["qikprop_status"] = "no_valid_molecules"
+                return out
+
+            run = subprocess.run(
+                [executable, "-WAIT", "-nosim", sdf_path.name],
+                cwd=tmpdir,
+                capture_output=True,
+                text=True,
+                timeout=1800,
+                check=False,
+            )
+            csv_path = tmpdir / "input.CSV"
+            if not csv_path.exists() and run.returncode != 0:
+                out["qikprop_status"] = f"failed:{run.returncode}"
+                return out
+            if not csv_path.exists():
+                out["qikprop_status"] = "missing_csv"
+                return out
+
+            qdf = _read_qikprop_csv(csv_path)
+            resolved_cols = _resolve_qikprop_columns(list(qdf.columns))
+            if not resolved_cols:
+                out["qikprop_status"] = "missing_columns"
+                return out
+
+            assigned = [False] * len(smiles_list)
+            processed = [False] * len(smiles_list)
+            for pos in range(len(qdf)):
+                row = qdf.iloc[pos]
+                row_idx = _qikprop_row_index(row)
+                if row_idx is None or row_idx < 0 or row_idx >= len(smiles_list):
+                    if pos < len(kept_index):
+                        row_idx = kept_index[pos]
+                    else:
+                        continue
+                for target_col, source_col in resolved_cols.items():
+                    out.at[row_idx, target_col] = row.get(source_col, np.nan)
+                c_val = pd.to_numeric(out.at[row_idx, "qikprop_clogp"], errors="coerce") if "qikprop_clogp" in out.columns else np.nan
+                s_val = pd.to_numeric(out.at[row_idx, "qikprop_logS"], errors="coerce") if "qikprop_logS" in out.columns else np.nan
+                m_val = pd.to_numeric(out.at[row_idx, "qikprop_metab_sites"], errors="coerce") if "qikprop_metab_sites" in out.columns else np.nan
+                has_numeric = np.isfinite(c_val) or np.isfinite(s_val) or np.isfinite(m_val)
+                out.at[row_idx, "qikprop_status"] = "ok" if has_numeric else "no_prediction"
+                assigned[row_idx] = has_numeric
+                processed[row_idx] = True
+
+            for row_idx in kept_index:
+                if not processed[row_idx]:
+                    out.at[row_idx, "qikprop_status"] = "partial"
+            return out
+    except Exception as exc:
+        out["qikprop_status"] = f"error:{type(exc).__name__}"
+        return out
+
+
+def _attach_focus_adme_scores(df: pd.DataFrame, include_qikprop: bool) -> pd.DataFrame:
+    out = df.copy()
+
+    pred_clogp = _series_for(out, "pred_cLogP")
+    pred_logs = _series_for(out, "pred_logS_ESOL")
+    micro = _series_for(out, "pred_MetStab_Clearance_Microsome_AZ")
+    hep = _series_for(out, "pred_MetStab_Clearance_Hepatocyte_AZ")
+    half_life = _series_for(out, "pred_MetStab_Half_Life_Obach")
+    admet_logp = _series_for(out, "logP")
+    admet_mw = _series_for(out, "molecular_weight")
+    rdkit_clogp, rdkit_logs_proxy, rdkit_met_proxy = _rdkit_proxy_series(out["canonical_smiles"])
+
+    out["clogp_score_individual"] = _clogp_window_score(pred_clogp, low=1.0, high=3.5)
+    out["solubility_score_individual"] = _high_better_score(pred_logs, threshold=-6.0, scale=2.0)
+    out["microsome_stability_score"] = _low_better_score(micro, threshold=70.0, scale=70.0)
+    out["hepatocyte_stability_score"] = _low_better_score(hep, threshold=80.0, scale=80.0)
+    out["half_life_stability_score"] = _high_better_score(half_life, threshold=40.0, scale=40.0)
+    out["metabolic_stability_ensemble_score"] = (
+        0.35 * pd.to_numeric(out["microsome_stability_score"], errors="coerce").fillna(0.0)
+        + 0.30 * pd.to_numeric(out["hepatocyte_stability_score"], errors="coerce").fillna(0.0)
+        + 0.35 * pd.to_numeric(out["half_life_stability_score"], errors="coerce").fillna(0.0)
+    )
+
+    if include_qikprop:
+        drop_cols = [c for c in list(QIKPROP_COLUMN_RENAME.values()) + ["qikprop_status"] if c in out.columns]
+        if drop_cols:
+            out = out.drop(columns=drop_cols)
+        qikprop = _run_qikprop_predictions(out["canonical_smiles"].astype(str).tolist())
+        out = pd.concat([out.reset_index(drop=True), qikprop.reset_index(drop=True)], axis=1)
+    else:
+        for col in QIKPROP_COLUMN_RENAME.values():
+            if col not in out.columns:
+                out[col] = np.nan
+        if "qikprop_status" not in out.columns:
+            out["qikprop_status"] = "not_run"
+
+    qikprop_clogp = _series_for(out, "qikprop_clogp")
+    qikprop_logs = _series_for(out, "qikprop_logS")
+    qikprop_metab = _series_for(out, "qikprop_metab_sites")
+    admet_sol_proxy = -0.012 * admet_mw - 0.55 * admet_logp - 1.20
+    adme_py_met_proxy = 70.0 - 8.0 * pred_clogp + 2.0 * pred_logs
+    out["clogp_score_qikprop"] = _clogp_window_score(qikprop_clogp, low=1.0, high=3.5)
+    out["solubility_score_qikprop"] = _high_better_score(qikprop_logs, threshold=-6.0, scale=2.0)
+    clogp_score_admet = _clogp_window_score(admet_logp, low=1.0, high=3.5)
+    clogp_score_rdkit = _clogp_window_score(rdkit_clogp, low=1.0, high=3.5)
+    sol_score_admet_proxy = _high_better_score(admet_sol_proxy, threshold=-6.0, scale=2.0)
+    sol_score_rdkit = _high_better_score(rdkit_logs_proxy, threshold=-6.0, scale=2.0)
+    met_score_qikprop = _low_better_score(qikprop_metab, threshold=3.0, scale=2.0)
+    met_score_rdkit = _high_better_score(rdkit_met_proxy, threshold=40.0, scale=20.0)
+    met_score_adme_py_proxy = _high_better_score(adme_py_met_proxy, threshold=40.0, scale=20.0)
+
+    out["clogp_ensemble_value"] = _mean_available([pred_clogp, qikprop_clogp, rdkit_clogp, admet_logp], out.index)
+    out["solubility_ensemble_value"] = _mean_available([pred_logs, qikprop_logs, rdkit_logs_proxy, admet_sol_proxy], out.index)
+    out["clogp_ensemble_score"] = _mean_available([
+        pd.to_numeric(out["clogp_score_individual"], errors="coerce"),
+        pd.to_numeric(out["clogp_score_qikprop"], errors="coerce"),
+        pd.to_numeric(clogp_score_admet, errors="coerce"),
+        pd.to_numeric(clogp_score_rdkit, errors="coerce"),
+    ], out.index).fillna(pd.to_numeric(out["clogp_score_individual"], errors="coerce")).clip(lower=0.0, upper=1.0)
+    out["solubility_ensemble_score"] = _mean_available([
+        pd.to_numeric(out["solubility_score_individual"], errors="coerce"),
+        pd.to_numeric(out["solubility_score_qikprop"], errors="coerce"),
+        pd.to_numeric(sol_score_admet_proxy, errors="coerce"),
+        pd.to_numeric(sol_score_rdkit, errors="coerce"),
+    ], out.index).fillna(pd.to_numeric(out["solubility_score_individual"], errors="coerce")).clip(lower=0.0, upper=1.0)
+    out["metabolic_stability_ensemble_score"] = _mean_available([
+        pd.to_numeric(out["metabolic_stability_ensemble_score"], errors="coerce"),
+        pd.to_numeric(met_score_qikprop, errors="coerce"),
+        pd.to_numeric(met_score_rdkit, errors="coerce"),
+        pd.to_numeric(met_score_adme_py_proxy, errors="coerce"),
+    ], out.index).fillna(pd.to_numeric(out["metabolic_stability_ensemble_score"], errors="coerce")).clip(lower=0.0, upper=1.0)
+
+    out["clogp_uncertainty"] = _std_available([
+        pd.to_numeric(out["clogp_score_individual"], errors="coerce"),
+        pd.to_numeric(out["clogp_score_qikprop"], errors="coerce"),
+        pd.to_numeric(clogp_score_admet, errors="coerce"),
+        pd.to_numeric(clogp_score_rdkit, errors="coerce"),
+    ], out.index)
+    out["solubility_uncertainty"] = _std_available([
+        pd.to_numeric(out["solubility_score_individual"], errors="coerce"),
+        pd.to_numeric(out["solubility_score_qikprop"], errors="coerce"),
+        pd.to_numeric(sol_score_admet_proxy, errors="coerce"),
+        pd.to_numeric(sol_score_rdkit, errors="coerce"),
+    ], out.index)
+    out["metstab_uncertainty"] = _std_available([
+        pd.to_numeric(out["metabolic_stability_ensemble_score"], errors="coerce"),
+        pd.to_numeric(met_score_qikprop, errors="coerce"),
+        pd.to_numeric(met_score_rdkit, errors="coerce"),
+        pd.to_numeric(met_score_adme_py_proxy, errors="coerce"),
+    ], out.index)
+    out["adme_ensemble_uncertainty"] = (
+        pd.to_numeric(out["clogp_uncertainty"], errors="coerce").fillna(0.0)
+        + pd.to_numeric(out["solubility_uncertainty"], errors="coerce").fillna(0.0)
+        + pd.to_numeric(out["metstab_uncertainty"], errors="coerce").fillna(0.0)
+    ) / 3.0
+
+    out["adme_individual_score"] = (
+        0.35 * pd.to_numeric(out["clogp_score_individual"], errors="coerce").fillna(0.0)
+        + 0.25 * pd.to_numeric(out["solubility_score_individual"], errors="coerce").fillna(0.0)
+        + 0.40 * pd.to_numeric(out["metabolic_stability_ensemble_score"], errors="coerce").fillna(0.0)
+    )
+    out["adme_ensemble_score"] = (
+        0.35 * pd.to_numeric(out["clogp_ensemble_score"], errors="coerce").fillna(0.0)
+        + 0.25 * pd.to_numeric(out["solubility_ensemble_score"], errors="coerce").fillna(0.0)
+        + 0.40 * pd.to_numeric(out["metabolic_stability_ensemble_score"], errors="coerce").fillna(0.0)
+    )
+
+    out["passes_metabolic_stability"] = (
+        (micro <= 70.0)
+        & (hep <= 80.0)
+        & (half_life >= 40.0)
+    ).astype(int)
+    out["passes_adme_individual"] = (
+        pred_clogp.between(1.0, 3.5, inclusive="both")
+        & (pred_logs >= -6.0)
+        & (pd.to_numeric(out["passes_metabolic_stability"], errors="coerce").fillna(0).astype(int) == 1)
+    ).astype(int)
+    out["passes_adme_ensemble"] = (
+        pd.to_numeric(out["clogp_ensemble_value"], errors="coerce").between(1.0, 3.5, inclusive="both")
+        & (pd.to_numeric(out["solubility_ensemble_value"], errors="coerce") >= -6.0)
+        & (pd.to_numeric(out["passes_metabolic_stability"], errors="coerce").fillna(0).astype(int) == 1)
+    ).astype(int)
+    return out
 
 
 def _sanitize_smiles(smiles: str) -> str | None:
@@ -683,20 +982,13 @@ def score_candidates(df: pd.DataFrame) -> pd.DataFrame:
         if col != "canonical_smiles":
             scored[col] = _to_numeric(scored[col])
 
+    scored = _attach_focus_adme_scores(scored, include_qikprop=False)
+
     potency = _normalize(scored["pred_pIC50"], higher_is_better=True)
-    log_s = _normalize(scored["pred_logS_ESOL"], higher_is_better=True)
-    clogp = _clogp_window_score(scored["pred_cLogP"], low=1.0, high=3.5)
-    micro_clear = _normalize(scored["pred_MetStab_Clearance_Microsome_AZ"], higher_is_better=False)
-    hep_clear = _normalize(scored["pred_MetStab_Clearance_Hepatocyte_AZ"], higher_is_better=False)
-    half_life = _normalize(scored["pred_MetStab_Half_Life_Obach"], higher_is_better=True)
 
     scored["triage_score"] = (
         0.35 * potency
-        + 0.15 * log_s
-        + 0.15 * clogp
-        + 0.10 * micro_clear
-        + 0.10 * hep_clear
-        + 0.15 * half_life
+        + 0.65 * pd.to_numeric(scored["adme_individual_score"], errors="coerce").fillna(0.0)
     )
 
     scored["murcko_scaffold"] = scored["canonical_smiles"].map(_murcko)
@@ -760,152 +1052,6 @@ def write_gate1(scored: pd.DataFrame, shortlist: pd.DataFrame, out_root: Path) -
     return summary
 
 
-def write_gate2(shortlist: pd.DataFrame, out_root: Path) -> None:
-    gate2 = out_root / "gate2_target_free_refinement"
-    gate2.mkdir(parents=True, exist_ok=True)
-
-    csv_path = gate2 / "target_free_candidates.csv"
-    readme = gate2 / "README_GATE2.txt"
-
-    keep_cols = [
-        "gate2_rank",
-        "rank",
-        "canonical_smiles",
-        "triage_score",
-        "gate2_target_free_score",
-        "passes_gate2_target_free",
-        "pred_pIC50_uncertainty",
-        "pred_pIC50_lower95",
-        "pred_ic50_uM_upper95",
-        "uncertainty_confidence_score",
-        "sa_score",
-        "sa_accessibility",
-        "liability_alert_count",
-        "liability_free",
-        "nearest_active_tanimoto",
-        "shape_tanimoto_max",
-        "ligand_support_score",
-        "pred_pIC50",
-        "pred_ic50_uM",
-        "pred_cLogP",
-        "pred_logS_ESOL",
-        "pred_MetStab_Clearance_Microsome_AZ",
-        "pred_MetStab_Clearance_Hepatocyte_AZ",
-        "pred_MetStab_Half_Life_Obach",
-        "scaffold_bucket",
-        "source_family",
-        "source_mode",
-    ]
-    out_df = shortlist[[c for c in keep_cols if c in shortlist.columns]].copy()
-    out_df.to_csv(csv_path, index=False)
-    write_xlsx(out_df, gate2 / "target_free_candidates.xlsx")
-
-    readme.write_text(
-        "Gate 2 target-free refinement\n"
-        "\n"
-        "Inputs generated by run_hybrid_stage_gates.py\n"
-        "- target_free_candidates.csv: reranked shortlist using uncertainty-aware ligand-based filters\n"
-        "- target_free_candidates.xlsx: same data with structures and analysis\n"
-        "\n"
-        "Implemented filters:\n"
-        "1) QSAR uncertainty from up to five positive-R² models\n"
-        "2) Synthetic accessibility (SA score)\n"
-        "3) PAINS/BRENK/NIH alert filtering\n"
-        "4) Ligand-based 2D Tanimoto to known actives\n"
-        "5) Ligand-based 3D shape similarity to known actives\n"
-        "\n"
-        "Suggested use:\n"
-        "Rank by gate2_target_free_score and prioritize passes_gate2_target_free=1\n",
-        encoding="utf-8",
-    )
-
-
-def write_gate3(shortlist: pd.DataFrame, out_root: Path) -> None:
-    gate3 = out_root / "gate3_target_free_translational"
-    gate3.mkdir(parents=True, exist_ok=True)
-
-    cand_path = gate3 / "translational_candidates.csv"
-    template_path = gate3 / "experimental_shortlist_template.csv"
-    readme = gate3 / "README_GATE3.txt"
-
-    keep_cols = [
-        "gate3_rank",
-        "gate2_rank",
-        "rank",
-        "canonical_smiles",
-        "experimental_priority_score",
-        "gate3_translational_score",
-        "passes_gate3_translational",
-        "gate2_target_free_score",
-        "tox_safety_score",
-        "ddi_safety_score",
-        "absorption_score",
-        "hERG",
-        "DILI",
-        "ClinTox",
-        "AMES",
-        "Carcinogens_Lagunin",
-        "max_cyp_inhibition",
-        "HIA_Hou",
-        "Bioavailability_Ma",
-        "PAMPA_NCATS",
-        "Caco2_Wang",
-        "pred_pIC50",
-        "pred_ic50_uM",
-        "pred_pIC50_uncertainty",
-        "source_family",
-        "source_mode",
-    ]
-    out_df = shortlist[[c for c in keep_cols if c in shortlist.columns]].copy()
-    out_df.to_csv(cand_path, index=False)
-    write_xlsx(out_df, gate3 / "translational_candidates.xlsx")
-
-    template = pd.DataFrame([
-        {
-            "parameter": "batch_priority",
-            "value": "top_25_first",
-            "notes": "start wet-lab triage from highest experimental_priority_score",
-        },
-        {
-            "parameter": "uncertainty_rule",
-            "value": "prefer low pred_pIC50_uncertainty",
-            "notes": "avoid highly uncertain QSAR extrapolations",
-        },
-        {
-            "parameter": "chemistry_rule",
-            "value": "exclude alerting chemotypes",
-            "notes": "do not prioritize PAINS/BRENK/NIH-positive molecules",
-        },
-        {
-            "parameter": "assay_panel",
-            "value": "potency+microsome+hepato+hERG",
-            "notes": "recommended minimal validation panel",
-        },
-        {
-            "parameter": "progression_rule",
-            "value": "requires passes_gate3_translational=1",
-            "notes": "default gate for experimental shortlist",
-        },
-    ])
-    template.to_csv(template_path, index=False)
-
-    readme.write_text(
-        "Gate 3 target-free translational prioritization\n"
-        "\n"
-        "Generated files:\n"
-        "- translational_candidates.csv: final reranked candidates for experimental planning\n"
-        "- translational_candidates.xlsx: same data with structures and analysis\n"
-        "- experimental_shortlist_template.csv: wet-lab planning template\n"
-        "\n"
-        "Implemented target-free translational signals:\n"
-        "1) Tox liabilities: hERG, DILI, ClinTox, AMES, carcinogenicity\n"
-        "2) DDI liabilities: CYP1A2/2C19/2C9/2D6/3A4 inhibition risk\n"
-        "3) Absorption support: HIA, bioavailability, PAMPA, Caco2\n"
-        "4) Final experimental priority score for lab selection\n",
-        encoding="utf-8",
-    )
-
-
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Run stage-gated hybrid pipeline artifacts from scored outputs.")
     p.add_argument("--input-root", default=str(ROOT / "outputs" / "generated"))
@@ -936,26 +1082,18 @@ def main() -> int:
     shortlist = select_diverse_shortlist(ranked, top_k=max(1, args.top_k), max_per_scaffold=max(1, args.max_per_scaffold))
 
     summary = write_gate1(ranked, shortlist, output_root)
-    gate2_shortlist = build_target_free_gate2(shortlist)
-    gate3_shortlist = build_target_free_gate3(gate2_shortlist)
-    write_gate2(gate2_shortlist, output_root)
-    write_gate3(gate3_shortlist, output_root)
 
     run_manifest = {
         "input_root": str(input_root),
         "output_root": str(output_root),
         "discovered_scored_files": len(scored_csvs),
         "gate1_summary": summary,
-        "gate2_dir": str((output_root / "gate2_target_free_refinement").relative_to(ROOT)),
-        "gate3_dir": str((output_root / "gate3_target_free_translational").relative_to(ROOT)),
     }
     (output_root / "run_manifest.json").write_text(json.dumps(run_manifest, indent=2), encoding="utf-8")
 
-    print("Hybrid stage-gated artifacts created:")
+    print("Hybrid shortlist artifacts created:")
     print(f"- {output_root / 'gate1' / 'gate1_master_ranked.csv'}")
     print(f"- {output_root / 'gate1' / 'gate1_shortlist.csv'}")
-    print(f"- {output_root / 'gate2_target_free_refinement'}")
-    print(f"- {output_root / 'gate3_target_free_translational'}")
     return 0
 
 

@@ -6,7 +6,7 @@
     "master_candidates": 37451,
     "shortlist_candidates": 200,
     "unique_scaffolds_master": 14287,
-    "unique_scaffolds_shortlist": 145,
+    "unique_scaffolds_shortlist": 155,
     "source_families": [
       "libinvent",
       "libinvent_transformer_pubchem",
@@ -31,7 +31,5 @@
       "shortlist_csv": "outputs/hybrid_stage/gate1/gate1_shortlist.csv",
       "shortlist_xlsx": "outputs/hybrid_stage/gate1/gate1_shortlist.xlsx"
     }
-  },
-  "gate2_dir": "outputs/hybrid_stage/gate2_target_free_refinement",
-  "gate3_dir": "outputs/hybrid_stage/gate3_target_free_translational"
+  }
 }

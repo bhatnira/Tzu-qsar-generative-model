@@ -1,6 +1,0 @@
-parameter,value,notes
-batch_priority,top_25_first,start wet-lab triage from highest experimental_priority_score
-uncertainty_rule,prefer low pred_pIC50_uncertainty,avoid highly uncertain QSAR extrapolations
-chemistry_rule,exclude alerting chemotypes,do not prioritize PAINS/BRENK/NIH-positive molecules
-assay_panel,potency+microsome+hepato+hERG,recommended minimal validation panel
-progression_rule,requires passes_gate3_translational=1,default gate for experimental shortlist

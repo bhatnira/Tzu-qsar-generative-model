@@ -33,7 +33,8 @@ type = "custom_sum"
 [[stage.scoring.component]]
 [stage.scoring.component.ExternalProcess]
 params.executable = "/home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/python"
-params.args = "reinvent_integration/reinvent_qsar_adme_score.py --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib --target-pic50 5.30103 --clogp-low 1.0 --clogp-high 3.5 --logs-threshold -6.0 --microsome-clearance-max 70 --hepatocyte-clearance-max 80 --half-life-min 40 --qsar-weight 0.40 --clogp-weight 0.15 --solubility-weight 0.15 --microsome-weight 0.10 --hepatocyte-weight 0.10 --half-life-weight 0.10 --property-name qsar_adme_score" --disallow-smarts [N+](=O)[O-] --disallow-penalty 1.0"
+params.args = "reinvent_integration/reinvent_qsar_adme_score.py --qsar-model reinvent_integration/artifacts/qsar_best_model.joblib --target-pic50 5.30103 --clogp-low 1.0 --clogp-high 3.5 --logs-threshold -6.0 --microsome-clearance-max 70 --hepatocyte-clearance-max 80 --half-life-min 40 --qsar-weight 0.40 --clogp-weight 0.15 --solubility-weight 0.15 --microsome-weight 0.10 --hepatocyte-weight 0.10 --half-life-weight 0.10 --property-name qsar_adme_score --disallow-smarts [N+](=O)[O-] --disallow-penalty 1.0"
+
 [[stage.scoring.component.ExternalProcess.endpoint]]
 name = "MOL2MOL SIMILARITY_RL_ADME"
 weight = 1.0

@@ -1,16 +1,16 @@
-23:19:02 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-14
-23:19:02 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_cl_sample_nitro.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_mmp_cl.toml
-23:19:02 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_mmp_cl.toml using format toml
-23:19:02 <INFO> User nbhatta1 on host panacea
-23:19:02 <INFO> Python version 3.11.13
-23:19:02 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
-23:19:02 <INFO> PyTorch compiled with CUDA version 12.8
-23:19:02 <INFO> RDKit version 2025.09.6
-23:19:02 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
-23:19:02 <INFO> CUDA driver version 590.48.01
-23:19:02 <INFO> Number of PyTorch CUDA devices 1
-23:19:02 <WARN> 'use_cuda' is deprecated, use 'device' instead
-23:19:02 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
-23:19:02 <INFO> GPU memory: 46507 MiB free, 48400 MiB total
-23:19:02 <INFO> Starting Sampling
-23:19:02 <CRIT> model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_cl_adme/mol2mol_mmp_cl_stage2.chkpt is not accessible
+20:06:02 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+20:06:02 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_cl_sample_nitro.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_mmp_cl.toml
+20:06:02 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_nitro_campaign/sample_mol2mol_mmp_cl.toml using format toml
+20:06:02 <INFO> User nbhatta1 on host panacea
+20:06:02 <INFO> Python version 3.11.13
+20:06:02 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+20:06:02 <INFO> PyTorch compiled with CUDA version 12.8
+20:06:02 <INFO> RDKit version 2025.09.6
+20:06:02 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+20:06:02 <INFO> CUDA driver version 590.48.01
+20:06:03 <INFO> Number of PyTorch CUDA devices 1
+20:06:03 <WARN> 'use_cuda' is deprecated, use 'device' instead
+20:06:03 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+20:06:03 <INFO> GPU memory: 44893 MiB free, 48400 MiB total
+20:06:03 <INFO> Starting Sampling
+20:06:03 <CRIT> model file /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/results/mol2mol_mmp_cl_adme/mol2mol_mmp_cl_stage2.chkpt is not accessible

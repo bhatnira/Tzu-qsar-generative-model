@@ -1,0 +1,292 @@
+19:37:49 <INFO> Started REINVENT 4.7.15 (C) AstraZeneca 2017, 2023 on 2026-03-15
+19:37:49 <INFO> Command line: /home/nbhatta1/Desktop/qsar-project-Tzu/.venv/bin/reinvent -l reinvent_integration/logs/mol2mol_mmp_rl_train.log /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_mmp.toml
+19:37:49 <INFO> Reading run configuration from /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/configs_fast/rl_mol2mol_mmp.toml using format toml
+19:37:49 <INFO> User nbhatta1 on host panacea
+19:37:49 <INFO> Python version 3.11.13
+19:37:49 <INFO> PyTorch version 2.9.1+cu128, git 5811a8d7da873dd699ff6687092c225caffcf1bb
+19:37:49 <INFO> PyTorch compiled with CUDA version 12.8
+19:37:49 <INFO> RDKit version 2025.09.6
+19:37:49 <INFO> Platform Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34
+19:37:49 <INFO> CUDA driver version 590.48.01
+19:37:49 <INFO> Number of PyTorch CUDA devices 1
+19:37:49 <WARN> 'use_cuda' is deprecated, use 'device' instead
+19:37:49 <INFO> Using GPU device:0 NVIDIA RTX PRO 5000 Blackwell
+19:37:50 <INFO> GPU memory: 45834 MiB free, 48400 MiB total
+19:37:50 <INFO> Starting 1 stage of Reinforcement Learning
+19:37:50 <ERRO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/mol2mol_mmp.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '5444bf9f95ab74d33d90ecf60a6c09e9',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '173b363880e44b309a8e2d88eb648f7a',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': []}
+19:37:50 <INFO> Number of network parameters: 17,461,631
+19:37:50 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(127, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(127, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=127, bias=True)
+  )
+)
+19:37:50 <ERRO> /home/nbhatta1/Desktop/qsar-project-Tzu/reinvent_integration/priors/mol2mol_mmp.prior has invalid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '5444bf9f95ab74d33d90ecf60a6c09e9',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '173b363880e44b309a8e2d88eb648f7a',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 28',
+  'updates': []}
+19:37:50 <INFO> Number of network parameters: 17,461,631
+19:37:50 <INFO> Network architecture:
+EncoderDecoder(
+  (encoder): Encoder(
+    (layers): ModuleList(
+      (0-5): 6 x EncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-1): 2 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0-5): 6 x DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linears): ModuleList(
+            (0-3): 4 x Linear(in_features=256, out_features=256, bias=True)
+          )
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (sublayer): ModuleList(
+          (0-2): 3 x SublayerConnection(
+            (norm): LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (norm): LayerNorm()
+  )
+  (src_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(127, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (tgt_embed): Sequential(
+    (0): Embeddings(
+      (lut): Embedding(127, 256)
+    )
+    (1): PositionalEncoding(
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Generator(
+    (proj): Linear(in_features=256, out_features=127, bias=True)
+  )
+)
+19:37:50 <INFO> Using generator Mol2Mol
+19:37:50 <INFO> Prior read from reinvent_integration/priors/mol2mol_mmp.prior
+19:37:50 <INFO> Agent read from reinvent_integration/priors/mol2mol_mmp.prior
+19:37:50 <INFO> Input molecules/fragments read from file reinvent_integration/data/series_ce_unique.smi
+19:37:50 <INFO> Using reward strategy dap
+19:37:50 <INFO> Using diversity filter IdenticalMurckoScaffold
+19:37:50 <INFO> Purging diversity filter memories after each stage
+19:37:50 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+19:37:50 <INFO> Registered scoring component GroupCount
+19:37:50 <INFO> Registered scoring component FragmentQed
+19:37:50 <INFO> Registered scoring component FragmentSlogP
+19:37:50 <INFO> Registered scoring component FragmentMolecularWeight
+19:37:50 <INFO> Registered scoring component FragmentTPSA
+19:37:50 <INFO> Registered scoring component FragmentDistanceMatrix
+19:37:50 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+19:37:50 <INFO> Registered scoring component FragmentHBondAcceptors
+19:37:50 <INFO> Registered scoring component FragmentHBondDonors
+19:37:50 <INFO> Registered scoring component FragmentNumRotBond
+19:37:50 <INFO> Registered scoring component FragmentCsp3
+19:37:50 <INFO> Registered scoring component Fragmentnumsp
+19:37:50 <INFO> Registered scoring component Fragmentnumsp2
+19:37:50 <INFO> Registered scoring component Fragmentnumsp3
+19:37:50 <INFO> Registered scoring component FragmentEffectiveLength
+19:37:50 <INFO> Registered scoring component FragmentGraphLength
+19:37:50 <INFO> Registered scoring component FragmentLengthRatio
+19:37:50 <INFO> Registered scoring component FragmentNumHeavyAtoms
+19:37:50 <INFO> Registered scoring component FragmentNumHeteroAtoms
+19:37:50 <INFO> Registered scoring component FragmentNumRings
+19:37:50 <INFO> Registered scoring component FragmentNumAromaticRings
+19:37:50 <INFO> Registered scoring component FragmentNumAliphaticRings
+19:37:50 <INFO> Registered scoring component FragmentSlogP
+19:37:50 <INFO> Registered scoring component MatchingSubstructure
+19:37:50 <INFO> Registered scoring component MolVolume
+19:37:50 <INFO> Registered scoring component Qed
+19:37:50 <INFO> Registered scoring component LargestRingSize
+19:37:50 <INFO> Registered scoring component MolecularWeight
+19:37:50 <INFO> Registered scoring component GraphLength
+19:37:50 <INFO> Registered scoring component NumAtomStereoCenters
+19:37:50 <INFO> Registered scoring component HBondAcceptors
+19:37:50 <INFO> Registered scoring component HBondDonors
+19:37:50 <INFO> Registered scoring component NumRotBond
+19:37:50 <INFO> Registered scoring component Csp3
+19:37:50 <INFO> Registered scoring component numsp
+19:37:50 <INFO> Registered scoring component numsp2
+19:37:50 <INFO> Registered scoring component numsp3
+19:37:50 <INFO> Registered scoring component NumHeavyAtoms
+19:37:50 <INFO> Registered scoring component NumHeteroAtoms
+19:37:50 <INFO> Registered scoring component NumRings
+19:37:50 <INFO> Registered scoring component NumAromaticRings
+19:37:50 <INFO> Registered scoring component NumAliphaticRings
+19:37:50 <INFO> Registered scoring component SlogP
+19:37:50 <INFO> Registered scoring component LargestRingSize
+19:37:50 <INFO> Registered scoring component PMI
+19:37:50 <INFO> Registered scoring component RDKitDescriptors
+19:37:50 <INFO> Registered scoring component TanimotoSimilarity
+19:37:50 <INFO> Registered scoring component TanimotoDistance
+19:37:50 <INFO> Registered scoring component TPSA
+19:37:50 <INFO> Registered scoring component SAScore
+19:37:50 <INFO> Registered scoring component ChemProp
+19:37:50 <INFO> Registered scoring component CustomAlerts
+19:37:50 <INFO> Registered scoring component DockStream
+19:37:50 <INFO> Registered scoring component ExternalProcess
+19:37:50 <INFO> Registered scoring component REST
+19:37:50 <INFO> Registered scoring component Icolos
+19:37:50 <INFO> Registered scoring component MMP
+19:37:50 <INFO> Registered scoring component Qptuna
+19:37:50 <INFO> Registered scoring component ReactionFilter
+19:37:50 <INFO> Registered scoring component RingPrecedence
+19:37:50 <INFO> Registered scoring component Maize
+19:37:50 <INFO> Registered scoring component SynthSense
+19:37:50 <INFO> Registered scoring component CAZP
+19:37:50 <INFO> Creating scoring component ExternalProcess
+19:37:50 <INFO> Writing tabular data for stage to mol2mol_mmp_rl_adme_1.csv
+19:37:50 <INFO> Starting stage 1 <<<
+19:37:50 <INFO> Current GPU memory usage: 2814 MiB used, 45586 MiB free
+19:38:30 <INFO> Score: 0.42 Agent NLL: 4.86 Valid:  96% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_SMILES Scaffold MOL2MOL MMP_RL_ADME MOL2MOL MMP_RL_ADME (raw) pred_MetStab_Half_Life_Obach (MOL2MOL MMP_RL_ADME) solubility_ensemble_score (MOL2MOL MMP_RL_ADME) pred_pic50 (MOL2MOL MMP_RL_ADME) half_life_score (MOL2MOL MMP_RL_ADME) adme3_ensemble_score (MOL2MOL MMP_RL_ADME) solubility_uncertainty (MOL2MOL MMP_RL_ADME) pred_admet_logP (MOL2MOL MMP_RL_ADME) pred_qikprop_logS (MOL2MOL MMP_RL_ADME) pred_qikprop_metab_sites (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_AZ (MOL2MOL MMP_RL_ADME) pred_log_ic50_uM (MOL2MOL MMP_RL_ADME) pred_cLogP (MOL2MOL MMP_RL_ADME) pred_rdkit_metstab_proxy (MOL2MOL MMP_RL_ADME) pred_qikprop_status (MOL2MOL MMP_RL_ADME) pred_Solubility_ESOL_mol_per_L (MOL2MOL MMP_RL_ADME) pred_pic50_uncertainty (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_Human (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_Human (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_Mouse (MOL2MOL MMP_RL_ADME) pred_rdkit_logS_proxy (MOL2MOL MMP_RL_ADME) clogp_ensemble_score (MOL2MOL MMP_RL_ADME) microsome_score (MOL2MOL MMP_RL_ADME) pred_logS_ESOL (MOL2MOL MMP_RL_ADME) disallowed_smarts (MOL2MOL MMP_RL_ADME) qsar_score (MOL2MOL MMP_RL_ADME) metstab_uncertainty (MOL2MOL MMP_RL_ADME) hepatocyte_score (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_AZ (MOL2MOL MMP_RL_ADME) pred_qikprop_cLogP (MOL2MOL MMP_RL_ADME) pred_rdkit_cLogP (MOL2MOL MMP_RL_ADME) adme3_ensemble_uncertainty (MOL2MOL MMP_RL_ADME) pred_MetStab_Half_Life_Mouse (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_Mouse (MOL2MOL MMP_RL_ADME) pred_MetStab_Half_Life_Human (MOL2MOL MMP_RL_ADME) metstab_ensemble_score (MOL2MOL MMP_RL_ADME) clogp_uncertainty (MOL2MOL MMP_RL_ADME)
+ | 6.0458 6.0458 33.7699 0.6221214 C#Cc1cncc(N2CCC3(CN(Cc4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 1 CCCCCCC#Cc1cncc(N2CCC3(CN(Cc4cc([N+](=O)[O-])cc([N+](=O)[O-])c4)C3)C2)c1 c1ccc(CN2CC3(CCN(c4cccnc4)C3)C2)cc1 0.6221214 0.6221 29.4902400970459 0.3533978564718165 5.634823981205704 0.21186502132833895 0.6221214149190187 0.44967312077911026 2.5916000000000006 -999.0 999.0 31.643505096435547 0.3651760187942955 2.5916000000000006 57.241 no_prediction 3.784821590908642e-05 0.1996701090915311 1000000.0 1000000.0 1000000.0 -7.0292660000000025 0.920811335359551 0.9788688515547129 -4.421954587474357 0 0.7916955046378544 0.09641892122022337 0.9973316383953805 20.763813018798828 999.0 2.5916000000000006 0.18203068066644457 0.0 1000000.0 0.0 0.6414453549735992 1.1102230246251565e-16
+ | 4.5682 4.5682 36.4233 0.6404918 Clc1ncc(N2CCC3(CNC3)C2)cc1C#Cc1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 0.6404918 0.6405 56.99205780029297 0.4196759580910816 4.743279000562708 0.8932147499925793 0.6404917970515066 0.40541576048418654 2.9345000000000008 -999.0 999.0 -8.356508255004883 1.2567209994372914 2.9345000000000008 50.17044999999999 no_prediction 5.297549912785975e-05 0.2745605266733744 1000000.0 1000000.0 1000000.0 -6.615419000000001 0.830898466104145 0.9996047713628378 -4.275924942735071 0 0.0970006636934368 0.2039100681880738 0.9990995490263009 9.88286018371582 999.0 2.9345000000000008 0.20310860955742013 0.0 1000000.0 0.0 0.6871167724298045 0.0
+ | 6.1724 6.1724 -6.1724 0.0000000 C(#Cc1cc(N2CCC3(CNC3)C2)cnc1NCc1ccccc1 0 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 -- 0.0000000 0.0000 None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+ | 4.3733 4.3733 21.1017 0.3980473 C(#Cc1cncc(N2CCC3(CC(N4CCCCC4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC(N4CCCCC4)C3)C2)c1)c1ccccc1 0.3980473 0.3980 70.9784164428711 0.2582462950882906 5.146679030866954 0.9796138368327479 0.3980473355712543 0.3606642007231937 4.326200000000004 -999.0 999.0 7.17776346206665 0.8533209691330461 4.326200000000004 37.47789999999997 no_prediction 2.627620430798511e-06 0.38942925745699547 1000000.0 1000000.0 1000000.0 -7.979636000000003 0.08622272704355925 0.9981342481089022 -5.580437369978066 0 0.3503721292016234 0.2904034936411351 0.9977509621836433 19.04998779296875 999.0 4.326200000000004 0.21702256478810958 0.0 1000000.0 0.0 0.5908461067995187 0.0
+ | 5.8041 5.8041 31.7479 0.5867497 C(#Cc1cncc(N2CCC3(CC(N4CCOCC4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC(N4CCOCC4)C3)C2)c1)c1ccccc1 0.5867497 0.5867 61.25756072998047 0.33715254816661494 5.075428473561659 0.9344530736515767 0.586749698083066 0.45001499432556735 3.172500000000002 -999.0 999.0 15.315893173217773 0.9245715264383414 3.172500000000002 47.23824999999999 no_prediction 1.828897170711256e-05 0.25342759283514044 1000000.0 1000000.0 1000000.0 -7.341075000000003 0.7167888310680244 0.995799785747979 -4.737810711936434 0 0.2885562929833558 0.22470116171641327 0.9920272878979619 31.762741088867188 999.0 3.172500000000002 0.22490538534732687 0.0 1000000.0 0.0 0.6674337060883159 0.0
+ | 10.1294 10.1294 11.8664 0.3436855 FC(F)(F)C1(c2cncnc2)CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC(c4cncnc4)C3)C2)c1)c1ccccc1 0.3436855 0.3437 82.277587890625 0.08482154514068795 4.735975510347901 0.9949570005483117 0.34368552960981663 0.11965908187336187 4.762000000000003 -999.0 999.0 13.834111213684082 1.2640244896520998 4.762000000000003 36.91419999999998 no_prediction 4.1975532636660045e-07 0.18816701988448872 1000000.0 1000000.0 1000000.0 -8.906950000000004 0.02644888454803997 0.9963761537128842 -6.377003784297843 0 0.0944717216371795 0.31063398677787474 0.9990167621903213 10.7632417678833 999.0 4.762000000000003 0.14343102288374554 0.0 1000000.0 0.0 0.5729477676135893 0.0
+ | 4.4143 4.4143 20.8597 0.3949058 C(#Cc1cncc(N2CCC3(C2)CN(C2CCCCC2)C3)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(C2)CN(C2CCCCC2)C3)c1)c1ccccc1 0.3949058 0.3949 64.04362487792969 0.2582462950882906 5.075428473561659 0.9528198730107618 0.3949057501640372 0.3606642007231937 4.326200000000004 -999.0 999.0 29.545984268188477 0.9245715264383414 4.326200000000004 37.47789999999997 no_prediction 2.627620430798511e-06 0.3779202108041575 1000000.0 1000000.0 1000000.0 -7.979636000000003 0.08622272704355925 0.9827983993793223 -5.580437369978066 0 0.2885562929833558 0.2821483404334832 0.9870283291039288 36.68069076538086 999.0 4.326200000000004 0.21427084705222565 0.0 1000000.0 0.0 0.5848586986938645 0.0
+ | 3.1699 3.1699 31.7784 0.5460673 C(#Cc1cncc(N2CCC3(CN(CC4CC4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CN(CC4CC4)C3)C2)c1)c1ccccc1 0.5460673 0.5461 66.04447937011719 0.34808975138011927 5.075428473561659 0.9628723874585727 0.5460673423861767 0.4431302853326747 3.403500000000002 -999.0 999.0 21.287704467773438 0.9245715264383414 3.403500000000002 43.19814999999998 no_prediction 1.9004240143334945e-05 0.32047792179892554 1000000.0 1000000.0 1000000.0 -7.135503 0.5679037698700384 0.99239435291975 -4.721149490341535 0 0.2885562929833558 0.2419302948771548 0.9880708408670349 35.832313537597656 999.0 3.403500000000002 0.22835352673660983 0.0 1000000.0 0.0 0.6460140489118646 0.0
+ | 5.0412 5.0412 20.4329 0.3980330 C(#Cc1cncc(N2CCC3(CN(Cc4ccccc4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CN(Cc4ccccc4)C3)C2)c1)c1ccccc1 0.3980330 0.3980 69.28486633300781 0.2523862876813901 5.075428473561659 0.9749279109066636 0.39803299023337463 0.3526639400096457 4.193700000000003 -999.0 999.0 45.86573028564453 0.9245715264383414 4.193700000000003 37.27164999999997 no_prediction 2.4356994615366376e-06 0.12985979738773523 1000000.0 1000000.0 1000000.0 -8.002509000000003 0.12109260822494812 0.9178454635386847 -5.613376299884978 0 0.2885562929833558 0.2668831042324506 0.9487649408620173 50.81262969970703 999.0 4.193700000000003 0.2065156814140321 0.0 1000000.0 0.0 0.5787704430460775 1.3877787807814457e-17
+ | 3.4760 3.4760 21.6280 0.3922496 C(#Cc1cncc(N2CCC3(C2)CN(c2ccccc2)C3)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(C2)CN(c2ccccc2)C3)c1)c1ccccc1 0.3922496 0.3922 75.27821350097656 0.26647898917171814 5.075428473561659 0.9879881458036741 0.39224963216138775 0.37002076500423503 4.198100000000004 -999.0 999.0 56.98026657104492 0.9245715264383414 4.198100000000004 38.438649999999974 no_prediction 2.9055803824029077e-06 0.25926727575481817 1000000.0 1000000.0 1000000.0 -7.836605000000004 0.11976118451803171 0.7861669060914118 -5.536767105373673 0 0.2885562929833558 0.2357584470204008 0.8770357160599271 60.35346221923828 999.0 4.198100000000004 0.20192640400821193 0.0 1000000.0 0.0 0.5630376720405303 1.3877787807814457e-17
+19:39:08 <INFO> Score: 0.32 Agent NLL: 5.20 Valid:  98% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state Input_SMILES Scaffold MOL2MOL MMP_RL_ADME MOL2MOL MMP_RL_ADME (raw) pred_MetStab_Half_Life_Obach (MOL2MOL MMP_RL_ADME) solubility_ensemble_score (MOL2MOL MMP_RL_ADME) pred_pic50 (MOL2MOL MMP_RL_ADME) half_life_score (MOL2MOL MMP_RL_ADME) adme3_ensemble_score (MOL2MOL MMP_RL_ADME) solubility_uncertainty (MOL2MOL MMP_RL_ADME) pred_admet_logP (MOL2MOL MMP_RL_ADME) pred_qikprop_logS (MOL2MOL MMP_RL_ADME) pred_qikprop_metab_sites (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_AZ (MOL2MOL MMP_RL_ADME) pred_log_ic50_uM (MOL2MOL MMP_RL_ADME) pred_cLogP (MOL2MOL MMP_RL_ADME) pred_rdkit_metstab_proxy (MOL2MOL MMP_RL_ADME) pred_qikprop_status (MOL2MOL MMP_RL_ADME) pred_Solubility_ESOL_mol_per_L (MOL2MOL MMP_RL_ADME) pred_pic50_uncertainty (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_Human (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_Human (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_Mouse (MOL2MOL MMP_RL_ADME) pred_rdkit_logS_proxy (MOL2MOL MMP_RL_ADME) clogp_ensemble_score (MOL2MOL MMP_RL_ADME) microsome_score (MOL2MOL MMP_RL_ADME) pred_logS_ESOL (MOL2MOL MMP_RL_ADME) disallowed_smarts (MOL2MOL MMP_RL_ADME) qsar_score (MOL2MOL MMP_RL_ADME) metstab_uncertainty (MOL2MOL MMP_RL_ADME) hepatocyte_score (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Hepatocyte_AZ (MOL2MOL MMP_RL_ADME) pred_qikprop_cLogP (MOL2MOL MMP_RL_ADME) pred_rdkit_cLogP (MOL2MOL MMP_RL_ADME) adme3_ensemble_uncertainty (MOL2MOL MMP_RL_ADME) pred_MetStab_Half_Life_Mouse (MOL2MOL MMP_RL_ADME) pred_MetStab_Clearance_Microsome_Mouse (MOL2MOL MMP_RL_ADME) pred_MetStab_Half_Life_Human (MOL2MOL MMP_RL_ADME) metstab_ensemble_score (MOL2MOL MMP_RL_ADME) clogp_uncertainty (MOL2MOL MMP_RL_ADME)
+ | 4.9456 4.8428 32.0230 0.5760288 Brc1cccc(C#Cc2cncc(N3CCC4(CNC4)C3)c2)c1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 0.5760288 0.5760 81.91416931152344 0.30340444563338187 4.743279000562708 0.9947238640028523 0.57602881830659 0.3951163821724378 3.0436000000000005 -6.532 0.0 -14.387857437133789 1.2567209994372914 3.0436000000000005 49.35219999999999 ok 2.2344191097099304e-05 0.17333084493182727 1000000.0 1000000.0 1000000.0 -7.2088360000000025 0.5928442683793335 0.9997837341311698 -4.650835363018614 0 0.0970006636934368 0.20514446075837747 0.9996340575451372 0.8733154535293579 4.886 3.0436000000000005 0.3105798650191784 0.0 1000000.0 0.0 0.7212139124799293 0.3314787521267199
+ | 6.6404 6.8274 33.7958 0.6347377 C#Cc1cncc(N2CCC3(CN(C(=O)c4cc5c(cc4[N+](=O)[O-])OCO5)C3)C2)c1 1 CCCCCCC#Cc1cncc(N2CCC3(CN(C(=O)c4cc5c(cc4[N+](=O)[O-])OCO5)C3)C2)c1 O=C(c1ccc2c(c1)OCO2)N1CC2(CCN(c3cccnc3)C2)C1 0.6347377 0.6347 1.5211455821990967 0.384432690467973 5.353088652147544 0.008083156678329945 0.634737684452835 0.3877239018854868 2.0523000000000002 -6.081 0.0 59.150917053222656 0.6469113478524566 2.0523000000000002 62.772549999999995 ok 7.781421482100778e-05 0.28595793099887634 1000000.0 1000000.0 1000000.0 -6.9114210000000025 0.887301044308169 0.7474217082531753 -4.10894106040849 0 0.5518713518399532 0.12195882616666263 0.8875483184414067 59.340606689453125 3.139 2.0523000000000002 0.19909648542811653 0.0 1000000.0 0.0 0.6680851805442837 0.08760672823220024
+ | 9.5346 10.1875 32.5285 0.6674386 NC(=O)C1CC2(CCN(c3cncc(C#Cc4ccccc4)c3)C2)C1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CCC3)C2)c1)c1ccccc1 0.6674386 0.6674 41.20162582397461 0.462014903699006 5.087879113630735 0.5374803672374062 0.6674386244116265 0.379195322406418 2.573200000000001 -999.0 999.0 4.699275970458984 0.9121208863692649 2.573200000000001 55.407399999999996 partial 9.1848491165267e-05 0.6196405914746547 1000000.0 1000000.0 1000000.0 -6.414628000000001 0.9235747245480713 0.9985432250719817 -4.036927973642124 0 0.2988869897984191 0.13060585012366133 0.996531764301209 23.39365005493164 999.0 2.573200000000001 0.16993372417669317 0.0 1000000.0 0.0 0.6789730810916467 1.1102230246251565e-16
+ | 3.7097 4.0634 24.7490 0.4501935 C(#Cc1cncc(N2CCC3(CC(N4CCCC4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CC(N4CCCC4)C3)C2)c1)c1ccccc1 0.4501935 0.4502 68.70990753173828 0.30851816495441103 5.075428473561659 0.973109889667891 0.45019345747535894 0.4228077608288143 3.9361000000000033 -999.0 999.0 4.260262966156006 0.9245715264383414 3.9361000000000033 40.40364999999998 partial 6.235865693088749e-06 0.3731788562077005 1000000.0 1000000.0 1000000.0 -7.596757000000002 0.2233425407412968 0.9986057086250082 -5.205103247135949 0 0.2885562929833558 0.27060626313012154 0.998048279014285 17.629098892211914 999.0 3.9361000000000033 0.23113800798631198 0.0 1000000.0 0.0 0.6166867415471952 0.0
+ | 4.5036 4.6156 39.5764 0.6904997 C(#Cc1cncc(N2CCC3(CCNC3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CCNC3)C2)c1)c1ccccc1 0.6904997 0.6905 50.868675231933594 0.5444535935838831 4.767223569501352 0.7955295299468939 0.6904996800365055 0.32083926775964416 2.6712000000000007 -999.0 999.0 -14.596502304077148 1.2327764304986477 2.6712000000000007 52.14519999999999 partial 0.00011334441054328725 0.29186970712176413 1000000.0 1000000.0 1000000.0 -6.225588 0.9067024448637703 0.9997881987142281 -3.945599891770902 0 0.105719916188486 0.17424646795116835 0.9989073789509733 11.819173812866211 999.0 2.6712000000000007 0.16502857857027087 0.0 1000000.0 0.0 0.6948626292263006 1.1102230246251565e-16
+ | 4.2704 4.2593 28.8732 0.5176955 C(#Cc1cncc(N2CCC3(C2)CN(C2CCC2)C3)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(C2)CN(C2CCC2)C3)c1)c1ccccc1 0.5176955 0.5177 58.4853630065918 0.3405991257728704 5.075428473561659 0.9097569077875939 0.5176955473040173 0.4421179172137176 3.546000000000002 -999.0 999.0 18.96072769165039 0.9245715264383414 3.546000000000002 43.329399999999985 partial 1.478122493202407e-05 0.3908315472949408 1000000.0 1000000.0 1000000.0 -7.213878 0.4668664704825098 0.9939638067091455 -4.830289574116072 0 0.2885562929833558 0.23871751320640358 0.9883088594790816 35.628360748291016 999.0 3.546000000000002 0.22694514347337372 0.0 1000000.0 0.0 0.6350952099702031 0.0
+ | 5.9536 6.1465 28.3602 0.5391671 C(#Cc1cncc(N2CCC3(CN(CC4CCOCC4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CN(CC4CCOCC4)C3)C2)c1)c1ccccc1 0.5391671 0.5392 65.48455810546875 0.32036044283755977 5.075428473561659 0.960287616083499 0.5391671048769958 0.4417065307428095 3.4201000000000024 -999.0 999.0 9.618078231811523 0.9245715264383414 3.4201000000000024 44.181249999999984 partial 9.897571295667135e-06 0.22617733993956238 1000000.0 1000000.0 1000000.0 -7.645579000000003 0.5562723663950983 0.9976198105732613 -5.004471361189468 0 0.2885562929833558 0.24444431160177585 0.9957565535469403 25.418729782104492 999.0 3.4201000000000024 0.22871694744819512 0.0 1000000.0 0.0 0.6483257623541819 0.0
+ | 6.4628 6.5918 23.8520 0.4756841 C(#Cc1cncc(N2CCC3(CN(Cc4ccncc4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CN(Cc4ccncc4)C3)C2)c1)c1ccccc1 0.4756841 0.4757 58.96767044067383 0.23335209049088496 5.075428473561659 0.9145857908767232 0.4756840854530123 0.393182900139446 3.588700000000003 -8.021 1.0 21.469097137451172 0.9245715264383414 3.588700000000003 43.35594999999998 ok 6.742204531244857e-06 0.15147637209688564 1000000.0 1000000.0 1000000.0 -7.642945000000003 0.32764107174284784 0.9922562112904664 -5.171198076875314 0 0.2885562929833558 0.21536343960996132 0.9917812584793588 32.06914520263672 6.214 3.588700000000003 0.2658208270573074 0.0 1000000.0 0.0 0.6566454244077031 0.18891614142251484
+ | 2.7680 2.6674 -2.6674 0.0000000 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 0.7305308 0.7305 35.81877899169922 0.7204479296818441 4.767223569501352 0.37223217049644575 0.7305308301305975 0.19843520089242536 2.2811000000000003 -999.0 999.0 -10.388599395751953 1.2327764304986477 2.2811000000000003 55.070949999999996 no_prediction 0.0002669263334483793 0.3983372826683081 1000000.0 1000000.0 1000000.0 -5.842708999999999 0.9458554991703371 0.9996774274752734 -3.5736085790518586 0 0.105719916188486 0.09098035101896962 0.9986448746866575 13.974946975708008 999.0 2.2811000000000003 0.09647185063713166 0.0 1000000.0 0.0 0.6723366661462474 0.0
+ | 5.1303 5.3768 17.5730 0.3585901 C(#Cc1cncc(N2CCC3(CCN(Cc4ccccc4)C3)C2)c1)c1ccccc1 1 C(#Cc1cncc(N2CCC3(CNC3)C2)c1)c1ccccc1 C(#Cc1cncc(N2CCC3(CCN(Cc4ccccc4)C3)C2)c1)c1ccccc1 0.3585901 0.3586 72.0689926147461 0.17051766541518001 5.075428473561659 0.9821654830570296 0.35859012053799133 0.23971744881657966 4.5838000000000045 -999.0 999.0 32.987754821777344 0.9245715264383414 4.5838000000000045 34.345899999999965 partial 1.0311994247802325e-06 0.14259351575464643 1000000.0 1000000.0 1000000.0 -8.385388000000004 0.0432473565313918 0.9759017929479509 -5.986657337911093 0 0.2885562929833558 0.30118052382410465 0.9894888285121495 34.5525016784668 999.0 4.5838000000000045 0.18029932421356143 0.0 1000000.0 0.0 0.5648141388487312 6.938893903907228e-18
+19:39:08 <INFO> Purging diversity filter memories in stage 1
+19:39:08 <WARN> Maximum number of steps of 2 reached in stage 1. Terminating all stages.
+19:39:08 <INFO> Peak main memory usage: 2432.941 MiB
+19:39:08 <INFO> Finished REINVENT on 2026-03-15

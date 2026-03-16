@@ -334,7 +334,7 @@ the production scoring stack in this order:
 
   Step 5: Pass/fail and ranking-ready fields
     Molecules are labeled with pass flags and normalized fields required
-    by Gate 1 / Gate 2 / Gate 3 ranking logic.
+    by Gate 1 ranking logic and downstream analysis.
 
   Step 6: Human-readable outputs
     CSV and Excel outputs are written, including embedded 2D structures
@@ -503,78 +503,14 @@ analysis, discarding obvious weak candidates.
 
 
 ------------------------------------------------------------------------
-6.4  Gate 2 — Target-Free Refinement
+6.4  Legacy Gate 2 / Gate 3 Note
 ------------------------------------------------------------------------
-What happens:
-  The Gate 1 shortlist is re-ranked using target-free confidence and
-  chemistry quality filters. This is the current production Gate 2 in the
-  repository.
+Gate 2 and Gate 3 have been removed from the active workflow.
+Gate 1 is now the only active hybrid-stage shortlist stage in
+reinvent_integration/run_hybrid_stage_gates.py.
 
-  Implemented components:
-
-  QSAR Uncertainty Filter
-    The project keeps the best IC50 model as the primary prediction, but also
-    uses up to five models with positive R² to estimate uncertainty.
-    Molecules with lower prediction spread are preferred over molecules whose
-    potency estimate depends on strong model disagreement.
-
-  Synthetic Accessibility  (SA score)
-    Estimates how hard a compound may be to synthesize.
-    Lower SA score = easier chemistry.
-
-  Liability Filters
-    Flags PAINS, BRENK, and NIH alerts.
-    Molecules with fewer structural liabilities are preferred.
-
-  Ligand-Based 2D Similarity
-    Computes Tanimoto similarity to known active project molecules.
-    This helps keep the shortlist chemically credible without needing a target.
-
-  Ligand-Based 3D Shape Similarity
-    Compares 3D conformational shape to known actives.
-    This acts as a target-free pharmacophore/shape support signal.
-
-Output files:
-  gate2_target_free_refinement/target_free_candidates.csv
-  gate2_target_free_refinement/target_free_candidates.xlsx
-  gate2_target_free_refinement/README_GATE2.txt
-
-Purpose: remove high-uncertainty, high-liability, and hard-to-make compounds
-before translational prioritization.
-
-
-------------------------------------------------------------------------
-6.5  Gate 3 — Target-Free Translational Prioritization
-------------------------------------------------------------------------
-What happens:
-  The Gate 2-refined molecules are ranked using target-free translational risk
-  signals that help decide which compounds should move to experiments first.
-
-  Implemented components:
-
-  Tox Risk
-    Uses ADMET-AI outputs such as hERG, DILI, ClinTox, AMES, and
-    carcinogenicity to estimate safety risk.
-
-  DDI Risk
-    Uses CYP1A2, CYP2C19, CYP2C9, CYP2D6, and CYP3A4 inhibition predictions
-    to estimate drug-drug interaction liability.
-
-  Absorption Support
-    Uses HIA, bioavailability, PAMPA, and Caco2-related signals to favor
-    compounds more likely to translate into useful exposure.
-
-  Experimental Priority Score
-    Combines Gate 2 quality with translational signals to create the final
-    ranking used for wet-lab planning.
-
-Output files:
-  gate3_target_free_translational/translational_candidates.csv
-  gate3_target_free_translational/translational_candidates.xlsx
-  gate3_target_free_translational/experimental_shortlist_template.csv
-  gate3_target_free_translational/README_GATE3.txt
-
-Purpose: build the final experimental shortlist in a no-target setting.
+Historical references to Gate 2 and Gate 3 in older reports are retained
+only for context and are not produced by the current pipeline.
 
 
 ------------------------------------------------------------------------
@@ -696,35 +632,19 @@ Step 6: Hybrid Stage Gates (run_hybrid_stage_gates.py)
   Gate 1: Pool all scored CSVs → compute triage score →
           rank → scaffold-diverse top-200 shortlist → Excel output
 
-  Gate 2: Target-free refinement with uncertainty, synthetic accessibility,
-    structural alert filters, and ligand-based similarity
-
-  Gate 3: Target-free translational prioritization with tox, DDI, absorption,
-    and final experimental priority score
-
 Step 7: Human Review
   Scientists open the Gate 1 Excel, visually inspect structures, check
-  the Analysis sheet for distribution summaries, and select which molecules
-  to progress to Gate 2 computational validation.
+  the Analysis sheet for distribution summaries, and select molecules
+  for wet-lab follow-up.
 
-Step 8: Gate 2 Validation (Target-Free)
-  The shortlist is filtered and re-ranked using uncertainty-aware QSAR,
-  chemistry developability, and ligand-based support.
-
-Step 9: Gate 3 Translational Prioritization
-  Tox, CYP/DDI, and absorption signals are combined into a final
-  experimental priority score. The best compounds become the lab shortlist.
-
-Step 10: Wet Lab Synthesis and Testing
+Step 8: Wet Lab Synthesis and Testing
   Remaining molecules are synthesized and tested experimentally.
   Results feed back into QSAR model retraining (active learning cycle).
 
-Overall rationale for the 3-gate design:
-  Gate 1 maximizes breadth and speed,
-  Gate 2 maximizes confidence and chemistry practicality,
-  Gate 3 maximizes translational success probability.
-This staged structure reduces costly false positives while preserving
-chemical diversity.
+Overall rationale for the current design:
+  Gate 1 maximizes breadth and speed while preserving scaffold diversity.
+This shortlist-first structure supports fast iteration and clear handoff
+to medicinal chemistry review.
 
 
 ========================================================================
@@ -841,8 +761,7 @@ Simulation Plus (GastroPlus / ADMET Predictor)
 
 Combined Strategy (current no-target production architecture):
   Use REINVENT + QSAR for broad generative exploration (Gate 1).
-  Use uncertainty-aware, ligand-based refinement for target-free Gate 2.
-  Use translational tox/DDI/absorption prioritization for target-free Gate 3.
+  Use Gate 1 shortlist exports for medicinal chemistry review and wet-lab planning.
   Preserve structure-based and PBPK folders only as legacy references when a
   real target or external platform becomes available in the future.
 

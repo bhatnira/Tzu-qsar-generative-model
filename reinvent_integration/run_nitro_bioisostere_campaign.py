@@ -114,11 +114,13 @@ def add_nitro_penalty_to_scorer(content: str) -> str:
     if target in content:
         return content
 
-    def _append_arg(match: re.Match) -> str:
-        line = match.group(0)
-        return line[:-1] + f" {target}\""
+    pattern = re.compile(r'(?m)^(\s*params\.args\s*=\s*")([^"]*reinvent_qsar_adme_score\.py[^"]*)("\s*)$')
 
-    return re.sub(r'(?m)^\s*params\.args\s*=\s*"[^"]*reinvent_qsar_adme_score\.py[^"]*"\s*$', _append_arg, content)
+    def _append_arg(match: re.Match) -> str:
+        prefix, body, suffix = match.groups()
+        return f"{prefix}{body} {target}{suffix}"
+
+    return pattern.sub(_append_arg, content)
 
 
 def build_campaign_configs(seed_file: Path) -> None:
