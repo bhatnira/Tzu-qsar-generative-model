@@ -140,6 +140,34 @@ def filter_excluded_smarts(df: pd.DataFrame, exclude_smarts: list[str]) -> pd.Da
     return df.loc[keep].reset_index(drop=True)
 
 
+def filter_max_nitro_groups(df: pd.DataFrame, max_nitro_groups: int | None) -> pd.DataFrame:
+    if df.empty or max_nitro_groups is None:
+        return df
+
+    patt_charged = Chem.MolFromSmarts('[N+](=O)[O-]')
+    patt_neutral = Chem.MolFromSmarts('N(=O)=O')
+
+    if patt_charged is None and patt_neutral is None:
+        return df
+
+    keep = []
+    for smi in df['canonical_smiles'].tolist():
+        mol = Chem.MolFromSmiles(str(smi))
+        if mol is None:
+            keep.append(False)
+            continue
+
+        nitro_count = 0
+        if patt_charged is not None:
+            nitro_count += len(mol.GetSubstructMatches(patt_charged))
+        if patt_neutral is not None:
+            nitro_count += len(mol.GetSubstructMatches(patt_neutral))
+
+        keep.append(nitro_count <= max_nitro_groups)
+
+    return df.loc[keep].reset_index(drop=True)
+
+
 def _sa_score(smiles: str) -> float:
     mol = Chem.MolFromSmiles(str(smiles))
     if mol is None:
@@ -242,10 +270,12 @@ def main() -> int:
     parser.add_argument('--label', required=True)
     parser.add_argument('--qsar-model', default='reinvent_integration/artifacts/qsar_best_model.joblib')
     parser.add_argument('--exclude-smarts', action='append', default=[])
+    parser.add_argument('--max-nitro-groups', type=int, default=None)
     args = parser.parse_args()
 
     df = load_generated(Path(args.input_csv))
     df = filter_excluded_smarts(df, args.exclude_smarts)
+    df = filter_max_nitro_groups(df, args.max_nitro_groups)
     if df.empty:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
         pd.DataFrame([{'file': f'{args.label}_generated_scored.csv', 'rows': 0}]).to_csv(Path(args.output_dir) / 'manifest.csv', index=False)

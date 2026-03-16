@@ -171,7 +171,7 @@ def score_variant(name: str, folder: str, tag: str, variant_folder: str) -> bool
         "--output-dir", str(output_dir),
         "--label", label,
         "--qsar-model", "reinvent_integration/artifacts/qsar_best_model.joblib",
-        "--exclude-smarts", NITRO_SMARTS,
+        "--max-nitro-groups", "1",
     ], f"score_{label}")
 
 

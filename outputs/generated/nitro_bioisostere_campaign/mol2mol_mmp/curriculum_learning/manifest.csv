@@ -1,6 +1,6 @@
 file,rows,cutoff
-mol2mol_mmp_cl_generated_scored.csv,4325.0,
-mol2mol_mmp_cl_generated_optimal.csv,133.0,
-mol2mol_mmp_cl_generated_scored.xlsx,4325.0,
-mol2mol_mmp_cl_generated_optimal.xlsx,133.0,
-,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40; QSAR uncertainty via up to 5 positive-R2 models
+mol2mol_mmp_cl_generated_scored.csv,1481.0,
+mol2mol_mmp_cl_generated_optimal.csv,9.0,
+mol2mol_mmp_cl_generated_scored.xlsx,1481.0,
+mol2mol_mmp_cl_generated_optimal.xlsx,9.0,
+,,Existing scoring cutoffs + dinitro exclusion (nitro group count < 2).

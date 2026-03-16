@@ -1,0 +1,6 @@
+file,rows,cutoff
+mol2mol_scaffold_generic_cl_generated_scored.csv,4908.0,
+mol2mol_scaffold_generic_cl_generated_optimal.csv,106.0,
+mol2mol_scaffold_generic_cl_generated_scored.xlsx,4908.0,
+mol2mol_scaffold_generic_cl_generated_optimal.xlsx,106.0,
+,,Existing scoring cutoffs + dinitro exclusion (nitro group count < 2).

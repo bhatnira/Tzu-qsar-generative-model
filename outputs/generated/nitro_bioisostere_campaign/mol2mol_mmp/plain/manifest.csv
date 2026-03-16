@@ -3,4 +3,4 @@ mol2mol_mmp_plain_generated_scored.csv,699.0,
 mol2mol_mmp_plain_generated_optimal.csv,7.0,
 mol2mol_mmp_plain_generated_scored.xlsx,699.0,
 mol2mol_mmp_plain_generated_optimal.xlsx,7.0,
-,,IC50<=5uM; cLogP 1-3.5; logS>=-6.0; Microsome<=70; Hepatocyte<=80; HalfLife>=40; QSAR uncertainty via up to 5 positive-R2 models
+,,Existing scoring cutoffs + dinitro exclusion (nitro group count < 2).
