@@ -127,45 +127,51 @@
   \small
   \begin{tabular}{lccc}
     \toprule
-    \textbf{Compound ID} & \textbf{Measured pIC$_{50}$} & \textbf{Predicted pIC$_{50}$} & \textbf{Residual} \\
+    \textbf{Compound ID} & \textbf{Measured IC$_{50}$ ($\mu$M)} & \textbf{Predicted IC$_{50}$ ($\mu$M)} & \textbf{Error (fold)} \\
     \midrule
-    ROY-0000173-001 & 5.328 & 5.302 & $-$0.026 \\
-    ROY-0000174-001 & 5.009 & 5.183 & $+$0.174 \\
-    ROY-0000220-001 & 6.107 & 5.931 & $-$0.176 \\
-    ROY-0000221-001 & --- (>200\,$\mu$M) & 4.848 & --- \\
-    ROY-0000175-001 & 5.165 & 5.215 & $+$0.050 \\
-    ROY-0000211-001 & 5.745 & 5.909 & $+$0.164 \\
+    ROY-0000173-001 & 4.697 & 4.984 & 1.06$\times$ \\
+    ROY-0000174-001 & 9.786 & 6.567 & 1.49$\times$ \\
+    ROY-0000220-001 & 0.781 & 1.173 & 1.50$\times$ \\
+    ROY-0000221-001 & >200 & 14.181 & --- \\
+    ROY-0000175-001 & 6.843 & 6.089 & 1.12$\times$ \\
+    ROY-0000211-001 & 1.800 & 1.233 & 1.46$\times$ \\
     \midrule
     \multicolumn{2}{l}{\textit{5 measurable compounds}} & \multicolumn{2}{c}{} \\
     \bottomrule
   \end{tabular}
 
-  \vspace{0.8em}
+  \vspace{0.6em}
   \begin{columns}
     \column{0.48\textwidth}
     \centering
     \begin{tikzpicture}[scale=0.75]
-      % Axes
-      \draw[->] (0,0) -- (5.2,0) node[right]{\tiny Measured pIC$_{50}$};
-      \draw[->] (0,0) -- (0,5.2) node[above]{\tiny Predicted pIC$_{50}$};
-      % Tick labels (scaled: 5.0->0, 5.5->2.5, 6.0->5)
-      \foreach \x/\lbl in {0/5.0, 2.5/5.5, 5/6.0} {
+      % Scatter plot: IC50 measured vs predicted
+      % Range: 0.78 - 200 µM (log scale: 10^(-0.1) to 10^(2.3))
+      % Linear transform: log(IC50) from -0.1 to 2.3 -> [0,5]
+      \draw[->] (0,0) -- (5.3,0) node[right]{\tiny log(Measured IC$_{50}$)};
+      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny log(Pred.\ IC$_{50}$)};
+      % Grid and ticks at 0.1, 1, 10, 100 µM
+      % 0.1->-1, 1->0, 10->1, 100->2
+      \foreach \x/\lbl in {0.822/0.1, 2.466/1, 4.110/10} {
         \draw (\x,0.06) -- (\x,-0.06) node[below]{\tiny\lbl};
         \draw (0.06,\x) -- (-0.06,\x) node[left]{\tiny\lbl};
       }
-      % identity line
       \draw[red,dashed,thick] (0,0) -- (5,5);
-      % grid
-      \foreach \p in {2.5,5} {
-        \draw[gray!40,dashed] (\p,0) -- (\p,5);
-        \draw[gray!40,dashed] (0,\p) -- (5,\p);
+      \foreach \p in {0.822, 2.466, 4.110} {
+        \draw[gray!30] (\p,0) -- (\p,5);
+        \draw[gray!30] (0,\p) -- (5,\p);
       }
-      % Data points: (meas,pred) scaled as (val-5.0)*10
-      % (5.328,5.302) -> (3.28,3.02)
-      % (5.009,5.183) -> (0.09,1.83)
-      % (6.107,5.931) -> (11.07,9.31) ... use *5/2
-      % scale = (val-5.0)/(6.2-5.0)*5 => (val-5.0)*4.167
-      \foreach \mx/\py in {3.27/3.01, 0.38/7.63, 4.46/3.88, 0.69//0.00, 3.10/3.81}\fill[steelblue] (\mx,\py) circle(3pt);
+      % Data points: log(IC50 µM)=(val-10^0)/(10^2-10^0)*5 ... simplified: (log(val)+1)/3*5
+      % 4.697 -> log=0.672 -> (1.672/3)*5=2.786
+      % 9.786 -> log=0.990 -> (1.990/3)*5=3.317
+      % 0.781 -> log=-0.107 -> (0.893/3)*5=1.489
+      % 6.843 -> log=0.835 -> (1.835/3)*5=3.058
+      % 1.800 -> log=0.255 -> (1.255/3)*5=2.092
+      \fill[steelblue] (2.786,2.767) circle(3pt);
+      \fill[steelblue] (3.317,3.225) circle(3pt);
+      \fill[steelblue] (1.489,2.189) circle(3pt);
+      \fill[steelblue] (3.058,2.354) circle(3pt);
+      \fill[steelblue] (2.092,2.218) circle(3pt);
     \end{tikzpicture}
     \column{0.48\textwidth}
     \begin{alertblock}{Performance Metrics}
@@ -173,10 +179,11 @@
       \begin{itemize}
         \item \textbf{MAE} = 0.118 pIC$_{50}$ units
         \item \textbf{R$^2$} = 0.887
+        \item \textbf{Range}: 0.78 -- 9.79 \,µM (measured)
       \end{itemize}
     \end{alertblock}
-    \vspace{0.3em}
-    {\small Predictions within $\approx\! 0.12$ pIC$_{50}$ on average --- equivalent to $\sim\!32\%$ error in IC$_{50}$ --- acceptable for virtual screening.}
+    \vspace{0.2em}
+    {\small Fold errors all $<$1.5$\times$ except one compound --- acceptable for virtual screening.}
   \end{columns}
 \end{frame}
 
@@ -216,16 +223,16 @@
   \small
   \begin{tabular}{lcccl}
     \toprule
-    \textbf{Compound ID} & \textbf{Pred.\ pIC$_{50}$} & \textbf{Pred.\ IC$_{50}$ ($\mu$M)} & \textbf{Struct.\ Class} & \textbf{Key Feature} \\
+    \textbf{Compound ID} & \textbf{Predicted IC$_{50}$ ($\mu$M)} & \textbf{Class} & \textbf{Key Feature} & \textbf{Status} \\
     \midrule
-    ROY-0000308 & 4.883 & 13.08 & A & Fluorophenyl anchor \\
-    ROY-0000307 & 4.467 & 34.11 & A & Bromopyridine (weakest) \\
-    ROY-0000287 & 5.132 & 7.38  & B & Hexyloxy (best predicted) \\
-    ROY-0000286 & 4.953 & 11.15 & B & Phenylpropyloxy \\
-    ROY-0000275 & 4.563 & 27.33 & A & Bromopyridine (weak) \\
-    ROY-0000268 & 4.767 & 17.09 & A & Alkyne-phenyl \\
+    ROY-0000308 & 13.08 & A & Fluorophenyl anchor & Active \\
+    ROY-0000307 & 34.11 & A & Bromopyridine & Weakest \\
+    ROY-0000287 & 7.38  & B & Hexyloxy & Best \\
+    ROY-0000286 & 11.15 & B & Phenylpropyloxy & Active \\
+    ROY-0000275 & 27.33 & A & Bromopyridine & Weak \\
+    ROY-0000268 & 17.09 & A & Alkyne-phenyl & Active \\
     \midrule
-    \multicolumn{2}{l}{\textbf{Ranges}} & \textbf{7.38 -- 34.11\,$\mu$M} & \multicolumn{2}{l}{\textbf{pIC$_{50}$: 4.47 -- 5.13}} \\
+    \multicolumn{5}{c}{\textbf{Predicted IC$_{50}$ Range}: 7.38 -- 34.11\,$\mu$M (6 prospective compounds)} \\
     \bottomrule
   \end{tabular}
 
@@ -276,10 +283,10 @@
     \begin{alertblock}{Status}
       \small
       \begin{itemize}
-        \item \textbf{Classification}: 6 prospective compounds
-        \item \textbf{Measured values}: None (awaiting synthesis \& testing)
-        \item \textbf{Uncertainty}: All zero (uniform ensemble predictions --- extrapolation region)
-        \item \textbf{Best predicted}: ROY-0000287 at 7.38\,$\mu$M (pIC$_{50}$ 5.13)
+        \item \textbf{Count}: 6 prospective compounds
+        \item \textbf{Measured}: None (awaiting synthesis \& testing)
+        \item \textbf{Uncertainty}: All zero (extrapolation region)
+        \item \textbf{Best predicted}: ROY-0000287 at 7.38\,$\mu$M
       \end{itemize}
     \end{alertblock}
   \end{columns}
