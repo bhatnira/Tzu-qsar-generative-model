@@ -216,37 +216,70 @@
   \small
   \begin{tabular}{lcccl}
     \toprule
-    \textbf{Compound ID} & \textbf{Pred.\ pIC$_{50}$} & \textbf{Pred.\ IC$_{50}$ ($\mu$M)} & \textbf{Cluster} & \textbf{Note} \\
+    \textbf{Compound ID} & \textbf{Pred.\ pIC$_{50}$} & \textbf{Pred.\ IC$_{50}$ ($\mu$M)} & \textbf{Struct.\ Class} & \textbf{Key Feature} \\
     \midrule
-    ROY-0000308 & 4.883 & 13.08 & 1  & Fluorophenyl \\
-    ROY-0000307 & 4.467 & 34.11 & 1  & Bromopyridine (weakest) \\
-    ROY-0000287 & 5.132 & 7.38  & $-$1 & Hexyloxy (best predicted) \\
-    ROY-0000286 & 4.953 & 11.15 & $-$1 & Phenylpropyloxy \\
-    ROY-0000275 & 4.563 & 27.33 & 1  & Bromopyridine \\
-    ROY-0000268 & 4.767 & 17.09 & 1  & Alkyne-phenyl \\
+    ROY-0000308 & 4.883 & 13.08 & A & Fluorophenyl anchor \\
+    ROY-0000307 & 4.467 & 34.11 & A & Bromopyridine (weakest) \\
+    ROY-0000287 & 5.132 & 7.38  & B & Hexyloxy (best predicted) \\
+    ROY-0000286 & 4.953 & 11.15 & B & Phenylpropyloxy \\
+    ROY-0000275 & 4.563 & 27.33 & A & Bromopyridine (weak) \\
+    ROY-0000268 & 4.767 & 17.09 & A & Alkyne-phenyl \\
     \midrule
-    \multicolumn{2}{l}{\textbf{Range}} & 7.38 -- 34.11\,$\mu$M & \multicolumn{2}{l}{pIC$_{50}$: 4.47 -- 5.13} \\
+    \multicolumn{2}{l}{\textbf{Ranges}} & \textbf{7.38 -- 34.11\,$\mu$M} & \multicolumn{2}{l}{\textbf{pIC$_{50}$: 4.47 -- 5.13}} \\
     \bottomrule
   \end{tabular}
-  \vspace{0.5em}
 
+  \vspace{0.6em}
   \begin{columns}
     \column{0.48\textwidth}
-    \begin{block}{Structural Features}
-      \small
+    \centering
+    \begin{tikzpicture}[scale=0.80]
+      % Bar chart: 6 compounds, IC50 from 7.38 to 34.11 µM
+      % Scale: [7,35] -> [0,5], transform = (val-7)/28*5
+      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny IC$_{50}$ ($\mu$M)};
+      \draw (0,0) -- (6.8,0);
+      % y-axis ticks: 10, 20, 30
+      \foreach \y/\lbl in {0.893/10, 2.321/20, 3.750/30} {
+        \draw (-0.08,\y) -- (0,\y) node[left]{\tiny\lbl};
+      }
+      % bars (height scaled as above)
+      % ROY-0000308: 13.08 -> 2.195
+      % ROY-0000307: 34.11 -> 4.844
+      % ROY-0000287: 7.38 -> 0.135
+      % ROY-0000286: 11.15 -> 1.797
+      % ROY-0000275: 27.33 -> 3.637
+      % ROY-0000268: 17.09 -> 1.793
+      \fill[steelblue!75] (0.25,0) rectangle (0.80,2.195); \node[above,font=\tiny] at (0.525,2.195){13.1};
+      \fill[steelblue!75] (1.05,0) rectangle (1.60,4.844); \node[above,font=\tiny] at (1.325,4.844){34.1};
+      \fill[steelblue!75] (1.85,0) rectangle (2.40,0.135); \node[above,font=\tiny] at (2.125,0.135){7.4};
+      \fill[steelblue!75] (2.65,0) rectangle (3.20,1.797); \node[above,font=\tiny] at (2.925,1.797){11.2};
+      \fill[steelblue!75] (3.45,0) rectangle (4.00,3.637); \node[above,font=\tiny] at (3.725,3.637){27.3};
+      \fill[steelblue!75] (4.25,0) rectangle (4.80,1.793); \node[above,font=\tiny] at (4.525,1.793){17.1};
+      % x-axis labels (rotated)
+      \node[below,rotate=50,anchor=east,font=\tiny] at (0.525,-0.15){308};
+      \node[below,rotate=50,anchor=east,font=\tiny] at (1.325,-0.15){307};
+      \node[below,rotate=50,anchor=east,font=\tiny] at (2.125,-0.15){287};
+      \node[below,rotate=50,anchor=east,font=\tiny] at (2.925,-0.15){286};
+      \node[below,rotate=50,anchor=east,font=\tiny] at (3.725,-0.15){275};
+      \node[below,rotate=50,anchor=east,font=\tiny] at (4.525,-0.15){268};
+    \end{tikzpicture}
+
+    \column{0.48\textwidth}
+    \begin{block}{Prediction Range}
+      \large
       \begin{itemize}
-        \item All contain spiro-piperidine (Boc-protected) core
-        \item ROY-0000287 (hexyloxy chain) has best predicted potency
-        \item Halopyridine compounds predicted as weakest
+        \item \textbf{Predicted IC$_{50}$}: 7.38 -- 34.11\,$\mu$M
+        \item \textbf{Predicted pIC$_{50}$}: 4.47 -- 5.13
       \end{itemize}
     \end{block}
-    \column{0.48\textwidth}
-    \begin{alertblock}{Prediction Uncertainty}
+    \vspace{0.3em}
+    \begin{alertblock}{Status}
       \small
       \begin{itemize}
-        \item No measured IC$_{50}$ available for Series E
-        \item Ensemble uncertainty = 0 (uniform predictions --- extrapolation region)
-        \item Experimental validation needed
+        \item \textbf{Classification}: 6 prospective compounds
+        \item \textbf{Measured values}: None (awaiting synthesis \& testing)
+        \item \textbf{Uncertainty}: All zero (uniform ensemble predictions --- extrapolation region)
+        \item \textbf{Best predicted}: ROY-0000287 at 7.38\,$\mu$M (pIC$_{50}$ 5.13)
       \end{itemize}
     \end{alertblock}
   \end{columns}
