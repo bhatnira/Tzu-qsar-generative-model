@@ -132,11 +132,10 @@
     ROY-0000173-001 & 4.697 & 4.984 & 1.06$\times$ \\
     ROY-0000174-001 & 9.786 & 6.567 & 1.49$\times$ \\
     ROY-0000220-001 & 0.781 & 1.173 & 1.50$\times$ \\
-    ROY-0000221-001 & >200 & 14.181 & --- \\
     ROY-0000175-001 & 6.843 & 6.089 & 1.12$\times$ \\
     ROY-0000211-001 & 1.800 & 1.233 & 1.46$\times$ \\
     \midrule
-    \multicolumn{2}{l}{\textit{5 measurable compounds}} & \multicolumn{2}{c}{} \\
+    \multicolumn{4}{c}{\textit{5 measured active compounds}} \\
     \bottomrule
   \end{tabular}
 
@@ -216,23 +215,23 @@
 \end{frame}
 
 % ============================================================
-\section{Series E Prospective Predictions}
+\section{Series E: Model Evaluation}
 
-\begin{frame}{Series E: Prospective Predictions (No Measured Data)}
+\begin{frame}{Series E: Model Evaluation on Test Compounds}
   \centering
   \small
-  \begin{tabular}{lcccl}
+  \begin{tabular}{lccc}
     \toprule
-    \textbf{Compound ID} & \textbf{Predicted IC$_{50}$ ($\mu$M)} & \textbf{Class} & \textbf{Key Feature} & \textbf{Status} \\
+    \textbf{Compound ID} & \textbf{Measured IC$_{50}$ ($\mu$M)} & \textbf{Predicted IC$_{50}$ ($\mu$M)} & \textbf{Error (fold)} \\
     \midrule
-    ROY-0000308 & 13.08 & A & Fluorophenyl anchor & Active \\
-    ROY-0000307 & 34.11 & A & Bromopyridine & Weakest \\
-    ROY-0000287 & 7.38  & B & Hexyloxy & Best \\
-    ROY-0000286 & 11.15 & B & Phenylpropyloxy & Active \\
-    ROY-0000275 & 27.33 & A & Bromopyridine & Weak \\
-    ROY-0000268 & 17.09 & A & Alkyne-phenyl & Active \\
+    ROY-0000308 & 17.80 & 13.08 & 1.36$\times$ \\
+    ROY-0000307 & 63.60 & 34.11 & 1.86$\times$ \\
+    ROY-0000287 & 6.07 & 7.38 & 1.22$\times$ \\
+    ROY-0000286 & 12.20 & 11.15 & 1.09$\times$ \\
+    ROY-0000275 & 108.00 & 27.33 & 3.95$\times$ \\
+    ROY-0000268 & 17.00 & 17.09 & 1.01$\times$ \\
     \midrule
-    \multicolumn{5}{c}{\textbf{Predicted IC$_{50}$ Range}: 7.38 -- 34.11\,$\mu$M (6 prospective compounds)} \\
+    \multicolumn{4}{c}{\textit{6 measured test compounds}} \\
     \bottomrule
   \end{tabular}
 
@@ -240,55 +239,40 @@
   \begin{columns}
     \column{0.48\textwidth}
     \centering
-    \begin{tikzpicture}[scale=0.80]
-      % Bar chart: 6 compounds, IC50 from 7.38 to 34.11 µM
-      % Scale: [7,35] -> [0,5], transform = (val-7)/28*5
-      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny IC$_{50}$ ($\mu$M)};
-      \draw (0,0) -- (6.8,0);
-      % y-axis ticks: 10, 20, 30
-      \foreach \y/\lbl in {0.893/10, 2.321/20, 3.750/30} {
-        \draw (-0.08,\y) -- (0,\y) node[left]{\tiny\lbl};
+    \begin{tikzpicture}[scale=0.75]
+      % Scatter plot: IC50 measured vs predicted (log scale)
+      % Range: 6.07 - 108 µM (log: 0.783 to 2.033)
+      \draw[->] (0,0) -- (5.3,0) node[right]{\tiny log(Measured IC$_{50}$)};
+      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny log(Pred.\ IC$_{50}$)};
+      % Ticks at 10, 30, 100 µM
+      \foreach \x/\lbl in {0.74/10, 2.35/30, 3.96/100} {
+        \draw (\x,0.06) -- (\x,-0.06) node[below]{\tiny\lbl};
+        \draw (0.06,\x) -- (-0.06,\x) node[left]{\tiny\lbl};
       }
-      % bars (height scaled as above)
-      % ROY-0000308: 13.08 -> 2.195
-      % ROY-0000307: 34.11 -> 4.844
-      % ROY-0000287: 7.38 -> 0.135
-      % ROY-0000286: 11.15 -> 1.797
-      % ROY-0000275: 27.33 -> 3.637
-      % ROY-0000268: 17.09 -> 1.793
-      \fill[steelblue!75] (0.25,0) rectangle (0.80,2.195); \node[above,font=\tiny] at (0.525,2.195){13.1};
-      \fill[steelblue!75] (1.05,0) rectangle (1.60,4.844); \node[above,font=\tiny] at (1.325,4.844){34.1};
-      \fill[steelblue!75] (1.85,0) rectangle (2.40,0.135); \node[above,font=\tiny] at (2.125,0.135){7.4};
-      \fill[steelblue!75] (2.65,0) rectangle (3.20,1.797); \node[above,font=\tiny] at (2.925,1.797){11.2};
-      \fill[steelblue!75] (3.45,0) rectangle (4.00,3.637); \node[above,font=\tiny] at (3.725,3.637){27.3};
-      \fill[steelblue!75] (4.25,0) rectangle (4.80,1.793); \node[above,font=\tiny] at (4.525,1.793){17.1};
-      % x-axis labels (rotated)
-      \node[below,rotate=50,anchor=east,font=\tiny] at (0.525,-0.15){308};
-      \node[below,rotate=50,anchor=east,font=\tiny] at (1.325,-0.15){307};
-      \node[below,rotate=50,anchor=east,font=\tiny] at (2.125,-0.15){287};
-      \node[below,rotate=50,anchor=east,font=\tiny] at (2.925,-0.15){286};
-      \node[below,rotate=50,anchor=east,font=\tiny] at (3.725,-0.15){275};
-      \node[below,rotate=50,anchor=east,font=\tiny] at (4.525,-0.15){268};
+      \draw[red,dashed,thick] (0,0) -- (5,5);
+      \foreach \p in {0.74, 2.35, 3.96} {
+        \draw[gray!30] (\p,0) -- (\p,5);
+        \draw[gray!30] (0,\p) -- (5,\p);
+      }
+      % Data points: (log(meas), log(pred))
+      \fill[steelblue] (1.250,1.117) circle(3pt);
+      \fill[steelblue] (1.804,1.533) circle(3pt);
+      \fill[steelblue] (0.783,0.868) circle(3pt);
+      \fill[steelblue] (1.086,1.047) circle(3pt);
+      \fill[steelblue] (2.033,1.436) circle(3pt);
+      \fill[steelblue] (1.230,1.233) circle(3pt);
     \end{tikzpicture}
-
     \column{0.48\textwidth}
-    \begin{block}{Prediction Range}
+    \begin{alertblock}{Performance Metrics}
       \large
       \begin{itemize}
-        \item \textbf{Predicted IC$_{50}$}: 7.38 -- 34.11\,$\mu$M
-        \item \textbf{Predicted pIC$_{50}$}: 4.47 -- 5.13
-      \end{itemize}
-    \end{block}
-    \vspace{0.3em}
-    \begin{alertblock}{Status}
-      \small
-      \begin{itemize}
-        \item \textbf{Count}: 6 prospective compounds
-        \item \textbf{Measured}: None (awaiting synthesis \& testing)
-        \item \textbf{Uncertainty}: All zero (extrapolation region)
-        \item \textbf{Best predicted}: ROY-0000287 at 7.38\,$\mu$M
+        \item \textbf{Range}: 6.07 -- 108.0\,$\mu$M (measured)
+        \item \textbf{Max error}: 3.95$\times$ (ROY-0000275)
+        \item \textbf{Median error}: 1.23$\times$
       \end{itemize}
     \end{alertblock}
+    \vspace{0.2em}
+    {\small One compound ($\times$3.95 error) shows underprediction; others within 1.4$\times$.}
   \end{columns}
 \end{frame}
 
