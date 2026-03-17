@@ -1,0 +1,123 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\title[Campaign Overview]{Campaign Overview: All Generation Folders}
+\subtitle{Excel Data Inventory and Performance Summary}
+\author{TB QSAR Project}
+\date{March 17, 2026}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Data Coverage Across All Generation Folders}
+  \small
+  \begin{itemize}
+    \item \textbf{Source scanned:} \texttt{outputs/generated/**.xlsx}
+    \item \textbf{Excel files parsed:} 125 (0 read failures)
+    \item \textbf{Top-level generation folders:} 16
+    \item \textbf{Unique campaign paths:} 61
+    \item \textbf{Total extracted rows:} 119,161
+    \item \textbf{Scored/optimal workbooks:} 112
+    \item \textbf{Files with predicted IC$_{50}$ metrics:} 91
+    \item \textbf{Compounds with predicted IC$_{50}$ values:} 119,158
+  \end{itemize}
+
+  \vspace{0.6em}
+  {\footnotesize
+  Extracted summary files are saved in \texttt{outputs/generated/\_campaign\_overview/}.}
+\end{frame}
+
+\begin{frame}{Folder-Level Inventory (All Generation Folders)}
+  \scriptsize
+  \centering
+  \begin{tabular}{lrrr}
+    \toprule
+    \textbf{Top Folder} & \textbf{Excel Files} & \textbf{Total Rows} & \textbf{Median Rows/File} \\
+    \midrule
+    mol2mol & 42 & 5,551 & 11.0 \\
+    nitro\_bioisostere\_campaign & 24 & 44,496 & 402.5 \\
+    reinvent\_pubchem & 6 & 22,660 & 278.5 \\
+    reinvent & 6 & 5,897 & 980.5 \\
+    linkinvent & 6 & 720 & 119.0 \\
+    libinvent & 6 & 369 & 60.5 \\
+    linkinvent\_transformer\_pubchem & 6 & 309 & 49.0 \\
+    libinvent\_transformer\_pubchem & 6 & 207 & 29.5 \\
+    pepinvent & 6 & 24 & 4.0 \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.5em}
+  {\footnotesize Remaining folders (adme\_final, adme\_legacy, base, qsar, reinforcement\_learning, curriculum\_learning, manifests) are included in the extracted CSV inventory.}
+\end{frame}
+
+\begin{frame}{Best Campaign Buckets by Predicted Potency}
+  \scriptsize
+  \centering
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c r r r}
+    \toprule
+    \textbf{Campaign (path)} & \textbf{Mode} & \textbf{Compounds} & \textbf{Median IC$_{50}$ ($\mu$M)} & \textbf{Min IC$_{50}$ ($\mu$M)} \\
+    \midrule
+    reinvent\_pubchem/curriculum\_learning & CL & 555 & 4.23 & 0.78 \\
+    nitro.../mol2mol\_scaffold\_generic/plain & PLAIN & 2,021 & 4.95 & 3.33 \\
+    nitro.../mol2mol\_mmp/curriculum\_learning & CL & 1,490 & 4.98 & 0.57 \\
+    nitro.../mol2mol\_mmp/reinforcement\_learning & RL & 4,321 & 4.98 & 1.20 \\
+    nitro.../mol2mol\_mmp/plain & PLAIN & 706 & 4.98 & 1.39 \\
+    nitro.../mol2mol\_scaffold\_gen/CL & CL & 5,014 & 5.02 & 1.31 \\
+    reinvent\_pubchem/plain & PLAIN & 22,092 & 5.03 & 0.57 \\
+    nitro.../mol2mol\_scaffold/curriculum\_learning & CL & 4,760 & 5.30 & 1.53 \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{0.4em}
+  {\footnotesize Ranking uses extracted \texttt{pred\_ic50\_um/predicted\_ic50\_um}-type metrics and includes robust buckets with $\geq 50$ compounds.}
+\end{frame}
+
+\begin{frame}{Mode-Level Potency Summary (All Parsed Files)}
+  \small
+  \centering
+  \begin{tabular}{lrrr}
+    \toprule
+    \textbf{Mode} & \textbf{Files} & \textbf{Compounds} & \textbf{Mean of Campaign Medians IC$_{50}$ ($\mu$M)} \\
+    \midrule
+    PLAIN & 25 & 34,879 & 16.59 \\
+    CL & 27 & 23,157 & 16.73 \\
+    RL & 27 & 26,109 & 17.51 \\
+    OTHER & 12 & 35,013 & 20.63 \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.8em}
+  \begin{block}{Takeaway}
+    Across all generation folders, \textbf{PLAIN and CL} modes are very close in median predicted potency, with \textbf{RL slightly higher} IC$_{50}$ on average in this snapshot.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Generated Artifacts for Reuse}
+  \small
+  \begin{itemize}
+    \item \texttt{outputs/generated/\_campaign\_overview/excel\_file\_inventory.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/excel\_metric\_summary.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/folder\_aggregate.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/campaign\_aggregate\_top.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/slide\_folder\_summary.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/slide\_campaign\_performance.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/slide\_mode\_performance.csv}
+    \item \texttt{outputs/generated/\_campaign\_overview/slide\_kpis.json}
+  \end{itemize}
+
+  \vspace{0.5em}
+  {\footnotesize This deck was generated directly from the Excel files currently present under \texttt{outputs/generated/}.}
+\end{frame}
+
+\end{document}

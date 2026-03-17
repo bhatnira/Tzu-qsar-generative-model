@@ -1,0 +1,9 @@
+{
+  "excel_files": 125,
+  "folders": 16,
+  "campaign_paths": 61,
+  "total_rows": 119161,
+  "scored_or_optimal_files": 112,
+  "pred_ic50_files": 91,
+  "pred_ic50_compounds": 119158
+}

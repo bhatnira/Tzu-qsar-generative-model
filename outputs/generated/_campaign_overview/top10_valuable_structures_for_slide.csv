@@ -1,0 +1,11 @@
+Rank,Source,SMILES,IC50_uM,pIC50,cLogP,logS,HalfLife_h
+1,reinvent_pubchem/plain,O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c...,0.78,6.11,2.44,-4.96,52.0
+2,reinvent_pubchem/plain,CC#CC#Cc1cncc(N2CCC3(CN(C(=O)c4cc([N+](...,0.85,6.07,2.63,-4.77,73.6
+3,mol2mol/CL,Cn1cnc(C#Cc2ccc(N3CCC4(CN(Cc5cc([N+](=O...,0.78,6.11,2.14,-4.65,47.2
+4,mol2mol/CL,Cn1cnc(C#Cc2cncc(N3CC4(CCN(Cc5cc([N+](=...,0.95,6.02,2.53,-5.03,54.7
+5,reinvent_pubchem/CL,O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c...,0.78,6.11,3.05,-5.40,61.2
+6,reinvent_pubchem/CL,O=C(c1cc([N+](=O)[O-])cc([N+](=O)[O-])c...,0.78,6.11,3.05,-5.40,61.2
+7,mol2mol/RL,N#Cc1cc(C(=O)N2CCC3(CCN(c4cccc(C#Cc5ncc...,0.78,6.11,3.40,-5.63,66.2
+8,mol2mol/RL,N#Cc1cc(C(=O)N2CCC3(CCN(c4cncc(C#Cc5ccc...,1.04,5.98,2.93,-5.36,55.3
+9,RL(base),O=[N+]([O-])c1ccc(CN2CCC(N=c3[nH]c4cc([...,1.94,5.71,2.55,-4.79,43.3
+10,nitro/mol2mol_scaffold_generic...,C#Cc1cc(C(=O)N2CC3(CCN(c4cncc(C#CCOC)c4...,2.00,5.70,2.32,-4.45,45.4

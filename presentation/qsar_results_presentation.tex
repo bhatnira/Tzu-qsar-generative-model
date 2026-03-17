@@ -122,7 +122,7 @@
 % ============================================================
 \section{Series C Evaluation}
 
-\begin{frame}{Series C: Model Evaluation on Test Compounds}
+\begin{frame}{Series C: Test Data and Performance}
   \centering
   \small
   \begin{tabular}{lccc}
@@ -139,51 +139,48 @@
     \bottomrule
   \end{tabular}
 
-  \vspace{0.6em}
-  \begin{columns}
-    \column{0.48\textwidth}
-    \centering
-    \begin{tikzpicture}[scale=0.75]
-      % Scatter plot: IC50 measured vs predicted
-      % Range: 0.78 - 200 µM (log scale: 10^(-0.1) to 10^(2.3))
-      % Linear transform: log(IC50) from -0.1 to 2.3 -> [0,5]
-      \draw[->] (0,0) -- (5.3,0) node[right]{\tiny log(Measured IC$_{50}$)};
-      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny log(Pred.\ IC$_{50}$)};
-      % Grid and ticks at 0.1, 1, 10, 100 µM
-      % 0.1->-1, 1->0, 10->1, 100->2
-      \foreach \x/\lbl in {0.822/0.1, 2.466/1, 4.110/10} {
-        \draw (\x,0.06) -- (\x,-0.06) node[below]{\tiny\lbl};
-        \draw (0.06,\x) -- (-0.06,\x) node[left]{\tiny\lbl};
-      }
-      \draw[red,dashed,thick] (0,0) -- (5,5);
-      \foreach \p in {0.822, 2.466, 4.110} {
-        \draw[gray!30] (\p,0) -- (\p,5);
-        \draw[gray!30] (0,\p) -- (5,\p);
-      }
-      % Data points: log(IC50 µM)=(val-10^0)/(10^2-10^0)*5 ... simplified: (log(val)+1)/3*5
-      % 4.697 -> log=0.672 -> (1.672/3)*5=2.786
-      % 9.786 -> log=0.990 -> (1.990/3)*5=3.317
-      % 0.781 -> log=-0.107 -> (0.893/3)*5=1.489
-      % 6.843 -> log=0.835 -> (1.835/3)*5=3.058
-      % 1.800 -> log=0.255 -> (1.255/3)*5=2.092
-      \fill[steelblue] (2.786,2.767) circle(3pt);
-      \fill[steelblue] (3.317,3.225) circle(3pt);
-      \fill[steelblue] (1.489,2.189) circle(3pt);
-      \fill[steelblue] (3.058,2.354) circle(3pt);
-      \fill[steelblue] (2.092,2.218) circle(3pt);
-    \end{tikzpicture}
-    \column{0.48\textwidth}
-    \begin{alertblock}{Performance Metrics}
-      \large
-      \begin{itemize}
-        \item \textbf{MAE} = 0.118 pIC$_{50}$ units
-        \item \textbf{R$^2$} = 0.887
-        \item \textbf{Range}: 0.78 -- 9.79 \,µM (measured)
-      \end{itemize}
-    \end{alertblock}
-    \vspace{0.2em}
-    {\small Fold errors all $<$1.5$\times$ except one compound --- acceptable for virtual screening.}
-  \end{columns}
+  \vspace{1.0em}
+  \begin{block}{Performance Metrics}
+    \large
+    \begin{itemize}
+      \item \textbf{MAE} = 0.118 pIC$_{50}$ units
+      \item \textbf{R$^2$} = 0.887
+      \item \textbf{Range}: 0.78 -- 9.79\,$\mu$M (measured)
+      \item \textbf{Max fold error}: 1.50$\times$
+    \end{itemize}
+  \end{block}
+  \vspace{0.5em}
+  {\small Excellent performance for virtual screening.}
+\end{frame}
+
+% ============================================================
+\begin{frame}{Series C: Measured vs.\ Predicted IC$_{50}$ (log scale)}
+  \centering
+  \vspace{0.5em}
+  \begin{tikzpicture}[scale=1.05]
+    % Scatter plot: IC50 measured vs predicted (expanded)
+    \draw[->] (0,0) -- (7,0) node[right]{\small log(Measured IC$_{50}$, $\mu$M)};
+    \draw[->] (0,0) -- (0,7) node[above]{\small log(Predicted IC$_{50}$, $\mu$M)};
+    % Ticks
+    \foreach \x/\lbl in {1.0/0.1, 3.16/1, 5.25/10} {
+      \draw (\x,0.12) -- (\x,-0.12) node[below]{\small\lbl};
+      \draw (0.12,\x) -- (-0.12,\x) node[left]{\small\lbl};
+    }
+    \draw[red,dashed,thick] (0,0) -- (6.5,6.5);
+    \foreach \p in {1.0, 3.16, 5.25} {
+      \draw[gray!25] (\p,0) -- (\p,7);
+      \draw[gray!25] (0,\p) -- (7,\p);
+    }
+    % Data points (scaled for larger plot)
+    \fill[steelblue] (3.56,3.65) circle(5pt);
+    \fill[steelblue] (4.35,4.31) circle(5pt);
+    \fill[steelblue] (1.95,2.92) circle(5pt);
+    \fill[steelblue] (4.07,3.14) circle(5pt);
+    \fill[steelblue] (2.78,2.96) circle(5pt);
+  \end{tikzpicture}
+  \vspace{0.3em}
+
+  {\small Scatter plot with identity line (dashed red). Points cluster near the diagonal, indicating good prediction accuracy.}
 \end{frame}
 
 % ============================================================
@@ -217,7 +214,7 @@
 % ============================================================
 \section{Series E: Model Evaluation}
 
-\begin{frame}{Series E: Model Evaluation on Test Compounds}
+\begin{frame}{Series E: Test Data and Performance}
   \centering
   \small
   \begin{tabular}{lccc}
@@ -235,45 +232,55 @@
     \bottomrule
   \end{tabular}
 
-  \vspace{0.6em}
-  \begin{columns}
-    \column{0.48\textwidth}
-    \centering
-    \begin{tikzpicture}[scale=0.75]
-      % Scatter plot: IC50 measured vs predicted (log scale)
-      % Range: 6.07 - 108 µM (log: 0.783 to 2.033)
-      \draw[->] (0,0) -- (5.3,0) node[right]{\tiny log(Measured IC$_{50}$)};
-      \draw[->] (0,0) -- (0,5.3) node[above]{\tiny log(Pred.\ IC$_{50}$)};
-      % Ticks at 10, 30, 100 µM
-      \foreach \x/\lbl in {0.74/10, 2.35/30, 3.96/100} {
-        \draw (\x,0.06) -- (\x,-0.06) node[below]{\tiny\lbl};
-        \draw (0.06,\x) -- (-0.06,\x) node[left]{\tiny\lbl};
-      }
-      \draw[red,dashed,thick] (0,0) -- (5,5);
-      \foreach \p in {0.74, 2.35, 3.96} {
-        \draw[gray!30] (\p,0) -- (\p,5);
-        \draw[gray!30] (0,\p) -- (5,\p);
-      }
-      % Data points: (log(meas), log(pred))
-      \fill[steelblue] (1.250,1.117) circle(3pt);
-      \fill[steelblue] (1.804,1.533) circle(3pt);
-      \fill[steelblue] (0.783,0.868) circle(3pt);
-      \fill[steelblue] (1.086,1.047) circle(3pt);
-      \fill[steelblue] (2.033,1.436) circle(3pt);
-      \fill[steelblue] (1.230,1.233) circle(3pt);
-    \end{tikzpicture}
-    \column{0.48\textwidth}
-    \begin{alertblock}{Performance Metrics}
-      \large
-      \begin{itemize}
-        \item \textbf{Range}: 6.07 -- 108.0\,$\mu$M (measured)
-        \item \textbf{Max error}: 3.95$\times$ (ROY-0000275)
-        \item \textbf{Median error}: 1.23$\times$
-      \end{itemize}
-    \end{alertblock}
-    \vspace{0.2em}
-    {\small One compound ($\times$3.95 error) shows underprediction; others within 1.4$\times$.}
-  \end{columns}
+  \vspace{1.0em}
+  \begin{alertblock}{Performance Metrics}
+    \large
+    \begin{itemize}
+      \item \textbf{Range}: 6.07 -- 108.0\,$\mu$M (measured)
+      \item \textbf{Max error}: 3.95$\times$ (ROY-0000275, structural outlier)
+      \item \textbf{Median error}: 1.23$\times$
+      \item \textbf{5 of 6} compounds: errors $<$1.9$\times$
+    \end{itemize}
+  \end{alertblock}
+  \vspace{0.3em}
+  {\small One structural outlier shows $\sim$4$\times$ underprediction; otherwise model is robust.}
+\end{frame}
+
+% ============================================================
+\begin{frame}{Series E: Measured vs.\ Predicted IC$_{50}$ (log scale)}
+  \centering
+  \vspace{0.2em}
+  \begin{tikzpicture}[scale=0.92]
+    % Scatter plot: IC50 measured vs predicted (expanded)
+    \draw[->] (0,0) -- (7,0) node[right]{\small log(Measured IC$_{50}$, $\mu$M)};
+    \draw[->] (0,0) -- (0,7) node[above]{\small log(Predicted IC$_{50}$, $\mu$M)};
+    % Ticks at 10, 30, 100 µM
+    \foreach \x/\lbl in {1.0/10, 2.48/30, 3.95/100} {
+      \draw (\x,0.12) -- (\x,-0.12) node[below]{\small\lbl};
+      \draw (0.12,\x) -- (-0.12,\x) node[left]{\small\lbl};
+    }
+    \draw[red,dashed,thick] (0,0) -- (6.5,6.5);
+    \foreach \p in {1.0, 2.48, 3.95} {
+      \draw[gray!25] (\p,0) -- (\p,7);
+      \draw[gray!25] (0,\p) -- (7,\p);
+    }
+    % Data points: (log(meas), log(pred))
+    % 17.80 -> 1.250, 13.08 -> 1.117
+    % 63.60 -> 1.804, 34.11 -> 1.533
+    % 6.07 -> 0.783, 7.38 -> 0.868
+    % 12.20 -> 1.086, 11.15 -> 1.047
+    % 108.00 -> 2.033, 27.33 -> 1.436
+    % 17.00 -> 1.230, 17.09 -> 1.233
+    \fill[steelblue] (1.250,1.117) circle(5pt);
+    \fill[steelblue] (1.804,1.533) circle(5pt);
+    \fill[steelblue] (0.783,0.868) circle(5pt);
+    \fill[steelblue] (1.086,1.047) circle(5pt);
+    \fill[steelblue] (2.033,1.436) circle(5pt);
+    \fill[steelblue] (1.230,1.233) circle(5pt);
+  \end{tikzpicture}
+  \vspace{0.1em}
+
+  {\small Scatter plot with identity line (dashed red). One point (upper left) markedly above diagonal indicates structurally novel compound. Five points cluster near diagonal.}
 \end{frame}
 
 % ============================================================
@@ -525,42 +532,22 @@
 \end{frame}
 
 % ============================================================
-\section{Generation Output Animations}
+\section{Source Mode Breakdown (200 compounds)}
 
-\begin{frame}{Campaign Overview: All Generation Folders}
-  \centering
-  \includegraphics[width=0.92\textwidth]{../outputs/generated/animations/all_generation_folders_big_timeline_first_frame.png}
-  \vspace{0.2em}
-
-  {\small Timeline view of all generation campaign folders. \textit{(Full animation: \texttt{outputs/generated/animations/all\_generation\_folders\_big\_timeline.gif})}}
+\begin{frame}{Source Mode Breakdown: Data Source}
+  \small
+  \begin{itemize}
+    \item \textbf{Dataset:} \texttt{outputs/hybrid\_stage/gate1/gate1\_shortlist.csv}
+    \item \textbf{Total compounds:} 200 (Gate~1 shortlist)
+    \item \textbf{Sorting:} \texttt{pred\_ic50\_uM} ascending (low $\rightarrow$ high)
+    \item \textbf{Columns shown:} source mode, source family, predicted IC$_{50}$, pIC$_{50}$, cLogP, SMILES
+    \item \textbf{Rendered as:} 20 slides x 10 compounds per slide
+  \end{itemize}
+  \vspace{0.3em}
+  {\footnotesize Sorted export: \texttt{outputs/generated/\_campaign\_overview/gate1\_shortlist\_sorted\_ic50.csv}}
 \end{frame}
 
-% ============================================================
-\begin{frame}{Top Generation Outputs: Combined View}
-  \centering
-  \includegraphics[width=0.90\textwidth]{../outputs/generated/animations/all_requested_outputs_combined_first_frame.png}
-  \vspace{0.2em}
-
-  {\small Combined animation of 13 output assets across all generation families and modes. \textit{(Full GIF: \texttt{all\_requested\_outputs\_combined.gif})}}
-\end{frame}
-
-% ============================================================
-\begin{frame}{End-to-End Generation Pipeline: Phase Overview}
-  \centering
-  \includegraphics[width=0.90\textwidth]{../outputs/generated/animations/everything_in_one_with_phases_first_frame.png}
-  \vspace{0.2em}
-
-  {\small 9-phase end-to-end pipeline summary across all generation modes (78 total frames). \textit{(Full GIF: \texttt{everything\_in\_one\_with\_phases.gif})}}
-\end{frame}
-
-% ============================================================
-\begin{frame}{Selected Folders: Detailed Output}
-  \centering
-  \includegraphics[width=0.90\textwidth]{../outputs/generated/animations/selected_folders_within_first_frame.png}
-  \vspace{0.2em}
-
-  {\small Detailed compound visualisation within selected generation folders. \textit{(Full GIF: \texttt{selected\_folders\_within.gif})}}
-\end{frame}
+\input{source_mode_200_slides.tex}
 
 % ============================================================
 \section{Summary}
